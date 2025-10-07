@@ -18,9 +18,10 @@
 #body.arg_hide.login [onclick] {
   cursor: pointer !important;
 }
-
+/*Update "background-image" below to Change the Logo on Login Screen. */
 #backgroundImage {
   opacity: 0.02 !important;
+  /*background-image: url(/images/login/DevRyanBearVector.png) !important;*/
 }
 
 #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
