@@ -1,13 +1,51 @@
 /* **************************************************************** */
 /* UI Menu button position and colors */
 #uiMenuButton {
-	position: absolute !important;
-    padding: 3px !important;
-    right: 10px !important;
-    top: -30px !important;
-	z-index: 999 !important;
-    color: #f3f3f3 !important;
-	font-size: larger !important;
+  position: absolute !important;
+  padding: 3px !important;
+  right: 5px !important;
+  top: -26px !important;
+  z-index: 999 !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  user-select: none !important;
+  cursor: pointer !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+}
+#uiMenuButton::before {
+  content: "⚙️";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+#uiMenuButton:hover::before {
+  transform: translate(-50%, -50%) rotate(20deg);
+  transition: transform 0.2s ease;
+}
+
+@media (min-width: 768px) and (max-width: 865px) {
+    #uiMenuButton {
+        right: 165px !important;
+        top: -26px !important;
+    }
+}
+@media (max-width: 769px) {
+    #uiMenuButton {
+		right: 40px !important;
+        top: -56px !important;
+    }
 }
 
 #uiMenu {
