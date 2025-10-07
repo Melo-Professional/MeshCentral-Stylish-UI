@@ -2,6 +2,21 @@
 /* Login Page */
 #body.arg_hide.login {
   background: linear-gradient(to bottom right, #3b5376 0%, #222f42 40%) !important;
+  cursor: default !important;
+  user-select: none !important;
+}
+#body.arg_hide.login input[type="text"],
+#body.arg_hide.login input[type="password"],
+#body.arg_hide.login input[type="email"],
+#body.arg_hide.login textarea {
+  cursor: text !important;
+  user-select: text !important;
+}
+#body.arg_hide.login input[type="button"],
+#body.arg_hide.login button,
+#body.arg_hide.login a,
+#body.arg_hide.login [onclick] {
+  cursor: pointer !important;
 }
 
 #backgroundImage {
