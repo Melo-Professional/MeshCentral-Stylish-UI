@@ -1062,7 +1062,8 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
 @media (max-width: 769px) {
     #uiMenuButton {
 		right: 40px !important;
-        top: -51px !important;
+        top: 11px !important;
+        position: fixed !important;
     }
 }
 
