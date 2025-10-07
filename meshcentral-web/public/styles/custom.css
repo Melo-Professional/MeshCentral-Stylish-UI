@@ -190,6 +190,54 @@ table tr td div[id^="DevxCol"] {
     font-family: inherit !important;
 }
 
+/* Mobile Toolbar - For My Devices Page (Select All, Group Action, Filter & OS Name CheckBox) */
+@media (max-width: 900px) {
+  #devListToolbarSpan { 
+    flex-wrap: wrap; 
+    gap: 8px;
+  }
+
+  #devListToolbar,
+  #kvmListToolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #devListToolbarSpan > .d-flex.ms-auto {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  #SearchInput,
+  #KvmSearchInput {
+    flex: 1 1 220px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #DevFilterSelect,
+  #viewselect,
+  #sizeselect,
+  #sortselect {
+    flex: 0 1 200px;
+    max-width: 100%;
+  }
+
+  #devListToolbar .form-check,
+  #kvmListToolbar .form-check {
+    flex: 0 0 auto;
+  }
+
+  #devListToolbar .btn,
+  #kvmListToolbar .btn {
+    flex: 0 0 auto;
+  }
+}
+
 /* **************************************************************** */
 /* Device - General Page customization */
 #p10 span[tabindex="0"], #p10 span[onclick="showEditNodeValueDialog(3)"], #p10 span[onclick="showEditNodeValueDialog(2)"] {
@@ -421,10 +469,26 @@ hr#cxmgroupsplit {
 /* Login Page */
 #body.arg_hide.login {
   background: linear-gradient(to bottom right, #3b5376 0%, #222f42 40%) !important;
+  cursor: default !important;
+  user-select: none !important;
 }
-
+#body.arg_hide.login input[type="text"],
+#body.arg_hide.login input[type="password"],
+#body.arg_hide.login input[type="email"],
+#body.arg_hide.login textarea {
+  cursor: text !important;
+  user-select: text !important;
+}
+#body.arg_hide.login input[type="button"],
+#body.arg_hide.login button,
+#body.arg_hide.login a,
+#body.arg_hide.login [onclick] {
+  cursor: pointer !important;
+}
+/*Update "background-image" below to Change the Logo on Login Screen. */
 #backgroundImage {
   opacity: 0.02 !important;
+  /*background-image: url(/images/login/DevRyanBearVector.png) !important;*/
 }
 
 #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
@@ -439,6 +503,7 @@ hr#cxmgroupsplit {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
 }
+
 
 #loginpanel:hover, #createpanel:hover, #resetpanel:hover, #tokenpanel:hover, #resettokenpanel:hover, #resetpasswordpanel:hover, #checkemailpanel:hover, #waitpushpanel:hover {
   transform: translateY(-2px) !important;
@@ -643,6 +708,12 @@ td#bottomLanguageSelect > select#d2langselect {
   color: rgba(255, 255, 255, 0.8) !important;
   font-size: 0.9rem !important;
 }
+/* Optional Hide Terms & Privacy Link on Login Page.  */
+/*
+#flink {
+	display: none !important;
+}
+*/
 
 @media (max-width: 480px) {
   #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
@@ -948,13 +1019,51 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
 /* **************************************************************** */
 /* UI Menu button position and colors */
 #uiMenuButton {
-	position: absolute !important;
-    padding: 3px !important;
-    right: 10px !important;
-    top: -30px !important;
-	z-index: 999 !important;
-    color: #f3f3f3 !important;
-	font-size: larger !important;
+  position: absolute !important;
+  padding: 3px !important;
+  right: 5px !important;
+  top: -26px !important;
+  z-index: 999 !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  user-select: none !important;
+  cursor: pointer !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+}
+#uiMenuButton::before {
+  content: "⚙️";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+#uiMenuButton:hover::before {
+  transform: translate(-50%, -50%) rotate(20deg);
+  transition: transform 0.2s ease;
+}
+
+@media (min-width: 768px) and (max-width: 865px) {
+    #uiMenuButton {
+        right: 165px !important;
+        top: -26px !important;
+    }
+}
+@media (max-width: 769px) {
+    #uiMenuButton {
+		right: 40px !important;
+        top: -51px !important;
+    }
 }
 
 #uiMenu {
@@ -1064,4 +1173,3 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
     color: #fff !important;
     margin: 45px 35px 0 !important;
 }
-
