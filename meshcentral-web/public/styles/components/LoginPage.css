@@ -241,6 +241,13 @@ td#bottomLanguageSelect > select#d2langselect {
   font-size: 0.9rem !important;
 }
 
+/* Optional Hide Terms & Privacy Link on Login Page.  */
+/*
+#flink {
+	display: none !important;
+}
+*/
+
 @media (max-width: 480px) {
   #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
     padding: 30px 20px 18px 20px !important;
