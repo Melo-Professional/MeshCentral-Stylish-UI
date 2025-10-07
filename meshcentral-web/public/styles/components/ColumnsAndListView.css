@@ -165,3 +165,51 @@ table tr td div[id^="DevxCol"] {
     font-family: inherit !important;
 }
 
+
+/* Mobile Toolbar - For My Devices Page (Select All, Group Action, Filter & OS Name CheckBox) */
+@media (max-width: 900px) {
+  #devListToolbarSpan { 
+    flex-wrap: wrap; 
+    gap: 8px;
+  }
+
+  #devListToolbar,
+  #kvmListToolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  #devListToolbarSpan > .d-flex.ms-auto {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  #SearchInput,
+  #KvmSearchInput {
+    flex: 1 1 220px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #DevFilterSelect,
+  #viewselect,
+  #sizeselect,
+  #sortselect {
+    flex: 0 1 200px;
+    max-width: 100%;
+  }
+
+  #devListToolbar .form-check,
+  #kvmListToolbar .form-check {
+    flex: 0 0 auto;
+  }
+
+  #devListToolbar .btn,
+  #kvmListToolbar .btn {
+    flex: 0 0 auto;
+  }
+}
