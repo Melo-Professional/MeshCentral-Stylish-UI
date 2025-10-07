@@ -128,5 +128,4 @@ meshcentral-web/
   • <a href="https://github.com/GlitchedCod/MeshCentral-Windows-11-Theme">GlitchedCod</a> — for most of the icons<br>
   • <a href="https://github.com/si458">Simon</a> — for general guidance<br>
   • <a href="https://github.com/Ylianst/MeshCentral">MeshCentral</a> — the ultimate RMM solution!
-  https://github.com/The-Dev-Ryan
 </p>
