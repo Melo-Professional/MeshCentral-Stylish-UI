@@ -37,6 +37,7 @@
     <script type="text/javascript" src="scripts/agent-desktop-0.0.2{{{min}}}.js"></script>
     <script type="text/javascript" src="scripts/agent-rdp-0.0.1{{{min}}}.js"></script>
     <script type="text/javascript" src="scripts/qrcode.min.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
     <script type="text/javascript" src="scripts/xterm{{{min}}}.js"></script>
     <script type="text/javascript" src="scripts/xterm-addon-fit{{{min}}}.js"></script>
     <script type="text/javascript" src="scripts/flatpickr.js"></script>
@@ -60,6 +61,71 @@
     <script keeplink=1 type="text/javascript" src="scripts/purify{{{min}}}.js"></script>
     <script keeplink=1 type="text/javascript" src="scripts/marked{{{min}}}.js"></script>
     <title>{{{title}}}</title>
+    <style>
+        @media (max-width: 900px) {
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        * {
+            scrollbar-width: none;
+        }
+        * {
+            -ms-overflow-style: none;
+        }
+        body, html {
+            -webkit-overflow-scrolling: touch;
+        }
+          #p10,
+          #p10info {
+            overflow-x: hidden;
+          }
+          #p10html4 {
+              padding-bottom: 2rem;
+        }
+        }
+
+        @media (max-width: 768px) {
+            #p10DeviceEmptyCell {
+              display: none !important;
+            }
+            #MainSubMenu { 
+                display: none !important; 
+            }
+            #MainSubMenuSpan{
+                overflow-y: unset !important;
+                overflow-x: unset !important;
+                background: transparent !important;
+
+        }
+            #MainSubMenuMobile { 
+                display: block !important; 
+                width: -webkit-fill-available;
+                padding: 8px 12px; 
+                margin: 4px 4px; 
+                background: #2c2c2c; 
+                color: #fff; 
+                border: 1px solid #555; 
+                border-radius: 4px; 
+                font-size: 14px;
+                box-sizing: border-box;
+                position: relative;
+                z-index: 1 !important;
+                clear: both;
+            }
+            #MainSubMenuMobile option {
+                background: #2c2c2c;
+                color: #fff;
+            }
+			#MainSubMenuMobile option[hidden] {
+                display: none; 
+            }
+            #p10DeviceRightCellMobile { text-align:center; }
+            #p10DeviceRightCellMobile #MainComputerImage { max-width:180px; width:60%; height:auto; display:inline-block; }
+            #p10DeviceRightCellMobile .deviceNotifyLargeDot { display:flex; justify-content:center; gap:8px; margin:8px 0; }
+            #p10DeviceRightCellMobile #p10deviceBattery { display:inline-block; margin:8px 0; }
+            #p10DeviceRightCellMobile #MainComputerState { text-align:center; margin-top:8px; }
+        }
+    </style>
 </head>
 
 <body id="body" oncontextmenu="handleContextMenu(event)" style="display:none;min-width:495px"
@@ -261,6 +327,18 @@
                                 <td class="topbar_td_end style3">&nbsp;</td>
                             </tr>
                         </table>
+                        <!-- Mobile dropdown menu -->
+                        <select id="MainSubMenuMobile" class="mobile-tab-dropdown" onchange="goMobileTab(this.value)" style="display:none">
+                          <option id="optMainDev"         value="10">General</option>
+                          <option id="optMainDevDesktop"  value="11">Desktop</option>
+                          <option id="optMainDevTerminal" value="12">Terminal</option>
+                          <option id="optMainDevFiles"    value="13">Files</option>
+                          <option id="optMainDevEvents"   value="16">Events</option>
+                          <option id="optMainDevInfo"     value="17">Details</option>
+                          <option id="optMainDevAmt"      value="14">Intel® AMT</option>
+                          <option id="optMainDevConsole"  value="15">Console</option>
+                          <option id="optMainDevPlugins"  value="19">Plugins</option>
+                        </select>
                     </div>
                     <div id=MeshSubMenuSpan style="display:none">
                         <table id=MeshSubMenu cellpadding=0 cellspacing=0 class=style1>
@@ -798,9 +876,11 @@
                     <div id="p10BackButton" class="pe-2">
                         <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>General - <span id=p10deviceName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p10deviceName></span></div>
                 </div>
                 <div id=p10info style="overflow-y:auto" class="pt-3">
+                    <!-- Mobile placeholder for right cell content -->
+                    <div id="p10DeviceRightCellMobile" style="display:none"></div>
                     <table style="width:100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td style=width:auto valign=top>
@@ -820,8 +900,8 @@
                                     </tbody>
                                 </table>
                             </td>
-                            <td style=width:20px></td>
-                            <td style=width:200px;vertical-align:top;position:relative valign=top>
+                            <td id="p10DeviceEmptyCell" style=width:20px></td>
+                            <td id="p10DeviceRightCell" style=width:200px;vertical-align:top;position:relative valign=top>
                                 <div class="deviceNotifyLargeDot">
                                     <div id="p10deviceMsg" onclick=showDeviceMessages(null,null,event) class=deviceNotifyDotSub></div>
                                     <i title="Starred" role=button class="fa-solid fa-star" id="p10deviceStar" onclick=showDeviceSessions(null,null,event) data-fa-transform="shrink-5" data-fa-mask="fa-solid fa-circle"></i>
@@ -845,7 +925,7 @@
                     <div id="p11BackButton" class="pe-2">
                         <i class="fa-solid fa-2xl fa-square-caret-left" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>Desktop - <span id=p11deviceName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p11deviceName></span></div>
                     <div id="devListToolbarViewIcons" class="ms-auto">
                         <i class="fa-solid fa-xl fa-maximize fa-border" role="button" onclick=deskToggleFull(event) title="Full Screen. Hold shift to browser full screen."></i>
                     </div>
@@ -1026,7 +1106,7 @@
                     <div id="p12BackButton" class="pe-2">
                         <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>Terminal - <span id=p12deviceName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p12deviceName></span></div>
                     <div id="devListToolbarViewIcons2" class="ms-auto">
                         <i class="fa-solid fa-xl fa-maximize fa-border" role="button" onclick=deskToggleFull(event) title="Full Screen. Hold shift to browser full screen."></i>
                     </div>
@@ -1164,7 +1244,7 @@
                     <div id="p13BackButton" class="pe-2">
                         <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>Files - <span id=p13deviceName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p13deviceName></span></div>
                 </div>
                 <table id="p13toolbar" cellpadding="0" cellspacing="0">
                     <tr>
@@ -1334,7 +1414,7 @@
                     <div id="p16BackButton" class="pe-2">
                         <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>Events - <span id=p16deviceName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p16deviceName></span></div>
                 </div>
                 <table class="pTable">
                     <tr>
@@ -1371,7 +1451,7 @@
                     <div id="p17BackButton" class="pe-2">
                         <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>Details - <span id=p17deviceName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p17deviceName></span></div>
                     <div id="devListToolbarViewIcons3" class="ms-auto">
                         <i class="fa-solid fa-chart-line fa-xl fa-border" role="button" onclick=deskToggleCpuGraph(event) title="Show device CPU and memory usage."></i>
                     </div>
@@ -1405,7 +1485,7 @@
                             <div class="backButtonEx"></div>
                         </div>
                     </div>
-                    <h1>Plugins - <span id=p19deviceName></span></h1>
+                    <h1><span id=p19deviceName></span></h1>
                 </div>
                 <div id="p19headers"></div>
                 <div id=p19pages></div>
@@ -1416,7 +1496,7 @@
                         <div id="p20BackButton" class="pe-2">
                             <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                         </div>
-                        <div class='fs-4 fw-bold'>General - <span id=p20meshName></span></div>
+                        <div class='fs-4 fw-bold'><span id=p20meshName></span></div>
                     </div>
                     <picture id=MainMeshImage style=border-width:0px;height:200px;width:200px;float:right>
                         <source type="image/webp" width=200 height=200 srcset="images/webp/mesh-256.webp" />
@@ -1462,7 +1542,7 @@
                     <div id="p30BackButton" class="pe-2">
                         <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>General - <span id=p30userName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p30userName></span></div>
                 </div>
                 <div id="p30info" style="overflow-y:auto">
                     <div class="row">
@@ -1496,7 +1576,7 @@
                     <div id="p31BackButton" class="pe-2">
                         <i class="fa-solid fa-square-caret-left fa-2xl" role="button" tabindex=0 onclick=goBack() title="Back" onkeypress="if (event.key == 'Enter') goBack()"></i>
                     </div>
-                    <div class='fs-4 fw-bold'>Events - <span id=p31userName></span></div>
+                    <div class='fs-4 fw-bold'><span id=p31userName></span></div>
                 </div>
                 <table class="pTable">
                     <tr>
@@ -8237,7 +8317,7 @@
                 QH('p12deviceName', nname);
                 QH('p13deviceName', nname);
                 QH('p14deviceName', nname);
-                QH('p15deviceName', "Console - " + nname);
+                QH('p15deviceName', nname);
                 QH('p16deviceName', nname);
                 QH('p17deviceName', nname);
                 QH('p19deviceName', nname);
@@ -8478,6 +8558,7 @@
                 if (relayFor.length > 0) { x += addDeviceAttribute('<span title="' + "Device groups this device is a relay for" + '">' + "Relay for" + '</span>', relayFor.join(", ")); }
 
                 x += '</table><br />';
+				x += '<div id="ActionButtonContainer" class="d-flex flex-wrap align-items-center" style="row-gap: 0.5rem;">';
                 // Show action button, only show if we have permissions 4, 8, 64
                 if (((meshrights & (4 + 8 + 64 + 262144)) != 0) && (node.mtype < 3) && ((node.agent == null) || (node.agent.id != 34))) { x += '<input type=button class="btn btn-primary btn-sm me-2" value="' + "Actions" + '" title="' + "Perform power actions on the device" + '" onclick=deviceActionFunction() />'; }
                 x += '<input type=button class="btn btn-primary btn-sm me-2" value="' + "Notes" + '" title="' + "View notes about this device" + '" onclick=showNotes(' + ((meshrights & 128) == 0) + ',"' + encodeURIComponentEx(node._id) + '") />';
@@ -8513,7 +8594,7 @@
                         if (meshrights & 8) { x += '<input type=button class="btn btn-primary btn-sm me-2" value="' + "Remote Control" + '" title="' + "Remote Control" + '" onclick=openIpKvmRemoteControl("' + encodeURIComponentEx(node._id) + '") />'; }
                     }
                 }
-
+                x += '</div>';
                 // Custom UI
                 if ((customui != null) && (customui.devicebuttons != null)) {
                     for (var i in customui.devicebuttons) {
@@ -8620,7 +8701,7 @@
                     QH('p10html3', x);
                     QH('p10html5', '');
                 }
-
+                relocateRightCellForViewport();
                 // Set the node power state
                 var powerstate = PowerStateStr(node.state);
                 //if (node.state == 0) { powerstate = 'Unknown State'; }
@@ -8673,7 +8754,7 @@
                 QV('MainDevInfo', (node.mtype < 3) && ((meshrights & 1048576) != 0));
                 QV('MainDevAmt', (node.intelamt != null) && ((node.intelamt.state == 2) || (node.conn & 2)) && (meshrights & 8) && amtAccess);
                 QV('MainDevConsole', (consoleRights && ((node.agent != null) && (node.agent.caps != null) && ((node.agent.caps & 8) != 0))) && (meshrights & 8));
-                QV('MainDevPlugins', false);
+                QV('MainDevPlugins', false);                
                 QV('p15uploadCore', (node.agent != null) && (node.agent.caps != null) && ((node.agent.caps & 16) != 0));
                 QH('p15coreName', ((node.agent != null) && (node.agent.core != null)) ? node.agent.core : '');
 
@@ -8685,6 +8766,91 @@
                     QH('MainDevAmt', "Intel&reg;AMT");
                     QH('p14deviceNamePrefix', "Intel&reg; AMT");
                 }
+
+                (function () {
+                  const map = {
+                    MainDev: 10,          // General
+                    MainDevDesktop: 11,   // Desktop
+                    MainDevTerminal: 12,  // Terminal
+                    MainDevFiles: 13,     // Files
+                    MainDevEvents: 16,    // Events
+                    MainDevInfo: 17,      // Details
+                    MainDevAmt: 14,       // Intel AMT / SM
+                    MainDevConsole: 15,   // Console
+                    MainDevPlugins: 19    // Plugins
+                  };
+
+                  function getMobile() {
+                    return document.getElementById('MainSubMenuMobile');
+                  }
+                  function getOptById(id) {
+                    const val = map[id];
+                    if (val == null) return null;
+                    return (
+                      document.getElementById('opt' + id) ||
+                      document.querySelector(`#MainSubMenuMobile option[value="${val}"]`)
+                    );
+                  }
+
+                  function firstVisibleValue() {
+                    for (const id of Object.keys(map)) {
+                      const o = getOptById(id);
+                      if (o && !o.hidden && !o.disabled) return o.value;
+                    }
+                    return '';
+                  }
+
+                  function applyMobileVisibility(id, visible) {
+                    const opt = getOptById(id);
+                    if (!opt) return;
+
+                    opt.hidden   = !visible;
+                    opt.disabled = !visible;
+
+                    const mobile = getMobile();
+                    if (!mobile) return;
+                    const sel = mobile.options[mobile.selectedIndex];
+                    if (!sel || sel.hidden || sel.disabled) {
+                      const fv = firstVisibleValue();
+                      if (fv) {
+                        mobile.value = fv;
+                        if (typeof goMobileTab === 'function') goMobileTab(fv);
+                      } else {
+                        mobile.style.display = 'none';
+                      }
+                    } else {
+                      mobile.style.display = '';
+                    }
+                  }
+                  const _QV = window.QV;
+                  window.QV = function (id, state) {
+                    if (typeof _QV === 'function') _QV.apply(this, arguments);
+                    if (id in map) applyMobileVisibility(id, !!state);
+                  };
+                  window.addEventListener('DOMContentLoaded', function () {
+                    const mobile = getMobile();
+                    if (!mobile) return;
+
+                    let any = false;
+                    for (const id of Object.keys(map)) {
+                      const el = document.getElementById(id);
+                      const visible = !!(el && el.style.display !== 'none' && !el.hidden);
+                      applyMobileVisibility(id, visible);
+                      any = any || visible;
+                    }
+                    mobile.style.display = any ? '' : 'none';
+                    if (any) {
+                      const sel = mobile.options[mobile.selectedIndex];
+                      if (!sel || sel.hidden || sel.disabled) {
+                        const fv = firstVisibleValue();
+                        if (fv) {
+                          mobile.value = fv;
+                          if (typeof goMobileTab === 'function') goMobileTab(fv);
+                        }
+                      }
+                    }
+                  });
+                })();
 
                 // Setup/Refresh Intel AMT tab
                 var amtFrameNode = Q('p14iframe').contentWindow.getCurrentMeshNode();
@@ -8842,6 +9008,34 @@
             if (!panel) panel = 10;
             go(panel);
         }
+        
+        // Move p10DeviceRightCell on small screens & restore on large
+        function relocateRightCellForViewport() {
+            var rightCell = Q('p10DeviceRightCell');
+            var emptyCell = Q('p10DeviceEmptyCell');
+            var mobileSlot = Q('p10DeviceRightCellMobile');
+            if (!rightCell || !mobileSlot) return;
+            var isMobile = window.matchMedia('(max-width: 768px)').matches;
+            if (isMobile) {
+                if (emptyCell) { emptyCell.style.display = 'none'; }
+                if (rightCell.style.display !== 'none') { rightCell.style.display = 'none'; }
+                mobileSlot.style.display = '';
+                while (rightCell.firstChild) { mobileSlot.appendChild(rightCell.firstChild); }
+                var img = Q('MainComputerImage');
+                var imgAnchor = (img && img.parentElement && img.parentElement.tagName && img.parentElement.tagName.toLowerCase() === 'a') ? img.parentElement : null;
+                if (imgAnchor && imgAnchor.parentElement === mobileSlot && mobileSlot.firstChild !== imgAnchor) {
+                    mobileSlot.insertBefore(imgAnchor, mobileSlot.firstChild);
+                }
+                mobileSlot.style.width = '100%';
+            } else {
+                if (emptyCell) { emptyCell.style.display = ''; }
+                if (rightCell.style.display !== '') { rightCell.style.display = ''; }
+                while (mobileSlot.firstChild) { rightCell.appendChild(mobileSlot.firstChild); }
+                mobileSlot.style.display = 'none';
+                rightCell.style.width = '200px';
+            }
+        }
+        window.addEventListener('resize', function() { try { relocateRightCellForViewport(); } catch (e) { } });
 
         function setIpPduState(op) {
             if (op == 0) {
@@ -20765,6 +20959,28 @@
         window.addEventListener('beforeunload', function (e) {
             if (((desktop != null) && (xxcurrentView == 11)) || ((terminal != null) && (xxcurrentView == 12))) { e.preventDefault(); e.returnValue = ''; }
         });
+
+        // Mobile dropdown handler for tab navigation
+        function goMobileTab(value) {
+            go(parseInt(value));
+        }
+        function toggleMobileTabs() {
+            var isMobile = window.matchMedia('(max-width: 768px)').matches;
+            var table = Q('MainSubMenu');
+            var dropdown = Q('MainSubMenuMobile');
+            
+            if (table && dropdown) {
+                if (isMobile) {
+                    table.style.display = 'none';
+                    dropdown.style.display = 'block';
+                } else {
+                    table.style.display = '';
+                    dropdown.style.display = 'none';
+                }
+            }
+        }
+        window.addEventListener('load', toggleMobileTabs);
+        window.addEventListener('resize', toggleMobileTabs);
 
     </script>
 </body>
