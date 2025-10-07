@@ -1,0 +1,86 @@
+/* **************************************************************** */
+/* TopBar - Hide and raise device list */
+/*
+#column_l, .menu_stack #MainMenuSpan:has([style*="display: block"]) {
+  margin-top: 0 !important;
+}
+
+.menu_stack:not(:has(#MainMenuSpan[style*="display: block"])) ~ #column_l:has(
+  #p1:not([style*="display: none"]), 
+  #p2:not([style*="display: none"]), 
+  #p5:not([style*="display: none"])
+) {
+  margin-top: -24px !important;
+}
+*/
+
+#column_l {
+  margin-top: 0 !important;
+}
+
+#column_l:has(#p1:not([style*="display: none"], [style*="display:none"]), #p2:not([style*="display: none"], [style*="display:none"]), #p5:not([style*="display: none"], [style*="display:none"])) {
+  margin-top: -24px !important;
+}
+
+#xdevices {
+	height: calc(-165px + 100vh) !important;
+    max-height: calc(-165px + 100vh) !important;
+	margin-left: 4px !important;
+}
+
+#p2info {
+	height: calc(-132px + 100vh) !important;
+    max-height: calc(-132px + 100vh) !important;
+}
+
+#p10info {
+	height: calc(-132px + 100vh) !important;
+    max-height: calc(-132px + 100vh) !important;
+}
+
+#xdevicesmap {
+    height: calc(100vh - 196px);
+}
+
+/* Topbar colors */
+.style3, .style3x, #MainSubMenuSpan, #MeshSubMenuSpan, #EventsSubMenuSpan, #UserSubMenuSpan, #UsersSubMenuSpan, #ServerSubMenuSpan, #MainMenuSpan, #MainSubMenu, #MeshSubMenu, #UserSubMenu, #ServerSubMenu, #UserDummyMenu, #PluginSubMenu {
+	background: unset !important;
+	background-color: var(--bs-secondary-bg) !important;
+	font-weight: lighter;
+}
+
+.style3sel,
+.fullselect,
+#EventsSubMenu .style3sel {
+	/* background-color: var(--bs-secondary-bg) !important; */
+	color: var(--bs-emphasis-color) !important;
+    background-color: #f3f3f3 !important;
+	border-right: 2px solid var(--bs-secondary-border-subtle) !important;
+	border-left: 2px solid var(--bs-secondary-border-subtle) !important;
+}
+
+.night .style3sel,
+.night .fullselect,
+.night #EventsSubMenu .style3sel {
+    background-color: #1c1e1e !important;
+}
+
+#EventsSubMenu .style3x, .style3x {
+    /* background-color: #0000003b !important; */
+	border-right: 1px solid #97979740 !important;
+	background: #dddddd2e !important;
+	/* font-weight: normal; */
+}
+
+#EventsSubMenu .style3x:hover, .style3x:hover {
+    background-color: #6060601a !important;
+}
+
+/* Event tabs Gap  */
+#EventsSubMenu .col {
+/*     margin: 0 !important; */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+/*    width: auto !important; */
+}
+

@@ -1,0 +1,52 @@
+/* **************************************************************** */
+/* Drop down context menu */
+.contextMenu {
+	border-radius: 10px !important;
+	border: unset !important;
+	background-color: #f2f2f2 !important;
+	box-shadow: 0 0 12px #0000004d !important;
+	/* color: #CCC !important; */
+}
+
+.night .contextMenu {
+	background-color: #292c2c !important;
+	box-shadow: 0 0 12px #919191ba;
+	/* color: #CCC !important; */
+}
+
+hr#cxmgroupsplit {
+	margin: 0 !important;
+}
+
+.cmtext:hover {
+    background-color: #8181814a !important;
+}
+
+.cmtext {
+    width: 100% !important;
+	padding-bottom: 0px !important;
+	font-size: smaller !important;
+	color: unset !important;
+}
+
+#cxinfo > b {
+	font-weight: normal !important;
+}
+
+.dropdown-menu.show {
+	border-radius: 10px !important;
+	border: unset !important;
+	background-color: #f2f2f2 !important;
+	box-shadow: 0 0 12px #0000004d !important;
+	font-size: smaller !important;
+}
+
+.night .dropdown-menu.show {
+	background-color: #292c2c !important;
+	box-shadow: 0 0 12px #919191ba !important;
+}
+
+.dropdown-menu.show > li > a {
+	color: var(--bs-body-color) !important;
+}
+

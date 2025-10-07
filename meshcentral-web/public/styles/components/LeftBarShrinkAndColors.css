@@ -1,0 +1,26 @@
+/* **************************************************************** */
+/* Left Bar shrink */
+#page_leftbar {
+	width: 70px !important;
+	overflow-x: hidden !important;
+}
+
+.fullscreen #container {
+    grid-template-columns: 70px auto;
+}
+
+.nav {
+    --bs-nav-link-padding-x: 19px !important;
+}
+
+.fullscreen #p15agentConsoleText {
+    width: calc(100vw - 100px);
+}
+
+
+/* left Bar Custom Colors */
+#page_leftbar {
+	/* background: linear-gradient(to bottom, #35445a 10%, #3b4c64 100%) !important; */
+    background: linear-gradient(to bottom, var(--bs-primary-bg-subtle) 30%, var(--bs-primary) 70%) !important;
+}
+

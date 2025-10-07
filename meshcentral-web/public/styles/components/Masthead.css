@@ -1,0 +1,24 @@
+/* **************************************************************** */
+/* Masthead */
+/* Masthead Custom Colors */
+#masthead {
+	/* background-color: #222f42 !important; */
+	background-color: var(--bs-primary) !important;
+}
+
+/* Masthead Company name size */
+#masthead .title {
+    font-size: 36px!important;
+}
+
+#masthead .title2 {
+    font-size: 11px!important;
+}
+
+/* Welcome & logout position */
+#masthead p {
+    font-size: 11px !important;
+    color: #fff !important;
+    margin: 45px 35px 0 !important;
+}
+

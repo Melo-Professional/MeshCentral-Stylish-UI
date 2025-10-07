@@ -1,0 +1,149 @@
+/* **************************************************************** */
+/* Notifications */
+.deviceNotifyDotSub {
+    height: 20px !important;
+    width: 20px !important;
+	background-color: #48cb45 !important;
+    box-shadow: unset !important;
+}
+
+.deviceNotifyDotSub:hover {
+    background-color: #c9cb45 !important;
+    box-shadow: 1px 1px 5px #00000091 !important;
+}
+
+#notificationCount {
+    min-width: 24px;
+    font-size: 14px;
+    margin: 10px;
+    padding: 2px;
+	background-color: #f3f3f3!important;
+}
+
+.notifiyBox {
+	border: unset !important;
+	color: var(--bs-body-color) !important;
+	background-color: #f3f3f3 !important;
+	width: 240px !important;
+    font-size: small !important;
+	top: 38px !important;
+    right: 10px !important;
+	max-height: 250px !important;
+}
+
+.night .notifiyBox {
+	background-color: #1c1e1e !important;
+}
+
+.notifiyBox::before, .notifiyBox::after {
+	content: unset !important;
+	border: unset !important;
+}
+
+#notifiyBox .notification .unselectable {
+  color: var(--bs-body-color) !important;
+}
+
+.notification:hover {
+    background-color: #8181814a !important;
+}
+
+#notifyRemoveAll:hover {
+    background-color: #8181814a !important;
+}
+
+.notification {
+	border-top: 1px solid var(--bs-border-color-translucent) !important;
+}
+
+#notifiyBox .customScroll > .notification:first-child {
+	border-top: unset !important;
+}
+
+/* Notification flex */
+#notifiyBox .customScroll {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 240px !important;
+    margin: 5px;
+    padding: 0;
+}
+
+/* "Clear all" sticky on top */
+#notifyRemoveAll {
+    order: -1;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    padding: 3px 0 !important;
+    background-color: #f3f3f3;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+	border-top: unset !important;
+    border-bottom: 1px solid var(--bs-border-color-translucent) !important;
+    color: var(--bs-body-color) !important;
+	font-size: small !important;
+	}
+
+.night #notifyRemoveAll {
+	background-color: #1c1e1e;
+}
+
+#notifiyBox .notification {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    border-top: 1px solid var(--bs-border-color-translucent) !important;
+    margin: 0;
+    padding: 0;
+    min-height: auto;
+    overflow: visible;
+}
+
+#notifiyBox .notification .j1 {
+    float: left;
+    margin: 5px;
+    display: block;
+}
+
+#notifiyBox .notification div[onclick*="notificationDelete"] {
+    float: right;
+    margin: 5px;
+    display: block;
+}
+
+#notifiyBox .notification > div[onclick*="notificationSelected"]:not(.j1) {
+    margin: 5px;
+    display: block !important;
+    overflow: visible;
+    width: auto;
+}
+
+#notifiyBox .notification > div:last-child {
+    clear: both;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    color: gray;
+    font-size: 10px;
+    display: block !important;
+    width: 100%;
+}
+
+#notifiyBox .notification::after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
+
+/* Notifications - do not disturb when fullscreen */
+:fullscreen #notifiyBox {
+    display: none !important;
+}
+

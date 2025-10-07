@@ -1,0 +1,167 @@
+/* **************************************************************** */
+/* Columns and List View */
+/* Columns view */
+span[id^="DevxHeader"] {
+	font-size: small !important;
+	font-weight: 300 !important;
+}
+
+span[class^="devHeaderx"] {
+	font-size: small !important;
+	font-weight: 300 !important;
+}
+
+/* Agent, Powered, AMT text */
+.e2t > div > span {
+    font-size: x-small !important;
+    color: #999 !important;
+}
+
+.e2t > div {
+    font-size: x-small !important;
+    padding-top: 0px !important;
+	padding-left: 6% !important;
+}
+
+div.e1t {
+	margin-bottom: 0px !important;
+    width: unset !important;
+	padding-right: 6% !important;
+	padding-left: 6% !important;
+	font-size: small !important;
+	padding-bottom: 0% !important;
+}
+
+.e2t {
+    background-color: transparent !important;
+    width: unset !important;
+	max-width: 170px !important;
+}
+
+/* box - little left box */
+.g1t {
+    background-image: none !important;
+    background-color: transparent !important;
+    display: none !important;
+}
+
+/* box - little Right box */
+.g2t {
+    display: none !important;
+}
+
+/* box hover */
+.e2s {
+	background-color: #c9c9c91c !important;
+}
+
+.night .e2s {
+	background-color: #33333336 !important;
+}
+
+
+#xdevices > [id^="DevxCol"] > [id^="xv1node"] {
+	width: 250px !important;
+	margin-right: 2% !important;
+}
+
+
+/* List view */
+/* box */
+.style10 {
+    background-color: transparent !important;
+}
+
+#p3 .p3eventsTable tbody tr td:first-child {
+  background-color: unset !important;
+  cursor: pointer;
+}
+
+.bar18 {
+    background-color: transparent !important;
+}
+
+/* box - little left box */
+.g1 {
+    background-image: none !important;
+    background-color: transparent !important;
+}
+
+/* box - little Right box */
+.g2 {
+    display: none !important;
+}
+
+/* Custom H1 size */
+h1 {
+    font-size: x-large;
+}
+
+#NoMeshesPanel {
+    margin: 25px !important;
+}
+
+#getStarted1 {
+    margin-left: 25px !important;
+}
+
+#getStarted2 {
+    margin-left: 25px !important;
+}
+
+.DevSt {
+	border-bottom-width: 4px !important;
+	border-bottom-color: #DDDDDD00 !important;
+}
+
+span[cmenu="meshContextMenu"] {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    font-size: medium !important;
+}
+
+#xdevices > [id^="DevxCol"] {
+  margin-bottom: 30px !important;
+  margin-left: 50px !important;
+}
+
+td.DevSt #MxMESH {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    font-size: medium !important;
+}
+
+table tr td div[id^="DevxCol"] {
+  margin-bottom: 30px !important;
+  margin-left: 50px !important;
+}
+
+/* Normalize fonts specifically for the #xdevices list view */
+#xdevices table th,
+#xdevices table td,
+#xdevices .style10 {
+/*    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important; */
+    font-size: smaller !important;
+    line-height: 1.4 !important;
+    font-weight: normal !important;
+}
+
+/* Ensure consistent font in table headers */
+#xdevices table th {
+    font-weight: 400 !important;
+    text-transform: none !important;
+}
+
+/* Override inline font sizes in device bars and cells */
+#xdevices .style10[style*="font-size"],
+#xdevices td[style*="font-size"] {
+    font-size: smaller !important;
+    font-family: inherit !important;
+}
+
+/* Target spans inside cells for consistency */
+#xdevices td span {
+    font-size: inherit !important;
+    font-family: inherit !important;
+}
+

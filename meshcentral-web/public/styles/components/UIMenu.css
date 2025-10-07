@@ -1,0 +1,96 @@
+/* **************************************************************** */
+/* UI Menu button position and colors */
+#uiMenuButton {
+	position: absolute !important;
+    padding: 3px !important;
+    right: 10px !important;
+    top: -30px !important;
+	z-index: 999 !important;
+    color: #f3f3f3 !important;
+	font-size: larger !important;
+}
+
+#uiMenu {
+	background-color: #eee !important;
+}
+
+.night #uiMenu {
+	background-color: #222 !important;
+}
+
+/* UI Menu 1 column */
+#uiMenu {
+    box-shadow: 1px 0px 9px 1px #333;
+	top: 29px;
+}
+
+#uiMenu table tr {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: auto;
+  justify-content: center;
+}
+
+#uiMenu table td {
+  display: block;
+  width: 40px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#uiMenu .uiSelector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 6px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: visible;
+/*  background: white; */
+  text-align: center;
+}
+
+#uiMenu .uiSelector:last-of-type {
+  margin-bottom: 0;
+}
+
+#uiMenu .uiSelector > div {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  overflow: visible;
+}
+
+#uiMenu svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+}
+
+#uiMenu .uiSelector_end {
+  display: none;
+}
+
+#uiMenu {
+  width: 50px;
+  margin: 0 auto;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+

@@ -1,0 +1,12 @@
+/* **************************************************************** */
+/* MyServer Button - hide button by default */
+/* It depends on custom.js to hide 'MyServer' button */
+body[data-myserver-visible="false"] #LeftMenuMyServer {
+    display: none !important;
+}
+
+/* Show button if JS marks it as visible */
+body[data-myserver-visible="true"] #LeftMenuMyServer {
+    display: block !important;
+}
+

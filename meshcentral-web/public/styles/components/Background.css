@@ -1,0 +1,25 @@
+/* **************************************************************** */
+/* Background */
+#column_l, .deviceBarCheckbox, .deviceBarIcon, .baricon, .card{
+    background-color: #f3f3f3 !important;
+}
+
+.night #column_l, .night .deviceBarCheckbox, .night .deviceBarIcon, .night .baricon, .night .card {
+    background-color: #1c1e1e !important;
+}
+
+.deviceBarIcon .j1 {
+	margin-top: 2px !important;
+    margin-left: 6px !important;
+}	
+
+a, div[id^="dialog"] a {
+    text-decoration: none !important;
+}
+
+.DevSt a, td.DevSt a, #xdevices div a, div[id^="p10html"]:not([id="p10html"]) a {
+    text-decoration: none !important;
+	padding: 11px !important;
+	font-size: smaller !important;
+}
+

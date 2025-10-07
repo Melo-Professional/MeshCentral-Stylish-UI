@@ -1,0 +1,254 @@
+/* **************************************************************** */
+/* Login Page */
+#body.arg_hide.login {
+  background: linear-gradient(to bottom right, #3b5376 0%, #222f42 40%) !important;
+}
+
+#backgroundImage {
+  opacity: 0.02 !important;
+}
+
+#loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
+  padding: 50px 70px 18px 70px !important;
+  margin: 0 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 15px !important;
+  box-shadow: 0 8px 32px rgb(174 177 230 / 37%) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+}
+
+#loginpanel:hover, #createpanel:hover, #resetpanel:hover, #tokenpanel:hover, #resettokenpanel:hover, #resetpasswordpanel:hover, #checkemailpanel:hover, #waitpushpanel:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5) !important;
+}
+
+
+#welcomeText {
+  position: absolute !important;
+  top: -40px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.2rem !important;
+  text-align: center !important;
+  z-index: 10 !important;
+  background: rgba(26, 26, 46, 0.8) !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  white-space: nowrap !important;
+}
+
+#loginpanelform, #createpanel form, #resetpanel form, #tokenpanel form, #resettokenpanel form, #resetpasswordpanel form, #checkemailpanel form, #waitpushpanel form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+#loginuserpassdiv table, #createpanel table, #resetpanel table, #tokenpanel table, #resettokenpanel table, #resetpasswordpanel table, #checkemailpanel table, #waitpushpanel table {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 40px !important;
+  width: 100% !important;
+}
+
+#loginuserpassdiv table tr, #createpanel table tr, #resetpanel table tr, #tokenpanel table tr, #resettokenpanel table tr, #resetpasswordpanel table tr, #checkemailpanel table tr, #waitpushpanel table tr {
+  display: block !important;
+}
+
+#loginuserpassdiv table td, #createpanel table td, #resetpanel table td, #tokenpanel table td, #resettokenpanel table td, #resetpasswordpanel table td, #checkemailpanel table td, #waitpushpanel table td {
+  display: block !important;
+  width: 100% !important;
+}
+
+#loginpanel #password {
+  position: relative !important;
+  background-color: #dbdbdb !important;
+  padding: 15px 40px 15px 15px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  font-size: 1rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#loginpanel #password:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.3) !important;
+  background: rgba(219, 219, 219, 0.9) !important;
+  transform: scale(1.02) !important;
+}
+
+#loginpanel #password::after {
+  content: '👁️' !important;
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 1.2rem !important;
+  color: #666 !important;
+  cursor: pointer !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s !important;
+}
+
+#loginpanel #password:focus::after {
+  opacity: 0.7 !important;
+}
+
+input#loginButton, input#eresetButton {
+  width: 100% !important;
+  margin-top: 0 !important;
+  padding: 15px !important;
+  background: linear-gradient(135deg, #0f3460, #0f4c75) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  border: none !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+input#loginButton:hover, input#eresetButton:hover {
+  background: linear-gradient(135deg, #0f4c75, #0f3460) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(15, 52, 96, 0.4) !important;
+}
+
+#loginpanel #showPassHintLink {
+  background-color: #dbdbdb !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  color: #0f3460 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 15px !important;
+  border-radius: 10px !important;
+}
+
+#loginpanel #showPassHintLink:hover {
+  background: rgba(219, 219, 219, 0.8) !important;
+}
+
+#resetAccountDiv {
+  color: #f0f0f0 !important;
+  text-align: center !important;
+  padding: 10px 0 !important;
+  font-size: 0.9rem !important;
+}
+
+#resetAccountDiv a {
+  color: #f0f0f0 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#resetAccountDiv a:hover {
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+
+#body.arg_hide.login a {
+  color: #f0f0f0 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#body.arg_hide.login a:hover {
+  color: white !important;
+  text-decoration: underline !important;
+}
+
+#loginpanel input[id], #createpanel input[id], #resetpanel input[id], #tokenpanel input[id], #resettokenpanel input[id], #resetpasswordpanel input[id], #checkemailpanel input[id], #waitpushpanel input[id] {
+  background-color: #dbdbdb !important;
+  padding: 15px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  font-size: 1rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#loginpanel input[id]:focus, #createpanel input[id]:focus, #resetpanel input[id]:focus, #tokenpanel input[id]:focus, #resettokenpanel input[id]:focus, #resetpasswordpanel input[id]:focus, #checkemailpanel input[id]:focus, #waitpushpanel input[id]:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.3) !important;
+  background: rgba(219, 219, 219, 0.9) !important;
+  transform: scale(1.02) !important;
+}
+
+td#bottomLanguageSelect > select#d2langselect {
+  background-color: #dbdbdb !important;
+  padding: 10px !important;
+  border-radius: 5px !important;
+  border: none !important;
+}
+
+
+#authStrategies a {
+  display: inline-block !important;
+  margin: 5px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+}
+
+#authStrategies a:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+#authStrategies img {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
+
+#authStrategies hr {
+  width: 100% !important;
+  border: none !important;
+  height: 1px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  margin-bottom: 15px !important;
+}
+
+#authStrategies div {
+  text-align: center !important;
+  width: 100% !important;
+  margin-bottom: 10px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.9rem !important;
+}
+
+@media (max-width: 480px) {
+  #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
+    padding: 30px 20px 18px 20px !important;
+    border-radius: 15px !important;
+  }
+
+  #loginpanel input[id], #createpanel input[id], #resetpanel input[id], #tokenpanel input[id], #resettokenpanel input[id], #resetpasswordpanel input[id], #checkemailpanel input[id], #waitpushpanel input[id] {
+    padding: 12px !important;
+  }
+
+  input#loginButton, input#eresetButton {
+    padding: 12px !important;
+  }
+
+  #authStrategies img {
+    width: 35px !important;
+    height: 35px !important;
+  }
+}
+
+@media (resolution: 1.25dppx) and (min-resolution: 120dpi) {
+  #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+  }
+}
+

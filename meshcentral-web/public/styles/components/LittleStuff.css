@@ -1,0 +1,77 @@
+/* **************************************************************** */
+/* Little Stuff */
+#container {
+	background-color: #f3f3f3 !important;
+}
+
+.night #container {
+	background-color: #1c1e1e !important;
+}
+
+#p2info {
+	overflow-x: hidden !important;
+}
+
+#p1title {
+	margin-top: -13px !important;
+}
+
+#p30info {
+	overflow-x: hidden !important;
+}
+
+#p30info > .row {
+	margin-right: calc(1.5 * var(--bs-gutter-x)) !important;
+}
+
+#p30html2 {
+	margin-right: 15px !important;
+}
+
+#p2meshes {
+	margin-right: 15px !important;
+}
+
+#p17info2 .table.table-hover {
+    --bs-table-bg: unset !important;
+	--bs-table-hover-bg: unset !important;
+}
+
+#p3users table, #p16events .table.table-hover.p3eventsTable {
+	--bs-table-bg: unset !important;
+}
+
+#p20info .table.table-hover.table-striped, #p20info2 .table.table-hover.table-striped {
+	--bs-table-bg: unset !important;
+	--bs-table-striped-bg: unset !important;
+	/* --bs-table-hover-bg: unset !important; */
+}
+
+#DeskTools {
+	font-size: smaller !important;
+	width: 314px !important;
+}
+
+#deskToolsAreaTop {
+	background-color: #f2f2f2 !important;
+}
+
+.night #deskToolsAreaTop {
+	background-color: #919191ba !important;
+}
+
+.pwState.pwsBlack {
+	background: linear-gradient(to bottom right, #7ce25b 15%, #217957 85%);
+}
+#p10html4 > table > tbody > tr {
+    background-color: var(--bs-table-bg) !important;
+}
+
+#dialog2 > div {
+	overflow-wrap: break-word;
+}
+
+#dialog2 > .dialogText {
+	font-size: smaller;
+}
+

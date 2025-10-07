@@ -1,0 +1,27 @@
+/* **************************************************************** */
+/* My Events - Remove horizontal scrolling in the Events view */
+#MainMenuMyEvents.fullselect ~ div #container,
+#EventsSubMenu ~ div .style1 table,
+#page_leftbar + div table tbody tr td:last-child {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 300px;
+    padding-right: 8px;
+}
+
+#container .style1,
+#EventsSubMenu .row .col table {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    table-layout: fixed;
+}
+
+
+@media (max-width: 1024px) {
+    #container table td {
+        padding: 4px 2px !important;
+        font-size: 0.85em;
+    }
+}
+

@@ -1,0 +1,19 @@
+/* **************************************************************** */
+/* Device - General Page customization */
+#p10 span[tabindex="0"], #p10 span[onclick="showEditNodeValueDialog(3)"], #p10 span[onclick="showEditNodeValueDialog(2)"] {
+    color: #69B !important;
+}
+
+#p10 #p10deviceName svg.fa-pencil, #p10 #p10info svg.fa-pencil {
+    display: none !important;
+}
+
+#p10 .fs-4.fw-bold {
+    font-size: 0 !important;
+}
+
+#p10deviceName {
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+}
+
