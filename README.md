@@ -61,6 +61,7 @@ And much, much more...
 ## 📦 Structure
 
 ```
+meshcentral-data/
 meshcentral-web/
 ├── public/
 │   ├── images/
@@ -78,17 +79,19 @@ meshcentral-web/
 
 ## ⚙️ How to Apply
 
-1. Copy all files from `images/` to:
+1. If it doesn’t exist yet, create the meshcentral-web/ folder in the MeshCentral root directory — alongside meshcentral-data/
+
+2. Copy all files from `images/` to:
    ```
    meshcentral-web/public/images/
    ```
 
-2. Copy `styles/custom.css` to:
+3. Copy `styles/custom.css` to:
 
    ```
    meshcentral-web/public/styles/custom.css
    ```
-3. Refresh your browser (CTRL + F5)<br><br>
+4. Refresh your browser (CTRL + F5)<br><br>
 
 <br>
 
