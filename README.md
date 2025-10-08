@@ -84,9 +84,13 @@ meshcentral-web/
    ```
 
 2. Copy `styles/custom.css` to:
+
    ```
    meshcentral-web/public/styles/custom.css
    ```
+3. Refresh your browser (CTRL + F5)<br><br>
+
+<br>
 
 > The files under `styles/components/` are for reference only.  
 > Use them if you prefer to apply specific parts of the customization instead of the full `custom.css`.
