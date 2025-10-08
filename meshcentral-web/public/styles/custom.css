@@ -1028,6 +1028,34 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
 }
 
 /* **************************************************************** */
+/* TopMenu */
+#topMenu, #topMenu > div[onclick*="topMenu"], #topMenu > #logoutMenuOption > a > div {
+	background: #f3f3f3 !important;
+	color: var(--bs-body-color) !important;
+	font-size: small !important;
+	overflow: hidden;
+}
+
+.night #topMenu, .night #topMenu > div[onclick*="topMenu"], .night #topMenu > #logoutMenuOption > a > div {
+	background: #1c1e1e !important;
+}
+
+#topMenu {
+	border-radius: 0px 0px 10px 10px !important;
+}
+
+#topMenu > div[onclick*="topMenu"] {
+	border: unset !important;
+}
+
+#topMenu:hover, 
+#topMenu > div[onclick*="topMenu"]:hover, 
+#topMenu > #logoutMenuOption > a > div:hover {
+    background: #b5b5b5 !important; !important;
+	overflow: hidden
+}
+
+/* **************************************************************** */
 /* UI Menu button position and colors */
 #uiMenuButton {
   position: absolute !important;
