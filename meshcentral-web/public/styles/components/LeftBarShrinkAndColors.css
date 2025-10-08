@@ -24,3 +24,7 @@
     background: linear-gradient(to bottom, var(--bs-primary-bg-subtle) 30%, var(--bs-primary) 70%) !important;
 }
 
+.nav-link:not(.lbbuttonsel2):hover {
+    background-color: #8181814a !important;
+}
+
