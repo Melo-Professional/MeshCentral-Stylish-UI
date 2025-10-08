@@ -67,13 +67,18 @@ meshcentral-web/
 │   ├── images/
 │   └── styles/
 │       └── custom.css
+│   └── scripts/
+│       └── custom.js
 └── views/
+│       └── default3.handlebars
 ```
 
 - **images/** → Contains all custom image assets.  
 - **styles/custom.css** → Compiled file that combines all component-level styles.  
 - **styles/components/** → Individual CSS files, separated by customization type.  
+- **scripts/custom.js** → Empty script file that allows you to add custom JavaScript functionality. 
 - **views/** → Optional interface template overrides (`.handlebars` files).
+- **views/default3.handlebars** → Template file that includes updated desktop and mobile UI changes. 
 
 ---
 
@@ -81,22 +86,41 @@ meshcentral-web/
 
 1. If it doesn’t exist yet, create the meshcentral-web/ folder in the MeshCentral root directory — alongside meshcentral-data/
 
-2. Copy all files from `images/` to:
+2. Create the following subfolders inside meshcentral-web/ if they don’t already exist:
+   ```
+   meshcentral-web/public/images/
+   meshcentral-web/public/styles/
+   meshcentral-web/public/scripts/
+   meshcentral-web/views/
+   ```
+
+3. Copy all files from `images/` to:
    ```
    meshcentral-web/public/images/
    ```
 
-3. Copy `styles/custom.css` to:
-
+4. Copy `styles/custom.css` to:
    ```
    meshcentral-web/public/styles/custom.css
    ```
-4. Change to Modern UI<br>
+
+5. Copy `scripts/custom.js` to:
+   ```
+   meshcentral-web/public/scripts/custom.js
+   ```
+
+6. Copy `views/default3.handlebars` to:
+   ```
+   meshcentral-web/views/default3.handlebars
+   ```
+
+7. Change to Modern UI<br>
    <img width="255" height="262" alt="image" src="https://github.com/user-attachments/assets/14ce996d-ad46-4901-a347-68847c1da4eb" />
    > PS: You can also make Modern UI the default for all users by editing the meshcentral-data/config.json file and adding the following line under the "settings" section: `"siteStyle": 3,`
 <br>
 <br>
-5. Refresh your browser (CTRL + F5)<br>
+
+8. Refresh your browser (CTRL + F5)<br>
 <br>
 
 > The files under `styles/components/` are for reference only.  
