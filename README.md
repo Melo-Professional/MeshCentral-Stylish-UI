@@ -91,8 +91,12 @@ meshcentral-web/
    ```
    meshcentral-web/public/styles/custom.css
    ```
-4. Refresh your browser (CTRL + F5)<br><br>
-
+4. Change to Modern UI<br>
+   <img width="255" height="262" alt="image" src="https://github.com/user-attachments/assets/14ce996d-ad46-4901-a347-68847c1da4eb" />
+   > PS: You can also make Modern UI the default for all users by editing the meshcentral-data/config.json file and adding the following line under the "settings" section: `"siteStyle": 3,`
+<br>
+<br>
+5. Refresh your browser (CTRL + F5)<br>
 <br>
 
 > The files under `styles/components/` are for reference only.  
