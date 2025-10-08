@@ -121,6 +121,7 @@ meshcentral-web/
 | MyServerButton.css | Styling for the “My Server” button |
 | Notifications.css | Visual adjustments for notifications |
 | TopBar.css | Main top bar styling |
+| TopMenu.css | Main Menu mobile view themed |
 | UIMenu.css | General UI menu styling |
 
 ---
