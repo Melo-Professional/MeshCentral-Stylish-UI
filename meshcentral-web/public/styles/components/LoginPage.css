@@ -205,7 +205,6 @@ td#bottomLanguageSelect > select#d2langselect {
 
 
 #authStrategies a {
-  display: inline-block !important;
   margin: 5px !important;
   border-radius: 50% !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;

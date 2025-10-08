@@ -519,7 +519,6 @@ hr#cxmgroupsplit {
   position: relative !important;
 }
 
-
 #loginpanel:hover, #createpanel:hover, #resetpanel:hover, #tokenpanel:hover, #resettokenpanel:hover, #resetpasswordpanel:hover, #checkemailpanel:hover, #waitpushpanel:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5) !important;
@@ -688,7 +687,6 @@ td#bottomLanguageSelect > select#d2langselect {
 
 
 #authStrategies a {
-  display: inline-block !important;
   margin: 5px !important;
   border-radius: 50% !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
@@ -723,6 +721,7 @@ td#bottomLanguageSelect > select#d2langselect {
   color: rgba(255, 255, 255, 0.8) !important;
   font-size: 0.9rem !important;
 }
+
 /* Optional Hide Terms & Privacy Link on Login Page.  */
 /*
 #flink {
