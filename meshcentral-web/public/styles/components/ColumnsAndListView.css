@@ -136,6 +136,17 @@ table tr td div[id^="DevxCol"] {
   margin-left: 50px !important;
 }
 
+/* List view devices with alternate colors - panreyes suggestion */
+/*
+#xdevices table:has(span[id^="MxMESH"]) tr:nth-child(odd) {
+    background: #f7fafc !important;
+}
+*/
+
+#xdevices table:has(span[id^="MxMESH"]) tr:nth-child(even) {
+    background: #9393930f !important;
+}
+
 /* Normalize fonts specifically for the #xdevices list view */
 #xdevices table th,
 #xdevices table td,
