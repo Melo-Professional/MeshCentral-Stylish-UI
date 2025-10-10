@@ -150,6 +150,7 @@ meshcentral-web/
 | TopBar.css | Main top bar styling |
 | TopMenu.css | Main Menu mobile view themed |
 | UIMenu.css | General UI menu styling |
+| mobileStyles.css | Mobile styling |
 
 ---
 
