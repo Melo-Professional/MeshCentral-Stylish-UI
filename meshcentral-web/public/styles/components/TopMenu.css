@@ -22,7 +22,14 @@
 #topMenu:hover, 
 #topMenu > div[onclick*="topMenu"]:hover, 
 #topMenu > #logoutMenuOption > a > div:hover {
-    background: #b5b5b5 !important; !important;
+    background: #e3e3e3 !important; !important;
+	overflow: hidden
+}
+
+.night #topMenu:hover, 
+.night #topMenu > div[onclick*="topMenu"]:hover, 
+.night #topMenu > #logoutMenuOption > a > div:hover {
+    background: #414141 !important; !important;
 	overflow: hidden
 }
 

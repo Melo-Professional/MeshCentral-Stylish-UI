@@ -44,12 +44,12 @@
   color: var(--bs-body-color) !important;
 }
 
-.notification:hover {
-    background-color: #8181814a !important;
+.notification:hover, #notifyRemoveAll:hover {
+    background-color: #e3e3e3 !important;
 }
 
-#notifyRemoveAll:hover {
-    background-color: #8181814a !important;
+.night .notification:hover, .night #notifyRemoveAll:hover {
+    background-color: #414141 !important;
 }
 
 .notification {

@@ -841,12 +841,12 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
   color: var(--bs-body-color) !important;
 }
 
-.notification:hover {
-    background-color: #8181814a !important;
+.notification:hover, #notifyRemoveAll:hover {
+    background-color: #e3e3e3 !important;
 }
 
-#notifyRemoveAll:hover {
-    background-color: #8181814a !important;
+.night .notification:hover, .night #notifyRemoveAll:hover {
+    background-color: #414141 !important;
 }
 
 .notification {
@@ -1054,7 +1054,14 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
 #topMenu:hover, 
 #topMenu > div[onclick*="topMenu"]:hover, 
 #topMenu > #logoutMenuOption > a > div:hover {
-    background: #b5b5b5 !important; !important;
+    background: #e3e3e3 !important; !important;
+	overflow: hidden
+}
+
+.night #topMenu:hover, 
+.night #topMenu > div[onclick*="topMenu"]:hover, 
+.night #topMenu > #logoutMenuOption > a > div:hover {
+    background: #414141 !important; !important;
 	overflow: hidden
 }
 
