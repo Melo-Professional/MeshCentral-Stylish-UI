@@ -1226,3 +1226,157 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
     color: #fff !important;
     margin: 45px 35px 0 !important;
 }
+
+/* **************************************************************** */
+/* Mobile Media Queires */
+
+@media (max-width: 769px) {
+    #p15agentConsole {
+        height: calc(100vh - 288px) !important;
+        max-height: calc(100vh - 288px) !important;
+    }
+
+    #p15agentConsoleText {
+        height: calc(100vh - 291px) !important;
+        max-height: calc(100vh - 291px) !important;
+    }
+
+    .menu_stack.fullscreen #p15agentConsole {
+        height: calc(100vh - 317px) !important;
+        max-height: calc(100vh - 317px) !important;
+    }
+
+    .menu_stack.fullscreen #p15agentConsoleText {
+        height: calc(100vh - 317px) !important;
+        max-height: calc(100vh - 317px) !important;
+    }
+    #deskarea3x {
+        height: calc(100vh - 288px) !important;
+        max-height: calc(100vh - 288px) !important;
+    }
+
+    .room4submenu #deskarea3x {
+        height: calc(100vh - 314px) !important;
+        max-height: calc(100vh - 314px) !important;
+    }
+
+    .fulldesk #deskarea3x {
+        height: calc(100vh - 65px) !important;
+        max-height: calc(100vh - 65px) !important;
+    }
+    #termarea3x {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #termarea3x {
+        height: calc(100vh - 314px) !important;
+        max-height: calc(100vh - 314px) !important;
+    }
+    #p13filetable {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #p13filetable {
+        height: calc(100vh - 376px) !important;
+        max-height: calc(100vh - 376px) !important;
+    }
+    #Term {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #Term {
+        height: calc(100vh - 376px) !important;
+        max-height: calc(100vh - 376px) !important;
+    }
+    #termarea3xdiv {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #termarea3xdiv {
+        height: calc(100vh - 376px) !important;
+        max-height: calc(100vh - 376px) !important;
+    }
+    #p13toolbar .areaHead2 {
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        max-height: 80px !important;
+        overflow: visible !important;
+        width: 100% !important;
+        display: flex !important;
+    }
+
+    #p13toolbar .areaHead2 input[type="button"] {
+        font-size: 12px !important;
+        padding: 4px 8px !important;
+        margin: 2px !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        min-width: fit-content !important;
+    }
+    #p13toolbar .areaHead2 .d-flex {
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    #p13toolbar .areaHead2 input[value="Cut"],
+    #p13toolbar .areaHead2 input[value="Copy"],
+    #p13toolbar .areaHead2 input[value="Paste"],
+    #p13toolbar .areaHead2 input[value="Zip"],
+    #p13toolbar .areaHead2 input[value="Unzip"],
+    #p13toolbar .areaHead2 input[value="Find"],
+    #p13toolbar .areaHead2 input[value="GoTo"],
+    #p13toolbar .areaHead2 input[value="Open"] {
+        display: none !important;
+    }
+    #p13toolbarBottom .style6 {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 2px !important;
+    }
+    #p13toolbarBottom td:has(#p13bottomstatus) {
+        background-color: transparent !important;
+        background: none !important;
+    }
+
+    #p13bottomstatus {
+        color: #666 !important;
+        font-size: 12px !important;
+    }
+    .fulldesk #termarea3x[style*="height"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+        max-width: none !important;
+    }
+
+    .fulldesk #termarea3xdiv[style*="height"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+    }
+
+    .fulldesk #Term[style*="height"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+    }
+    #termarea3x[style*="calc(-55px + 100vh)"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+        max-width: none !important;
+    }
+
+    #termarea3xdiv[style*="calc(-55px + 100vh)"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+    }
+    #devListToolbarViewIcons,
+    #devListToolbarViewIcons2,
+    #devListToolbarViewIcons3,
+    #idx_deskFullBtn2,
+    #idx_termFullBtn2,
+    .fa-maximize {
+        display: none !important;
+    }
+}
