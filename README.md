@@ -144,13 +144,13 @@ meshcentral-web/
 | LittleStuff.css | Minor UI refinements and miscellaneous tweaks |
 | LoginPage.css | Login screen layout and visuals |
 | Masthead.css | Header (masthead) styling |
+| mobileStyles.css | Mobile styling |
 | MyEvents.css | Events section customization |
 | MyServerButton.css | Styling for the “My Server” button |
 | Notifications.css | Visual adjustments for notifications |
 | TopBar.css | Main top bar styling |
 | TopMenu.css | Main Menu mobile view themed |
 | UIMenu.css | General UI menu styling |
-| mobileStyles.css | Mobile styling |
 
 ---
 
