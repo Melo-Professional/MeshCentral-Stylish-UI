@@ -20326,6 +20326,9 @@
             for (var i = 0; i < 61; i++) { QV('p' + i, i == x); }
             xxcurrentView = x;
 
+            // Update mobile dropdown selection
+            updateMobileDropdownSelection(x);
+
             // Get out of fullscreen if needed
             if (fullscreen) { deskToggleFull(); }
 
@@ -20963,6 +20966,32 @@
         // Mobile dropdown handler for tab navigation
         function goMobileTab(value) {
             go(parseInt(value));
+        }
+        // Update the mobile dropdown selection based on the current view
+        function updateMobileDropdownSelection(currentView) {
+            var dropdown = Q('MainSubMenuMobile');
+            if (!dropdown) return;
+            for (var i = 0; i < dropdown.options.length; i++) {
+                dropdown.options[i].selected = false;
+            }
+            var optionId = '';
+            switch (currentView) {
+                case 10: optionId = 'optMainDev'; break;
+                case 11: optionId = 'optMainDevDesktop'; break;
+                case 12: optionId = 'optMainDevTerminal'; break;
+                case 13: optionId = 'optMainDevFiles'; break;
+                case 16: optionId = 'optMainDevEvents'; break;
+                case 15: optionId = 'optMainDevConsole'; break;
+                case 14: optionId = 'optMainDevAmt'; break;
+                case 17: optionId = 'optMainDevInfo'; break;
+                case 19: optionId = 'optMainDevPlugins'; break;
+                default: return;
+            }
+
+            var option = Q(optionId);
+            if (option) {
+                option.selected = true;
+            }
         }
         function toggleMobileTabs() {
             var isMobile = window.matchMedia('(max-width: 768px)').matches;
