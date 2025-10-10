@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/badge/version-1.2.0-blue.svg" alt="version"></a>
+  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/badge/version-1.3.0-blue.svg" alt="version"></a>
   <a href="https://meshcentral.com"><img src="https://img.shields.io/badge/platform-MeshCentral-lightgrey.svg" alt="platform"></a>
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="license"></a>
   <a href="#screenshots"><img src="https://img.shields.io/badge/preview-available-orange.svg" alt="preview"></a>
@@ -50,6 +50,9 @@
 
 ## 🎬 Demo Video
 https://github.com/user-attachments/assets/196fe810-c98a-429c-9b7e-df52c22b79c6
+
+
+https://github.com/user-attachments/assets/99ee512d-064a-4226-a5e5-0ba5588302b3
 
 
 <p align="center" style="font-weight:bold; font-size:1.2em;">
