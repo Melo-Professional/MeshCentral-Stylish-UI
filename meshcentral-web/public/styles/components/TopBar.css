@@ -1,24 +1,15 @@
 /* **************************************************************** */
 /* TopBar - Hide and raise device list */
-/*
-#column_l, .menu_stack #MainMenuSpan:has([style*="display: block"]) {
-  margin-top: 0 !important;
-}
-
-.menu_stack:not(:has(#MainMenuSpan[style*="display: block"])) ~ #column_l:has(
-  #p1:not([style*="display: none"]), 
-  #p2:not([style*="display: none"]), 
-  #p5:not([style*="display: none"])
-) {
-  margin-top: -24px !important;
-}
-*/
 
 #column_l {
   margin-top: 0 !important;
 }
 
-#column_l:has(#p1:not([style*="display: none"], [style*="display:none"]), #p2:not([style*="display: none"], [style*="display:none"]), #p5:not([style*="display: none"], [style*="display:none"])) {
+body.fullscreen:not(.menu_stack) #column_l:has(
+  #p1:not([style*="display: none"], [style*="display:none"]),
+  #p2:not([style*="display: none"], [style*="display:none"]),
+  #p5:not([style*="display: none"], [style*="display:none"])
+) {
   margin-top: -24px !important;
 }
 
