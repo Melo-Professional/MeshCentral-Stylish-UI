@@ -404,6 +404,7 @@ hr#cxmgroupsplit {
 
 .nav-link:not(.lbbuttonsel2):hover {
     background-color: #8181814a !important;
+	border-radius: 5px 0px 0px 5px !important;
 }
 
 /* **************************************************************** */
