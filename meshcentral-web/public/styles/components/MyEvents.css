@@ -13,8 +13,6 @@
 #container .style1,
 #EventsSubMenu .row .col table {
     overflow-x: hidden !important;
-    width: 100% !important;
-    table-layout: fixed;
 }
 
 
