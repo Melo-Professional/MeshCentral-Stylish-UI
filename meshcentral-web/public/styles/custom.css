@@ -392,6 +392,9 @@ hr#cxmgroupsplit {
     width: calc(100vw - 100px);
 }
 
+#page_leftbar > div:first-of-type {
+	display: none !important;
+}
 
 /* left Bar Custom Colors */
 #page_leftbar {
