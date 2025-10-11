@@ -1370,4 +1370,13 @@ body.fullscreen:not(.menu_stack) #column_l:has(
     .fa-maximize {
         display: none !important;
     }
+    #notificationCount {
+        position: relative !important;
+		right: 1px !important;
+        top: 29px !important;
+    }
+    .notifiyBox {
+		top: 67px !important;
+        right: 10px !important;
+    }
 }
