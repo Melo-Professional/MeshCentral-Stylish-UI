@@ -8758,6 +8758,9 @@
                 QV('p15uploadCore', (node.agent != null) && (node.agent.caps != null) && ((node.agent.caps & 16) != 0));
                 QH('p15coreName', ((node.agent != null) && (node.agent.core != null)) ? node.agent.core : '');
 
+                // Update mobile dropdown options visibility based on permissions
+                updateMobileDropdownPermissions(node, meshrights, desktopAccess, terminalAccess, fileAccess, amtAccess, consoleRights);
+
                 // Set the Intel AMT / Intel SM tab name
                 if ((node.intelamt != null) && (typeof node.intelamt.sku == 'number') && ((node.intelamt.sku & 16) != 0)) {
                     QH('MainDevAmt', "Intel&reg;SM");
@@ -8769,15 +8772,14 @@
 
                 (function () {
                   const map = {
-                    MainDev: 10,          // General
-                    MainDevDesktop: 11,   // Desktop
-                    MainDevTerminal: 12,  // Terminal
-                    MainDevFiles: 13,     // Files
-                    MainDevEvents: 16,    // Events
-                    MainDevInfo: 17,      // Details
-                    MainDevAmt: 14,       // Intel AMT / SM
-                    MainDevConsole: 15,   // Console
-                    MainDevPlugins: 19    // Plugins
+                    optMainDev: 10,          // General
+                    optMainDevDesktop: 11,   // Desktop
+                    optMainDevTerminal: 12,  // Terminal
+                    optMainDevFiles: 13,     // Files
+                    optMainDevInfo: 17,      // Details
+                    optMainDevAmt: 14,       // Intel AMT / SM
+                    optMainDevConsole: 15,   // Console
+                    optMainDevPlugins: 19    // Plugins
                   };
 
                   function getMobile() {
@@ -8795,7 +8797,7 @@
                   function firstVisibleValue() {
                     for (const id of Object.keys(map)) {
                       const o = getOptById(id);
-                      if (o && !o.hidden && !o.disabled) return o.value;
+                      if (o && o.parentNode && !o.disabled) return o.value;
                     }
                     return '';
                   }
@@ -8804,13 +8806,37 @@
                     const opt = getOptById(id);
                     if (!opt) return;
 
-                    opt.hidden   = !visible;
-                    opt.disabled = !visible;
+                    // For better iOS/Android compatibility, remove/add options instead of using hidden attribute
+                    if (visible) {
+                      if (!opt.parentNode) {
+                        const mobile = getMobile();
+                        if (mobile) {
+                          const valueMap = {
+                            optMainDev: 10, optMainDevDesktop: 11, optMainDevTerminal: 12, optMainDevFiles: 13,
+                            optMainDevInfo: 17, optMainDevAmt: 14, optMainDevConsole: 15, optMainDevPlugins: 19
+                          };
+                          const targetValue = valueMap[id];
+                          let insertBefore = null;
+                          for (let i = 0; i < mobile.options.length; i++) {
+                            if (parseInt(mobile.options[i].value) > targetValue) {
+                              insertBefore = mobile.options[i];
+                              break;
+                            }
+                          }
+                          mobile.insertBefore(opt, insertBefore);
+                        }
+                      }
+                      opt.disabled = false;
+                    } else {
+                      if (opt.parentNode) {
+                        opt.parentNode.removeChild(opt);
+                      }
+                    }
 
                     const mobile = getMobile();
                     if (!mobile) return;
                     const sel = mobile.options[mobile.selectedIndex];
-                    if (!sel || sel.hidden || sel.disabled) {
+                    if (!sel || sel.disabled) {
                       const fv = firstVisibleValue();
                       if (fv) {
                         mobile.value = fv;
@@ -8841,7 +8867,7 @@
                     mobile.style.display = any ? '' : 'none';
                     if (any) {
                       const sel = mobile.options[mobile.selectedIndex];
-                      if (!sel || sel.hidden || sel.disabled) {
+                      if (!sel || sel.disabled) {
                         const fv = firstVisibleValue();
                         if (fv) {
                           mobile.value = fv;
@@ -20329,6 +20355,17 @@
             // Update mobile dropdown selection
             updateMobileDropdownSelection(x);
 
+            // Update mobile dropdown permissions for device views
+            if ((x >= 10) && (x <= 19) && currentNode) {
+                var meshrights = GetNodeRights(currentNode);
+                var desktopAccess = ((meshrights & 8) != 0) || ((meshrights & 256) != 0);
+                var terminalAccess = ((meshrights & 8) != 0);
+                var fileAccess = ((meshrights & 8) != 0);
+                var amtAccess = ((meshrights & 8) != 0);
+                var consoleRights = ((meshrights & 16) != 0);
+                updateMobileDropdownPermissions(currentNode, meshrights, desktopAccess, terminalAccess, fileAccess, amtAccess, consoleRights);
+            }
+
             // Get out of fullscreen if needed
             if (fullscreen) { deskToggleFull(); }
 
@@ -20992,6 +21029,45 @@
             if (option) {
                 option.selected = true;
             }
+        }
+
+        // Update mobile dropdown options visibility based on permissions
+        function updateMobileDropdownPermissions(node, meshrights, desktopAccess, terminalAccess, fileAccess, amtAccess, consoleRights) {
+
+            // Desktop option - same logic as MainDevDesktop
+            var desktopVisible = desktopAccess && ((((node.agent == null) && (node.intelamt != null) && ((typeof node.intelamt.sku !== 'number') || ((node.intelamt.sku & 8) != 0)))
+                || ((node.agent != null) && ((node.agent.caps == null) || ((node.agent.caps & 1) != 0) || (node.intelamt && (node.intelamt.state == 2)))) || ((node.mtype == 3) && ((node.agent.id == 3) || (node.agent.id == 4))))
+                && ((meshrights & 8) || (meshrights & 256)));
+            QV('optMainDevDesktop', desktopVisible);
+
+            // Terminal option - same logic as MainDevTerminal
+            var terminalVisible = (((node.agent == null) && (node.intelamt != null)) || ((node.agent) && (node.agent.caps == null)) || ((node.agent) && ((node.agent.caps & 2) != 0)) || (node.intelamt && (node.intelamt.state == 2))) && (meshrights & 8) && terminalAccess;
+            QV('optMainDevTerminal', terminalVisible);
+
+            // Files option - same logic as MainDevFiles
+            var filesVisible = (node.agent != null) && (node.agent.caps != null) && ((node.agent.caps & 4) != 0) && (meshrights & 8) && fileAccess;
+            QV('optMainDevFiles', filesVisible);
+
+            // Events option - not controlled by permissions (same as desktop - no QV call for MainDevEvents)
+
+            // Info/Details option - same logic as MainDevInfo
+            var infoVisible = (node.mtype < 3) && ((meshrights & 1048576) != 0);
+            QV('optMainDevInfo', infoVisible);
+
+            // Intel AMT option - same logic as MainDevAmt
+            var amtVisible = (node.intelamt != null) && ((node.intelamt.state == 2) || (node.conn & 2)) && (meshrights & 8) && amtAccess;
+            QV('optMainDevAmt', amtVisible);
+
+            // Console option - same logic as MainDevConsole
+            var consoleVisible = (consoleRights && ((node.agent != null) && (node.agent.caps != null) && ((node.agent.caps & 8) != 0))) && (meshrights & 8);
+            QV('optMainDevConsole', consoleVisible);
+
+            // Plugins option - only visible if pluginHandler is available (same as ServerPlugins logic)
+            QV('optMainDevPlugins', pluginHandler != null);
+
+            // General option is always visible
+            QV('optMainDev', true);
+
         }
         function toggleMobileTabs() {
             var isMobile = window.matchMedia('(max-width: 768px)').matches;
