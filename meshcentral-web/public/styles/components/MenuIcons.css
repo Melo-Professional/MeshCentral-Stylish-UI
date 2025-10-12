@@ -1,5 +1,5 @@
 /* **************************************************************** */
-/* Device MenuIcons - Replace FontAwesome with Custom SVG */
+/* Device MenuIcons - Replace FontAwesome with Custom PNG Icons */
 span[id^="devViewButton"] {
     display: inline-block;
     width: 32px;
@@ -53,3 +53,37 @@ span[id^="devViewButton"] {
     height: 100%;
     pointer-events: auto;
   }
+
+/* **************************************************************** */
+/* Device Pagination Icons - Replace old Icons with New PNG Icons */
+div[id^="devViewPageButton"] {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background: center / 24px 24px no-repeat transparent;
+}
+
+#devViewPageButton1 {
+  background-image: url(/images/icons/FirstPage.png)
+}
+#devViewPageButton2 {
+  background-image: url(/images/icons/PreviousPage.png)
+}
+#devViewPageButton3 {
+  background-image: url(/images/icons/NextPage.png)
+}
+#devViewPageButton4 {
+  background-image: url(/images/icons/LastPage.png)
+}
+
+div[id^="devViewPageButton"] * { display: none !important; }
+div[id^="devViewPageButton"]::before,
+div[id^="devViewPageButton"]::after { display: none !important; }
+
+.viewSelector {
+  opacity: 1 !important;
+}
+.viewSelector:hover {
+  background-color: #404141 !important;
+}
