@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/badge/version-1.6.0-blue.svg" alt="version"></a>
+  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/badge/version-1.7.0-blue.svg" alt="version"></a>
   <a href="https://meshcentral.com"><img src="https://img.shields.io/badge/platform-MeshCentral-lightgrey.svg" alt="platform"></a>
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="license"></a>
   <a href="#screenshots"><img src="https://img.shields.io/badge/preview-available-orange.svg" alt="preview"></a>
@@ -45,6 +45,21 @@
     </td>
   </tr>
 </table>
+  <tr>
+    <td align="center" colspan="2">
+      <strong>Themed Bars</strong><br>
+      <img width="1920" height="943" alt="TopBar Icons" src="https://github.com/user-attachments/assets/04f41784-7125-4157-8d68-366d97d0625a" />
+    </td>
+  </tr>
+</table>
+  <tr>
+    <td align="center" colspan="2">
+      <strong>TopBar Icons</strong><br>
+      <img width="361" height="252" alt="TopBar Icons" src="https://github.com/user-attachments/assets/f174de99-071c-4a99-802b-1d232217eb27" />
+    </td>
+  </tr>
+</table>
+
 
 ---
 
