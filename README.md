@@ -27,9 +27,13 @@
     </td>
   </tr>
   <tr>
-    <td align="center" colspan="2">
+    <td align="center">
       <strong>Leftbar New Icons</strong><br>
       <img width="67" height="393" alt="image" src="https://github.com/user-attachments/assets/cd2acfab-8341-4e9d-b874-03b7feac19ba" />
+    </td>
+    <td align="center">
+      <strong>TopBar Icons</strong><br>
+      <img width="100%" height="100%" alt="TopBar Icons" src="https://github.com/user-attachments/assets/f174de99-071c-4a99-802b-1d232217eb27" />
     </td>
   </tr>
   <tr>
@@ -44,18 +48,10 @@
       <img width="747" height="815" alt="Themed bars" src="https://github.com/user-attachments/assets/5001d8ac-8906-4b59-a440-c887f57148fb" />
     </td>
   </tr>
-</table>
   <tr>
     <td align="center" colspan="2">
       <strong>Themed Bars</strong><br>
       <img width="1920" height="943" alt="TopBar Icons" src="https://github.com/user-attachments/assets/04f41784-7125-4157-8d68-366d97d0625a" />
-    </td>
-  </tr>
-</table>
-  <tr>
-    <td align="center" colspan="2">
-      <strong>TopBar Icons</strong><br>
-      <img width="361" height="252" alt="TopBar Icons" src="https://github.com/user-attachments/assets/f174de99-071c-4a99-802b-1d232217eb27" />
     </td>
   </tr>
 </table>
