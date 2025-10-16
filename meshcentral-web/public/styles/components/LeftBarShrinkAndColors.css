@@ -21,10 +21,9 @@
 	display: none !important;
 }
 
-
 /* left Bar Custom Colors */
 #page_leftbar {
-	/* background: linear-gradient(to bottom, #35445a 10%, #3b4c64 100%) !important; */
+	/* background: linear-gradient(to bottom, #35445a 10%, #3b4c64 100%) !important; /* Melo */
     background: linear-gradient(to bottom, var(--bs-primary-bg-subtle) 30%, var(--bs-primary) 70%) !important;
 }
 

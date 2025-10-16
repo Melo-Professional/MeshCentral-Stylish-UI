@@ -176,7 +176,6 @@ table tr td div[id^="DevxCol"] {
     font-family: inherit !important;
 }
 
-
 /* Mobile Toolbar - For My Devices Page (Select All, Group Action, Filter & OS Name CheckBox) */
 @media (max-width: 900px) {
   #devListToolbarSpan { 
@@ -224,3 +223,4 @@ table tr td div[id^="DevxCol"] {
     flex: 0 0 auto;
   }
 }
+

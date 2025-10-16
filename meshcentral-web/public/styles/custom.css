@@ -371,96 +371,6 @@ hr#cxmgroupsplit {
 }
 
 /* **************************************************************** */
-/* Device MenuIcons - Replace FontAwesome with Custom PNG Icons */
-span[id^="devViewButton"] {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
-  background: center / 24px 24px no-repeat transparent;
-}
-
-#devViewButton1 {
-background-image: url(/images/icons/list.png)
-}
-#devViewButton2 {
-background-image: url(/images/icons/column.png)
-}
-#devViewButton3 {
-background-image: url(/images/icons/devices_1.png)
-}
-#devViewButton4 {
-background-image: url(/images/icons/map.png)
-}
-#devViewButton5 {
-background-image: url(/images/icons/devices_2.png)
-}
-
-span[id^="devViewButton"] * { display: none !important; }
-span[id^="devViewButton"]::before,
-span[id^="devViewButton"]::after { display: none !important; }
-
-.viewSelectorSel {
-  background-color: #bbbbbb47 !important;
-}
-
-#p11 #p11title #devListToolbarViewIcons,
-#devListToolbarViewIcons2{
-  position: relative;
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
-  background: center / 24px 24px no-repeat transparent !important;
-  background-image: url(/images/icons/enlarge.png) !important;
-  cursor: pointer;
-}
-#p11 #p11title #devListToolbarViewIcons > svg.svg-inline--fa.fa-maximize,
-#devListToolbarViewIcons2 > svg.svg-inline--fa.fa-maximize {
-  display: block !important;
-  opacity: 0;
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-}
-
-/* **************************************************************** */
-/* Device Pagination Icons - Replace old Icons with New PNG Icons */
-div[id^="devViewPageButton"] {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
-  background: center / 24px 24px no-repeat transparent;
-}
-
-#devViewPageButton1 {
-  background-image: url(/images/icons/FirstPage.png)
-}
-#devViewPageButton2 {
-  background-image: url(/images/icons/PreviousPage.png)
-}
-#devViewPageButton3 {
-  background-image: url(/images/icons/NextPage.png)
-}
-#devViewPageButton4 {
-  background-image: url(/images/icons/LastPage.png)
-}
-
-div[id^="devViewPageButton"] * { display: none !important; }
-div[id^="devViewPageButton"]::before,
-div[id^="devViewPageButton"]::after { display: none !important; }
-
-.viewSelector {
-  opacity: 1 !important;
-}
-.viewSelector:hover {
-  background-color: #404141 !important;
-}
-
-/* **************************************************************** */
 /* Left Bar shrink */
 #page_leftbar {
 	width: 70px !important;
@@ -848,6 +758,395 @@ td#bottomLanguageSelect > select#d2langselect {
 }
 
 /* **************************************************************** */
+/* Masthead */
+/* Masthead Custom Colors */
+#masthead {
+	/* background-color: #222f42 !important; /* Melo */
+    background: linear-gradient(181deg, var(--bs-primary-bg-subtle) -60%, var(--bs-primary) 40%) !important;
+}
+
+/* Masthead Company name size */
+#masthead .title {
+    font-size: 36px!important;
+}
+
+#masthead .title2 {
+    font-size: 11px!important;
+}
+
+/* Welcome & logout position */
+#masthead p {
+    font-size: 11px !important;
+    color: #fff !important;
+    margin: 45px 35px 0 !important;
+}
+
+/* **************************************************************** */
+/* MenuIcons - Replace FontAwesome with Custom PNG Icons */
+span[id^="devViewButton"] {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background: center / 24px 24px no-repeat transparent;
+}
+
+span[id^="devViewButton"]:hover {
+  background-color: #e3e3e3 !important;
+}
+
+.night span[id^="devViewButton"]:hover {
+  background-color: #404141 !important;
+}
+
+#devViewButton1 {
+background-image: url(/images/icons/list.png)
+}
+#devViewButton2 {
+background-image: url(/images/icons/column.png)
+}
+#devViewButton3 {
+background-image: url(/images/icons/devices_1.png)
+}
+#devViewButton4 {
+background-image: url(/images/icons/map.png)
+}
+#devViewButton5 {
+background-image: url(/images/icons/devices_2.png)
+}
+
+.night #devViewButton1 {
+background-image: url(/images/icons/list_night.png)
+}
+.night #devViewButton2 {
+background-image: url(/images/icons/column_night.png)
+}
+.night #devViewButton3 {
+background-image: url(/images/icons/devices_1_night.png)
+}
+.night #devViewButton4 {
+background-image: url(/images/icons/map_night.png)
+}
+.night #devViewButton5 {
+background-image: url(/images/icons/devices_2_night.png)
+}
+
+span[id^="devViewButton"] * { display: none !important; }
+span[id^="devViewButton"]::before,
+span[id^="devViewButton"]::after { display: none !important; }
+
+.viewSelectorSel {
+  background-color: #bbbbbb24 !important;
+}
+
+#p11 #p11title #devListToolbarViewIcons,
+#devListToolbarViewIcons2{
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background: center / 24px 24px no-repeat transparent !important;
+  background-image: url(/images/icons/enlarge.png) !important;
+  cursor: pointer;
+}
+
+.night #p11 #p11title #devListToolbarViewIcons,
+.night #devListToolbarViewIcons2 {
+	background-image: url(/images/icons/enlarge_night.png) !important;
+}
+
+#p11 #p11title #devListToolbarViewIcons > svg.svg-inline--fa.fa-maximize,
+#devListToolbarViewIcons2 > svg.svg-inline--fa.fa-maximize {
+  display: block !important;
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+/* ToolBar Settings Icon */
+#devListToolbarSettings path {
+    display: none !important;
+}
+
+#devListToolbarSettings {
+    background-image: url(/images/icons/devListToolbarSettings.png) !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 24px !important;
+    height: 24px !important;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.night #devListToolbarSettings {
+    background-image: url(/images/icons/devListToolbarSettings_night.png) !important;
+}
+
+/* Collapse Expand Button */
+#CollapseAllButton svg, #CollapseAllButton2 svg {
+    display: none !important;
+}
+
+#CollapseAllButton, #CollapseAllButton2 {
+    background-image: url(/images/icons/CollapseAllButton.png) !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 24px !important;
+    height: 24px !important;
+    cursor: pointer !important;
+}
+
+.night #CollapseAllButton, .night #CollapseAllButton2 {
+    background-image: url(/images/icons/CollapseAllButton_night.png) !important;
+}
+
+#ExpandAllButton svg, #ExpandAllButton2 svg {
+    display: none !important;
+}
+
+#ExpandAllButton, #ExpandAllButton2 {
+    background-image: url(/images/icons/ExpandAllButton.png) !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 24px !important;
+    height: 24px !important;
+    cursor: pointer !important;
+}
+
+.night #ExpandAllButton, .night #ExpandAllButton2 {
+    background-image: url(/images/icons/ExpandAllButton_night.png) !important;
+}
+
+/* **************************************************************** */
+/* Device Pagination Icons - Replace old Icons with New PNG Icons */
+div[id^="devViewPageButton"] {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background: center / 24px 24px no-repeat transparent;
+}
+
+#devViewPageButton1 {
+  background-image: url(/images/icons/FirstPage.png);
+}
+
+.night #devViewPageButton1 {
+  background-image: url(/images/icons/FirstPage_night.png);
+}
+
+#devViewPageButton2 {
+  background-image: url(/images/icons/PreviousPage.png);
+}
+
+.night #devViewPageButton2 {
+  background-image: url(/images/icons/PreviousPage_night.png);
+}
+
+#devViewPageButton3 {
+  background-image: url(/images/icons/NextPage.png);
+}
+
+.night #devViewPageButton3 {
+  background-image: url(/images/icons/NextPage_night.png);
+}
+
+#devViewPageButton4 {
+  background-image: url(/images/icons/LastPage.png);
+  margin-right: 56px !important;
+}
+
+.night #devViewPageButton4 {
+  background-image: url(/images/icons/LastPage_night.png);
+}
+
+div[id^="devViewPageButton"] * { display: none !important; }
+div[id^="devViewPageButton"]::before,
+div[id^="devViewPageButton"]::after { display: none !important; }
+
+.viewSelector {
+  opacity: 1 !important;
+}
+
+.viewSelector:hover {
+  background-color: #e3e3e3 !important;
+}
+
+.night .viewSelector:hover {
+  background-color: #404141 !important;
+}
+
+/* **************************************************************** */
+/* Mobile Styles */
+
+@media (max-width: 769px) {
+    #p15agentConsole {
+        height: calc(100vh - 288px) !important;
+        max-height: calc(100vh - 288px) !important;
+    }
+
+    #p15agentConsoleText {
+        height: calc(100vh - 291px) !important;
+        max-height: calc(100vh - 291px) !important;
+    }
+
+    .menu_stack.fullscreen #p15agentConsole {
+        height: calc(100vh - 317px) !important;
+        max-height: calc(100vh - 317px) !important;
+    }
+
+    .menu_stack.fullscreen #p15agentConsoleText {
+        height: calc(100vh - 317px) !important;
+        max-height: calc(100vh - 317px) !important;
+    }
+    #deskarea3x {
+        height: calc(100vh - 288px) !important;
+        max-height: calc(100vh - 288px) !important;
+    }
+
+    .room4submenu #deskarea3x {
+        height: calc(100vh - 314px) !important;
+        max-height: calc(100vh - 314px) !important;
+    }
+
+    .fulldesk #deskarea3x {
+        height: calc(100vh - 65px) !important;
+        max-height: calc(100vh - 65px) !important;
+    }
+    #termarea3x {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #termarea3x {
+        height: calc(100vh - 314px) !important;
+        max-height: calc(100vh - 314px) !important;
+    }
+    #p13filetable {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #p13filetable {
+        height: calc(100vh - 376px) !important;
+        max-height: calc(100vh - 376px) !important;
+    }
+    #Term {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #Term {
+        height: calc(100vh - 376px) !important;
+        max-height: calc(100vh - 376px) !important;
+    }
+    #termarea3xdiv {
+        height: calc(100vh - 350px) !important;
+        max-height: calc(100vh - 350px) !important;
+    }
+
+    .room4submenu #termarea3xdiv {
+        height: calc(100vh - 376px) !important;
+        max-height: calc(100vh - 376px) !important;
+    }
+    #p13toolbar .areaHead2 {
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        max-height: 80px !important;
+        overflow: visible !important;
+        width: 100% !important;
+        display: flex !important;
+    }
+
+    #p13toolbar .areaHead2 input[type="button"] {
+        font-size: 12px !important;
+        padding: 4px 8px !important;
+        margin: 2px !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        min-width: fit-content !important;
+    }
+    #p13toolbar .areaHead2 .d-flex {
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    #p13toolbar .areaHead2 input[value="Cut"],
+    #p13toolbar .areaHead2 input[value="Copy"],
+    #p13toolbar .areaHead2 input[value="Paste"],
+    #p13toolbar .areaHead2 input[value="Zip"],
+    #p13toolbar .areaHead2 input[value="Unzip"],
+    #p13toolbar .areaHead2 input[value="Find"],
+    #p13toolbar .areaHead2 input[value="GoTo"],
+    #p13toolbar .areaHead2 input[value="Open"] {
+        display: none !important;
+    }
+    #p13toolbarBottom .style6 {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 2px !important;
+    }
+    #p13toolbarBottom td:has(#p13bottomstatus) {
+        background-color: transparent !important;
+        background: none !important;
+    }
+
+    #p13bottomstatus {
+        color: #666 !important;
+        font-size: 12px !important;
+    }
+    .fulldesk #termarea3x[style*="height"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+        max-width: none !important;
+    }
+
+    .fulldesk #termarea3xdiv[style*="height"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+    }
+
+    .fulldesk #Term[style*="height"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+    }
+    #termarea3x[style*="calc(-55px + 100vh)"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+        max-width: none !important;
+    }
+
+    #termarea3xdiv[style*="calc(-55px + 100vh)"] {
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+    }
+    #p11 #p11title #devListToolbarViewIcons,
+    #devListToolbarViewIcons2,
+    #devListToolbarViewIcons3,
+    #idx_deskFullBtn2,
+    #idx_termFullBtn2,
+    .fa-maximize {
+        display: none !important;
+    }
+    #notificationCount {
+        position: relative !important;
+		right: 1px !important;
+        top: 29px !important;
+    }
+    .notifiyBox {
+		top: 67px !important;
+        right: 10px !important;
+    }
+}
+
+/* **************************************************************** */
 /* My Events - Remove horizontal scrolling in the Events view */
 #MainMenuMyEvents.fullselect ~ div #container,
 #EventsSubMenu ~ div .style1 table,
@@ -1166,6 +1465,7 @@ body.fullscreen:not(.menu_stack) #column_l:has(
   background: transparent !important;
   border: none !important;
 }
+
 #uiMenuButton::before {
   content: "";
   position: absolute;
@@ -1174,16 +1474,18 @@ body.fullscreen:not(.menu_stack) #column_l:has(
   width: 100%;
   height: 70%;
   transform: translate(-50%, -50%);
-  background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8' standalone='no'%3F%3E%3Csvg xmlns:dc='http://purl.org/dc/elements/1.1/' xmlns:cc='http://creativecommons.org/ns%23' xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns%23' xmlns:svg='http://www.w3.org/2000/svg' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='204.18758mm' height='191.4059mm' viewBox='0 0 204.18758 191.4059' version='1.1' id='svg8'%3E%3Cdefs id='defs2'%3E%3ClinearGradient id='linearGradient1035'%3E%3Cstop style='stop-color:%23c6cdd0;stop-opacity:1' offset='0' id='stop1031' /%3E%3Cstop style='stop-color:%23f8fafb;stop-opacity:1' offset='1' id='stop1033' /%3E%3C/linearGradient%3E%3ClinearGradient id='linearGradient1027'%3E%3Cstop style='stop-color:%230967b6;stop-opacity:1' offset='0' id='stop1023' /%3E%3Cstop style='stop-color:%230f4d8f;stop-opacity:1' offset='1' id='stop1025' /%3E%3C/linearGradient%3E%3ClinearGradient id='linearGradient1009'%3E%3Cstop style='stop-color:%23818a92;stop-opacity:1' offset='0' id='stop1005' /%3E%3Cstop style='stop-color:%2365717b;stop-opacity:1' offset='1' id='stop1007' /%3E%3C/linearGradient%3E%3ClinearGradient xlink:href='%23linearGradient1009' id='linearGradient1011' x1='523.25903' y1='396.98996' x2='523.25903' y2='1078.8429' gradientUnits='userSpaceOnUse' /%3E%3ClinearGradient xlink:href='%23linearGradient1027' id='linearGradient1029' x1='66.798416' y1='317.88858' x2='119.18324' y2='367.86798' gradientUnits='userSpaceOnUse' /%3E%3ClinearGradient xlink:href='%23linearGradient1035' id='linearGradient1037' x1='90.852669' y1='296.77429' x2='90.852669' y2='390.58588' gradientUnits='userSpaceOnUse' /%3E%3C/defs%3E%3Cmetadata id='metadata5'%3E%3Crdf:RDF%3E%3Ccc:Work rdf:about=''%3E%3Cdc:format%3Eimage/svg+xml%3C/dc:format%3E%3Cdc:type rdf:resource='http://purl.org/dc/dcmitype/StillImage' /%3E%3Cdc:title%3E%3C/dc:title%3E%3C/cc:Work%3E%3C/rdf:RDF%3E%3C/metadata%3E%3Cg id='layer1' transform='translate(7.4994383,-247.26579)'%3E%3Cpath id='path1002' style='fill:url(%23linearGradient1011);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:135.081;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1' d='m 895.63749,348.35117 c -36.14454,-2.71975 -16.12219,57.67342 -124.22067,74.13675 -93.53871,-0.86736 -97.83817,-52.80203 -119.3883,-69.07933 -14.71,-11.1108 -45.28026,2.75447 -86.96797,27.90391 -38.39755,23.9073 -49.4755,36.85235 -50.96048,46.98228 -2.46373,16.80653 15.26719,24.25958 18.79005,55.23163 1.8859,16.58034 6.18601,39.90077 -13.34986,75.00446 -22.67112,40.73736 -42.06832,49.10293 -59.34347,57.24955 -53.70448,25.32595 -75.45327,-42.35446 -82.63624,102.40122 -6.2648,126.25215 26.52928,54.20356 82.52272,80.98122 15.07939,7.21139 35.12044,12.22134 52.60423,41.43089 98.3805,164.36085 -98.07932,104.52107 62.86133,208.40235 105.45081,66.3384 88.34114,-53.20079 173.57617,-55.81641 191.53092,-3.01958 41.47601,137.19971 211.91016,49.76171 31.15156,-13.8092 47.84794,-30.7472 54.46194,-41.912 5.6865,-9.59918 3.6568,-13.21842 -0.01,-26.67815 -7.8168,-28.72513 -27.75221,-72.71352 -8.4307,-106.60985 93.1504,-155.68283 131.9812,30.01826 141.4747,-161.66913 -0.7235,-38.415 -2.0828,-63.46444 -11.7041,-73.11482 -9.9565,-9.98656 -28.4742,-3.98376 -46.9677,-9.5524 -16.6211,-5.00482 -47.6741,-11.64702 -61.808,-35.20116 -98.28874,-165.27834 85.7412,-132.15609 -77.50852,-212.94608 -33.70398,-16.67962 -44.5852,-26.12978 -54.90939,-26.90664 z' transform='matrix(0.26458333,0,0,0.26458333,-107.19405,155.12143)' /%3E%3Cg id='g1041'%3E%3Cpath style='color:%23000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:%23000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:%23000000;solid-opacity:1;vector-effect:none;fill:url(%23linearGradient1037);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:%23000000' d='m 95.589844,292.04297 c -27.725647,0 -50.554688,22.82904 -50.554688,50.55469 0,27.72564 22.829041,50.55468 50.554688,50.55468 27.725646,0 50.554686,-22.82904 50.554686,-50.55468 0,-27.72565 -22.82904,-50.55469 -50.554686,-50.55469 z m 0,32.88476 c 9.953816,0 17.669926,7.71611 17.669926,17.66993 0,9.95381 -7.71611,17.66992 -17.669926,17.66992 -9.953815,0 -17.669922,-7.71611 -17.669922,-17.66992 0,-9.95382 7.716107,-17.66993 17.669922,-17.66993 z' id='path1019' /%3E%3Cpath style='color:%23000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:%23000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:%23000000;solid-opacity:1;vector-effect:none;fill:url(%23linearGradient1029);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:32.884;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:%23000000' d='m 129.70252,342.5976 c 0,18.83973 -15.27262,34.11235 -34.112348,34.11235 -18.839731,0 -34.112351,-15.27262 -34.112351,-34.11235 0,-18.83974 15.27262,-34.11236 34.112351,-34.11236 18.839728,0 34.112348,15.27262 34.112348,34.11236 z' id='path1017' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
+  background-image: url(/images/icons/uiMenuButton.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
+/*
 #uiMenuButton:hover::before {
   transform: translate(-50%, -50%) rotate(20deg);
   transition: transform 0.2s ease;
 }
+*/
 
 @media (min-width: 768px) and (max-width: 865px) {
     #uiMenuButton {
@@ -1283,189 +1585,3 @@ body.fullscreen:not(.menu_stack) #column_l:has(
   justify-content: flex-start;
 }
 
-/* **************************************************************** */
-/* Masthead */
-/* Masthead Custom Colors */
-#masthead {
-	/* background-color: #222f42 !important; /* Melo */
-	background-color: var(--bs-primary) !important;
-}
-
-/* Masthead Company name size */
-#masthead .title {
-    font-size: 36px!important;
-}
-
-#masthead .title2 {
-    font-size: 11px!important;
-}
-
-/* Welcome & logout position */
-#masthead p {
-    font-size: 11px !important;
-    color: #fff !important;
-    margin: 45px 35px 0 !important;
-}
-
-/* **************************************************************** */
-/* Mobile Media Queires */
-
-@media (max-width: 769px) {
-    #p15agentConsole {
-        height: calc(100vh - 288px) !important;
-        max-height: calc(100vh - 288px) !important;
-    }
-
-    #p15agentConsoleText {
-        height: calc(100vh - 291px) !important;
-        max-height: calc(100vh - 291px) !important;
-    }
-
-    .menu_stack.fullscreen #p15agentConsole {
-        height: calc(100vh - 317px) !important;
-        max-height: calc(100vh - 317px) !important;
-    }
-
-    .menu_stack.fullscreen #p15agentConsoleText {
-        height: calc(100vh - 317px) !important;
-        max-height: calc(100vh - 317px) !important;
-    }
-    #deskarea3x {
-        height: calc(100vh - 288px) !important;
-        max-height: calc(100vh - 288px) !important;
-    }
-
-    .room4submenu #deskarea3x {
-        height: calc(100vh - 314px) !important;
-        max-height: calc(100vh - 314px) !important;
-    }
-
-    .fulldesk #deskarea3x {
-        height: calc(100vh - 65px) !important;
-        max-height: calc(100vh - 65px) !important;
-    }
-    #termarea3x {
-        height: calc(100vh - 350px) !important;
-        max-height: calc(100vh - 350px) !important;
-    }
-
-    .room4submenu #termarea3x {
-        height: calc(100vh - 314px) !important;
-        max-height: calc(100vh - 314px) !important;
-    }
-    #p13filetable {
-        height: calc(100vh - 350px) !important;
-        max-height: calc(100vh - 350px) !important;
-    }
-
-    .room4submenu #p13filetable {
-        height: calc(100vh - 376px) !important;
-        max-height: calc(100vh - 376px) !important;
-    }
-    #Term {
-        height: calc(100vh - 350px) !important;
-        max-height: calc(100vh - 350px) !important;
-    }
-
-    .room4submenu #Term {
-        height: calc(100vh - 376px) !important;
-        max-height: calc(100vh - 376px) !important;
-    }
-    #termarea3xdiv {
-        height: calc(100vh - 350px) !important;
-        max-height: calc(100vh - 350px) !important;
-    }
-
-    .room4submenu #termarea3xdiv {
-        height: calc(100vh - 376px) !important;
-        max-height: calc(100vh - 376px) !important;
-    }
-    #p13toolbar .areaHead2 {
-        flex-wrap: wrap !important;
-        gap: 4px !important;
-        max-height: 80px !important;
-        overflow: visible !important;
-        width: 100% !important;
-        display: flex !important;
-    }
-
-    #p13toolbar .areaHead2 input[type="button"] {
-        font-size: 12px !important;
-        padding: 4px 8px !important;
-        margin: 2px !important;
-        flex-shrink: 0 !important;
-        white-space: nowrap !important;
-        min-width: fit-content !important;
-    }
-    #p13toolbar .areaHead2 .d-flex {
-        flex-wrap: wrap !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-    #p13toolbar .areaHead2 input[value="Cut"],
-    #p13toolbar .areaHead2 input[value="Copy"],
-    #p13toolbar .areaHead2 input[value="Paste"],
-    #p13toolbar .areaHead2 input[value="Zip"],
-    #p13toolbar .areaHead2 input[value="Unzip"],
-    #p13toolbar .areaHead2 input[value="Find"],
-    #p13toolbar .areaHead2 input[value="GoTo"],
-    #p13toolbar .areaHead2 input[value="Open"] {
-        display: none !important;
-    }
-    #p13toolbarBottom .style6 {
-        background-color: transparent !important;
-        border: none !important;
-        padding: 2px !important;
-    }
-    #p13toolbarBottom td:has(#p13bottomstatus) {
-        background-color: transparent !important;
-        background: none !important;
-    }
-
-    #p13bottomstatus {
-        color: #666 !important;
-        font-size: 12px !important;
-    }
-    .fulldesk #termarea3x[style*="height"] {
-        height: calc(100vh - 120px) !important;
-        max-height: calc(100vh - 120px) !important;
-        max-width: none !important;
-    }
-
-    .fulldesk #termarea3xdiv[style*="height"] {
-        height: calc(100vh - 120px) !important;
-        max-height: calc(100vh - 120px) !important;
-    }
-
-    .fulldesk #Term[style*="height"] {
-        height: calc(100vh - 120px) !important;
-        max-height: calc(100vh - 120px) !important;
-    }
-    #termarea3x[style*="calc(-55px + 100vh)"] {
-        height: calc(100vh - 120px) !important;
-        max-height: calc(100vh - 120px) !important;
-        max-width: none !important;
-    }
-
-    #termarea3xdiv[style*="calc(-55px + 100vh)"] {
-        height: calc(100vh - 120px) !important;
-        max-height: calc(100vh - 120px) !important;
-    }
-    #p11 #p11title #devListToolbarViewIcons, 
-    #devListToolbarViewIcons2,
-    #devListToolbarViewIcons3,
-    #idx_deskFullBtn2,
-    #idx_termFullBtn2,
-    .fa-maximize {
-        display: none !important;
-    }
-    #notificationCount {
-        position: relative !important;
-		right: 1px !important;
-        top: 29px !important;
-    }
-    .notifiyBox {
-		top: 67px !important;
-        right: 10px !important;
-    }
-}

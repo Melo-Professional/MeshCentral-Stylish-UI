@@ -2,8 +2,8 @@
 /* Masthead */
 /* Masthead Custom Colors */
 #masthead {
-	/* background-color: #222f42 !important; */
-	background-color: var(--bs-primary) !important;
+	/* background-color: #222f42 !important; /* Melo */
+    background: linear-gradient(181deg, var(--bs-primary-bg-subtle) -60%, var(--bs-primary) 40%) !important;
 }
 
 /* Masthead Company name size */
