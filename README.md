@@ -33,7 +33,7 @@
     </td>
     <td align="center">
       <strong>TopBar Icons</strong><br>
-      <img width="100%" height="100%" alt="TopBar Icons" src="https://github.com/user-attachments/assets/f174de99-071c-4a99-802b-1d232217eb27" />
+      <img width="100%" height="100%" alt="TopBar Icons" src="https://github.com/user-attachments/assets/0ecf2314-13d4-4ab0-856e-58f8571268e3" />
     </td>
   </tr>
   <tr>
