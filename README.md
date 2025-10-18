@@ -51,7 +51,7 @@
   <tr>
     <td align="center" colspan="2">
       <strong>Themed Bars</strong><br>
-      <img width="1920" height="943" alt="TopBar Icons" src="https://github.com/user-attachments/assets/04f41784-7125-4157-8d68-366d97d0625a" />
+      <img width="1920" height="943" alt="TopBar Icons" src="https://github.com/user-attachments/assets/37c2aa30-9878-43f1-873a-38e00f33aa56" />
     </td>
   </tr>
 </table>
