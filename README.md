@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/badge/version-1.10.0-blue.svg" alt="version"></a>
+  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/badge/version-1.11.0-blue.svg" alt="version"></a>
   <a href="https://meshcentral.com"><img src="https://img.shields.io/badge/platform-MeshCentral-lightgrey.svg" alt="platform"></a>
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="license"></a>
   <a href="#screenshots"><img src="https://img.shields.io/badge/preview-available-orange.svg" alt="preview"></a>
@@ -23,9 +23,9 @@
     </td>
     <td align="center">
       <strong>Notifications Redesign</strong><br>
-      <img width="250" height="275" alt="Painel de controle" src="https://github.com/user-attachments/assets/f915837a-81bf-4716-a005-c744be747fb6" />
+      <img width="250" height="275" alt="Painel de controle" src="https://github.com/user-attachments/assets/666740f0-b980-4f5a-a15e-858f53302696" />
     </td>
-  </tr>
+  </tr> 
   <tr>
     <td align="center">
       <strong>Leftbar New Icons</strong><br>
