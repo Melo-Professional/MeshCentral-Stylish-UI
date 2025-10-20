@@ -150,10 +150,10 @@
     .fa-maximize {
         display: none !important;
     }
-    #notificationCount {
+    #masthead div:has(#notificationCount) {
         position: relative !important;
-		right: 1px !important;
-        top: 29px !important;
+		right: 79px !important;
+		top: 13px !important;
     }
     .notifiyBox {
 		top: 67px !important;
