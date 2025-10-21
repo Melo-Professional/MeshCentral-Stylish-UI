@@ -37,6 +37,10 @@
 	--bs-table-hover-bg: unset !important;
 }
 
+#p17info2 > table > tbody > tr > td * {
+		border: none !important;
+}
+
 #p3users table, #p16events .table.table-hover.p3eventsTable {
 	--bs-table-bg: unset !important;
 }

@@ -197,9 +197,17 @@ table tr td div[id^="DevxCol"] {
 
 /* Target spans inside cells for consistency */
 #xdevices td span {
-    font-size: inherit !important;
+    font-size: inherit;
     font-family: inherit !important;
 }
+
+.tagSpan {
+    background-color: lightgray;
+    padding: 2px;
+    border-radius: 3px;
+    font-size: x-small !important;
+}
+
 
 /* Mobile Toolbar - For My Devices Page (Select All, Group Action, Filter & OS Name CheckBox) */
 @media (max-width: 900px) {
@@ -441,6 +449,10 @@ hr#cxmgroupsplit {
 #p17info2 .table.table-hover {
     --bs-table-bg: unset !important;
 	--bs-table-hover-bg: unset !important;
+}
+
+#p17info2 > table > tbody > tr > td * {
+		border: none !important;
 }
 
 #p3users table, #p16events .table.table-hover.p3eventsTable {
