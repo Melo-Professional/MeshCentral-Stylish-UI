@@ -1,135 +1,241 @@
-// Fullscreen custom
-(function(){
-  const STYLE_ID = 'mc-custom-fullscreen-style';
-  let mouseMoveHandler = null;
-  let lastY = 0;
-  let lastTime = 0;
-  let hideTimeout = null;
+// ====== FULLSCREEN ======
+(() => {
+  'use strict';
 
-  function injectStyle(){
-    if (document.getElementById(STYLE_ID)) return;
-    const css = `
-      .mc-custom-fullscreen #deskarea1,
-      .mc-custom-fullscreen #deskarea4 {
-        position: absolute !important;
-        left: 0 !important;
-        width: 100% !important;
-        transition: transform 0.25s ease, opacity 0.25s ease !important;
-        z-index: 9999 !important;
-      }
-      .mc-custom-fullscreen #deskarea1 { top: 0 !important; transform: translateY(-100%) !important; opacity: 0 !important; }
-      .mc-custom-fullscreen #deskarea4 { bottom: 0 !important; transform: translateY(100%) !important; opacity: 0 !important; }
-      .mc-custom-fullscreen.show-bars #deskarea1 { transform: translateY(0) !important; opacity: 1 !important; }
-      .mc-custom-fullscreen.show-bars #deskarea4 { transform: translateY(0) !important; opacity: 1 !important; }
-      .mc-custom-fullscreen.fade-bars #deskarea1,
-      .mc-custom-fullscreen.fade-bars #deskarea4 { opacity: 0.85 !important; }
-    `;
-    const s = document.createElement('style');
-    s.id = STYLE_ID;
-    s.appendChild(document.createTextNode(css));
-    document.head.appendChild(s);
-  }
+  const CONFIG = {
+    FULLSCREEN_STYLE_ID: 'mc-true-fs-style',
+    HIDE_DELAY_MS: 550,
+    INTRO_DURATION_MS: 3000,
+    INTRO_HIDE_DURATION_MS: 1500,
+    INDICATOR_STAY_MS: 3000,
+    HOT_ZONE_WIDTH_PERCENT: 20,
+    PATCH_RETRY_MS: 250,
+  };
 
-  function removeStyle(){
-    const s = document.getElementById(STYLE_ID);
-    if (s) s.remove();
-  }
+  const FullscreenEnhancer = (() => {
+    let enabled = false;
+    let handler = null;
+    let hideTimer = null;
+    let initialShowTimer = null;
+    let indicatorHideTimer = null;
+    let container = null;
+    let topBar = null;
+    let bottomBar = null;
+    let indicator = null;
 
-  function enableCustomFullscreen(){
-    injectStyle();
-    document.documentElement.classList.add('mc-custom-fullscreen');
-    if (mouseMoveHandler) return;
+    // --- BARS + VISUAL INDICATOR + 20% Zone ---
+    const injectCSS = () => {
+      if (document.getElementById(CONFIG.FULLSCREEN_STYLE_ID)) return;
 
-    const hotAreaPx = 5; // smaller hot area
-    const hideDelay = 300; // ms before hiding
+      const css = `
+        #deskarea0.mc-true-fs{
+          position:fixed!important;inset:0!important;margin:0!important;padding:0!important;
+          overflow:hidden!important;background:#000!important;
+        }
+        #deskarea0.mc-true-fs #DeskParent{position:absolute!important;inset:0!important;overflow:hidden!important}
+        #deskarea0.mc-true-fs #Desk{position:absolute!important;top:0!important;left:0!important}
 
-    mouseMoveHandler = function(e){
-      const body = document.documentElement;
-      const h = window.innerHeight;
-      const topBar = document.getElementById('deskarea1');
-      const bottomBar = document.getElementById('deskarea4');
+        /* BARS */
+        #deskarea0.mc-true-fs #deskarea1,#deskarea0.mc-true-fs #deskarea4{
+          position:fixed!important;left:0!important;width:100%!important;z-index:9999!important;
+          /* background:rgba(20,20,30,.88)!important; */
+          backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important;
+          box-shadow:0 1px 3px rgba(0,0,0,.3)!important;
+          transition:transform 0.3s cubic-bezier(0.25,0.1,0.25,1)!important;
+        }
+        #deskarea0.mc-true-fs #deskarea1{top:0;transform:translateY(-100%)}
+        #deskarea0.mc-true-fs #deskarea4{bottom:0;transform:translateY(100%)}
+        #deskarea0.mc-true-fs.show-bars #deskarea1,
+        #deskarea0.mc-true-fs.show-bars #deskarea4{transform:translateY(0)}
 
-      const inHotArea = e.clientY <= hotAreaPx || e.clientY >= h - hotAreaPx;
-      const topBarVisible = topBar && topBar.offsetParent !== null;
-      const bottomBarVisible = bottomBar && bottomBar.offsetParent !== null;
-      const overTopBar = topBarVisible && e.clientY >= 0 && e.clientY <= topBar.getBoundingClientRect().bottom;
-      const overBottomBar = bottomBarVisible && e.clientY >= bottomBar.getBoundingClientRect().top && e.clientY <= h;
+        /* INTRO HIDE */
+        #deskarea0.mc-true-fs.intro-hide #deskarea1,
+        #deskarea0.mc-true-fs.intro-hide #deskarea4{
+          transition:transform ${CONFIG.INTRO_HIDE_DURATION_MS}ms cubic-bezier(0.4,0,0.2,1)!important;
+        }
 
-      // Clear any previous hide timeout
-      if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
+/* BEAUTIFUL INDICATOR */
+        #deskarea0.mc-true-fs .mc-hot-indicator{
+          position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;
+          width:200px!important;height:0px!important;border-radius:3px!important;
+          background:linear-gradient(90deg, transparent, rgba(255,255,255,0.9), transparent)!important;
+          z-index:10000!important;
+          opacity:0!important;pointer-events:none!important;
+          transition:opacity 0.8s ease, transform 0.3s cubic-bezier(0.25,0.1,0.25,1)!important;
+          animation:mc-glow 2s infinite ease-in-out!important;
+        }
+        @keyframes mc-glow{
+          0%,100%{
+			  box-shadow:
+			  0 0 12px 2px rgba(167, 139, 255,0.7),
+			  0 0 20px 4px rgba(100,150,255,0.4)
+			}
+          50%{
+			  box-shadow:
+			  0 0 20px 6px rgba(0,0,0,0.7),
+			  0 0 30px 8px rgba(100,150,255,0.8),
+			  0 0 48px 20px rgba(167, 139, 255, 0.7);
+			}
+        }
+        #deskarea0.mc-true-fs.show-indicator .mc-hot-indicator{
+          opacity:1!important;transform:translateX(-50%) translateY(0)!important;
+        }
+        #deskarea0.mc-true-fs.hide-indicator .mc-hot-indicator{
+          opacity:0!important;transform:translateX(-50%) translateY(-30px)!important;
+          transition:opacity 0.8s ease, transform 0.8s ease cubic-bezier(0.25,0.1,0.25,1)!important;
+        }
 
-      // Show bars immediately if in hot area or over visible bars
-      if (inHotArea || overTopBar || overBottomBar){
-        body.classList.add('show-bars');
-        body.classList.remove('fade-bars');
-      } else {
-        // Delay hiding
-        hideTimeout = setTimeout(()=>{
-          body.classList.remove('show-bars');
-          body.classList.add('fade-bars');
-        }, hideDelay);
-      }
+        .modal{z-index:1055!important}.modal-backdrop{z-index:1050!important}
+      `;
 
-      // Dynamic transition speed
-      const now = e.timeStamp;
-      const deltaY = Math.abs(e.clientY - lastY);
-      const deltaTime = Math.max(1, now - lastTime);
-      const speed = deltaY / deltaTime; // px/ms
-      const duration = Math.min(0.3, Math.max(0.1, 0.25 - speed * 0.2)); // seconds
-      if (topBar) topBar.style.transitionDuration = `${duration}s`;
-      if (bottomBar) bottomBar.style.transitionDuration = `${duration}s`;
-      lastY = e.clientY;
-      lastTime = now;
+      const style = document.createElement('style');
+      style.id = CONFIG.FULLSCREEN_STYLE_ID;
+      style.textContent = css;
+      document.head.appendChild(style);
     };
 
-    document.addEventListener('mousemove', mouseMoveHandler, { capture: true, passive: true });
-    document.addEventListener('fullscreenchange', onNativeFullscreenChange);
-    document.addEventListener('webkitfullscreenchange', onNativeFullscreenChange);
-    document.addEventListener('mozfullscreenchange', onNativeFullscreenChange);
-    document.addEventListener('MSFullscreenChange', onNativeFullscreenChange);
-  }
-
-  function disableCustomFullscreen(){
-    if (mouseMoveHandler) {
-      document.removeEventListener('mousemove', mouseMoveHandler, { capture: true });
-      mouseMoveHandler = null;
-    }
-    document.removeEventListener('fullscreenchange', onNativeFullscreenChange);
-    document.removeEventListener('webkitfullscreenchange', onNativeFullscreenChange);
-    document.removeEventListener('mozfullscreenchange', onNativeFullscreenChange);
-    document.removeEventListener('MSFullscreenChange', onNativeFullscreenChange);
-    document.documentElement.classList.remove('mc-custom-fullscreen');
-    document.documentElement.classList.remove('show-bars');
-    document.documentElement.classList.remove('fade-bars');
-    if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
-    removeStyle();
-  }
-
-  function onNativeFullscreenChange(){
-    const isNotFull = !document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement;
-    if (isNotFull && document.documentElement.classList.contains('mc-custom-fullscreen')) {
-      try { window.deskToggleFull({ shiftKey: false }); } catch(e){}
-    }
-  }
-
-  function patchDeskToggleFull(){
-    if (typeof window.deskToggleFull !== 'function') { setTimeout(patchDeskToggleFull, 300); return; }
-    const _orig = window.deskToggleFull;
-    window.deskToggleFull = function(b){
-      const wasFs = !!window.fullscreen;
-      const res = _orig.call(this, b);
-      const nowFs = !!window.fullscreen;
-      if (!wasFs && nowFs) {
-        try { if (typeof enterBrowserFullscreen === 'function') enterBrowserFullscreen(Q('body')); } catch(e){}
-        enableCustomFullscreen();
-        window.browserfullscreen = true;
-      } else if (wasFs && !nowFs) {
-        disableCustomFullscreen();
-        window.browserfullscreen = false;
-      }
-      return res;
+    // --- Create Indicator ---
+    const createIndicator = () => {
+      if (indicator) return;
+      indicator = document.createElement('div');
+      indicator.className = 'mc-hot-indicator';
+      container.appendChild(indicator);
     };
-  }
 
-  patchDeskToggleFull();
+    // --- Mouse Handler ---
+    const createHandler = () => (e) => {
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const zoneWidth = rect.width * (CONFIG.HOT_ZONE_WIDTH_PERCENT / 100);
+      const hotLeft = centerX - zoneWidth / 2;
+      const hotRight = centerX + zoneWidth / 2;
+
+      const inHotZone = e.clientY <= 2 && e.clientX >= hotLeft && e.clientX <= hotRight;
+      const overTop = topBar && e.clientY <= topBar.getBoundingClientRect().bottom;
+      const overBottom = bottomBar && e.clientY >= bottomBar.getBoundingClientRect().top;
+
+      const isOverBars = container.classList.contains('show-bars');
+      const trigger = isOverBars ? (overTop || overBottom) : inHotZone;
+
+      if (trigger) {
+        [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
+        hideTimer = initialShowTimer = indicatorHideTimer = null;
+
+        container.classList.add('show-bars', 'show-indicator');
+        container.classList.remove('intro-hide', 'hide-indicator');
+      } 
+      else if (!hideTimer && !initialShowTimer && container.classList.contains('show-bars')) {
+        hideTimer = setTimeout(() => {
+          container.classList.remove('show-bars');
+
+          // AFTER BARS HIDE → delay
+          indicatorHideTimer = setTimeout(() => {
+            container.classList.add('hide-indicator');
+            container.classList.remove('show-indicator');
+
+            setTimeout(() => {
+              container.classList.remove('hide-indicator');
+            }, 300);
+
+            indicatorHideTimer = null;
+          }, CONFIG.INDICATOR_STAY_MS);
+
+          hideTimer = null;
+        }, CONFIG.HIDE_DELAY_MS);
+      }
+    };
+
+    // --- Enable ---
+    const enable = () => {
+      if (enabled) return;
+      enabled = true;
+
+      container = document.getElementById('deskarea0');
+      if (!container) return;
+
+      topBar = document.getElementById('deskarea1');
+      bottomBar = document.getElementById('deskarea4');
+
+      injectCSS();
+      createIndicator();
+      container.classList.add('mc-true-fs', 'show-bars', 'show-indicator');
+
+      handler = createHandler();
+      document.addEventListener('mousemove', handler, { capture: true, passive: true });
+
+      // INTRO: delay → bars hide → indicator stays → hide
+      initialShowTimer = setTimeout(() => {
+        container.classList.add('intro-hide');
+        container.classList.remove('show-bars');
+
+        setTimeout(() => {
+          container.classList.remove('intro-hide');
+
+          indicatorHideTimer = setTimeout(() => {
+            container.classList.add('hide-indicator');
+            container.classList.remove('show-indicator');
+
+            setTimeout(() => {
+              container.classList.remove('hide-indicator');
+            }, 300);
+          }, CONFIG.INDICATOR_STAY_MS);
+
+        }, CONFIG.INTRO_HIDE_DURATION_MS);
+
+        initialShowTimer = null;
+      }, CONFIG.INTRO_DURATION_MS);
+    };
+
+    // --- Disable ---
+    const disable = () => {
+      if (!enabled) return;
+      enabled = false;
+
+      [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
+      if (handler) document.removeEventListener('mousemove', handler, { capture: true, passive: true });
+      if (container) {
+        container.classList.remove('mc-true-fs', 'show-bars', 'show-indicator', 'intro-hide', 'hide-indicator');
+        if (indicator) indicator.remove();
+        container = topBar = bottomBar = indicator = null, null;
+      }
+      const style = document.getElementById(CONFIG.FULLSCREEN_STYLE_ID);
+      if (style) style.remove();
+    };
+
+    // --- Patch & Exit ---
+    const patch = () => {
+      const tryPatch = () => {
+        if (typeof window.deskToggleFull !== 'function') {
+          setTimeout(tryPatch, CONFIG.PATCH_RETRY_MS);
+          return;
+        }
+        const orig = window.deskToggleFull;
+        window.deskToggleFull = function (ev) {
+          const was = !!window.fullscreen;
+          const fake = ev ? Object.assign({}, ev, { shiftKey: true }) : { shiftKey: true };
+          const res = orig.call(this, fake);
+          const now = !!window.fullscreen;
+          if (!was && now) requestAnimationFrame(enable);
+          else if (was && !now) disable();
+          return res;
+        };
+      };
+      tryPatch();
+    };
+
+    const setupExit = () => {
+      const events = 'fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange';
+      events.split(' ').forEach(ev => document.addEventListener(ev, () => {
+        const inFs = !!(document.fullscreenElement || document.webkitFullscreenElement ||
+                       document.mozFullScreenElement || document.msFullscreenElement);
+        if (!inFs && enabled) try { window.deskToggleFull?.(); } catch (_) {}
+      }, true));
+    };
+
+    return { init: () => { patch(); setupExit(); } };
+  })();
+
+  FullscreenEnhancer.init();
 })();
