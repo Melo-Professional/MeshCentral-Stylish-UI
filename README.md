@@ -5,6 +5,8 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI"><img src="https://img.shields.io/github/stars/Melo-Professional/MeshCentral-Stylish-UI?style=social" alt="stars"></a>
+  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/forks"><img src="https://img.shields.io/github/forks/Melo-Professional/MeshCentral-Stylish-UI" alt="forks"></a>
   <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/badge/version-2.0.0-green.svg" alt="version"></a>
   <a href="https://meshcentral.com"><img src="https://img.shields.io/badge/platform-MeshCentral-lightgrey.svg" alt="platform"></a>
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="license"></a>
