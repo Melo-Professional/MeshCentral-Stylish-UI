@@ -1359,6 +1359,16 @@ body.fullscreen:not(.menu_stack) #column_l:has(
   margin-top: -24px !important;
 }
 
+@media (max-width: 768px) {
+body.fullscreen:not(.menu_stack) #column_l:has(
+  #p1:not([style*="display: none"], [style*="display:none"]),
+  #p2:not([style*="display: none"], [style*="display:none"]),
+  #p5:not([style*="display: none"], [style*="display:none"])
+) {
+  margin-top: unset !important;
+}
+}
+
 #xdevices {
 	height: calc(-165px + 100vh) !important;
     max-height: calc(-165px + 100vh) !important;
