@@ -1468,28 +1468,30 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 }
 
 /* hover */
-#uiSubmenu {
-  display: block !important;
-  opacity: 0 !important;
-  transform: translateX(12px) !important;
-  transition: 
-    opacity 0.18s ease 0s, 
-    transform 0.3s ease 0s;
-  pointer-events: none !important;
-  transition-delay: 0.1s !important;
-}
-
-.userDropdownUISettings:hover + #uiSubmenu,
-#uiSubmenu:hover {
-  display: block !important;
-  opacity: 1 !important;
-  transform: translateX(0) !important;
-  pointer-events: auto !important;
-  transition-delay: 0.4s !important;
-}
-
-#userDropdownMenuContainer:has(.userDropdownUISettings:hover) .fa-chevron-right,
-#userDropdownMenuContainer:has(#uiSubmenu:hover) .fa-chevron-right {
-  transform: rotate(90deg) !important;
-  transition-delay: 0.3s !important;
+@media (min-width: 769px) {
+	#uiSubmenu {
+	display: block !important;
+	opacity: 0 !important;
+	transform: translateX(12px) !important;
+	transition: 
+		opacity 0.18s ease 0s, 
+		transform 0.3s ease 0s;
+	pointer-events: none !important;
+	transition-delay: 0.1s !important;
+	}
+	
+	.userDropdownUISettings:hover + #uiSubmenu,
+	#uiSubmenu:hover {
+	display: block !important;
+	opacity: 1 !important;
+	transform: translateX(0) !important;
+	pointer-events: auto !important;
+	transition-delay: 0.4s !important;
+	}
+	
+	#userDropdownMenuContainer:has(.userDropdownUISettings:hover) .fa-chevron-right,
+	#userDropdownMenuContainer:has(#uiSubmenu:hover) .fa-chevron-right {
+	transform: rotate(90deg) !important;
+	transition-delay: 0.3s !important;
+	}
 }
