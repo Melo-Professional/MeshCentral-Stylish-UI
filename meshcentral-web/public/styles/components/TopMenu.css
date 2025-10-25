@@ -1,35 +1,62 @@
 /* **************************************************************** */
 /* TopMenu */
-#topMenu, #topMenu > div[onclick*="topMenu"], #topMenu > #logoutMenuOption > a > div {
-	background: #f3f3f3 !important;
+#userDropdown {
+	background: unset !important;
+}
+
+#userDropdownMenu, .userDropdownSubmenu {
+	background-color: #f3f3f3 !important;
 	color: var(--bs-body-color) !important;
 	font-size: small !important;
-	overflow: hidden;
+	border-radius: 10px !important;
+    box-shadow: 0 0 12px #0000004d !important;
 }
 
-.night #topMenu, .night #topMenu > div[onclick*="topMenu"], .night #topMenu > #logoutMenuOption > a > div {
-	background: #1c1e1e !important;
+.userDropdownMenuItem:hover, .userDropdownSubmenuItem:hover {
+	background-color: #8181814a !important;
+	border-radius: unset !important
 }
 
-#topMenu {
-	border-radius: 0px 0px 10px 10px !important;
+.night #userDropdownMenu, .night .userDropdownSubmenu {
+	background-color: #292c2c !important;
 }
 
-#topMenu > div[onclick*="topMenu"] {
-	border: unset !important;
+.userDropdownMenuItem span, .userDropdownMenuItem {
+	color: unset !important;
+	font-size: small !important;
 }
 
-#topMenu:hover, 
-#topMenu > div[onclick*="topMenu"]:hover, 
-#topMenu > #logoutMenuOption > a > div:hover {
-    background: #e3e3e3 !important; !important;
-	overflow: hidden
+#userDropdownMenuDivider {
+    border-top: var(--bs-border-width) solid !important;
+	opacity: .25 !important;
+}
+#uiSubmenu {
+  right: 96%;
 }
 
-.night #topMenu:hover, 
-.night #topMenu > div[onclick*="topMenu"]:hover, 
-.night #topMenu > #logoutMenuOption > a > div:hover {
-    background: #414141 !important; !important;
-	overflow: hidden
+/* hover */
+#uiSubmenu {
+  display: block !important;
+  opacity: 0 !important;
+  transform: translateX(12px) !important;
+  transition: 
+    opacity 0.18s ease 0s, 
+    transform 0.3s ease 0s;
+  pointer-events: none !important;
+  transition-delay: 0.1s !important;
 }
 
+.userDropdownUISettings:hover + #uiSubmenu,
+#uiSubmenu:hover {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+  pointer-events: auto !important;
+  transition-delay: 0.4s !important;
+}
+
+#userDropdownMenuContainer:has(.userDropdownUISettings:hover) .fa-chevron-right,
+#userDropdownMenuContainer:has(#uiSubmenu:hover) .fa-chevron-right {
+  transform: rotate(90deg) !important;
+  transition-delay: 0.3s !important;
+}
