@@ -76,8 +76,8 @@
 }
 
 .userDropdownMenuIcon {
-    width: 15px;
-    height: 15px;
+    width: 15px !important;
+    height: 15px !important;
 }
 
 #userDropdownMenuContainer .fa-chevron-right {
