@@ -1515,6 +1515,6 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 }
 
 #userDropdownMenuContainer .fa-chevron-right {
-	width: 12px;
-    height: 12px;
+	width: 12px !important;
+    height: 12px !important;
 }
