@@ -21,10 +21,13 @@
 	top: 58px !important;
     right: 10px !important;
 	max-height: 250px !important;
+	box-shadow: 0 0 12px #0000004d !important;
+	padding: 4px;
 }
 
 .night .notifiyBox {
 	background-color: #1c1e1e !important;
+	box-shadow: 0 0 12px #050505ba !important;
 }
 
 .notifiyBox::before, .notifiyBox::after {
@@ -38,10 +41,12 @@
 
 .notification:hover, #notifyRemoveAll:hover {
     background-color: #e3e3e3 !important;
+	border-radius: 7px !important;
 }
 
 .night .notification:hover, .night #notifyRemoveAll:hover {
     background-color: #414141 !important;
+	border-radius: 7px !important;
 }
 
 .notification {
@@ -60,7 +65,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 240px !important;
-    margin: 5px;
+    margin: unset !important;
     padding: 0;
 }
 

@@ -150,6 +150,10 @@ span[cmenu="meshContextMenu"] {
   margin-left: 50px !important;
 }
 
+#xdevices div[style*="border-top-style:solid"][style*="border-top-width:1px"] {
+    border-top-color: #DDDDDD40 !important;
+}
+
 td.DevSt #MxMESH {
     margin-left: 15px !important;
     margin-right: 15px !important;
@@ -207,7 +211,6 @@ table tr td div[id^="DevxCol"] {
     border-radius: 3px;
     font-size: x-small !important;
 }
-
 
 /* Mobile Toolbar - For My Devices Page (Select All, Group Action, Filter & OS Name CheckBox) */
 @media (max-width: 900px) {
@@ -283,28 +286,32 @@ table tr td div[id^="DevxCol"] {
 	border: unset !important;
 	background-color: #f2f2f2 !important;
 	box-shadow: 0 0 12px #0000004d !important;
+	padding: 4px;
 	/* color: #CCC !important; */
 }
 
 .night .contextMenu {
 	background-color: #292c2c !important;
-	box-shadow: 0 0 12px #919191ba;
+	box-shadow: 0 0 12px #050505ba !important;
 	/* color: #CCC !important; */
 }
 
 hr#cxmgroupsplit {
-	margin: 0 !important;
+	margin: 2px 0px !important;
+	/* margin-bottom: 6px !important; */
 }
 
 .cmtext:hover {
     background-color: #8181814a !important;
+	border-radius: 7px !important;
 }
 
 .cmtext {
     width: 100% !important;
-	padding-bottom: 0px !important;
 	font-size: smaller !important;
 	color: unset !important;
+	padding: 6px 12px;
+	overflow: unset !important;
 }
 
 #cxinfo > b {
@@ -317,15 +324,21 @@ hr#cxmgroupsplit {
 	background-color: #f2f2f2 !important;
 	box-shadow: 0 0 12px #0000004d !important;
 	font-size: smaller !important;
+	padding: 4px;
 }
 
 .night .dropdown-menu.show {
 	background-color: #292c2c !important;
-	box-shadow: 0 0 12px #919191ba !important;
+	box-shadow: 0 0 12px #050505ba !important;
 }
 
 .dropdown-menu.show > li > a {
 	color: var(--bs-body-color) !important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+	background-color: #8181814a !important;
+    border-radius: 7px !important;
 }
 
 /* **************************************************************** */
@@ -1187,18 +1200,6 @@ div[id^="devViewPageButton"]::after { display: none !important; }
 }
 
 /* **************************************************************** */
-/* MyServer Button - hide button by default */
-/* It depends on custom.js to hide 'MyServer' button */
-body[data-myserver-visible="false"] #LeftMenuMyServer {
-    display: none !important;
-}
-
-/* Show button if JS marks it as visible */
-body[data-myserver-visible="true"] #LeftMenuMyServer {
-    display: block !important;
-}
-
-/* **************************************************************** */
 /* Notifications */
 .deviceNotifyDotSub {
     height: 20px !important;
@@ -1221,10 +1222,13 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
 	top: 58px !important;
     right: 10px !important;
 	max-height: 250px !important;
+	box-shadow: 0 0 12px #0000004d !important;
+	padding: 4px;
 }
 
 .night .notifiyBox {
 	background-color: #1c1e1e !important;
+	box-shadow: 0 0 12px #050505ba !important;
 }
 
 .notifiyBox::before, .notifiyBox::after {
@@ -1238,10 +1242,12 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
 
 .notification:hover, #notifyRemoveAll:hover {
     background-color: #e3e3e3 !important;
+	border-radius: 7px !important;
 }
 
 .night .notification:hover, .night #notifyRemoveAll:hover {
     background-color: #414141 !important;
+	border-radius: 7px !important;
 }
 
 .notification {
@@ -1260,7 +1266,7 @@ body[data-myserver-visible="true"] #LeftMenuMyServer {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 240px !important;
-    margin: 5px;
+    margin: unset !important;
     padding: 0;
 }
 
@@ -1428,6 +1434,10 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 
 /* **************************************************************** */
 /* TopMenu */
+#userDropdownMenuContainer, #uiSubmenu {
+    padding: 4px;
+}
+
 #userDropdown {
 	background: unset !important;
 }
@@ -1440,13 +1450,17 @@ body.fullscreen:not(.menu_stack) #column_l:has(
     box-shadow: 0 0 12px #0000004d !important;
 }
 
-.userDropdownMenuItem:hover, .userDropdownSubmenuItem:hover {
-	background-color: #8181814a !important;
-	border-radius: unset !important
+.night #userDropdownMenu,
+.night .userDropdownSubmenu {
+	background-color: #292c2c !important;
+    box-shadow: 0 0 12px #050505ba !important;
 }
 
-.night #userDropdownMenu, .night .userDropdownSubmenu {
-	background-color: #292c2c !important;
+.userDropdownMenuItem:hover,
+.userDropdownSubmenuItem:hover,
+#userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
+	background-color: #8181814a !important;
+	border-radius: 7px !important;
 }
 
 .userDropdownMenuItem span, .userDropdownMenuItem {
@@ -1474,6 +1488,10 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 	pointer-events: none !important;
 	transition-delay: 0.1s !important;
 	}
+
+	#userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
+		background-color: #8181814a !important;
+	}
 	
 	.userDropdownUISettings:hover + #uiSubmenu,
 	#uiSubmenu:hover {
@@ -1489,4 +1507,14 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 	transform: rotate(90deg) !important;
 	transition-delay: 0.3s !important;
 	}
+}
+
+.userDropdownMenuIcon {
+    width: 15px;
+    height: 15px;
+}
+
+#userDropdownMenuContainer .fa-chevron-right {
+	width: 12px;
+    height: 12px;
 }

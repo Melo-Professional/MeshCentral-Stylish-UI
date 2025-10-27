@@ -1,5 +1,9 @@
 /* **************************************************************** */
 /* TopMenu */
+#userDropdownMenuContainer, #uiSubmenu {
+    padding: 4px;
+}
+
 #userDropdown {
 	background: unset !important;
 }
@@ -12,13 +16,17 @@
     box-shadow: 0 0 12px #0000004d !important;
 }
 
-.userDropdownMenuItem:hover, .userDropdownSubmenuItem:hover {
-	background-color: #8181814a !important;
-	border-radius: unset !important
+.night #userDropdownMenu,
+.night .userDropdownSubmenu {
+	background-color: #292c2c !important;
+    box-shadow: 0 0 12px #050505ba !important;
 }
 
-.night #userDropdownMenu, .night .userDropdownSubmenu {
-	background-color: #292c2c !important;
+.userDropdownMenuItem:hover,
+.userDropdownSubmenuItem:hover,
+#userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
+	background-color: #8181814a !important;
+	border-radius: 7px !important;
 }
 
 .userDropdownMenuItem span, .userDropdownMenuItem {
@@ -46,6 +54,10 @@
 	pointer-events: none !important;
 	transition-delay: 0.1s !important;
 	}
+
+	#userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
+		background-color: #8181814a !important;
+	}
 	
 	.userDropdownUISettings:hover + #uiSubmenu,
 	#uiSubmenu:hover {
@@ -61,5 +73,15 @@
 	transform: rotate(90deg) !important;
 	transition-delay: 0.3s !important;
 	}
+}
+
+.userDropdownMenuIcon {
+    width: 15px;
+    height: 15px;
+}
+
+#userDropdownMenuContainer .fa-chevron-right {
+	width: 12px;
+    height: 12px;
 }
 

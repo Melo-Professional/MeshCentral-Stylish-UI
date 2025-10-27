@@ -125,6 +125,10 @@ span[cmenu="meshContextMenu"] {
   margin-left: 50px !important;
 }
 
+#xdevices div[style*="border-top-style:solid"][style*="border-top-width:1px"] {
+    border-top-color: #DDDDDD40 !important;
+}
+
 td.DevSt #MxMESH {
     margin-left: 15px !important;
     margin-right: 15px !important;

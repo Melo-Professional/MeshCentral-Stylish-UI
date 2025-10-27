@@ -5,28 +5,32 @@
 	border: unset !important;
 	background-color: #f2f2f2 !important;
 	box-shadow: 0 0 12px #0000004d !important;
+	padding: 4px;
 	/* color: #CCC !important; */
 }
 
 .night .contextMenu {
 	background-color: #292c2c !important;
-	box-shadow: 0 0 12px #919191ba;
+	box-shadow: 0 0 12px #050505ba !important;
 	/* color: #CCC !important; */
 }
 
 hr#cxmgroupsplit {
-	margin: 0 !important;
+	margin: 2px 0px !important;
+	/* margin-bottom: 6px !important; */
 }
 
 .cmtext:hover {
     background-color: #8181814a !important;
+	border-radius: 7px !important;
 }
 
 .cmtext {
     width: 100% !important;
-	padding-bottom: 0px !important;
 	font-size: smaller !important;
 	color: unset !important;
+	padding: 6px 12px;
+	overflow: unset !important;
 }
 
 #cxinfo > b {
@@ -39,14 +43,20 @@ hr#cxmgroupsplit {
 	background-color: #f2f2f2 !important;
 	box-shadow: 0 0 12px #0000004d !important;
 	font-size: smaller !important;
+	padding: 4px;
 }
 
 .night .dropdown-menu.show {
 	background-color: #292c2c !important;
-	box-shadow: 0 0 12px #919191ba !important;
+	box-shadow: 0 0 12px #050505ba !important;
 }
 
 .dropdown-menu.show > li > a {
 	color: var(--bs-body-color) !important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+	background-color: #8181814a !important;
+    border-radius: 7px !important;
 }
 
