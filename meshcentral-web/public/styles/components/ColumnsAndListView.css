@@ -166,20 +166,24 @@ table tr td div[id^="DevxCol"] {
 }
 
 /* List View - adjustments for Dann Selem */
-.style10,
-.bar18,
-.g1,
-.g2 {
-    background: transparent !important;
-}
-
+/* List View - adjustments for Dann Selem */
 tr[name="xxdevice2"] {
     height: 2rem !important;
+    position: relative !important;
+}
+
+td {
+    padding: 0 !important;
+    vertical-align: middle !important;
+    position: relative !important;
+    height: 2rem !important;
+    border: none !important;
 }
 
 #devs.bar18 {
     width: 100% !important;
     height: 100% !important;
+    min-height: 2rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
@@ -190,13 +194,79 @@ tr[name="xxdevice2"] {
     position: relative !important;
     pointer-events: auto !important;
     background: transparent !important;
+    z-index: 1 !important;
+}
+
+#devs table[onmouseup^="gotoDevice"] {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 2rem !important;
+    display: table !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    cursor: pointer !important;
+}
+
+#devs table[onmouseup^="gotoDevice"] td {
+    height: 100% !important;
+    min-height: 2rem !important;
+    padding: 0 !important;
+    border: none !important;
+    vertical-align: middle !important;
+}
+
+.style10 {
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    min-height: 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 0.75rem !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    pointer-events: auto !important;
+    background: transparent !important;
+}
+
+#xdevices table:has(span[id^="MxMESH"]) tr:nth-child(odd) {
+    background: #f7fafc0f !important;
+}
+
+#xdevices table:has(span[id^="MxMESH"]) tr:nth-child(even) {
+    background: #9393930f !important;
+}
+
+.night #xdevices table:has(span[id^="MxMESH"]) tr:nth-child(odd) {
+    background: #81818112 !important;
+}
+
+.night #xdevices table:has(span[id^="MxMESH"]) tr:nth-child(even) {
+    background: #3333330f !important;
+}
+
+#xdevices table:has(span[id^="MxMESH"]) tr:hover {
+    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+    z-index: 2 !important;
+}
+
+.night #xdevices table:has(span[id^="MxMESH"]) tr:hover {
+    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
 }
 
 .deviceBarCheckbox,
 .deviceBarIcon,
 .style10,
 .style10 > .flex-grow-1,
-.style10 > div[style*="float:right"] {
+.style10 > div[style*="float:right"],
+.bar18,
+.g1,
+.g2 {
     background: transparent !important;
     background-color: transparent !important;
 }
@@ -204,10 +274,8 @@ tr[name="xxdevice2"] {
 .night .deviceBarCheckbox,
 .night .deviceBarIcon,
 .night .style10,
-.night .style10,
 .night .style10 * {
     background: transparent !important;
-    background-color: transparent !important;
 }
 
 .deviceBarCheckbox {
@@ -216,9 +284,9 @@ tr[name="xxdevice2"] {
     justify-content: center !important;
     width: 2.5rem !important;
     height: 100% !important;
+    min-height: 2rem !important;
     flex-shrink: 0 !important;
 }
-
 .deviceBarCheckbox input {
     margin: 0 !important;
     width: 1rem !important;
@@ -231,44 +299,14 @@ tr[name="xxdevice2"] {
     justify-content: center !important;
     width: 2.5rem !important;
     height: 100% !important;
+    min-height: 2rem !important;
     flex-shrink: 0 !important;
     cursor: pointer !important;
 }
-
 .deviceBarIcon > div {
     margin: 0 !important;
     width: 1rem !important;
     height: 1rem !important;
-}
-
-.style10 {
-    flex: 1 !important;
-    min-width: 0 !important;
-    height: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 0 0.75rem !important;
-    cursor: pointer !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-    font-size: 14px !important;
-    white-space: nowrap !important;
-    text-overflow: ellipsis !important;
-    pointer-events: auto !important;
-}
-
-.style10 > .flex-grow-1 {
-    flex: 1 !important;
-    min-width: 0 !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
-}
-.style10 > div[style*="float:right"] {
-    margin-left: 0.75rem !important;
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
 }
 
 .g1, .g2 { display: none !important; }
@@ -281,7 +319,9 @@ tr[name="xxdevice2"],
 #devs,
 .style10,
 .deviceBarIcon,
-.deviceBarCheckbox {
+.deviceBarCheckbox,
+#devs table[onmouseup^="gotoDevice"],
+#devs table[onmouseup^="gotoDevice"] td {
     pointer-events: auto !important;
     cursor: pointer !important;
 }
