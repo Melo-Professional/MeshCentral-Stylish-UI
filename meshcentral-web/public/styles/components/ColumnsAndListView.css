@@ -214,7 +214,7 @@ td {
     vertical-align: middle !important;
 }
 
-.style10 {
+#devs .style10 {
     flex: 1 !important;
     min-width: 0 !important;
     height: 100% !important;
