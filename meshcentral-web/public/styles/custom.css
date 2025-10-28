@@ -196,7 +196,7 @@ tr[name="xxdevice2"] {
     position: relative !important;
 }
 
-td {
+#devs td {
     padding: 0 !important;
     vertical-align: middle !important;
     position: relative !important;
@@ -283,22 +283,22 @@ td {
     background-color: color-mix(in lab, currentColor 12%, transparent) !important;
 }
 
-.deviceBarCheckbox,
-.deviceBarIcon,
-.style10,
-.style10 > .flex-grow-1,
-.style10 > div[style*="float:right"],
-.bar18,
-.g1,
-.g2 {
+#devs .deviceBarCheckbox,
+#devs .deviceBarIcon,
+#devs .style10,
+#devs .style10 > .flex-grow-1,
+#devs .style10 > div[style*="float:right"],
+#devs .bar18,
+#devs .g1,
+#devs .g2 {
     background: transparent !important;
     background-color: transparent !important;
 }
 
-.night .deviceBarCheckbox,
-.night .deviceBarIcon,
-.night .style10,
-.night .style10 * {
+.night #devs .deviceBarCheckbox,
+.night #devs .deviceBarIcon,
+.night #devs .style10,
+.night #devs .style10 * {
     background: transparent !important;
 }
 
@@ -333,17 +333,17 @@ td {
     height: 1rem !important;
 }
 
-.g1, .g2 { display: none !important; }
-.bar18 {
+#devs .g1, #devs .g2 { display: none !important; }
+#devs .bar18 {
     height: 100% !important;
     min-height: 2rem !important;
 }
 
-tr[name="xxdevice2"],
+#devs tr[name="xxdevice2"],
 #devs,
-.style10,
-.deviceBarIcon,
-.deviceBarCheckbox,
+#devs .style10,
+#devs .deviceBarIcon,
+#devs .deviceBarCheckbox,
 #devs table[onmouseup^="gotoDevice"],
 #devs table[onmouseup^="gotoDevice"] td {
     pointer-events: auto !important;
