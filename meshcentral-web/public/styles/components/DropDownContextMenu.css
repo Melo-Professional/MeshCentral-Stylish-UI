@@ -21,7 +21,7 @@ hr#cxmgroupsplit {
 }
 
 .cmtext:hover {
-    background-color: #8181814a !important;
+    background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
 	border-radius: 7px !important;
 }
 
@@ -56,7 +56,7 @@ hr#cxmgroupsplit {
 }
 
 .dropdown-item:focus, .dropdown-item:hover {
-	background-color: #8181814a !important;
+	background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
     border-radius: 7px !important;
 }
 

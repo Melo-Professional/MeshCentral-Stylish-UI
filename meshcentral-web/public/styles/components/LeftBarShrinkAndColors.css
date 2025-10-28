@@ -27,8 +27,8 @@
     background: linear-gradient(to bottom, var(--bs-primary-bg-subtle) 30%, var(--bs-primary) 70%) !important;
 }
 
-.nav-link:not(.lbbuttonsel2):hover {
-    background-color: #8181814a !important;
+#page_leftbar .nav-link:not(.lbbuttonsel2):hover {
+    background-color: color-mix(in lab, currentcolor 50%, transparent) !important;
 	border-radius: 5px 0px 0px 5px !important;
 }
 

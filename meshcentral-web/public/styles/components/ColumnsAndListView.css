@@ -165,8 +165,7 @@ table tr td div[id^="DevxCol"] {
     background-color: color-mix(in lab, currentColor 12%, transparent) !important;
 }
 
-/* List View - adjustments for Dann Selem */
-/* List View - adjustments for Dann Selem */
+/* List View - adjustments for Daan Selen */
 tr[name="xxdevice2"] {
     height: 2rem !important;
     position: relative !important;

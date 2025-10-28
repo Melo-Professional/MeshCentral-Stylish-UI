@@ -201,10 +201,10 @@ div[id^="devViewPageButton"]::after { display: none !important; }
 }
 
 .viewSelector:hover {
-  background-color: #e3e3e3 !important;
+  background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
 }
 
-.night .viewSelector:hover {
-  background-color: #404141 !important;
+#devListToolbarViewIcons {
+	cursor: default !important;
 }
 

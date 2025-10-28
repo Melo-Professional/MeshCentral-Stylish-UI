@@ -7,12 +7,12 @@
 .night #column_l, .night .deviceBarCheckbox, .night .deviceBarIcon, .night .baricon, .night .card {
     background-color: #1c1e1e !important;
 }
-
+/*
 .deviceBarIcon .j1 {
 	margin-top: 2px !important;
     margin-left: 6px !important;
 }	
-
+*/
 a, div[id^="dialog"] a {
     text-decoration: none !important;
 }
