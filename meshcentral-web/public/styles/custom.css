@@ -184,10 +184,12 @@ table tr td div[id^="DevxCol"] {
 
 #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 .night #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 /* List View - adjustments for Daan Selen */
@@ -276,11 +278,13 @@ tr[name="xxdevice2"] {
 
 #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+	transition: background-color 0.2s ease;
     z-index: 2 !important;
 }
 
 .night #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 #devs .deviceBarCheckbox,
@@ -477,7 +481,7 @@ hr#cxmgroupsplit {
 
 .cmtext:hover {
     background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
-	border-radius: 7px !important;
+	transition: background-color 0.2s ease;
 }
 
 .cmtext {
@@ -486,6 +490,7 @@ hr#cxmgroupsplit {
 	color: unset !important;
 	padding: 6px 12px;
 	overflow: unset !important;
+	border-radius: 7px !important;
 }
 
 #cxinfo > b {
@@ -510,8 +515,13 @@ hr#cxmgroupsplit {
 	color: var(--bs-body-color) !important;
 }
 
+.dropdown-item, .dropdown-item {
+    border-radius: 7px !important;
+}
+
 .dropdown-item:focus, .dropdown-item:hover {
 	background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+	transition: background-color 0.2s ease;
     border-radius: 7px !important;
 }
 
@@ -594,9 +604,19 @@ hr#cxmgroupsplit {
     background: linear-gradient(to bottom, var(--bs-primary-bg-subtle) 30%, var(--bs-primary) 70%) !important;
 }
 
+#page_leftbar .nav-link {
+	border-radius: 5px 0px 0px 5px !important;
+}
+
+
 #page_leftbar .nav-link:not(.lbbuttonsel2):hover {
     background-color: color-mix(in lab, currentcolor 50%, transparent) !important;
-	border-radius: 5px 0px 0px 5px !important;
+	transition: background-color 0.2s ease;
+}
+
+.night #page_leftbar .nav-link:not(.lbbuttonsel2):hover {
+    background-color: color-mix(in lab, currentcolor 10%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 /* **************************************************************** */
@@ -1223,6 +1243,7 @@ div[id^="devViewPageButton"]::after { display: none !important; }
 
 .viewSelector:hover {
   background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+  transition: background-color 0.2s ease;
 }
 
 #devListToolbarViewIcons {
@@ -1423,6 +1444,7 @@ div[id^="devViewPageButton"]::after { display: none !important; }
 
 .deviceNotifyDotSub:hover {
     background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+	transition: background-color 0.2s ease;
     box-shadow: 1px 1px 5px #00000091 !important;
 }
 
@@ -1453,13 +1475,22 @@ div[id^="devViewPageButton"]::after { display: none !important; }
   color: var(--bs-body-color) !important;
 }
 
-.notification:hover, #notifyRemoveAll:hover {
+.notification:hover {
     background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
-	border-radius: 7px !important;
+	transition: background-color 0.2s ease;
+}
+
+#notifyRemoveAll:hover {
+	background-color: #e3e3e3 !important;
+}
+
+.night #notifyRemoveAll:hover {
+	background-color: #414141 !important;
 }
 
 .notification {
 	border-top: 1px solid var(--bs-border-color-translucent) !important;
+	border-radius: 7px !important;
 }
 
 #notifiyBox .customScroll > .notification:first-child {
@@ -1495,6 +1526,7 @@ div[id^="devViewPageButton"]::after { display: none !important; }
     border-bottom: 1px solid var(--bs-border-color-translucent) !important;
     color: var(--bs-body-color) !important;
 	font-size: small !important;
+	border-radius: 7px !important;
 	}
 
 .night #notifyRemoveAll {
@@ -1630,6 +1662,7 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 
 #EventsSubMenu .style3x:hover, .style3x:hover {
     background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 /* Event tabs Gap  */
@@ -1664,11 +1697,16 @@ body.fullscreen:not(.menu_stack) #column_l:has(
     box-shadow: 0 0 12px #050505ba !important;
 }
 
+.userDropdownMenuItem,
+.userDropdownSubmenuItem {
+	border-radius: 7px !important;
+}
+
 .userDropdownMenuItem:hover,
 .userDropdownSubmenuItem:hover,
 #userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
 	background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
-	border-radius: 7px !important;
+	transition: background-color 0.2s ease;
 }
 
 .userDropdownMenuItem span, .userDropdownMenuItem {
@@ -1699,6 +1737,7 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 
 	#userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
 		background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+		transition: background-color 0.2s ease;
 	}
 	
 	.userDropdownUISettings:hover + #uiSubmenu,

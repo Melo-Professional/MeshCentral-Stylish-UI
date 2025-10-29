@@ -22,11 +22,16 @@
     box-shadow: 0 0 12px #050505ba !important;
 }
 
+.userDropdownMenuItem,
+.userDropdownSubmenuItem {
+	border-radius: 7px !important;
+}
+
 .userDropdownMenuItem:hover,
 .userDropdownSubmenuItem:hover,
 #userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
 	background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
-	border-radius: 7px !important;
+	transition: background-color 0.2s ease;
 }
 
 .userDropdownMenuItem span, .userDropdownMenuItem {
@@ -57,6 +62,7 @@
 
 	#userDropdownMenuContainer:has(#uiSubmenu:hover) .userDropdownUISettings {
 		background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+		transition: background-color 0.2s ease;
 	}
 	
 	.userDropdownUISettings:hover + #uiSubmenu,

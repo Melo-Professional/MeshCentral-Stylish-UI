@@ -159,10 +159,12 @@ table tr td div[id^="DevxCol"] {
 
 #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 .night #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 /* List View - adjustments for Daan Selen */
@@ -251,11 +253,13 @@ tr[name="xxdevice2"] {
 
 #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+	transition: background-color 0.2s ease;
     z-index: 2 !important;
 }
 
 .night #xdevices table:has(span[id^="MxMESH"]) tr:hover {
     background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 #devs .deviceBarCheckbox,

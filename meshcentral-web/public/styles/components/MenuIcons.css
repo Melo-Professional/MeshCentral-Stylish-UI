@@ -149,7 +149,6 @@ span[id^="devViewButton"]::after { display: none !important; }
 	background-image: url(/images/icons/ArrowMaximizeVertical_night.svg) !important;
 }
 
-/* **************************************************************** */
 /* Device Pagination Icons - Replace old Icons with New PNG Icons */
 div[id^="devViewPageButton"] {
   display: inline-block;
@@ -202,6 +201,7 @@ div[id^="devViewPageButton"]::after { display: none !important; }
 
 .viewSelector:hover {
   background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+  transition: background-color 0.2s ease;
 }
 
 #devListToolbarViewIcons {

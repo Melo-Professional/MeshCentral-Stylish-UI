@@ -22,7 +22,7 @@ hr#cxmgroupsplit {
 
 .cmtext:hover {
     background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
-	border-radius: 7px !important;
+	transition: background-color 0.2s ease;
 }
 
 .cmtext {
@@ -31,6 +31,7 @@ hr#cxmgroupsplit {
 	color: unset !important;
 	padding: 6px 12px;
 	overflow: unset !important;
+	border-radius: 7px !important;
 }
 
 #cxinfo > b {
@@ -55,8 +56,13 @@ hr#cxmgroupsplit {
 	color: var(--bs-body-color) !important;
 }
 
+.dropdown-item, .dropdown-item {
+    border-radius: 7px !important;
+}
+
 .dropdown-item:focus, .dropdown-item:hover {
 	background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+	transition: background-color 0.2s ease;
     border-radius: 7px !important;
 }
 

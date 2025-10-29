@@ -27,8 +27,18 @@
     background: linear-gradient(to bottom, var(--bs-primary-bg-subtle) 30%, var(--bs-primary) 70%) !important;
 }
 
+#page_leftbar .nav-link {
+	border-radius: 5px 0px 0px 5px !important;
+}
+
+
 #page_leftbar .nav-link:not(.lbbuttonsel2):hover {
     background-color: color-mix(in lab, currentcolor 50%, transparent) !important;
-	border-radius: 5px 0px 0px 5px !important;
+	transition: background-color 0.2s ease;
+}
+
+.night #page_leftbar .nav-link:not(.lbbuttonsel2):hover {
+    background-color: color-mix(in lab, currentcolor 10%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 

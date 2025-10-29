@@ -75,6 +75,7 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 
 #EventsSubMenu .style3x:hover, .style3x:hover {
     background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+	transition: background-color 0.2s ease;
 }
 
 /* Event tabs Gap  */
