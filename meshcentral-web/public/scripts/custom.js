@@ -4,8 +4,8 @@
 
   const CONFIG = {
     FULLSCREEN_STYLE_ID: 'mc-true-fs-style',
-    HIDE_DELAY_MS: 550,
-    INTRO_DURATION_MS: 3000,
+    HIDE_DELAY_MS: 1000,
+    INTRO_DURATION_MS: 5000,
     INTRO_HIDE_DURATION_MS: 1500,
     INDICATOR_STAY_MS: 3000,
     HOT_ZONE_WIDTH_PERCENT: 20,
@@ -22,8 +22,8 @@
     let topBar = null;
     let bottomBar = null;
     let indicator = null;
+    let arrow = null;
 
-    // --- BARS + VISUAL INDICATOR + 20% Zone ---
     const injectCSS = () => {
       if (document.getElementById(CONFIG.FULLSCREEN_STYLE_ID)) return;
 
@@ -35,10 +35,8 @@
         #deskarea0.mc-true-fs #DeskParent{position:absolute!important;inset:0!important;overflow:hidden!important}
         #deskarea0.mc-true-fs #Desk{position:absolute!important;top:0!important;left:0!important}
 
-        /* BARS */
         #deskarea0.mc-true-fs #deskarea1,#deskarea0.mc-true-fs #deskarea4{
           position:fixed!important;left:0!important;width:100%!important;z-index:9999!important;
-          /* background:rgba(20,20,30,.88)!important; */
           backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important;
           box-shadow:0 1px 3px rgba(0,0,0,.3)!important;
           transition:transform 0.3s cubic-bezier(0.25,0.1,0.25,1)!important;
@@ -48,13 +46,11 @@
         #deskarea0.mc-true-fs.show-bars #deskarea1,
         #deskarea0.mc-true-fs.show-bars #deskarea4{transform:translateY(0)}
 
-        /* INTRO HIDE */
         #deskarea0.mc-true-fs.intro-hide #deskarea1,
         #deskarea0.mc-true-fs.intro-hide #deskarea4{
           transition:transform ${CONFIG.INTRO_HIDE_DURATION_MS}ms cubic-bezier(0.4,0,0.2,1)!important;
         }
 
-/* BEAUTIFUL INDICATOR */
         #deskarea0.mc-true-fs .mc-hot-indicator{
           position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;
           width:200px!important;height:0px!important;border-radius:3px!important;
@@ -66,16 +62,16 @@
         }
         @keyframes mc-glow{
           0%,100%{
-			  box-shadow:
-			  0 0 12px 2px rgba(167, 139, 255,0.7),
-			  0 0 20px 4px rgba(100,150,255,0.4)
-			}
+            box-shadow:
+              0 0 12px 2px rgba(167,139,255,0.7),
+              0 0 20px 4px rgba(100,150,255,0.4);
+          }
           50%{
-			  box-shadow:
-			  0 0 20px 6px rgba(0,0,0,0.7),
-			  0 0 30px 8px rgba(100,150,255,0.8),
-			  0 0 48px 20px rgba(167, 139, 255, 0.7);
-			}
+            box-shadow:
+              0 0 20px 6px rgba(0,0,0,0.7),
+              0 0 30px 8px rgba(100,150,255,0.8),
+              0 0 48px 20px rgba(167,139,255,0.7);
+          }
         }
         #deskarea0.mc-true-fs.show-indicator .mc-hot-indicator{
           opacity:1!important;transform:translateX(-50%) translateY(0)!important;
@@ -83,6 +79,47 @@
         #deskarea0.mc-true-fs.hide-indicator .mc-hot-indicator{
           opacity:0!important;transform:translateX(-50%) translateY(-30px)!important;
           transition:opacity 0.8s ease, transform 0.8s ease cubic-bezier(0.25,0.1,0.25,1)!important;
+        }
+
+        #deskarea0.mc-true-fs .mc-arrow-indicator{
+          position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;
+          width:60px!important;height:60px!important;
+          z-index:10001!important;
+          opacity:0!important;pointer-events:none!important;
+          transition:opacity 0.6s ease, transform 0.6s cubic-bezier(0.25,0.1,0.25,1)!important;
+        }
+        #deskarea0.mc-true-fs .mc-arrow-indicator .arrow-icon{
+          width:100%!important;height:100%!important;
+          color:rgba(255,255,255,0.95)!important;
+          filter:drop-shadow(0 0 8px rgba(255,255,255,0.8));
+          animation:mc-arrow-bounce 2s infinite ease-in-out,
+                    mc-arrow-glow 2s infinite ease-in-out!important;
+        }
+        #deskarea0.mc-true-fs.show-indicator .mc-arrow-indicator{
+          opacity:1!important;transform:translateX(-50%) translateY(50px)!important;
+        }
+        #deskarea0.mc-true-fs.hide-indicator .mc-arrow-indicator{
+          opacity:0!important;transform:translateX(-50%) translateY(-90px)!important;
+          transition:opacity 0.8s ease, transform 0.8s ease!important;
+        }
+
+        @keyframes mc-arrow-bounce{
+          0%,20%,50%,80%,100%{transform:translateY(-50px);}
+          40%{transform:translateY(0px);}
+          60%{transform:translateY(-40px);}
+        }
+        @keyframes mc-arrow-glow{
+          0%,100%{
+            filter:
+              drop-shadow(0 0 6px rgba(255,255,255,0.7))
+              drop-shadow(0 0 12px rgba(100,150,255,0.5));
+          }
+          50%{
+            filter:
+              drop-shadow(0 0 10px rgba(255,255,255,0.9))
+              drop-shadow(0 0 20px rgba(100,150,255,0.8))
+              drop-shadow(0 0 30px rgba(167,139,255,0.6));
+          }
         }
 
         .modal{z-index:1055!important}.modal-backdrop{z-index:1050!important}
@@ -94,7 +131,6 @@
       document.head.appendChild(style);
     };
 
-    // --- Create Indicator ---
     const createIndicator = () => {
       if (indicator) return;
       indicator = document.createElement('div');
@@ -102,7 +138,19 @@
       container.appendChild(indicator);
     };
 
-    // --- Mouse Handler ---
+    const createArrow = () => {
+      if (arrow) return;
+      arrow = document.createElement('div');
+      arrow.className = 'mc-arrow-indicator';
+      arrow.innerHTML = `
+        <svg viewBox="0 0 24 24" class="arrow-icon">
+          <path fill="currentColor"
+                d="M12 5l-7 7h4v7h6v-7h4l-7-7z"/>
+        </svg>
+      `;
+      container.appendChild(arrow);
+    };
+
     const createHandler = () => (e) => {
       if (!container) return;
 
@@ -125,20 +173,15 @@
 
         container.classList.add('show-bars', 'show-indicator');
         container.classList.remove('intro-hide', 'hide-indicator');
-      } 
-      else if (!hideTimer && !initialShowTimer && container.classList.contains('show-bars')) {
+      } else if (!hideTimer && !initialShowTimer && container.classList.contains('show-bars')) {
         hideTimer = setTimeout(() => {
           container.classList.remove('show-bars');
 
-          // AFTER BARS HIDE → delay
           indicatorHideTimer = setTimeout(() => {
             container.classList.add('hide-indicator');
             container.classList.remove('show-indicator');
 
-            setTimeout(() => {
-              container.classList.remove('hide-indicator');
-            }, 300);
-
+            setTimeout(() => container.classList.remove('hide-indicator'), 300);
             indicatorHideTimer = null;
           }, CONFIG.INDICATOR_STAY_MS);
 
@@ -147,7 +190,6 @@
       }
     };
 
-    // --- Enable ---
     const enable = () => {
       if (enabled) return;
       enabled = true;
@@ -160,12 +202,13 @@
 
       injectCSS();
       createIndicator();
+      createArrow();
+
       container.classList.add('mc-true-fs', 'show-bars', 'show-indicator');
 
       handler = createHandler();
       document.addEventListener('mousemove', handler, { capture: true, passive: true });
 
-      // INTRO: delay → bars hide → indicator stays → hide
       initialShowTimer = setTimeout(() => {
         container.classList.add('intro-hide');
         container.classList.remove('show-bars');
@@ -177,18 +220,14 @@
             container.classList.add('hide-indicator');
             container.classList.remove('show-indicator');
 
-            setTimeout(() => {
-              container.classList.remove('hide-indicator');
-            }, 300);
+            setTimeout(() => container.classList.remove('hide-indicator'), 300);
           }, CONFIG.INDICATOR_STAY_MS);
-
         }, CONFIG.INTRO_HIDE_DURATION_MS);
 
         initialShowTimer = null;
       }, CONFIG.INTRO_DURATION_MS);
     };
 
-    // --- Disable ---
     const disable = () => {
       if (!enabled) return;
       enabled = false;
@@ -196,15 +235,16 @@
       [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
       if (handler) document.removeEventListener('mousemove', handler, { capture: true, passive: true });
       if (container) {
-        container.classList.remove('mc-true-fs', 'show-bars', 'show-indicator', 'intro-hide', 'hide-indicator');
+        container.classList.remove('mc-true-fs', 'show-bars', 'show-indicator',
+                                  'intro-hide', 'hide-indicator');
         if (indicator) indicator.remove();
-        container = topBar = bottomBar = indicator = null, null;
+        if (arrow) arrow.remove();
+        container = topBar = bottomBar = indicator = arrow = null;
       }
       const style = document.getElementById(CONFIG.FULLSCREEN_STYLE_ID);
       if (style) style.remove();
     };
 
-    // --- Patch & Exit ---
     const patch = () => {
       const tryPatch = () => {
         if (typeof window.deskToggleFull !== 'function') {
