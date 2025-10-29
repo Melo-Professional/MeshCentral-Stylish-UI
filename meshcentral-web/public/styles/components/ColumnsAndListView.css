@@ -360,7 +360,7 @@ tr[name="xxdevice2"] {
 
 .tagSpan {
     background-color: lightgray;
-    padding: 2px;
+    padding: 2px 7px;
     border-radius: 3px;
     font-size: x-small !important;
 }
