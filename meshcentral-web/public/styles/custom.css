@@ -143,6 +143,7 @@ span[cmenu="meshContextMenu"] {
     margin-left: 15px !important;
     margin-right: 15px !important;
     font-size: medium !important;
+	color: var(--bs-body-color); !important;
 }
 
 #xdevices > [id^="DevxCol"] {
@@ -462,16 +463,19 @@ tr[name="xxdevice2"] {
 .contextMenu {
 	border-radius: 10px !important;
 	border: unset !important;
-	background-color: #f2f2f2 !important;
 	box-shadow: 0 0 12px #0000004d !important;
 	padding: 4px;
 	/* color: #CCC !important; */
+	    background-color: rgba(242, 242, 242, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+	overflow: hidden;
 }
 
 .night .contextMenu {
-	background-color: #292c2c !important;
 	box-shadow: 0 0 12px #050505ba !important;
 	/* color: #CCC !important; */
+	background-color: rgba(41, 44, 44, 0.75) !important;
 }
 
 hr#cxmgroupsplit {
@@ -504,11 +508,16 @@ hr#cxmgroupsplit {
 	box-shadow: 0 0 12px #0000004d !important;
 	font-size: smaller !important;
 	padding: 4px;
+    background-color: rgba(242, 242, 242, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+	overflow: hidden;
 }
 
 .night .dropdown-menu.show {
 	background-color: #292c2c !important;
 	box-shadow: 0 0 12px #050505ba !important;
+	background-color: rgba(41, 44, 44, 0.75) !important;
 }
 
 .dropdown-menu.show > li > a {
@@ -700,6 +709,15 @@ hr#cxmgroupsplit {
 	font-size: smaller;
 }
 
+.deskToolsBar:hover {
+    background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+	transition: background-color 0.2s ease;
+}
+
+.night .deskToolsBar:hover {
+	background-color: #414141 !important;
+}
+
 /* Modals */
 #dialogHeader {
     background-color: var(--bs-primary) !important;
@@ -739,6 +757,19 @@ hr#cxmgroupsplit {
     filter: none !important;
     opacity: 1 !important;
 }
+
+.modal-content {
+    background-color: rgba(242, 242, 242, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+	overflow: hidden;
+}
+
+.night .modal-content {
+	background-color: rgba(41, 44, 44, 0.75) !important;
+}
+
+
 
 /* **************************************************************** */
 /* Login Page */
@@ -1684,17 +1715,35 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 }
 
 #userDropdownMenu, .userDropdownSubmenu {
-	background-color: #f3f3f3 !important;
 	color: var(--bs-body-color) !important;
 	font-size: small !important;
 	border-radius: 10px !important;
     box-shadow: 0 0 12px #0000004d !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    overflow: visible !important;
+    isolation: isolate !important;
+    transform: translateZ(0) !important;
 }
 
-.night #userDropdownMenu,
-.night .userDropdownSubmenu {
-	background-color: #292c2c !important;
+.night #userDropdownMenu, .night .userDropdownSubmenu {
     box-shadow: 0 0 12px #050505ba !important;
+}
+
+#userDropdownMenu {
+	background-color: rgba(242, 242, 242, 0.75) !important;
+}
+
+.night #userDropdownMenu {
+	background-color: rgba(41, 44, 44, 0.75) !important;
+}
+
+.userDropdownSubmenu {
+	background-color: rgba(242, 242, 242, 0.95) !important;
+}
+
+.night .userDropdownSubmenu {
+	background-color: rgba(41, 44, 44, 0.95) !important;
 }
 
 .userDropdownMenuItem,
@@ -1719,7 +1768,8 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 	opacity: .25 !important;
 }
 #uiSubmenu {
-  right: 96%;
+    right: 100% !important;
+    margin-right: -3px !important;
 }
 
 /* hover */
@@ -1739,7 +1789,7 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 		background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
 		transition: background-color 0.2s ease;
 	}
-	
+
 	.userDropdownUISettings:hover + #uiSubmenu,
 	#uiSubmenu:hover {
 	display: block !important;

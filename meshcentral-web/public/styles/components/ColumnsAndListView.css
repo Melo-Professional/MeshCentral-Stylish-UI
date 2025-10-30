@@ -118,6 +118,7 @@ span[cmenu="meshContextMenu"] {
     margin-left: 15px !important;
     margin-right: 15px !important;
     font-size: medium !important;
+	color: var(--bs-body-color); !important;
 }
 
 #xdevices > [id^="DevxCol"] {

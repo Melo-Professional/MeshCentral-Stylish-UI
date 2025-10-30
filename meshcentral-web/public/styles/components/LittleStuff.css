@@ -79,6 +79,15 @@
 	font-size: smaller;
 }
 
+.deskToolsBar:hover {
+    background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+	transition: background-color 0.2s ease;
+}
+
+.night .deskToolsBar:hover {
+	background-color: #414141 !important;
+}
+
 /* Modals */
 #dialogHeader {
     background-color: var(--bs-primary) !important;
@@ -117,5 +126,16 @@
     background-color: #c42b1c !important;
     filter: none !important;
     opacity: 1 !important;
+}
+
+.modal-content {
+    background-color: rgba(242, 242, 242, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+	overflow: hidden;
+}
+
+.night .modal-content {
+	background-color: rgba(41, 44, 44, 0.75) !important;
 }
 

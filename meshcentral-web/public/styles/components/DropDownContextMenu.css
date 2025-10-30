@@ -3,16 +3,19 @@
 .contextMenu {
 	border-radius: 10px !important;
 	border: unset !important;
-	background-color: #f2f2f2 !important;
 	box-shadow: 0 0 12px #0000004d !important;
 	padding: 4px;
 	/* color: #CCC !important; */
+	    background-color: rgba(242, 242, 242, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+	overflow: hidden;
 }
 
 .night .contextMenu {
-	background-color: #292c2c !important;
 	box-shadow: 0 0 12px #050505ba !important;
 	/* color: #CCC !important; */
+	background-color: rgba(41, 44, 44, 0.75) !important;
 }
 
 hr#cxmgroupsplit {
@@ -45,11 +48,16 @@ hr#cxmgroupsplit {
 	box-shadow: 0 0 12px #0000004d !important;
 	font-size: smaller !important;
 	padding: 4px;
+    background-color: rgba(242, 242, 242, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+	overflow: hidden;
 }
 
 .night .dropdown-menu.show {
 	background-color: #292c2c !important;
 	box-shadow: 0 0 12px #050505ba !important;
+	background-color: rgba(41, 44, 44, 0.75) !important;
 }
 
 .dropdown-menu.show > li > a {
