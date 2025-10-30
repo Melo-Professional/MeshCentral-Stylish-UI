@@ -118,8 +118,9 @@
     background-size: 0.7em auto !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-	width: 1.6em !important;
-    height: 1.6em !important;
+	width: 1.7em !important;
+    height: 1.7em !important;
+	margin: calc(-0.6 * var(--bs-modal-header-padding-y)) calc(-0.6 * var(--bs-modal-header-padding-x)) calc(-0.6 * var(--bs-modal-header-padding-y)) auto !important;
 }
 
 .modal-header .btn-close:hover {
@@ -128,14 +129,39 @@
     opacity: 1 !important;
 }
 
+.btn-close {
+	border-radius: unset !important;
+}
+
 .modal-content {
     background-color: rgba(242, 242, 242, 0.85) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
 	overflow: hidden;
+	border-radius: 14px !important;
 }
 
 .night .modal-content {
 	background-color: rgba(41, 44, 44, 0.75) !important;
+	box-shadow: 0 0 12px #0000004d !important;
+}
+
+.modal-backdrop {
+	background: unset !important;
+	/* background-color: rgba(242, 242, 242, 0.5) !important; */
+	/* background-color: rgba(41, 44, 44, 0.15) !important; */
+	background-color: rgba(41, 44, 44, 0.3) !important;
+    backdrop-filter: blur(3px) !important;
+	overflow: hidden;
+	opacity: 1 !important;
+	/* transition: opacity 1.3s linear !important; */
+}
+
+.night .modal-backdrop {
+	background-color: rgba(41, 44, 44, 0.3) !important;
+}
+
+.modal {
+	    --bs-modal-padding: 2rem;
 }
 
