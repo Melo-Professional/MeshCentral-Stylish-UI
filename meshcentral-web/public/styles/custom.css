@@ -832,7 +832,7 @@ hr#cxmgroupsplit {
 }
 
 .night .modal-content {
-	background-color: rgba(41, 44, 44, 0.4) !important;
+	background-color: rgba(41, 44, 44, 0.6) !important;
 	border: 1px solid rgb(255 255 255 / 22%);
 	/* box-shadow: 0 0 12px #0000004d !important; */
 /*	box-shadow: inset 0 0 18px #fefefe36 !important; */
@@ -883,6 +883,51 @@ hr#cxmgroupsplit {
 #dialog2 > textarea#d2devNotes.form-control {
 	resize: vertical !important;
 }
+
+/* forms */
+.form-floating > .form-select {
+  background: transparent !important;
+  /*color: #fff; /* ou a cor do texto desejada */
+  border: 1px solid #666 !important;
+}
+
+.night .form-floating > .form-select {
+  background: transparent !important;
+  border: 1px solid #666 !important;
+}
+
+.form-floating > .form-select {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent !important;
+}
+
+.form-select::-webkit-calendar-picker-indicator {
+  /*filter: invert(1); /* opcional: inverte seta */
+}
+
+.form-select option,
+.form-select optgroup {
+  background: rgba(242, 242, 242, 0.6) !important;
+  /* color: #fff !important; */
+  backdrop-filter: blur(8px);
+}
+
+.night .form-select option,
+.night .form-select optgroup {
+  background: rgba(41, 44, 44, 0.95) !important;
+  /* color: #fff !important; */
+  backdrop-filter: blur(8px);
+}
+
+.form-floating>.form-select~label::after {
+	background-color: unset !important;
+}
+
+#d7otherset, #d7otherset2, #d7rdpflags {
+	border-radius: 5px !important;
+}
+
 
 /* **************************************************************** */
 /* Login Page */
@@ -1340,13 +1385,13 @@ td#bottomLanguageSelect > select#d2langselect {
 }
 
 .viewSelectorSel {
-    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+    background-color: color-mix(in lab, currentColor 9%, transparent) !important;
     transform: scale(1.2) !important;
     color: color-mix(in lab, currentColor 80%, black) !important;
 }
 
 .night .viewSelectorSel {
-    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+    background-color: color-mix(in lab, currentColor 40%, transparent) !important;
 }
 
 /* === fullscreen button === */
