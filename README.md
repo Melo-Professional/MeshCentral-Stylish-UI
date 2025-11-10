@@ -21,7 +21,7 @@
   <tr>
     <td align="center">
       <strong>Context Menu Dropdown</strong><br>
-      <img width="300" height="314" alt="Tela inicial" src="https://github.com/user-attachments/assets/84316f6c-cd08-4a2b-8961-e6d594c64578" />
+      <img width="300" height="314" alt="Tela inicial" src="https://github.com/user-attachments/assets/34c039b8-48c0-4351-baa0-2d2f40df40be" />
     </td>
     <td align="center">
       <strong>Notifications Redesign</strong><br>
