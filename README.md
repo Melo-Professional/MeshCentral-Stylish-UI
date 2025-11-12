@@ -1,7 +1,7 @@
 # MeshCentral Stylish UI
 
 <p align="center">
-<img width="80%" alt="banner" src="https://github.com/user-attachments/assets/ef7317ca-d55c-43dd-971d-0402f0354676" />
+<img width="80%" alt="banner" src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/StylishUI_banner_center.png" />
 </p>
 
 <p align="center">
