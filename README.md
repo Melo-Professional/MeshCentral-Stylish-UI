@@ -14,6 +14,29 @@
 </p>
 
 ---
+## 🌐 Demo Server
+
+You can try **MeshCentral Stylish UI** live on our demo instance.  
+Click the image below to open the demo **(opens in a new tab ↗)**
+
+<p align="center">
+  <a href="https://stylish-ui.meshcentraltools.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/2025-11-12%2002.08.34%20stylish-ui.meshcentraltools.com%203e71cce2baef.png" 
+         alt="MeshCentral Stylish UI Demo" 
+         style="border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.25); max-width:90%; margin:15px 0;">
+  </a>
+</p>
+
+**Credentials:**  
+- **Username:** `demo`  
+- **Password:** `demo`  
+
+**Notes:**  
+- The demo environment is **for visual testing only** — please don’t store real data.  
+- The system is **reset periodically**.  
+- Some administrative features are **disabled** for security reasons.
+
+---
 
 ## 🖼️ Screenshots
 
