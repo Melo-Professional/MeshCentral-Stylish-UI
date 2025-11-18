@@ -342,7 +342,7 @@
           • Ctrl + / − : zoom<br>
           • Ctrl + wheel : zoom at cursor<br>
           • Ctrl + drag : pan<br>
-          • Click 0 / label : reset
+          • Ctrl + 0 / Click label : reset
         </div>
       `;
       bottomBar.appendChild(zoomUI);

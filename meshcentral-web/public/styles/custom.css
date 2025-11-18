@@ -840,9 +840,9 @@ hr#cxmgroupsplit {
 
 .modal-backdrop {
 	background: unset !important;
-	/* background-color: rgba(242, 242, 242, 0.5) !important; */
+	background-color: rgba(242, 242, 242, 0.5) !important;
 	/* background-color: rgba(41, 44, 44, 0.15) !important; */
-	background-color: rgba(41, 44, 44, 0.3) !important;
+	/* background-color: rgba(41, 44, 44, 0.3) !important; */
     backdrop-filter: blur(3px) !important;
 	opacity: 1 !important;
 	/* transition: opacity 1.3s linear !important; */
