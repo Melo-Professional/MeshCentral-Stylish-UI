@@ -143,7 +143,7 @@
       if (trigger) {
         [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
         hideTimer = initialShowTimer = indicatorHideTimer = null;
-		container.classList.remove('hide-indicator');
+        container.classList.remove('hide-indicator');
         container.classList.add('show-bars', 'show-indicator');
         container.classList.remove('intro-hide', 'hide-indicator');
         ZoomController.showUI(); // notify zoom UI
@@ -209,9 +209,9 @@
       ZoomController.destroy();
 
       if (container) {
-        container.classList.remove('mc-true-fs','show-bars','show-indicator','intro-hide','hide-indicator');
-        if (indicator) indicator.remove();
-        if (arrow) arrow.remove();
+        container.classList.remove('mc-true-fs', 'show-bars', 'show-indicator', 'intro-hide', 'hide-indicator');
+        if (indicator) { indicator.remove(); indicator = null; }
+        if (arrow) { arrow.remove(); arrow = null; }
       }
       const style = document.getElementById(CONFIG.FULLSCREEN_STYLE_ID);
       if (style) style.remove();
@@ -239,8 +239,8 @@
       const events = 'fullscreenchange webkitfullscreenchange mozfullscreenchange MSFullscreenChange';
       events.split(' ').forEach(ev => document.addEventListener(ev, () => {
         const inFs = !!(document.fullscreenElement || document.webkitFullscreenElement ||
-                       document.mozFullScreenElement || document.msFullscreenElement);
-        if (!inFs && enabled) try { window.deskToggleFull?.(); } catch (_) {}
+          document.mozFullScreenElement || document.msFullscreenElement);
+        if (!inFs && enabled) try { window.deskToggleFull?.(); } catch (_) { }
       }, true));
     };
 
@@ -335,8 +335,8 @@
           #mc-zoom-help-banner.visible{opacity:1}
         </style>
         <span id="mc-zoom-label">Zoom: 100%</span>
-        <input type="range" id="mc-zoom-slider" min="${CONFIG.ZOOM_MIN*100}" max="${CONFIG.ZOOM_MAX*100}"
-               value="${CONFIG.ZOOM_DEFAULT*100}" step="${CONFIG.ZOOM_STEP*100}">
+        <input type="range" id="mc-zoom-slider" min="${CONFIG.ZOOM_MIN * 100}" max="${CONFIG.ZOOM_MAX * 100}"
+               value="${CONFIG.ZOOM_DEFAULT * 100}" step="${CONFIG.ZOOM_STEP * 100}">
         <span id="mc-zoom-help">?</span>
         <div id="mc-zoom-help-banner">
           • Ctrl + / − : zoom<br>
