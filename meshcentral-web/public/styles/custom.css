@@ -886,20 +886,17 @@ hr#cxmgroupsplit {
 
 /* forms */
 .form-floating > .form-select {
-  background: transparent !important;
-  /*color: #fff; /* ou a cor do texto desejada */
+  background: rgba(242, 242, 242, 0.01) !important;
   border: 1px solid #666 !important;
 }
 
 .night .form-floating > .form-select {
-  background: transparent !important;
-  border: 1px solid #666 !important;
+  background: rgba(41, 44, 44, 0.01) !important;
 }
 
 .form-floating > .form-select {
   -webkit-appearance: none;
   appearance: none;
-  background: transparent !important;
 }
 
 .form-select::-webkit-calendar-picker-indicator {
