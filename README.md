@@ -155,11 +155,13 @@ meshcentral-web/
 
 7. Change to Modern UI<br>
    <img width="255" height="262" alt="image" src="https://github.com/user-attachments/assets/14ce996d-ad46-4901-a347-68847c1da4eb" />
-   > PS: You can also make Modern UI the default for all users by editing the meshcentral-data/config.json file and adding the following line under the "settings" section: `"siteStyle": 3,`
+   > PS: You can also make Modern UI the default for all users by editing the meshcentral-data/config.json file and adding the following line under the default domain at "domains" section: `"siteStyle": 3,`
+   > <img width="60%" alt="image" src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/syteStyle3.png" />
+
 <br>
 <br>
 
-8. Refresh your browser (CTRL + F5)<br>
+8. Refresh your browser (CTRL + SHIFT + R)<br>
 <br>
 
 > The files under `styles/components/` are for reference only.  
