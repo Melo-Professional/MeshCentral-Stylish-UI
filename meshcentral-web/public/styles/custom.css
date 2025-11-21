@@ -887,7 +887,7 @@ hr#cxmgroupsplit {
 /* forms */
 .form-floating > .form-select {
   background: rgba(242, 242, 242, 0.01) !important;
-  border: 1px solid #666 !important;
+  border: 1px solid #7d7d7d3d !important;
 }
 
 .night .form-floating > .form-select {
