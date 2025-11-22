@@ -444,10 +444,8 @@
   FullscreenEnhancer.init();
 })();
 
-// ==== Auto Select Display 1 on Remote Connect ====
+// ==== Auto Select Display 1 on Remote Connect (funciona sempre) ====
 (() => {
-    let applied = false;
-
     const hook = setInterval(() => {
         if (typeof window.deskDisplayInfo !== "function") return;
         clearInterval(hook);
@@ -457,8 +455,7 @@
 
             const r = original.apply(this, arguments);
 
-            if (!applied && displays) {
-                applied = true;
+            if (displays) {
                 setTimeout(() => deskSetDisplay(1), 50);
             }
 
