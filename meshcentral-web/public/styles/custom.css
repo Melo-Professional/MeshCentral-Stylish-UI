@@ -684,6 +684,10 @@ hr#cxmgroupsplit {
 	/* --bs-table-hover-bg: unset !important; */
 }
 
+#p20info .table.table-hover.table-striped tr, #p20info2 .table.table-hover.table-striped tr {
+    background-color: unset !important;
+}
+
 #DeskTools {
 	font-size: smaller !important;
 	width: 314px !important;
@@ -706,6 +710,10 @@ hr#cxmgroupsplit {
 
 #dialog2 > div {
 	overflow-wrap: break-word;
+}
+
+#dialog2 .col.col-md-2.col-lg-2 {
+    overflow-wrap: normal !important;
 }
 
 #dialog2 > .dialogText {
@@ -859,7 +867,7 @@ hr#cxmgroupsplit {
 }
 
 .form-control, .form-control-sm, .form-select, .form-select-sm, .btn-group-sm>.btn, .btn-sm, #d2ServerErrorsLogPre {
-    border: 1px solid #adb5bd52 !important;
+    border: 1px solid #7d7d7d3d !important;
 	border-radius: 5px !important;
 }
 
@@ -874,12 +882,24 @@ hr#cxmgroupsplit {
 }
 
 .night #agins_linux_area, .night #agins_linux_area_un, .night #d2notifyMsg, .night #d2devNotes, .night #d2devEvent, .night #d2runcmd, .night #d2devMessage, .night #d2smsText, .night #d2emailSubject, .night #d2emailText, .night #broadcastMessage, .night #d2ServerErrorsLogPre {
-	background-color: #1C1E1E !important;
+	background-color: #262626cc !important;
 }
 
 #agins_linux_area, #agins_linux_area_un, #d2notifyMsg, #d2devNotes, #d2devEvent, #d2runcmd, #d2devMessage, #d2smsText, #d2emailSubject, #d2emailText, #broadcastMessage, #d2ServerErrorsLogPre {
-    background-color: #F3F3F3;
+    background-color: #f4f4f45e;
+    border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
 }
+
+#d4editorarea {
+    border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+	background-color: #f4f4f45e;
+}
+.night #d4editorarea {
+    background-color: #262626cc !important;
+}
+
 #dialog2 > textarea#d2devNotes.form-control {
 	resize: vertical !important;
 }
@@ -923,7 +943,101 @@ hr#cxmgroupsplit {
 
 #d7otherset, #d7otherset2, #d7rdpflags {
 	border-radius: 5px !important;
+	border: 1px solid #7d7d7d3d !important;
+	max-height: 350px;
 }
+
+#theme-switcher {
+	padding: 15px;
+	margin-top: var(--bs-modal-margin);
+	background: rgba(242, 242, 242, 0.01) !important;
+	border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+}
+
+.night #theme-switcher {
+	background: rgba(41, 44, 44, 0.01) !important;
+}
+
+.form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label {
+    font-size: small;
+}
+
+.form-floating>.form-control-plaintext~label::after, .form-floating>.form-control:focus~label::after, .form-floating>.form-control:not(:placeholder-shown)~label::after, .form-floating>.form-select~label::after {
+	background-color: unset;
+}
+
+.form-floating>.form-control-plaintext,
+.form-floating>.form-control-plaintext,
+.form-floating>.form-control,
+.form-floating>.form-control {
+	background: rgba(242, 242, 242, 0.01) !important;
+}
+
+.night .form-floating>.form-control-plaintext,
+.night .form-floating>.form-control-plaintext,
+.night .form-floating>.form-control,
+.night .form-floating>.form-control {
+	background: rgba(41, 44, 44, 0.01) !important;
+}
+
+:root {
+  --sub-menu-color: #7d7d7d3d;
+}
+
+#dialog2 > div {
+height: unset !important;
+max-height: 350px !important;
+}
+
+
+.form-select {
+	background: rgba(242, 242, 242, 0.01) !important;
+	/* padding: 15px; */
+	/* margin-bottom: var(--bs-modal-margin) !important; */
+	background: rgba(242, 242, 242, 0.01) !important;
+	border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+}
+
+.night .form-select {
+	background: rgba(41, 44, 44, 0.01) !important;
+}
+
+#d2cmdtype, #d2cmduser, #d2cmdsource {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+	padding: 15px;
+	margin-bottom: var(--bs-modal-margin) !important;
+}
+
+#d3serverfiles, #d2serverfiles {
+	background-color: #f4f4f45e;
+    height: 350px;
+	border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+	padding-left: 10px;
+}
+
+
+.night #d3serverfiles, .night #d2serverfiles {
+	background-color: #262626cc;
+}
+
+#d3serveraction, #d2serveraction {
+    background-color: unset;
+}
+
+.form-control[type=file]:not(:disabled):not([readonly]) {
+    cursor: pointer;
+    background-color: #f4f4f45e;
+}
+
+.night .form-control[type=file]:not(:disabled):not([readonly]) {
+    cursor: pointer;
+    background-color: #262626cc;
+}
+
 
 
 /* **************************************************************** */
