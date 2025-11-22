@@ -444,4 +444,25 @@
   FullscreenEnhancer.init();
 })();
 
+// ==== Auto Select Display 1 on Remote Connect ====
+(() => {
+    let applied = false;
 
+    const hook = setInterval(() => {
+        if (typeof window.deskDisplayInfo !== "function") return;
+        clearInterval(hook);
+
+        const original = window.deskDisplayInfo;
+        window.deskDisplayInfo = function (sender, displays, selDisplay) {
+
+            const r = original.apply(this, arguments);
+
+            if (!applied && displays) {
+                applied = true;
+                setTimeout(() => deskSetDisplay(1), 50);
+            }
+
+            return r;
+        };
+    }, 150);
+})();
