@@ -444,19 +444,28 @@
   FullscreenEnhancer.init();
 })();
 
-// ==== Auto Select Display 1 on Remote Connect (funciona sempre) ====
+
+// Default Display 1 once per session
 (() => {
+    let forced = false;
+
     const hook = setInterval(() => {
         if (typeof window.deskDisplayInfo !== "function") return;
         clearInterval(hook);
 
         const original = window.deskDisplayInfo;
-        window.deskDisplayInfo = function (sender, displays, selDisplay) {
 
+        window.deskDisplayInfo = function (sender, displays, selDisplay) {
             const r = original.apply(this, arguments);
 
-            if (displays) {
-                setTimeout(() => deskSetDisplay(1), 50);
+            if (displays === null) {
+                forced = false;
+                return r;
+            }
+
+            if (!forced && selDisplay === 65535 && displays) {
+                forced = true;
+                setTimeout(() => deskSetDisplay(1), 80);
             }
 
             return r;
