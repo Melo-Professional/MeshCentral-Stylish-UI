@@ -1282,6 +1282,10 @@ td#bottomLanguageSelect > select#d2langselect {
   font-size: 0.9rem !important;
 }
 
+#authStrategies {
+    display: ruby;
+}
+
 /* Optional Hide Terms & Privacy Link on Login Page.  */
 /*
 #flink {
@@ -2077,7 +2081,7 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 	color: var(--bs-body-color) !important;
 	font-size: small !important;
 	border-radius: 10px !important;
-    box-shadow: 0 0 12px #0000004d !important;
+    box-shadow: 0 0 12px #0000004d;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     overflow: visible !important;
