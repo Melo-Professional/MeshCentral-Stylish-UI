@@ -472,3 +472,114 @@
         };
     }, 150);
 })();
+
+
+// === THEME TOGGLE (A / LIGHT / DARK) ===
+document.addEventListener('DOMContentLoaded', () => {
+    const mastheadRight = document.querySelector('.masthead-right');
+    if (!mastheadRight) return;
+
+    // Function to hide items from the dropdown menu
+    function hideDropdownItems() {
+        const nightItem = document.getElementById('toggleNightMenuItem');
+        if (nightItem) nightItem.style.display = 'none';
+
+        const modernUIItem = document.getElementById('toggleModernUIMenuItem');
+        if (modernUIItem) modernUIItem.style.display = 'none';
+    }
+
+    // Run immediately if the items already exist.
+    hideDropdownItems();
+
+    // Observe menu changes to dynamically hide items.
+    const menuContainer = document.getElementById('userDropdownMenuContainer');
+    if (menuContainer) {
+        const observerMenu = new MutationObserver(hideDropdownItems);
+        observerMenu.observe(menuContainer, { childList: true, subtree: true });
+    }
+
+    if (!document.getElementById('theme-toggle')) {
+        const btn = document.createElement('button');
+        btn.id = 'theme-toggle';
+        btn.className = 'icon-btn';
+        btn.style.display = 'flex';
+        btn.style.alignItems = 'center';
+        btn.style.justifyContent = 'center';
+        btn.style.backgroundColor = 'unset';
+        btn.style.border = 'none';
+        btn.style.cursor = 'pointer';
+        btn.style.padding = '6px 8px';
+        btn.style.borderRadius = '4px';
+        btn.style.transition = 'background-color 0.2s';
+        btn.style.gap = '4px';
+        btn.style.height = '40px';
+
+        btn.addEventListener('mouseenter', () => btn.style.backgroundColor = 'rgba(255,255,255,0.1)');
+        btn.addEventListener('mouseleave', () => btn.style.backgroundColor = 'unset');
+
+        // "A" as SVG
+        btn.innerHTML = `
+            <svg class="auto-icon" width="18" height="18" viewBox="0 0 18 18" style="display:inline-block;">
+                <text x="50%" y="62%" text-anchor="middle" dominant-baseline="middle" fill="#adadad" font-size="14" font-weight="bold">A</text>
+            </svg>
+            <svg class="sun-icon" viewBox="0 0 512 512" width="18" height="18" fill="#dee2e6" style="display:none;">
+                <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"></path>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 384 512" width="18" height="18" fill="#dee2e6" style="display:none;">
+                <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path>
+            </svg>
+        `;
+
+        btn.addEventListener('click', () => {
+            let mode = getstore('nightMode', '0');
+            mode = (mode === '0') ? '2' : (mode === '2') ? '1' : '0';
+            putstore('nightMode', mode);
+            setNightMode();
+            updateThemeIcons();
+        });
+
+        mastheadRight.insertBefore(btn, mastheadRight.firstChild);
+    }
+
+    updateThemeIcons();
+
+    const observer = new MutationObserver(() => updateThemeIcons());
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+});
+
+function updateThemeIcons() {
+    const btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+
+    const mode = getstore('nightMode', '0');
+    btn.querySelector('.auto-icon').style.display = (mode === '0') ? 'inline-block' : 'none';
+    btn.querySelector('.sun-icon').style.display = (mode === '2') ? 'block' : 'none';
+    btn.querySelector('.moon-icon').style.display = (mode === '1') ? 'block' : 'none';
+    btn.title = (mode === '0') ? 'Theme: Auto' : (mode === '2') ? 'Theme: Light' : 'Theme: Dark';
+}
+
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        setNightMode();
+        updateThemeIcons();
+    });
+}
+
+// === HIDE ITEMS FROM THE DROPDOWN ===
+document.addEventListener('DOMContentLoaded', () => {
+    function hideDropdownItems() {
+        const nightItem = document.getElementById('toggleNightMenuItem');
+        if (nightItem) nightItem.style.display = 'none';
+
+        const modernUIItem = document.getElementById('toggleModernUIMenuItem');
+        if (modernUIItem) modernUIItem.style.display = 'none';
+    }
+
+    hideDropdownItems();
+
+    const menuContainer = document.getElementById('userDropdownMenuContainer');
+    if (menuContainer) {
+        const observerMenu = new MutationObserver(hideDropdownItems);
+        observerMenu.observe(menuContainer, { childList: true, subtree: true });
+    }
+});
