@@ -35,7 +35,7 @@
     let indicator = null;
     let arrow = null;
 
-    const log = (msg) => console.log(`[MC-FS] ${msg}`);
+    /* const log = (msg) => console.log(`[MC-FS] ${msg}`); */
 
     const injectCSS = () => {
       if (document.getElementById(CONFIG.FULLSCREEN_STYLE_ID)) return;
@@ -106,7 +106,7 @@
       style.id = CONFIG.FULLSCREEN_STYLE_ID;
       style.textContent = css;
       document.head.appendChild(style);
-      log('CSS injected');
+      /* log('CSS injected'); */
     };
 
     const createIndicator = () => {
@@ -164,10 +164,10 @@
     const enable = () => {
       if (enabled) return;
       enabled = true;
-      log('Enabled');
+      /* log('Enabled'); */
 
       container = document.getElementById('deskarea0');
-      if (!container) { log('ERROR: #deskarea0 missing'); return; }
+      if (!container) { /* log('ERROR: #deskarea0 missing'); */ return; }
       topBar = document.getElementById('deskarea1');
       bottomBar = document.getElementById('deskarea4');
 
@@ -201,7 +201,7 @@
     const disable = () => {
       if (!enabled) return;
       enabled = false;
-      log('Disabled');
+      /* log('Disabled'); */
 
       [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
       if (handler) document.removeEventListener('mousemove', handler, { capture: true, passive: true });
@@ -230,7 +230,7 @@
           else if (was && !now) disable();
           return res;
         };
-        log('Fullscreen patched');
+        /* log('Fullscreen patched'); */
       };
       tryPatch();
     };
@@ -261,12 +261,12 @@
     let wheelHandler = null;
     let drag = { active: false, startX: 0, startY: 0 };
 
-    const log = (msg) => console.log(`[MC-ZOOM] ${msg}`);
+    /* const log = (msg) => console.log(`[MC-ZOOM] ${msg}`); */
 
     const getDesk = () => {
       if (deskEl) return deskEl;
       deskEl = document.getElementById('Desk') || container.querySelector('canvas');
-      if (!deskEl) log('ERROR: desktop element not found');
+      /* if (!deskEl) log('ERROR: desktop element not found'); */
       return deskEl;
     };
 
@@ -290,7 +290,7 @@
       if (label) label.textContent = `Zoom: ${Math.round(zoomValue * 100)}%`;
       const slider = zoomUI?.querySelector('#mc-zoom-slider');
       if (slider) slider.value = zoomValue * 100;
-      log(`Zoom ${zoomValue.toFixed(2)}x`);
+      /* log(`Zoom ${zoomValue.toFixed(2)}x`); */
     };
 
     const reset = () => {
@@ -300,7 +300,7 @@
       if (label) label.textContent = 'Zoom: 100%';
       const slider = zoomUI?.querySelector('#mc-zoom-slider');
       if (slider) slider.value = 100;
-      log('Reset');
+      /* log('Reset'); */
     };
 
     const createUI = () => {
@@ -390,7 +390,7 @@
           setZoom(zoomValue + delta, ox, oy);
         };
         desk.addEventListener('wheel', wheelHandler, { passive: false });
-        log('Wheel listener on desktop');
+        /* log('Wheel listener on desktop'); */
       }
 
       // Pan drag
@@ -417,25 +417,45 @@
       document.addEventListener('mouseup', end, true);
     };
 
-    const init = (bar, cont) => {
-      bottomBar = bar;
-      container = cont;
-      createUI();
-      attachEvents();
-      log('Initialized');
-    };
+	const init = (bar, cont) => {
+	// Reset
+	deskEl = null;
+	zoomUI = null;
+	helpBtn = null;
+	helpBanner = null;
+	keyHandler = null;
+	wheelHandler = null;
+	panX = 0;
+	panY = 0;
+	zoomValue = CONFIG.ZOOM_DEFAULT;
+	
+	bottomBar = bar;
+	container = cont;
+	
+	createUI();
+	attachEvents();
+	};
 
     const showUI = () => zoomUI && zoomUI.classList.remove('hidden');
     const hideUI = () => zoomUI && zoomUI.classList.add('hidden');
 
-    const destroy = () => {
-      if (keyHandler) document.removeEventListener('keydown', keyHandler, { capture: true });
-      const desk = getDesk();
-      if (desk && wheelHandler) desk.removeEventListener('wheel', wheelHandler);
-      if (zoomUI) { zoomUI.remove(); zoomUI = null; }
-      reset();
-      log('Destroyed');
-    };
+	const destroy = () => {
+	  const desk = deskEl;
+
+	  if (keyHandler) document.removeEventListener('keydown', keyHandler, { capture: true });
+	  if (desk && wheelHandler) desk.removeEventListener('wheel', wheelHandler);
+
+	  // Clear UI
+	  if (zoomUI && zoomUI.remove) zoomUI.remove();
+
+	  // Clean Refs
+	  deskEl = null;
+	  zoomUI = null;
+	  helpBtn = null;
+	  helpBanner = null;
+	  keyHandler = null;
+	  wheelHandler = null;
+	};
 
     return { init, showUI, hideUI, destroy };
   })();
