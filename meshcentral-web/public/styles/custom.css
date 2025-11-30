@@ -882,12 +882,12 @@ hr#cxmgroupsplit {
     gap: 10px;
 }
 
-.night #agins_linux_area, .night #agins_linux_area_un, .night #d2notifyMsg, .night #d2devNotes, .night #d2devEvent, .night #d2runcmd, .night #d2devMessage, .night #d2smsText, .night #d2emailSubject, .night #d2emailText, .night #broadcastMessage, .night #d2ServerErrorsLogPre {
+.night #agins_linux_area, .night #agins_linux_area_un, .night #d2notifyMsg, .night #d2devNotes, .night #d2devEvent, .night #d2runcmd, .night #d2devMessage, .night #d2smsText, .night #d2emailSubject, .night #d2emailText, .night #broadcastMessage, .night #d2ServerErrorsLogPre, .night textarea#d2notifyMsg, .night input#dp2notifyTitle {
 	background-color: #262626cc !important;
 }
 
-#agins_linux_area, #agins_linux_area_un, #d2notifyMsg, #d2devNotes, #d2devEvent, #d2runcmd, #d2devMessage, #d2smsText, #d2emailSubject, #d2emailText, #broadcastMessage, #d2ServerErrorsLogPre {
-    background-color: #f4f4f45e;
+#agins_linux_area, #agins_linux_area_un, #d2notifyMsg, #d2devNotes, #d2devEvent, #d2runcmd, #d2devMessage, #d2smsText, #d2emailSubject, #d2emailText, #broadcastMessage, #d2ServerErrorsLogPre, textarea#d2notifyMsg, input#dp2notifyTitle {
+    background-color: #f4f4f45e !important;
     border: 1px solid #7d7d7d3d !important;
 	border-radius: 5px !important;
 }
@@ -980,6 +980,7 @@ hr#cxmgroupsplit {
 .night .form-floating>.form-control,
 .night .form-floating>.form-control {
 	background: rgba(41, 44, 44, 0.01) !important;
+    color: var(--bs-body-color);
 }
 
 :root {
@@ -1024,7 +1025,6 @@ max-height: 350px !important;
 	padding-left: 10px;
 }
 
-
 .night #d3serverfiles, .night #d2serverfiles {
 	background-color: #262626cc;
 }
@@ -1043,7 +1043,79 @@ max-height: 350px !important;
     background-color: #262626cc;
 }
 
+input#dp2notifyTitle, select#d2notifyTimeout, select#d2deviceop, span.select2-selection.select2-selection--multiple, select#d2devTimeout {
+    padding: 15px;
+    margin-bottom: var(--bs-modal-margin) !important;
+    border: 1px solid #7d7d7d3d !important;
+    border-radius: 5px !important;
+    appearance: none;
+	}
 
+
+input#d2devurl {
+    padding: 15px;
+    margin-bottom: var(--bs-modal-margin) !important;
+    border: 1px solid #7d7d7d3d !important;
+    border-radius: 5px !important;
+    appearance: none;
+	}
+
+#SearchInput.search, #KvmSearchInput.search {
+    background-color: #f3f3f3;
+}
+
+canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
+	box-shadow: unset !important;
+    background: unset !important;
+    border: unset !important;
+	}
+	
+.card:hover, #p2AccountImage:hover, #p2canvas:hover {
+    background: unset !important;
+	transition: transform 0.3s ease 0s;
+	transform: scale(1.02);
+}
+
+#p2canvas {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+	margin-top: 50px !important;
+}
+
+input#p2FolderUp {
+    min-width: 82px;
+    margin-right: 15px;
+}
+
+.select2-container--bootstrap-5 .select2-selection {
+	background: rgba(242, 242, 242, 0.01) !important;
+}
+
+.night .select2-container--bootstrap-5 .select2-selection {
+	background: rgba(41, 44, 44, 0.01) !important;
+}
+
+.suggestionBox {
+    background-color: #CCC;
+}
+
+.suggestionBoxItem {
+    background-color: #707070;
+	color: white;
+    font-size: smaller;
+    padding: 10px;
+}
+
+.suggestionBoxItem:hover
+Specificity: (0,2,0)
+ {
+    background-color: var(--bs-primary);
+}
+
+.form-select {
+	color: var(--bs-body-color);
+}
 
 /* **************************************************************** */
 /* Login Page */
@@ -1328,18 +1400,34 @@ td#bottomLanguageSelect > select#d2langselect {
 /* **************************************************************** */
 /* Masthead */
 /* Masthead Custom Colors */
-#masthead {
-	/* background-color: #222f42 !important; /* Melo */
-    background-color: var(--bs-primary) !important;
+@media (min-width: 769px) {
+    #masthead {
+		/* background-color: #222f42 !important; /* Melo */
+		background-image: url(../logo.png), linear-gradient(270deg, var(--bs-primary) 33%, var(--bs-secondary) 200%);
+        background-image: url(../logo.png), linear-gradient(270deg, var(--bs-secondary) -33%, var(--bs-primary) 33%);
+	}
 }
+
+@media (max-width: 768px) {
+    #masthead {
+		background-color: var(--bs-primary) !important;
+	}
+}
+
 
 /* Masthead Company name size */
 #masthead .title {
-    font-size: 36px!important;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 1.7rem !important;
+    letter-spacing: 0.6px;
 }
 
 #masthead .title2 {
-    font-size: 11px!important;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.2px;
 }
 
 /* Welcome & logout position */
@@ -1641,6 +1729,21 @@ td#bottomLanguageSelect > select#d2langselect {
 /* === hide original === */
 #devListToolbarSpan #devListToolbarSettings:not([style*="display: none"]) path {
 	display: none !important;
+}
+
+#p11 > div:nth-child(4) {
+    right: 60px !important;
+    margin-top: -28px !important;
+    font-size: xx-small !important;
+}
+
+#p11capslock, #p11scrolllock, #p11numlock {
+	margin-left: 12px !important;
+    background-color: rgb(218, 218, 218) !important;
+    background-color: lightgray !important;
+    padding: 2px 7px !important;
+    border-radius: 3px !important;
+    font-size: xx-small !important;
 }
 
 /* **************************************************************** */
@@ -2080,6 +2183,10 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 
 #userDropdown {
 	background: unset !important;
+}
+
+#userDropdownName {
+    font-size: 0.8rem;
 }
 
 #userDropdownMenu, .userDropdownSubmenu {
