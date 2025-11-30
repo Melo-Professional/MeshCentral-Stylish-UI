@@ -12,7 +12,6 @@
     HOT_ZONE_WIDTH_PERCENT: 20,
     PATCH_RETRY_MS: 250,
 
-    // Zoom config
     ZOOM_MIN: 0.5,
     ZOOM_MAX: 2.5,
     ZOOM_STEP: 0.1,
@@ -35,19 +34,13 @@
     let indicator = null;
     let arrow = null;
 
-    /* const log = (msg) => console.log(`[MC-FS] ${msg}`); */
-
     const injectCSS = () => {
       if (document.getElementById(CONFIG.FULLSCREEN_STYLE_ID)) return;
 
       const css = `
-        /* Core fullscreen layout */
-        #deskarea0.mc-true-fs{position:fixed!important;inset:0!important;margin:0!important;padding:0!important;
-          overflow:hidden!important;background:#000!important}
+        #deskarea0.mc-true-fs{position:fixed!important;inset:0!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#000!important}
         #deskarea0.mc-true-fs #DeskParent{position:absolute!important;inset:0!important;overflow:hidden!important}
         #deskarea0.mc-true-fs #Desk{position:absolute!important;top:0!important;left:0!important}
-
-        /* Top / bottom bars */
         #deskarea0.mc-true-fs #deskarea1,#deskarea0.mc-true-fs #deskarea4{
           position:fixed!important;left:0!important;width:100%!important;z-index:9999!important;
           backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important;
@@ -57,13 +50,9 @@
         #deskarea0.mc-true-fs #deskarea4{bottom:0;transform:translateY(100%)}
         #deskarea0.mc-true-fs.show-bars #deskarea1,
         #deskarea0.mc-true-fs.show-bars #deskarea4{transform:translateY(0)}
-
-        /* Intro hide animation */
         #deskarea0.mc-true-fs.intro-hide #deskarea1,
         #deskarea0.mc-true-fs.intro-hide #deskarea4{
           transition:transform ${CONFIG.INTRO_HIDE_DURATION_MS}ms cubic-bezier(.4,0,.2,1)!important}
-
-        /* Hot-zone indicator */
         #deskarea0.mc-true-fs .mc-hot-indicator{
           position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;
           width:200px!important;height:0!important;border-radius:3px!important;
@@ -78,8 +67,6 @@
         #deskarea0.mc-true-fs.hide-indicator .mc-hot-indicator{
           opacity:0!important;transform:translateX(-50%) translateY(-30px)!important;
           transition:opacity .8s ease,transform .8s ease cubic-bezier(.25,.1,.25,1)!important}
-
-        /* Arrow indicator */
         #deskarea0.mc-true-fs .mc-arrow-indicator{
           position:fixed!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;
           width:60px!important;height:60px!important;z-index:10001!important;
@@ -98,7 +85,6 @@
         @keyframes mc-arrow-glow{
           0%,100%{filter:drop-shadow(0 0 6px rgba(255,255,255,.7)) drop-shadow(0 0 12px rgba(100,150,255,.5))}
           50%{filter:drop-shadow(0 0 10px rgba(255,255,255,.9)) drop-shadow(0 0 20px rgba(100,150,255,.8)) drop-shadow(0 0 30px rgba(167,139,255,.6))}}
-
         .modal{z-index:1055!important}.modal-backdrop{z-index:1050!important}
       `;
 
@@ -106,7 +92,6 @@
       style.id = CONFIG.FULLSCREEN_STYLE_ID;
       style.textContent = css;
       document.head.appendChild(style);
-      /* log('CSS injected'); */
     };
 
     const createIndicator = () => {
@@ -146,7 +131,7 @@
         container.classList.remove('hide-indicator');
         container.classList.add('show-bars', 'show-indicator');
         container.classList.remove('intro-hide', 'hide-indicator');
-        ZoomController.showUI(); // notify zoom UI
+        ZoomController.showUI();
       } else if (!hideTimer && !initialShowTimer && container.classList.contains('show-bars')) {
         hideTimer = setTimeout(() => {
           container.classList.remove('show-bars');
@@ -164,10 +149,9 @@
     const enable = () => {
       if (enabled) return;
       enabled = true;
-      /* log('Enabled'); */
 
       container = document.getElementById('deskarea0');
-      if (!container) { /* log('ERROR: #deskarea0 missing'); */ return; }
+      if (!container) return;
       topBar = document.getElementById('deskarea1');
       bottomBar = document.getElementById('deskarea4');
 
@@ -180,7 +164,6 @@
       handler = createHandler();
       document.addEventListener('mousemove', handler, { capture: true, passive: true });
 
-      // Intro animation
       initialShowTimer = setTimeout(() => {
         container.classList.add('intro-hide');
         container.classList.remove('show-bars');
@@ -195,13 +178,12 @@
         initialShowTimer = null;
       }, CONFIG.INTRO_DURATION_MS);
 
-      ZoomController.init(bottomBar, container); // start zoom
+      ZoomController.init(bottomBar, container);
     };
 
     const disable = () => {
       if (!enabled) return;
       enabled = false;
-      /* log('Disabled'); */
 
       [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
       if (handler) document.removeEventListener('mousemove', handler, { capture: true, passive: true });
@@ -230,7 +212,6 @@
           else if (was && !now) disable();
           return res;
         };
-        /* log('Fullscreen patched'); */
       };
       tryPatch();
     };
@@ -261,12 +242,9 @@
     let wheelHandler = null;
     let drag = { active: false, startX: 0, startY: 0 };
 
-    /* const log = (msg) => console.log(`[MC-ZOOM] ${msg}`); */
-
     const getDesk = () => {
       if (deskEl) return deskEl;
       deskEl = document.getElementById('Desk') || container.querySelector('canvas');
-      /* if (!deskEl) log('ERROR: desktop element not found'); */
       return deskEl;
     };
 
@@ -290,7 +268,6 @@
       if (label) label.textContent = `Zoom: ${Math.round(zoomValue * 100)}%`;
       const slider = zoomUI?.querySelector('#mc-zoom-slider');
       if (slider) slider.value = zoomValue * 100;
-      /* log(`Zoom ${zoomValue.toFixed(2)}x`); */
     };
 
     const reset = () => {
@@ -300,7 +277,6 @@
       if (label) label.textContent = 'Zoom: 100%';
       const slider = zoomUI?.querySelector('#mc-zoom-slider');
       if (slider) slider.value = 100;
-      /* log('Reset'); */
     };
 
     const createUI = () => {
@@ -309,34 +285,23 @@
       zoomUI.id = 'mc-zoom-container';
       zoomUI.innerHTML = `
         <style>
-          #mc-zoom-container{
-            position:absolute; left:50%; bottom:6px; transform:translateX(-50%);
-            display:flex; align-items:center; gap:6px;
-            background:rgba(0,0,0,.55); padding:2px 8px; border-radius:4px;
-            font-size:12px; color:#fff; z-index:10002; height:24px;
-            transition:opacity .3s ease}
+          #mc-zoom-container{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+            display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);padding:2px 8px;border-radius:4px;
+            font-size:12px;color:#fff;z-index:10002;height:24px;transition:opacity .3s ease,transform .15s ease}
           #mc-zoom-container.hidden{opacity:0;pointer-events:none}
-          #mc-zoom-label{cursor:pointer; white-space:nowrap}
+          #mc-zoom-label{cursor:pointer;white-space:nowrap}
           #mc-zoom-slider{width:90px;height:4px;border-radius:2px;background:#555;-webkit-appearance:none;outline:none}
-          #mc-zoom-slider::-webkit-slider-thumb{
-            -webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;
-            cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.4)}
-          #mc-zoom-slider::-moz-range-thumb{
-            width:14px;height:14px;border-radius:50%;background:#fff;border:none;
-            cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.4)}
-          #mc-zoom-help{
-            cursor:pointer; font-weight:bold; font-size:16px; line-height:1; margin-left:4px}
-          #mc-zoom-help-banner{
-            position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
-            background:rgba(0,0,0,.9); color:#fff; padding:8px 12px;
-            border-radius:6px; font-size:14px; white-space:nowrap;
-            pointer-events:none; opacity:0; transition:opacity .2s ease;
-            box-shadow:0 2px 8px rgba(0,0,0,.4)}
+          #mc-zoom-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#fff;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+          #mc-zoom-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:none;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+          #mc-zoom-help{cursor:pointer;font-weight:bold;font-size:16px;line-height:1;margin-left:4px}
+          #mc-zoom-help-banner{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+            background:rgba(0,0,0,.9);color:#fff;padding:8px 12px;border-radius:6px;font-size:14px;white-space:nowrap;
+            pointer-events:none;opacity:0;transition:opacity .2s ease;box-shadow:0 2px 8px rgba(0,0,0,.4)}
           #mc-zoom-help-banner.visible{opacity:1}
         </style>
         <span id="mc-zoom-label">Zoom: 100%</span>
-        <input type="range" id="mc-zoom-slider" min="${CONFIG.ZOOM_MIN * 100}" max="${CONFIG.ZOOM_MAX * 100}"
-               value="${CONFIG.ZOOM_DEFAULT * 100}" step="${CONFIG.ZOOM_STEP * 100}">
+        <input type="range" id="mc-zoom-slider" min="${CONFIG.ZOOM_MIN*100}" max="${CONFIG.ZOOM_MAX*100}"
+               value="${CONFIG.ZOOM_DEFAULT*100}" step="${CONFIG.ZOOM_STEP*100}">
         <span id="mc-zoom-help">?</span>
         <div id="mc-zoom-help-banner">
           • Ctrl + / − : zoom<br>
@@ -358,13 +323,27 @@
       // Help banner
       helpBtn = zoomUI.querySelector('#mc-zoom-help');
       helpBanner = zoomUI.querySelector('#mc-zoom-help-banner');
+      helpBtn.addEventListener('mouseenter', () => helpBanner.classList.add('visible'));
+      helpBtn.addEventListener('mouseleave', () => helpBanner.classList.remove('visible'));
 
-      helpBtn.addEventListener('mouseenter', () => {
-        helpBanner.classList.add('visible');
-      });
-      helpBtn.addEventListener('mouseleave', () => {
-        helpBanner.classList.remove('visible');
-      });
+      // Wheel at zoom bar ===
+      const wheelOnBarHandler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const delta = e.deltaY < 0 ? CONFIG.ZOOM_STEP : -CONFIG.ZOOM_STEP;
+        setZoom(zoomValue + delta);
+
+        // Feedback
+        zoomUI.style.transition = 'transform 0.15s ease';
+        zoomUI.style.transform = `translateX(-50%) scale(${e.deltaY < 0 ? 1.08 : 0.94})`;
+        clearTimeout(zoomUI._scaleReset);
+        zoomUI._scaleReset = setTimeout(() => {
+          zoomUI.style.transform = 'translateX(-50%) scale(1)';
+        }, 160);
+      };
+
+      zoomUI.addEventListener('wheel', wheelOnBarHandler, { passive: false });
+      zoomUI.querySelector('#mc-zoom-slider').addEventListener('wheel', wheelOnBarHandler, { passive: false });
     };
 
     const attachEvents = () => {
@@ -377,21 +356,21 @@
       };
       document.addEventListener('keydown', keyHandler, { capture: true, passive: false });
 
-      // Wheel
-      const desk = getDesk();
-      if (desk) {
-        wheelHandler = e => {
-          if (!e.ctrlKey) return;
-          e.preventDefault();
-          const delta = e.deltaY < 0 ? CONFIG.ZOOM_STEP : -CONFIG.ZOOM_STEP;
-          const rect = desk.getBoundingClientRect();
-          const ox = e.clientX - rect.left;
-          const oy = e.clientY - rect.top;
-          setZoom(zoomValue + delta, ox, oy);
-        };
-        desk.addEventListener('wheel', wheelHandler, { passive: false });
-        /* log('Wheel listener on desktop'); */
-      }
+      // Ctrl Wheel
+      wheelHandler = e => {
+        if (!e.ctrlKey) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        const desk = getDesk();
+        if (!desk) return;
+        const rect = desk.getBoundingClientRect();
+        const ox = e.clientX - rect.left;
+        const oy = e.clientY - rect.top;
+        const delta = e.deltaY < 0 ? CONFIG.ZOOM_STEP : -CONFIG.ZOOM_STEP;
+        setZoom(zoomValue + delta, ox, oy);
+      };
+      document.addEventListener('wheel', wheelHandler, { capture: true, passive: false });
 
       // Pan drag
       const start = e => {
@@ -417,50 +396,30 @@
       document.addEventListener('mouseup', end, true);
     };
 
-	const init = (bar, cont) => {
+    const init = (bar, cont) => {
 	// Reset
-	deskEl = null;
-	zoomUI = null;
-	helpBtn = null;
-	helpBanner = null;
-	keyHandler = null;
-	wheelHandler = null;
-	panX = 0;
-	panY = 0;
-	zoomValue = CONFIG.ZOOM_DEFAULT;
-	
-	bottomBar = bar;
-	container = cont;
-	
-	createUI();
-	attachEvents();
-	};
+      deskEl = zoomUI = helpBtn = helpBanner = keyHandler = wheelHandler = null;
+      panX = panY = 0;
+      zoomValue = CONFIG.ZOOM_DEFAULT;
+      bottomBar = bar;
+      container = cont;
+      createUI();
+      attachEvents();
+    };
 
     const showUI = () => zoomUI && zoomUI.classList.remove('hidden');
     const hideUI = () => zoomUI && zoomUI.classList.add('hidden');
 
-	const destroy = () => {
-	  const desk = deskEl;
-
-	  if (keyHandler) document.removeEventListener('keydown', keyHandler, { capture: true });
-	  if (desk && wheelHandler) desk.removeEventListener('wheel', wheelHandler);
-
-	  // Clear UI
-	  if (zoomUI && zoomUI.remove) zoomUI.remove();
-
-	  // Clean Refs
-	  deskEl = null;
-	  zoomUI = null;
-	  helpBtn = null;
-	  helpBanner = null;
-	  keyHandler = null;
-	  wheelHandler = null;
-	};
+    const destroy = () => {
+      if (keyHandler) document.removeEventListener('keydown', keyHandler, { capture: true });
+      if (wheelHandler) document.removeEventListener('wheel', wheelHandler, { capture: true });
+      if (zoomUI && zoomUI.remove) zoomUI.remove();
+      deskEl = zoomUI = helpBtn = helpBanner = keyHandler = wheelHandler = null;
+    };
 
     return { init, showUI, hideUI, destroy };
   })();
 
-  /* -------------------------- STARTUP -------------------------- */
   FullscreenEnhancer.init();
 })();
 
@@ -537,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('mouseenter', () => btn.style.backgroundColor = 'rgba(255,255,255,0.1)');
         btn.addEventListener('mouseleave', () => btn.style.backgroundColor = 'unset');
 
-        // "A" as SVG
+        // Icons
         btn.innerHTML = `
 			<svg class="auto-icon" viewBox="0 0 18 18" width="18" height="18" fill="#dee2e6" style="">
 				<path fill-rule="evenodd"
