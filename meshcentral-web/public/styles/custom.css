@@ -1011,7 +1011,7 @@ max-height: 350px !important;
     padding-bottom: 1rem;
 	padding: 15px;
 	margin-bottom: var(--bs-modal-margin) !important;
-	background: rgba(242, 242, 242, 0.01) !important;
+	/*background: rgba(242, 242, 242, 0.01) !important;*/
     border: 1px solid #7d7d7d3d !important;
     border-radius: 5px !important;
     appearance: none;
