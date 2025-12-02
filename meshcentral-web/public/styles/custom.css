@@ -665,15 +665,6 @@ hr#cxmgroupsplit {
 	margin-right: 15px !important;
 }
 
-#p17info2 .table.table-hover {
-    --bs-table-bg: unset !important;
-	--bs-table-hover-bg: unset !important;
-}
-
-#p17info2 > table > tbody > tr > td * {
-		border: none !important;
-}
-
 #p3users table, #p16events .table.table-hover.p3eventsTable {
 	--bs-table-bg: unset !important;
 }
@@ -727,6 +718,117 @@ hr#cxmgroupsplit {
 
 .night .deskToolsBar:hover {
 	background-color: #414141 !important;
+}
+
+/* Device Details */
+#p17info2 .table.table-hover {
+    --bs-table-bg: unset !important;
+	--bs-table-hover-bg: unset !important;
+}
+
+#p17info2 > table > tbody > tr > td * {
+		border: none !important;
+}
+
+@media (min-width: 769px) {
+	#p17info2 > table > tbody > tr > td > div:nth-child(2) {
+		margin-left: 40px !important;
+	}
+
+    .col-md-8 {
+        flex: 0 0 auto;
+        width: 360px !important;
+		padding-left: 32px;
+    }
+
+    .col-md-4 {
+        flex: 0 0 auto;
+		width: auto;
+        /* width: 65% !important; */
+    }
+}
+
+.col-md-4 {
+	text-align: left !important;
+}
+
+#p17info2  table > tbody > tr > td > div > div:nth-child(even) {
+    background-color: #f7fafc0f;
+}
+
+#p17info2  table > tbody > tr > td > div > div:nth-child(odd) {
+    background-color: #9393930f;
+}
+
+.night #p17info2  table > tbody > tr > td > div > div:nth-child(odd) {
+    background-color: #81818112;
+}
+
+.night #p17info2  table > tbody > tr > td > div > div:nth-child(even) {
+    background-color: #3333330f;
+}
+
+#p17info2  table > tbody > tr > td > div > div:hover {
+    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+.night #p17info2  table > tbody > tr > td > div > div:hover {
+    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+#devListToolbarViewIcons3 {
+    margin-right: 25px;
+}
+
+#p17info {
+    caption-side: bottom;
+    border-collapse: collapse;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    overflow-wrap: break-word;
+    align-items: center;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#p17info2 > table > tbody > tr > td > div.DevSt {
+    line-height: 4rem;
+    margin-bottom: unset !important;
+}
+
+.row.mb-1 {
+    width: 100%;
+    margin-right: unset !important;
+    margin-left: unset !important;
+}
+
+#p17info2 > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td > div {
+    padding: unset !important;
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 0;
+}
+
+#p17info2 > table > tbody > tr > td * {
+    color: var(--bs-body-color);
+}
+
+.night #p17info2 > table > tbody > tr > td * {
+    color: #BBB;
+}
+
+#p17info2 > table {
+	margin-bottom: 10px;
+}
+
+#p17info2 > table > tbody > tr > td:nth-child(1) {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
 }
 
 /* Scrollbars */
