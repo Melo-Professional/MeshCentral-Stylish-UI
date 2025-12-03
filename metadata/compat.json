@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "generated": "2025-12-03",
+  "compatibility": [
+    {
+      "stylishui": "3.2.0",
+      "meshcentral": "1.1.54"
+    },
+    {
+      "stylishui": "3.1.2",
+      "meshcentral": "1.1.53"
+    },
+    {
+      "stylishui": "3.1.1",
+      "meshcentral": "1.1.53"
+    },
+    {
+      "stylishui": "3.1.0",
+      "meshcentral": "1.1.53"
+    },
+    {
+      "stylishui": "3.0.0",
+      "meshcentral": "1.1.53"
+    },
+    {
+      "stylishui": "2.0.0",
+      "meshcentral": "1.1.52"
+    },
+    {
+      "stylishui": "1.11.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.10.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.9.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.8.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.7.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.6.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.5.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.4.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.3.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.2.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.1.0",
+      "meshcentral": "1.1.51"
+    },
+    {
+      "stylishui": "1.0.0",
+      "meshcentral": "1.1.51"
+    }
+  ]
+}
