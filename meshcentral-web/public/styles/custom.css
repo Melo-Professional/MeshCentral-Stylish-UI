@@ -221,7 +221,7 @@ tr[name="xxdevice2"] {
     padding: 0 2px !important;
     font-size: medium !important;
     cursor: pointer !important;
-    position: relative !important;
+ /*   position: relative !important; */
     pointer-events: auto !important;
     background: transparent !important;
     z-index: 1 !important;
