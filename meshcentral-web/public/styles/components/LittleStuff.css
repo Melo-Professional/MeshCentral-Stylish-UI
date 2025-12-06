@@ -32,15 +32,6 @@
 	margin-right: 15px !important;
 }
 
-#p17info2 .table.table-hover {
-    --bs-table-bg: unset !important;
-	--bs-table-hover-bg: unset !important;
-}
-
-#p17info2 > table > tbody > tr > td * {
-		border: none !important;
-}
-
 #p3users table, #p16events .table.table-hover.p3eventsTable {
 	--bs-table-bg: unset !important;
 }
@@ -49,6 +40,10 @@
 	--bs-table-bg: unset !important;
 	--bs-table-striped-bg: unset !important;
 	/* --bs-table-hover-bg: unset !important; */
+}
+
+#p20info .table.table-hover.table-striped tr, #p20info2 .table.table-hover.table-striped tr {
+    background-color: unset !important;
 }
 
 #DeskTools {
@@ -75,6 +70,10 @@
 	overflow-wrap: break-word;
 }
 
+#dialog2 .col.col-md-2.col-lg-2 {
+    overflow-wrap: normal !important;
+}
+
 #dialog2 > .dialogText {
 	font-size: smaller;
 }
@@ -88,15 +87,167 @@
 	background-color: #414141 !important;
 }
 
+/* Device Details */
+#p17info2 .table.table-hover {
+    --bs-table-bg: unset !important;
+	--bs-table-hover-bg: unset !important;
+}
+
+#p17info2 > table > tbody > tr > td * {
+		border: none !important;
+}
+
+@media (min-width: 769px) {
+	#p17info2 > table > tbody > tr > td > div:nth-child(2) {
+		margin-left: 40px !important;
+	}
+
+    .col-md-8 {
+        flex: 0 0 auto;
+        width: 360px !important;
+		padding-left: 32px;
+    }
+
+    .col-md-4 {
+        flex: 0 0 auto;
+		width: auto;
+        /* width: 65% !important; */
+    }
+}
+
+.col-md-4 {
+	text-align: left !important;
+}
+
+#p17info2  table > tbody > tr > td > div > div:nth-child(even) {
+    background-color: #f7fafc0f;
+}
+
+#p17info2  table > tbody > tr > td > div > div:nth-child(odd) {
+    background-color: #9393930f;
+}
+
+.night #p17info2  table > tbody > tr > td > div > div:nth-child(odd) {
+    background-color: #81818112;
+}
+
+.night #p17info2  table > tbody > tr > td > div > div:nth-child(even) {
+    background-color: #3333330f;
+}
+
+#p17info2  table > tbody > tr > td > div > div:hover {
+    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+.night #p17info2  table > tbody > tr > td > div > div:hover {
+    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+#devListToolbarViewIcons3 {
+    margin-right: 25px;
+}
+
+#p17info {
+    caption-side: bottom;
+    border-collapse: collapse;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    overflow-wrap: break-word;
+    align-items: center;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#p17info2 > table > tbody > tr > td > div.DevSt {
+    line-height: 4rem;
+    margin-bottom: unset !important;
+}
+
+.row.mb-1 {
+    width: 100%;
+    margin-right: unset !important;
+    margin-left: unset !important;
+}
+
+#p17info2 > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td > div {
+    padding: unset !important;
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 0;
+}
+
+#p17info2 > table > tbody > tr > td * {
+    color: var(--bs-body-color);
+}
+
+.night #p17info2 > table > tbody > tr > td * {
+    color: #BBB;
+}
+
+#p17info2 > table {
+	margin-bottom: 10px;
+}
+
+#p17info2 > table > tbody > tr > td:nth-child(1) {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+}
+
+/* Scrollbars */
+/* Target the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: transparent !important;
+  border-radius: 10px;
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); */
+    transition: all 0.3s ease;
+	background-color: color-mix(in lab, currentcolor 15%, transparent) !important;
+}
+
+/* Hover effect on thumb */
+::-webkit-scrollbar-thumb:hover {
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+	background-color: color-mix(in lab, currentcolor 30%, transparent) !important;
+}
+
+/* Active/clicking state */
+::-webkit-scrollbar-thumb:active {
+	background-color: color-mix(in lab, currentcolor 30%, transparent) !important;
+}
+
 /* Modals */
 #dialogHeader {
-    background-color: var(--bs-primary) !important;
+    background-color: unset !important;
 	cursor: default !important;
 	color: #CCCCCC !important;
 }
 
 .modal-header {
 	padding: 9px 9px 9px 16px !important;
+	border-bottom: unset !important;
+}
+
+.modal-title {
+	color: #212529 !important;
+}
+
+.night .modal-title {
+	color: #BBBBBB !important;
 }
 	
 .h5, h5 {
@@ -104,17 +255,17 @@
 }
 
 .modal-header .btn-close {
-    --bs-btn-close-color: #f8e4e4 !important;
-    --bs-btn-close-white-filter: none !important;
+    /*--bs-btn-close-color: #f8e4e4 !important;*/
+    /*--bs-btn-close-white-filter: none !important;*/
     background-color: transparent !important;
-    background-image: none !important;
-    filter: none !important;
+    /*background-image: none !important;*/
+    /*filter: none !important;*/
     opacity: 1 !important;
 	cursor: default !important;
 }
 
 .modal-header .btn-close {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f8e4e4'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") !important;
+    /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f8e4e4'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") !important;*/
     background-size: 0.7em auto !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -134,27 +285,46 @@
 }
 
 .modal-content {
-    background-color: rgba(242, 242, 242, 0.85) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    background-color: rgba(242, 242, 242, 0.6) !important;
+    backdrop-filter: blur(16px) saturate(120%) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(120%) brightness(1.1) !important;
 	overflow: hidden;
 	border-radius: 14px !important;
+	border: 1px solid rgb(0 0 0 / 11%);
+	box-shadow: inset 0 -1px 13px 1px rgb(255 255 255 / 11%) !important;
+}
+
+.modal-content * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+#d2ServerErrorsLogPre {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
 }
 
 .night .modal-content {
-	background-color: rgba(41, 44, 44, 0.75) !important;
-	box-shadow: 0 0 12px #0000004d !important;
+	background-color: rgba(41, 44, 44, 0.6) !important;
+	border: 1px solid rgb(255 255 255 / 28%);
+	/* box-shadow: 0 0 12px #0000004d !important; */
+/*	box-shadow: inset 0 0 18px #fefefe36 !important; */
+	box-shadow: inset 0 -1px 13px 1px rgb(255 255 255 / 7%) !important;
 }
 
 .modal-backdrop {
 	background: unset !important;
-	/* background-color: rgba(242, 242, 242, 0.5) !important; */
+	background-color: rgba(242, 242, 242, 0.5) !important;
 	/* background-color: rgba(41, 44, 44, 0.15) !important; */
-	background-color: rgba(41, 44, 44, 0.3) !important;
+	/* background-color: rgba(41, 44, 44, 0.3) !important; */
     backdrop-filter: blur(3px) !important;
-	overflow: hidden;
 	opacity: 1 !important;
 	/* transition: opacity 1.3s linear !important; */
+	overflow: hidden !important;
 }
 
 .night .modal-backdrop {
@@ -162,6 +332,257 @@
 }
 
 .modal {
-	    --bs-modal-padding: 2rem;
+    --bs-modal-padding: 2rem;
+	overflow: hidden !important;
+}
+
+.form-control, .form-control-sm, .form-select, .form-select-sm, .btn-group-sm>.btn, .btn-sm, #d2ServerErrorsLogPre {
+    border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+}
+
+#dialog2 input[type="radio"] {
+    margin-right: 10px !important;
+}
+
+.modal-footer {
+	border-top: unset;
+	padding: 15px 20px 20px 20px !important;
+    gap: 10px;
+}
+
+.night #agins_linux_area, .night #agins_linux_area_un, .night #d2notifyMsg, .night #d2devNotes, .night #d2devEvent, .night #d2runcmd, .night #d2devMessage, .night #d2smsText, .night #d2emailSubject, .night #d2emailText, .night #broadcastMessage, .night #d2ServerErrorsLogPre, .night textarea#d2notifyMsg, .night input#dp2notifyTitle {
+	background-color: #262626cc !important;
+}
+
+#agins_linux_area, #agins_linux_area_un, #d2notifyMsg, #d2devNotes, #d2devEvent, #d2runcmd, #d2devMessage, #d2smsText, #d2emailSubject, #d2emailText, #broadcastMessage, #d2ServerErrorsLogPre, textarea#d2notifyMsg, input#dp2notifyTitle {
+    background-color: #f4f4f45e !important;
+    border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+}
+
+#d4editorarea {
+    border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+	background-color: #f4f4f45e;
+}
+.night #d4editorarea {
+    background-color: #262626cc !important;
+}
+
+#dialog2 > textarea#d2devNotes.form-control {
+	resize: vertical !important;
+}
+
+/* forms */
+.form-floating > .form-select {
+  background: rgba(242, 242, 242, 0.01) !important;
+  border: 1px solid #7d7d7d3d !important;
+}
+
+.night .form-floating > .form-select {
+  background: rgba(41, 44, 44, 0.01) !important;
+}
+
+.form-floating > .form-select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-select::-webkit-calendar-picker-indicator {
+  /*filter: invert(1); /* opcional: inverte seta */
+}
+
+.form-select option,
+.form-select optgroup {
+  background: rgba(242, 242, 242, 0.6) !important;
+  /* color: #fff !important; */
+  backdrop-filter: blur(8px);
+}
+
+.night .form-select option,
+.night .form-select optgroup {
+  background: rgba(41, 44, 44, 0.95) !important;
+  /* color: #fff !important; */
+  backdrop-filter: blur(8px);
+}
+
+.form-floating>.form-select~label::after {
+	background-color: unset !important;
+}
+
+#d7otherset, #d7otherset2, #d7rdpflags {
+	border-radius: 5px !important;
+	border: 1px solid #7d7d7d3d !important;
+	max-height: 350px;
+}
+
+#theme-switcher {
+	padding: 15px;
+	margin-top: var(--bs-modal-margin);
+	background: rgba(242, 242, 242, 0.01) !important;
+	border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+}
+
+.night #theme-switcher {
+	background: rgba(41, 44, 44, 0.01) !important;
+}
+
+.form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label {
+    font-size: small;
+}
+
+.form-floating>.form-control-plaintext~label::after, .form-floating>.form-control:focus~label::after, .form-floating>.form-control:not(:placeholder-shown)~label::after, .form-floating>.form-select~label::after {
+	background-color: unset;
+}
+
+.form-floating>.form-control-plaintext,
+.form-floating>.form-control-plaintext,
+.form-floating>.form-control,
+.form-floating>.form-control {
+	background: rgba(242, 242, 242, 0.01) !important;
+}
+
+.night .form-floating>.form-control-plaintext,
+.night .form-floating>.form-control-plaintext,
+.night .form-floating>.form-control,
+.night .form-floating>.form-control {
+	background: rgba(41, 44, 44, 0.01) !important;
+    color: var(--bs-body-color);
+}
+
+:root {
+  --sub-menu-color: #7d7d7d3d;
+}
+
+#dialog2 > div {
+height: unset !important;
+max-height: 350px !important;
+}
+
+
+.form-select {
+	background: rgba(242, 242, 242, 0.01) !important;
+	/* padding: 15px; */
+	/* margin-bottom: var(--bs-modal-margin) !important; */
+	background: rgba(242, 242, 242, 0.01) !important;
+	border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+}
+
+.night .form-select {
+	background: rgba(41, 44, 44, 0.01) !important;
+}
+
+#d2cmdtype, #d2cmduser, #d2cmdsource {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+	padding: 15px;
+	margin-bottom: var(--bs-modal-margin) !important;
+	/*background: rgba(242, 242, 242, 0.01) !important;*/
+    border: 1px solid #7d7d7d3d !important;
+    border-radius: 5px !important;
+    appearance: none;
+}
+
+#d3serverfiles, #d2serverfiles {
+	background-color: #f4f4f45e;
+    height: 350px;
+	border: 1px solid #7d7d7d3d !important;
+	border-radius: 5px !important;
+	padding-left: 10px;
+}
+
+.night #d3serverfiles, .night #d2serverfiles {
+	background-color: #262626cc;
+}
+
+#d3serveraction, #d2serveraction {
+    background-color: unset;
+}
+
+.form-control[type=file]:not(:disabled):not([readonly]) {
+    cursor: pointer;
+    background-color: #f4f4f45e;
+}
+
+.night .form-control[type=file]:not(:disabled):not([readonly]) {
+    cursor: pointer;
+    background-color: #262626cc;
+}
+
+input#dp2notifyTitle, select#d2notifyTimeout, select#d2deviceop, span.select2-selection.select2-selection--multiple, select#d2devTimeout {
+    padding: 15px;
+    margin-bottom: var(--bs-modal-margin) !important;
+    border: 1px solid #7d7d7d3d !important;
+    border-radius: 5px !important;
+    appearance: none;
+	}
+
+
+input#d2devurl {
+    padding: 15px;
+    margin-bottom: var(--bs-modal-margin) !important;
+    border: 1px solid #7d7d7d3d !important;
+    border-radius: 5px !important;
+    appearance: none;
+	}
+
+#SearchInput.search, #KvmSearchInput.search {
+    background-color: #f3f3f3;
+}
+
+canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
+	box-shadow: unset !important;
+    background: unset !important;
+    border: unset !important;
+	}
+	
+.card:hover, #p2AccountImage:hover, #p2canvas:hover {
+    background: unset !important;
+	transition: transform 0.3s ease 0s;
+	transform: scale(1.02);
+}
+
+#p2canvas {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+	margin-top: 50px !important;
+}
+
+input#p2FolderUp {
+    min-width: 82px;
+    margin-right: 15px;
+}
+
+.select2-container--bootstrap-5 .select2-selection {
+	background: rgba(242, 242, 242, 0.01) !important;
+}
+
+.night .select2-container--bootstrap-5 .select2-selection {
+	background: rgba(41, 44, 44, 0.01) !important;
+}
+
+.suggestionBox {
+    background-color: #CCC;
+}
+
+.suggestionBoxItem {
+    background-color: #707070;
+	color: white;
+    font-size: smaller;
+    padding: 10px;
+}
+
+.suggestionBoxItem:hover
+Specificity: (0,2,0)
+ {
+    background-color: var(--bs-primary);
+}
+
+.form-select {
+	color: var(--bs-body-color);
 }
 

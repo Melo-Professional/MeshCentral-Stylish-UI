@@ -1,18 +1,34 @@
 /* **************************************************************** */
 /* Masthead */
 /* Masthead Custom Colors */
-#masthead {
-	/* background-color: #222f42 !important; /* Melo */
-    background-color: var(--bs-primary) !important;
+@media (min-width: 769px) {
+    #masthead {
+		/* background-color: #222f42 !important; /* Melo */
+		background-image: url(../logo.png), linear-gradient(270deg, var(--bs-primary) 33%, var(--bs-secondary) 200%);
+        background-image: url(../logo.png), linear-gradient(270deg, var(--bs-secondary) -33%, var(--bs-primary) 33%);
+	}
 }
+
+@media (max-width: 768px) {
+    #masthead {
+		background-color: var(--bs-primary) !important;
+	}
+}
+
 
 /* Masthead Company name size */
 #masthead .title {
-    font-size: 36px!important;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 1.7rem !important;
+    letter-spacing: 0.6px;
 }
 
 #masthead .title2 {
-    font-size: 11px!important;
+    font-family: "Segoe UI", Roboto, sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.2px;
 }
 
 /* Welcome & logout position */

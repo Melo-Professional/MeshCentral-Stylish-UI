@@ -1,210 +1,309 @@
 /* **************************************************************** */
-/* MenuIcons - Replace FontAwesome with Custom PNG Icons */
-span[id^="devViewButton"] {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
-  background: center / 24px 24px no-repeat transparent;
+/* MenuIcons - Replace FontAwesome with Custom SVG Icons */
+#devListToolbarViewIcons {
+    cursor: default !important;
+    display: flex !important;
+    align-items: center !important;
+	margin-top: -2px;
+	margin-right: 15px;
 }
 
-span[id^="devViewButton"]:hover {
-  background-color: #e3e3e3 !important;
+#devListToolbarViewIcons span[id^="devViewButton"] > svg,
+#devListToolbarViewIcons div[id^="devViewPageButton"] > div[class^="viewSelector"],
+#devListToolbarViewIcons div[id^="devViewPageButton"] > svg {
+    display: none !important;
 }
 
-.night span[id^="devViewButton"]:hover {
-  background-color: #404141 !important;
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"],
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: inline"],
+#devListToolbarViewIcons span[id^="devViewButton"]:not([style*="display"]),
+
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: block"],
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: inline"],
+#devListToolbarViewIcons div[id^="devViewPageButton"]:not([style*="display"]) {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 26.66px !important;
+    height: 26.66px !important;
+    cursor: pointer !important;
+    border-radius: 5px !important;
+    transition: all 0.2s ease !important;
+    color: #666;
+    background: transparent;
+    overflow: hidden !important;
+    opacity: 1 !important;
+	margin-left: 10px;
 }
 
-#devViewButton1 {
-	background-image: url(/images/icons/AppsListDetail.svg);
-}
-#devViewButton2 {
-	background-image: url(/images/icons/TextColumnTwoLeft.svg);
-}
-#devViewButton3 {
-	background-image: url(/images/icons/Grid.svg);
-}
-#devViewButton4 {
-	background-image: url(/images/icons/Map.svg);
-}
-#devViewButton5 {
-	background-image: url(/images/icons/Glance.svg);
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"]::before,
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: inline"]::before,
+#devListToolbarViewIcons span[id^="devViewButton"]:not([style*="display"])::before,
+
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: block"]::before,
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: inline"]::before,
+#devListToolbarViewIcons div[id^="devViewPageButton"]:not([style*="display"])::before {
+    content: '' !important;
+    position: absolute !important;
+    width: 24px !important;
+    height: 24px !important;
+    background-color: currentColor !important;
+    -webkit-mask-size: contain !important;
+    -webkit-mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-size: contain !important;
+    mask-repeat: no-repeat !important;
+    mask-position: center !important;
+    transition: background-color 0.2s ease !important;
+    z-index: 1 !important;
+	/* transform: scale(0.8) !important; */
 }
 
-.night #devViewButton1 {
-	background-image: url(/images/icons/AppsListDetail_night.svg);
-}
-.night #devViewButton2 {
-	background-image: url(/images/icons/TextColumnTwoLeft_night.svg);
-}
-.night #devViewButton3 {
-	background-image: url(/images/icons/Grid_night.svg);
-}
-.night #devViewButton4 {
-	background-image: url(/images/icons/Map_night.svg);
-}
-.night #devViewButton5 {
-	background-image: url(/images/icons/Glance_night.svg);
+#devListToolbarViewIcons #devViewPageButton1[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewPageButton1[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewPageButton1:not([style*="display"])::before,
+
+#devListToolbarViewIcons #devViewPageButton4[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewPageButton4[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewPageButton4:not([style*="display"])::before {
+    width: 19px !important;
+    height: 19px !important;
 }
 
-span[id^="devViewButton"] * { display: none !important; }
-span[id^="devViewButton"]::before,
-span[id^="devViewButton"]::after { display: none !important; }
+#devListToolbarViewIcons #devViewPageButton4[style*="display: block"],
+#devListToolbarViewIcons #devViewPageButton4[style*="display: inline"],
+#devListToolbarViewIcons #devViewPageButton4:not([style*="display"]) {
+    margin-right: 56px !important;
+}
+
+#devListToolbarViewIcons #devViewPageState {
+    margin-right: 22px !important;
+    font-size: 13px !important;
+    cursor: default !important;
+    color: #666 !important;
+}
+
+#devListToolbarViewIcons #devViewButton1[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewButton1[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewButton1:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/AppsListDetail.svg') !important;
+    mask-image: url('/images/icons/AppsListDetail.svg') !important;
+}
+#devListToolbarViewIcons #devViewButton2[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewButton2[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewButton2:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/TextColumnTwoLeft.svg') !important;
+    mask-image: url('/images/icons/TextColumnTwoLeft.svg') !important;
+}
+#devListToolbarViewIcons #devViewButton3[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewButton3[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewButton3:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/Grid.svg') !important;
+    mask-image: url('/images/icons/Grid.svg') !important;
+}
+#devListToolbarViewIcons #devViewButton4[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewButton4[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewButton4:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/Map.svg') !important;
+    mask-image: url('/images/icons/Map.svg') !important;
+}
+#devListToolbarViewIcons #devViewButton5[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewButton5[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewButton5:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/Glance.svg') !important;
+    mask-image: url('/images/icons/Glance.svg') !important;
+}
+
+#devListToolbarViewIcons #devViewPageButton1[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewPageButton1[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewPageButton1:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/ArrowPrevious.svg') !important;
+    mask-image: url('/images/icons/ArrowPrevious.svg') !important;
+}
+#devListToolbarViewIcons #devViewPageButton2[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewPageButton2[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewPageButton2:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/IosArrowLeft.svg') !important;
+    mask-image: url('/images/icons/IosArrowLeft.svg') !important;
+}
+#devListToolbarViewIcons #devViewPageButton3[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewPageButton3[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewPageButton3:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/IosArrowRight.svg') !important;
+    mask-image: url('/images/icons/IosArrowRight.svg') !important;
+}
+#devListToolbarViewIcons #devViewPageButton4[style*="display: block"]::before,
+#devListToolbarViewIcons #devViewPageButton4[style*="display: inline"]::before,
+#devListToolbarViewIcons #devViewPageButton4:not([style*="display"])::before {
+    -webkit-mask-image: url('/images/icons/ArrowNext.svg') !important;
+    mask-image: url('/images/icons/ArrowNext.svg') !important;
+}
+
+/* === HOVER & ACTIVE === */
+#devListToolbarViewIcons span[id^="devViewButton"]:not(.viewSelectorSel)[style*="display: block"]:hover,
+#devListToolbarViewIcons span[id^="devViewButton"]:not(.viewSelectorSel)[style*="display: inline"]:hover,
+#devListToolbarViewIcons span[id^="devViewButton"]:not(.viewSelectorSel):not([style*="display"]):hover,
+
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: block"]:hover,
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: inline"]:hover,
+#devListToolbarViewIcons div[id^="devViewPageButton"]:not([style*="display"]):hover {
+	transform: scale(1.2) !important;
+	background-color: color-mix(in lab, currentColor 5%, transparent) !important;
+	color: color-mix(in lab, currentColor 80%, black) !important;
+}
 
 .viewSelectorSel {
-  background-color: #bbbbbb24 !important;
+    background-color: color-mix(in lab, currentColor 9%, transparent) !important;
+    transform: scale(1.2) !important;
+    color: color-mix(in lab, currentColor 80%, black) !important;
 }
 
-#p11 #p11title #devListToolbarViewIcons,
-#devListToolbarViewIcons2{
-  position: relative;
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
-  background: center / 24px 24px no-repeat transparent !important;
-  background-image: url(/images/icons/FullScreenMaximize.svg) !important;
-  cursor: pointer;
+.night .viewSelectorSel {
+    background-color: color-mix(in lab, currentColor 40%, transparent) !important;
 }
 
-.night #p11 #p11title #devListToolbarViewIcons,
-.night #devListToolbarViewIcons2 {
-	background-image: url(/images/icons/FullScreenMaximize_night.svg) !important;
-}
-
-#p11 #p11title #devListToolbarViewIcons > svg.svg-inline--fa.fa-maximize,
-#devListToolbarViewIcons2 > svg.svg-inline--fa.fa-maximize {
-  display: block !important;
-  opacity: 0;
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: auto;
-}
-
-/* ToolBar Settings Icon */
-#devListToolbarSpan {
-	color: #737373 !important;
-}
-
-.night #devListToolbarSpan {
-	color: #dee2e6bf !important;
-}
-
-#devListToolbarSettings path {
-    display: none !important;
-}
-
-#devListToolbarSettings {
-    background-image: url(/images/icons/TextGrammarSettings.svg) !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    width: 24px !important;
-    height: 24px !important;
-    cursor: pointer;
-    display: inline-block;
-}
-
-.night #devListToolbarSettings {
-	background-image: url(/images/icons/TextGrammarSettings_night.svg) !important;
-}
-
-/* Collapse Expand Button */
-#CollapseAllButton svg, #CollapseAllButton2 svg {
-    display: none !important;
-}
-
-#CollapseAllButton, #CollapseAllButton2 {
-    background-image: url(/images/icons/ArrowMinimizeVertical.svg) !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    width: 24px !important;
-    height: 24px !important;
+/* === fullscreen button === */
+#devListToolbarViewIcons > svg[role="button"], #devListToolbarViewIcons2 > svg[role="button"] {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 6px !important;
+    box-sizing: border-box !important;
     cursor: pointer !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    background-color: transparent !important;
+    transition: all 0.2s ease !important;
+    color: #666 !important;
+    fill: currentColor !important;
+    overflow: hidden !important;
 }
-
-.night #CollapseAllButton, .night #CollapseAllButton2 {
-	background-image: url(/images/icons/ArrowMinimizeVertical_night.svg) !important;
-}
-
-#ExpandAllButton svg, #ExpandAllButton2 svg {
+#devListToolbarViewIcons > svg[role="button"] > path,
+#devListToolbarViewIcons > svg[role="button"] > title,
+#devListToolbarViewIcons2 > svg[role="button"] > path,
+#devListToolbarViewIcons2 > svg[role="button"] > title {
     display: none !important;
 }
-
-#ExpandAllButton, #ExpandAllButton2 {
-    background-image: url(/images/icons/ArrowMaximizeVertical.svg) !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    width: 24px !important;
-    height: 24px !important;
-    cursor: pointer !important;
+#devListToolbarViewIcons > svg[role="button"], #devListToolbarViewIcons2 > svg[role="button"] {
+    background-color: black !important;
+    -webkit-mask-image: url('/images/icons/FullScreenMaximize.svg') !important;
+    mask-image: url('/images/icons/FullScreenMaximize.svg') !important;
+    -webkit-mask-size: 66% !important;
+    -webkit-mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-size: 66% !important;
+    mask-repeat: no-repeat !important;
+    mask-position: center !important;
+}
+.night #devListToolbarViewIcons > svg[role="button"], .night #devListToolbarViewIcons2 > svg[role="button"] {
+    background-color: white !important;
+}
+#devListToolbarViewIcons > svg[role="button"]:hover, #devListToolbarViewIcons2 > svg[role="button"]:hover {
+    background-color: var(--bs-primary) !important;
 }
 
-.night #ExpandAllButton, .night #ExpandAllButton2 {
-	background-image: url(/images/icons/ArrowMaximizeVertical_night.svg) !important;
+/* === COLLAPSE / EXPAND (fa-layers) === */
+#devListToolbarSpan #CollapseAllButton,
+#devListToolbarSpan #CollapseAllButton2,
+#devListToolbarSpan #ExpandAllButton,
+#devListToolbarSpan #ExpandAllButton2 {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+	color: currentColor;
+	background: transparent;
+	overflow: hidden;
 }
 
-/* Device Pagination Icons - Replace old Icons with New PNG Icons */
-div[id^="devViewPageButton"] {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 5px;
-  background: center / 24px 24px no-repeat transparent;
+#devListToolbarSpan #CollapseAllButton svg,
+#devListToolbarSpan #ExpandAllButton svg,
+#devListToolbarSpan #CollapseAllButton2 svg,
+#devListToolbarSpan #ExpandAllButton2 svg {
+	display: none !important;
 }
 
-#devViewPageButton1 {
-	background-image: url(/images/icons/ArrowPrevious.svg);
+#devListToolbarSpan #CollapseAllButton:not([style*="display: none"])::before,
+#devListToolbarSpan #ExpandAllButton:not([style*="display: none"])::before,
+#devListToolbarSpan #CollapseAllButton2:not([style*="display: none"])::before,
+#devListToolbarSpan #ExpandAllButton2:not([style*="display: none"])::before {
+	content: '';
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	background-color: currentColor;
+	-webkit-mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-size: contain;
+	mask-repeat: no-repeat;
+	mask-position: center;
+	z-index: 1;
 }
 
-.night #devViewPageButton1 {
-	background-image: url(/images/icons/ArrowPrevious_night.svg);
+#devListToolbarSpan #CollapseAllButton:not([style*="display: none"])::before,
+#devListToolbarSpan #CollapseAllButton2:not([style*="display: none"])::before {
+	-webkit-mask-image: url('/images/icons/ArrowMinimizeVertical.svg');
+	mask-image: url('/images/icons/ArrowMinimizeVertical.svg');
 }
 
-#devViewPageButton2 {
-	background-image: url(/images/icons/IosArrowLeft.svg);
+#devListToolbarSpan #ExpandAllButton:not([style*="display: none"])::before,
+#devListToolbarSpan #ExpandAllButton2:not([style*="display: none"])::before {
+	-webkit-mask-image: url('/images/icons/ArrowMaximizeVertical.svg');
+	mask-image: url('/images/icons/ArrowMaximizeVertical.svg');
 }
 
-.night #devViewPageButton2 {
-	background-image: url(/images/icons/IosArrowLeft_night.svg);
+/* === devListToolbarSettings === */
+#devListToolbarSpan #devListToolbarSettings:not([style*="display: none"]) {
+	position: relative;
+	display: inline-flex !important;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	border-radius: 6px;
+	transition: all 0.2s ease;
+	color: currentColor;
+	background: transparent;
+	overflow: hidden;
+	fill: none !important;
+	stroke: none !important;
+
+/* === SVG === */
+	background-color: currentColor;
+	-webkit-mask-image: url('/images/icons/TextGrammarSettings.svg');
+	-webkit-mask-size: 24px 24px;
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-image: url('/images/icons/TextGrammarSettings.svg');
+	mask-size: 24px 24px;
+	mask-repeat: no-repeat;
+	mask-position: center;
 }
 
-#devViewPageButton3 {
-	background-image: url(/images/icons/IosArrowRight.svg);
+/* === hide original === */
+#devListToolbarSpan #devListToolbarSettings:not([style*="display: none"]) path {
+	display: none !important;
 }
 
-.night #devViewPageButton3 {
-	background-image: url(/images/icons/IosArrowRight_night.svg);
+#p11 > div:nth-child(4) {
+    right: 60px !important;
+    margin-top: -28px !important;
+    font-size: xx-small !important;
 }
 
-#devViewPageButton4 {
-	background-image: url(/images/icons/ArrowNext.svg);
-	margin-right: 56px !important;
-}
-
-.night #devViewPageButton4 {
-	background-image: url(/images/icons/ArrowNext_night.svg);
-}
-
-div[id^="devViewPageButton"] * { display: none !important; }
-div[id^="devViewPageButton"]::before,
-div[id^="devViewPageButton"]::after { display: none !important; }
-
-.viewSelector {
-  opacity: 1 !important;
-}
-
-.viewSelector:hover {
-  background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
-  transition: background-color 0.2s ease;
-}
-
-#devListToolbarViewIcons {
-	cursor: default !important;
+#p11capslock, #p11scrolllock, #p11numlock {
+	margin-left: 12px !important;
+    background-color: rgb(218, 218, 218) !important;
+    background-color: lightgray !important;
+    padding: 2px 7px !important;
+    border-radius: 3px !important;
+    font-size: xx-small !important;
 }
 

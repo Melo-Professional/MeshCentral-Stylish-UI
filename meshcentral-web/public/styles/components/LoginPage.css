@@ -240,6 +240,10 @@ td#bottomLanguageSelect > select#d2langselect {
   font-size: 0.9rem !important;
 }
 
+#authStrategies {
+    display: ruby;
+}
+
 /* Optional Hide Terms & Privacy Link on Login Page.  */
 /*
 #flink {

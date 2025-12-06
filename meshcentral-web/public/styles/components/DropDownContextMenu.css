@@ -7,8 +7,8 @@
 	padding: 4px;
 	/* color: #CCC !important; */
 	    background-color: rgba(242, 242, 242, 0.75) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) saturate(120%) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(120%) brightness(1.1) !important;
 	overflow: hidden;
 }
 
@@ -49,8 +49,8 @@ hr#cxmgroupsplit {
 	font-size: smaller !important;
 	padding: 4px;
     background-color: rgba(242, 242, 242, 0.75) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    backdrop-filter: blur(12px) saturate(120%) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(12px saturate(120%) brightness(1.1)) !important;
 	overflow: hidden;
 }
 

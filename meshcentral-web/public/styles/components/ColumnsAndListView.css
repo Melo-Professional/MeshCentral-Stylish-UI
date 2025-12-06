@@ -9,6 +9,7 @@ span[id^="DevxHeader"] {
 span[class^="devHeaderx"] {
 	font-size: small !important;
 	font-weight: 300 !important;
+	color: #999;
 }
 
 /* Agent, Powered, AMT text */
@@ -112,6 +113,8 @@ h1 {
 .DevSt {
 	border-bottom-width: 4px !important;
 	border-bottom-color: #DDDDDD00 !important;
+	padding-right: 20px;
+	color: var(--bs-body-color);
 }
 
 span[cmenu="meshContextMenu"] {
@@ -193,7 +196,7 @@ tr[name="xxdevice2"] {
     padding: 0 2px !important;
     font-size: medium !important;
     cursor: pointer !important;
-    position: relative !important;
+ /*   position: relative !important; */
     pointer-events: auto !important;
     background: transparent !important;
     z-index: 1 !important;

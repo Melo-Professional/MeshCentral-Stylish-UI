@@ -3,27 +3,30 @@
 .deviceNotifyDotSub {
     height: 20px !important;
     width: 20px !important;
-	background-color: #48cb45 !important;
+}
+
+.deviceNotifyDotSub, .deviceNotifySmallDotSub {
+    background-color: #48cb45 !important;
     box-shadow: unset !important;
 }
 
 .deviceNotifyDotSub:hover {
     background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
-	transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
     box-shadow: 1px 1px 5px #00000091 !important;
 }
 
 .notifiyBox {
-	border: unset !important;
-	color: var(--bs-body-color) !important;
-	background-color: #f3f3f3 !important;
-	width: 240px !important;
+    border: unset !important;
+    color: var(--bs-body-color) !important;
+    background-color: #f3f3f3 !important;
+    width: 240px !important;
     font-size: small !important;
-	top: 58px !important;
+    top: 58px !important;
     right: 10px !important;
-	max-height: 250px !important;
-	box-shadow: 0 0 12px #0000004d !important;
-	padding: 4px;
+    max-height: 250px !important;
+    box-shadow: 0 0 12px #0000004d !important;
+    padding: 4px;
 }
 
 .night .notifiyBox {
@@ -149,4 +152,3 @@
 :fullscreen #notifiyBox {
     display: none !important;
 }
-
