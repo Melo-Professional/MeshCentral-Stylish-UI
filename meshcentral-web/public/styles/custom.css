@@ -1233,12 +1233,16 @@ Specificity: (0,2,0)
   cursor: text !important;
   user-select: text !important;
 }
+
+/*
 #body.arg_hide.login input[type="button"],
 #body.arg_hide.login button,
 #body.arg_hide.login a,
 #body.arg_hide.login [onclick] {
   cursor: pointer !important;
 }
+*/
+
 /*Update "background-image" below to Change the Logo on Login Screen. */
 #backgroundImage {
   opacity: 0.02 !important;
@@ -1248,7 +1252,7 @@ Specificity: (0,2,0)
 #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
   padding: 50px 70px 18px 70px !important;
   margin: 0 !important;
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.5) !important;
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -1256,10 +1260,11 @@ Specificity: (0,2,0)
   box-shadow: 0 8px 32px rgb(174 177 230 / 37%) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
+  color: #f0f0f0 !important;
 }
 
 #loginpanel:hover, #createpanel:hover, #resetpanel:hover, #tokenpanel:hover, #resettokenpanel:hover, #resetpasswordpanel:hover, #checkemailpanel:hover, #waitpushpanel:hover {
-  transform: translateY(-2px) !important;
+  /* transform: translateY(-2px) !important; */
   box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5) !important;
 }
 
@@ -1280,24 +1285,24 @@ Specificity: (0,2,0)
 }
 
 #loginpanelform, #createpanel form, #resetpanel form, #tokenpanel form, #resettokenpanel form, #resetpasswordpanel form, #checkemailpanel form, #waitpushpanel form {
-  display: flex !important;
+  display: flex;
   flex-direction: column !important;
   gap: 20px !important;
 }
 
 #loginuserpassdiv table, #createpanel table, #resetpanel table, #tokenpanel table, #resettokenpanel table, #resetpasswordpanel table, #checkemailpanel table, #waitpushpanel table {
-  display: flex !important;
+  display: flex;
   flex-direction: column !important;
   gap: 40px !important;
   width: 100% !important;
 }
 
 #loginuserpassdiv table tr, #createpanel table tr, #resetpanel table tr, #tokenpanel table tr, #resettokenpanel table tr, #resetpasswordpanel table tr, #checkemailpanel table tr, #waitpushpanel table tr {
-  display: block !important;
+  display: block;
 }
 
 #loginuserpassdiv table td, #createpanel table td, #resetpanel table td, #tokenpanel table td, #resettokenpanel table td, #resetpasswordpanel table td, #checkemailpanel table td, #waitpushpanel table td {
-  display: block !important;
+  display: block;
   width: 100% !important;
 }
 
@@ -1335,24 +1340,40 @@ Specificity: (0,2,0)
   opacity: 0.7 !important;
 }
 
-input#loginButton, input#eresetButton {
+#body.arg_hide.login #resettokenpanel input#resetTokenOkButton,
+#body.arg_hide.login #tokenpanel input#tokenOkButton,
+#body.arg_hide.login #resetpanel input#eresetButton,
+#body.arg_hide.login #loginpanel input#loginButton,
+#body.arg_hide.login #checkemailpanel input#changeEmailButton,
+#body.arg_hide.login #checkemailpanel input#checkEmailButton2,
+#body.arg_hide.login #resetpasswordpanel table td input#resetPassButton,
+#body.arg_hide.login #createpanel table td input#createButton
+{
   width: 100% !important;
-  margin-top: 0 !important;
+  margin-top: 35px !important;
   padding: 15px !important;
-  background: linear-gradient(135deg, #0f3460, #0f4c75) !important;
-  color: white !important;
+  background: linear-gradient(135deg, #0f3460, #0f4c75);
+  color: white;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
   border: none !important;
   border-radius: 10px !important;
-  cursor: pointer !important;
+  cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-input#loginButton:hover, input#eresetButton:hover {
+#body.arg_hide.login #resettokenpanel input#resetTokenOkButton:not(:disabled):hover,
+#body.arg_hide.login #tokenpanel input#tokenOkButton:not(:disabled):hover,
+#body.arg_hide.login #resetpanel input#eresetButton:not(:disabled):hover,
+#body.arg_hide.login #loginpanel input#loginButton:not(:disabled):hover,
+#body.arg_hide.login #checkemailpanel input#changeEmailButton:not(:disabled):hover,
+#body.arg_hide.login #checkemailpanel input#checkEmailButton2:not(:disabled):hover,
+#body.arg_hide.login #resetpasswordpanel table td input#resetPassButton:not(:disabled):hover,
+#body.arg_hide.login #createpanel table td input#createButton:not(:disabled):hover
+{
   background: linear-gradient(135deg, #0f4c75, #0f3460) !important;
-  transform: translateY(-1px) !important;
+  /* transform: translateY(-1px) !important; */
   box-shadow: 0 4px 12px rgba(15, 52, 96, 0.4) !important;
 }
 
@@ -1371,20 +1392,20 @@ input#loginButton:hover, input#eresetButton:hover {
   background: rgba(219, 219, 219, 0.8) !important;
 }
 
-#resetAccountDiv {
+#body.arg_hide.login #resetAccountDiv {
   color: #f0f0f0 !important;
   text-align: center !important;
   padding: 10px 0 !important;
   font-size: 0.9rem !important;
 }
 
-#resetAccountDiv a {
+#body.arg_hide.login #resetAccountDiv a {
   color: #f0f0f0 !important;
   text-decoration: none !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-#resetAccountDiv a:hover {
+#body.arg_hide.login #resetAccountDiv a:hover {
   color: white !important;
   text-decoration: underline !important;
 }
@@ -1413,39 +1434,50 @@ input#loginButton:hover, input#eresetButton:hover {
 #loginpanel input[id]:focus, #createpanel input[id]:focus, #resetpanel input[id]:focus, #tokenpanel input[id]:focus, #resettokenpanel input[id]:focus, #resetpasswordpanel input[id]:focus, #checkemailpanel input[id]:focus, #waitpushpanel input[id]:focus {
   outline: none !important;
   box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.3) !important;
-  background: rgba(219, 219, 219, 0.9) !important;
+  /* background: rgba(219, 219, 219, 0.9) !important; */
   transform: scale(1.02) !important;
 }
 
-td#bottomLanguageSelect > select#d2langselect {
+#body.arg_hide.login td#bottomLanguageSelect > select#d2langselect {
   background-color: #dbdbdb !important;
   padding: 10px !important;
   border-radius: 5px !important;
   border: none !important;
 }
 
+#body.arg_hide.login #authStrategies {
+    display: ruby;
+}
 
-#authStrategies a {
-  margin: 5px !important;
+#body.arg_hide.login #authStrategies a {
+  /*margin: 5px !important;*/
   border-radius: 50% !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important; */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   overflow: hidden !important;
 }
 
-#authStrategies a:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
+#body.arg_hide.login #authStrategies a:hover {
+  /* transform: translateY(-20px) !important; */
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
-#authStrategies img {
+#body.arg_hide.login #authStrategies img {
+  margin: 5px !important;
   width: 40px !important;
   height: 40px !important;
   border-radius: 50% !important;
   display: block !important;
+    transform: scale(0.8);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-#authStrategies hr {
+#body.arg_hide.login #authStrategies img:hover {
+    transform: scale(0.9) translateY(-5px);
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+#body.arg_hide.login #authStrategies hr {
   width: 100% !important;
   border: none !important;
   height: 1px !important;
@@ -1453,16 +1485,12 @@ td#bottomLanguageSelect > select#d2langselect {
   margin-bottom: 15px !important;
 }
 
-#authStrategies div {
+#body.arg_hide.login #authStrategies div {
   text-align: center !important;
   width: 100% !important;
   margin-bottom: 10px !important;
   color: rgba(255, 255, 255, 0.8) !important;
   font-size: 0.9rem !important;
-}
-
-#authStrategies {
-    display: ruby;
 }
 
 /* Optional Hide Terms & Privacy Link on Login Page.  */
@@ -1499,6 +1527,38 @@ td#bottomLanguageSelect > select#d2langselect {
   }
 }
 
+
+#resetpasswordpanel table td:not(:has(input)),
+#createpanel table td:not(:has(input)),
+#resettokenpanel table td:not(:has(input))
+{
+	text-align: left !important;
+	color: #f0f0f0 !important;
+	margin-top: 15px;
+}
+
+#body.arg_hide.login #newAccountCaptchaImg > td:nth-child(2) {
+    text-align: unset !important;
+	margin-top: unset !important;
+}
+
+#body.arg_hide.login tr#newAccountCaptchaImg {
+    background-color: #ffffff12;
+    border-radius: 14px;
+}
+
+#body.arg_hide.login #passwordPolicyCallout, #body.arg_hide.login #rpasswordPolicyCallout {
+    width: 140px;
+	background-color: #747474;
+    font-size: 13px;
+}
+
+#body.arg_hide.login input[type="button" i]:disabled {
+    background: linear-gradient(135deg, #9ea6af, #8d9da780) !important;
+    cursor: default !important;
+    color: #00000029 !important;
+}
+	
 /* **************************************************************** */
 /* Masthead */
 /* Masthead Custom Colors */
