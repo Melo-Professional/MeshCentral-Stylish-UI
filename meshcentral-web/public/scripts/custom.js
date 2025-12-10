@@ -453,101 +453,307 @@
 })();
 
 
-// === THEME TOGGLE (A / LIGHT / DARK) ===
+
+// === THEME TOGGLE (AUTO / LIGHT / DARK) ===
 document.addEventListener('DOMContentLoaded', () => {
-    const mastheadRight = document.querySelector('.masthead-right');
-    if (!mastheadRight) return;
 
-    // Function to hide items from the dropdown menu
-    function hideDropdownItems() {
-        const nightItem = document.getElementById('toggleNightMenuItem');
-        if (nightItem) nightItem.style.display = 'none';
+  // ==================== SETTINGS ====================
 
-        const modernUIItem = document.getElementById('toggleModernUIMenuItem');
-        if (modernUIItem) modernUIItem.style.display = 'none';
+  const TOGGLE_WIDTH   = '3.0rem';
+  const TOGGLE_HEIGHT  = '1.7rem';
+  const PADDING        = '0.00rem';
+  const PADDING_ICONS  = '0.15rem';
+  const INACTIVE_ICON_ALPHA  = '0.7';
+  const TOGGLE_BORDER  = '0.188rem';
+  const SWITCH_SIZE = (parseFloat(TOGGLE_HEIGHT) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
+  const SWITCH_BORDER = (parseFloat(SWITCH_SIZE) / 2) + 'rem';
+  const SWITCH_AUTO_W = (parseFloat(TOGGLE_WIDTH) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
+
+  // LIGHT THEME COLORS
+  const LIGHT_SWITCH  = "#d7d2cd";
+  const LIGHT_BG      = "#fcf2ea";
+  const LIGHT_BORDER  = "#fcf2ea";
+  const LIGHT_SUN     = "#282523";
+  const LIGHT_MOON    = "#595652";
+  const LIGHT_SHADOW  = "#191919b8";
+  const LIGHT_LIGHT   = "#fff";
+
+  // DARK THEME COLORS
+  const DARK_SWITCH   = "#7e8e91";
+  const DARK_BG       = "#5c6b6b";
+  const DARK_BORDER   = "#5c6b6b";
+  const DARK_SUN      = "#9ba6a5";
+  const DARK_MOON     = "#cfd7d7";
+  const DARK_SHADOW   = "#1a1a1abf";
+  const DARK_LIGHT    = "#cfcfcf87";
+  // =================================================================
+
+  const mastheadRight = document.querySelector('.masthead-right');
+  if (!mastheadRight) return;
+
+  // keep hiding menu items (preserve original behaviour)
+  function hideDropdownItems() {
+    const nightItem = document.getElementById('toggleNightMenuItem');
+    if (nightItem) nightItem.style.display = 'none';
+    const modernUIItem = document.getElementById('toggleModernUIMenuItem');
+    if (modernUIItem) modernUIItem.style.display = 'none';
+  }
+  hideDropdownItems();
+
+  const menuContainer = document.getElementById('userDropdownMenuContainer');
+  if (menuContainer) {
+    new MutationObserver(hideDropdownItems).observe(menuContainer, { childList: true, subtree: true });
+  }
+
+  // APPLYING VARS
+  const LIGHT = { bg: LIGHT_BG, border: LIGHT_BORDER, sun: LIGHT_SUN, moon: LIGHT_MOON, shadow: LIGHT_SHADOW, light: LIGHT_LIGHT, switch: LIGHT_SWITCH };
+  const DARK  = { bg: DARK_BG, border: DARK_BORDER,  sun: DARK_SUN,  moon: DARK_MOON,  shadow: DARK_SHADOW,  light: DARK_LIGHT, switch: DARK_SWITCH };
+
+  // ===================== CSS BASE + TRANSITIONS =====================
+  if (!document.getElementById('theme-toggle-styles')) {
+    const s = document.createElement('style');
+    s.id = 'theme-toggle-styles';
+    s.textContent = `
+
+/* General Transition */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 2.6s ease,
+              background 2.6s ease,
+              color 2.6s ease,
+              border-color 2.6s ease,
+              fill 2.6s ease,
+              stroke 2.6s ease !important;
+}
+
+/* Specific Transition */
+.theme-transition #theme-toggle .switch,
+.theme-transition #theme-toggle .switch * {
+transition: transform 0.28s ease,
+            width 0.28s ease,
+            left 0.28s ease,
+            background-color 0.28s ease 0.45s,
+            background 0.28s ease 0.45s,
+            fill 0.28s ease 0.45s,
+            border-color 0.28s ease,
+            border-radius 0.28s ease,
+            box-shadow 0.28s ease,
+			opacity .28s ease 0.45s !important;
+}
+
+#theme-toggle .sun,
+#theme-toggle .sun path,
+#theme-toggle .moon,
+#theme-toggle .moon path {
+transition: transform 0.28s ease 0.1s,
+            width 0.28s ease 0.45s,
+            left 0.28s ease 0.45s,
+            /* background-color 0.28s ease 4.5s, */
+            /* background 0.28s ease 4.5s, */
+            fill 1.45s ease 0.0s,
+            border-color 0.28s ease 0.45s,
+            border-radius 0.28s ease 0.45s,
+            box-shadow 0.28s ease 0.45s,
+			opacity 1.45s ease 0.0s !important;
+}
+
+
+#theme-toggle {
+	all: initial; 
+	display:flex; 
+	align-items:center; 
+	justify-content:center; 
+	cursor:pointer; 
+	height: 40px;
+    padding: 0px 8px !important;
+    border-radius: 4px;
+}
+
+
+#theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+
+#theme-toggle .track { 
+  position:relative; 
+  width:${TOGGLE_WIDTH}; 
+  height:${TOGGLE_HEIGHT}; 
+  border-radius:calc(${parseFloat(TOGGLE_HEIGHT)/2 + 'rem'}); 
+  padding:${PADDING}; 
+  box-sizing:border-box; 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-around; 
+  overflow:hidden; 
+  box-shadow: inset 1px 1px 3px 1px var(--shadow), var(--light) -3px -3px 3px -1px inset;
+}
+#theme-toggle .switch { 
+  position:absolute; 
+  height:${SWITCH_SIZE}; 
+  width:${SWITCH_SIZE}; 
+  border-radius:${SWITCH_BORDER}; 
+  background: color-mix(in lab, var(--switch) 80%, transparent) !important;
+  z-index:5;
+  box-shadow: inset 3px 2px 4px -3px var(--shadow), 3px 2px 10px -1px var(--shadow);
+}
+#theme-toggle .sun, #theme-toggle .moon { 
+  position:relative; 
+  height:${SWITCH_SIZE}; 
+  width:${SWITCH_SIZE}; 
+  padding:${PADDING_ICONS}; 
+  z-index:9; 
+  pointer-events:none; 
+}
+
+
+#theme-toggle .track:hover {
+  /* transform: scale(1.1); */
+  /*background: transparent;*/
+/*  background: color-mix(in lab, #fff 7%, transparent) !important; */
+/*  transition: background-color 0.6s ease 0s; */
+}
+
+
+#theme-toggle .sun path { fill: var(--sun);	opacity: var(--sun-op);}
+#theme-toggle .moon path { fill: var(--moon); opacity: var(--moon-op);}
+#theme-toggle.mode-auto .switch { left: calc(50% - ${parseFloat(SWITCH_AUTO_W)/2 + 'px'}); width: ${SWITCH_AUTO_W}; }
+#theme-toggle.mode-light .switch { left: 4px; width: ${SWITCH_SIZE}; }
+#theme-toggle.mode-dark .switch { left: calc(100% - ${parseFloat(SWITCH_SIZE) + 8 + 'px'}); width: ${SWITCH_SIZE}; }
+
+#theme-toggle .track { 
+  border:${TOGGLE_BORDER} solid var(--track-border); 
+  background: var(--track-bg); 
+}
+    `;
+    document.head.appendChild(s);
+  }
+
+  // create button
+  if (!document.getElementById('theme-toggle')) {
+    const btn = document.createElement('button');
+    btn.id = 'theme-toggle';
+    btn.type = 'button';
+    btn.style.display = 'flex';
+    btn.style.alignItems = 'center';
+    btn.style.justifyContent = 'center';
+    btn.style.background = 'transparent';
+    btn.style.border = 'none';
+    btn.style.padding = '0px 8px';
+    btn.style.margin = '0';
+    btn.style.cursor = 'pointer';
+
+    btn.innerHTML = `
+      <div class="track" role="switch" aria-label="Theme toggle">
+        <div class="switch"></div>
+        <svg class="sun" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" fill="currentColor"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11 0H13V4.06189C12.6724 4.02104 12.3387 4 12 4C11.6613 4 11.3276 4.02104 11 4.06189V0ZM7.0943 5.68018L4.22173 2.80761L2.80752 4.22183L5.6801 7.09441C6.09071 6.56618 6.56608 6.0908 7.0943 5.68018ZM4.06189 11H0V13H4.06189C4.02104 12.6724 4 12.3387 4 12C4 11.6613 4.02104 11.3276 4.06189 11ZM5.6801 16.9056L2.80751 19.7782L4.22173 21.1924L7.0943 18.3198C6.56608 17.9092 6.09071 17.4338 5.6801 16.9056ZM11 19.9381V24H13V19.9381C12.6724 19.979 12.3387 20 12 20C11.6613 20 11.3276 19.979 11 19.9381ZM16.9056 18.3199L19.7781 21.1924L21.1923 19.7782L18.3198 16.9057C17.9092 17.4339 17.4338 17.9093 16.9056 18.3199ZM19.9381 13H24V11H19.9381C19.979 11.3276 20 11.6613 20 12C20 12.3387 19.979 12.6724 19.9381 13ZM18.3198 7.0943L21.1923 4.22183L19.7781 2.80762L16.9056 5.6801C17.4338 6.09071 17.9092 6.56608 18.3198 7.0943Z" fill="currentColor"/>
+        </svg>
+        <svg class="moon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.2398038,3.86764935 C13.8204659,5.18476989 13,7.02542894 13,9 C13,12.8659932 16.1340068,16 20,16 C20.1451744,16 20.2897556,15.9955942 20.4336241,15.986821 L22.4431545,15.8642776 L21.3266144,17.5395589 C19.4842735,20.3038478 16.3853769,22 13,22 C7.4771525,22 3,17.5228475 3,12 C3,6.4771525 7.4771525,2 13,2 C13.5846805,2 14.1634362,2.05028518 14.7316831,2.14956084 L16.7173912,2.49647429 L15.2398038,3.86764935 Z M5,12 C5,16.418278 8.581722,20 13,20 C15.0609678,20 16.9878304,19.215338 18.4414082,17.8655328 C14.2137018,17.1274203 11,13.4390103 11,9 C11,7.19183498 11.5366814,5.46848045 12.5051382,4.01505578 C8.31734829,4.27062453 5,7.74790816 5,12 Z" fill="currentColor"/>
+        </svg>
+      </div>
+    `;
+
+    mastheadRight.insertBefore(btn, mastheadRight.firstChild);
+
+    function triggerSmoothTransition() {
+      const html = document.documentElement;
+      html.classList.add("theme-transition");
+      setTimeout(() => html.classList.remove("theme-transition"), 300);
     }
 
-    // Run immediately if the items already exist.
-    hideDropdownItems();
+    // click → switch modes
+    btn.addEventListener('click', () => {
+		triggerSmoothTransition();
+      let mode = (typeof getstore === 'function') ? getstore('nightMode', '0') : (localStorage.getItem('nightMode') || '0');
+      mode = (mode === '0') ? '2' : (mode === '2') ? '1' : '0';
+      if (typeof putstore === 'function') putstore('nightMode', mode); else localStorage.setItem('nightMode', mode);
+      if (typeof setNightMode === 'function') setNightMode();
+      if (typeof updateThemeIcons === 'function') updateThemeIcons();
+      updateToggleUI();
+    });
+  }
 
-    // Observe menu changes to dynamically hide items.
-    const menuContainer = document.getElementById('userDropdownMenuContainer');
-    if (menuContainer) {
-        const observerMenu = new MutationObserver(hideDropdownItems);
-        observerMenu.observe(menuContainer, { childList: true, subtree: true });
-    }
-
-    if (!document.getElementById('theme-toggle')) {
-        const btn = document.createElement('button');
-        btn.id = 'theme-toggle';
-        btn.className = 'icon-btn';
-        btn.style.display = 'flex';
-        btn.style.alignItems = 'center';
-        btn.style.justifyContent = 'center';
-        btn.style.backgroundColor = 'unset';
-        btn.style.border = 'none';
-        btn.style.cursor = 'pointer';
-        btn.style.padding = '6px 8px';
-        btn.style.borderRadius = '4px';
-        btn.style.transition = 'background-color 0.2s';
-        btn.style.gap = '4px';
-        btn.style.height = '40px';
-
-        btn.addEventListener('mouseenter', () => btn.style.backgroundColor = 'rgba(255,255,255,0.1)');
-        btn.addEventListener('mouseleave', () => btn.style.backgroundColor = 'unset');
-
-        // Icons
-        btn.innerHTML = `
-			<svg class="auto-icon" viewBox="0 0 18 18" width="18" height="18" fill="#dee2e6" style="">
-				<path fill-rule="evenodd"
-					d="M68,121 C72.9705627,121 77,116.970563 77,112 C77,107.029437 72.9705627,103 68,103 
-					C63.0294373,103 59,107.029437 59,112 C59,116.970563 63.0294373,121 68,121 Z 
-					M68,119.8 C72.2313475,119.8 75.8,116.307821 75.8,112 
-					C75.8,108.076069 72.6281738,104.2 68,104.2 L68,119.8 Z"
-					transform="matrix(-1 0 0 1 77 -103)" />
-			</svg>
-            <svg class="sun-icon" viewBox="0 0 512 512" width="18" height="18" fill="#dee2e6" style="display:none;">
-                <path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"></path>
-            </svg>
-            <svg class="moon-icon" viewBox="0 0 384 512" width="18" height="18" fill="#dee2e6" style="display:none;">
-                <path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path>
-            </svg>
-        `;
-
-        btn.addEventListener('click', () => {
-            let mode = getstore('nightMode', '0');
-            mode = (mode === '0') ? '2' : (mode === '2') ? '1' : '0';
-            putstore('nightMode', mode);
-            setNightMode();
-            updateThemeIcons();
-        });
-
-        mastheadRight.insertBefore(btn, mastheadRight.firstChild);
-    }
-
-    updateThemeIcons();
-
-    const observer = new MutationObserver(() => updateThemeIcons());
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
-});
-
-function updateThemeIcons() {
+  // update ui toggle as current mode
+  function updateToggleUI() {
     const btn = document.getElementById('theme-toggle');
     if (!btn) return;
 
-    const mode = getstore('nightMode', '0');
-    btn.querySelector('.auto-icon').style.display = (mode === '0') ? 'inline-block' : 'none';
-    btn.querySelector('.sun-icon').style.display = (mode === '2') ? 'block' : 'none';
-    btn.querySelector('.moon-icon').style.display = (mode === '1') ? 'block' : 'none';
-    btn.title = (mode === '0') ? 'Theme: Auto' : (mode === '2') ? 'Theme: Light' : 'Theme: Dark';
-}
+    const track = btn.querySelector('.track');
+    const sw    = btn.querySelector('.switch');
+    const mode  = (typeof getstore === 'function') ? getstore('nightMode', '0') : (localStorage.getItem('nightMode') || '0');
+	btn.title = (mode === '0') ? 'Auto Mode' : (mode === '2') ? 'Light Mode' : 'Dark Mode';
 
-if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        setNightMode();
-        updateThemeIcons();
+    let colors;
+    if (mode === '2') colors = LIGHT;
+    else if (mode === '1') colors = DARK;
+    else colors = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? DARK : LIGHT;
+
+    track.style.setProperty('--track-bg', colors.bg);
+    track.style.setProperty('--track-border', colors.border);
+    track.style.setProperty('--sun', colors.sun);
+    track.style.setProperty('--moon', colors.moon);
+    track.style.setProperty('--shadow', colors.shadow);
+    track.style.setProperty('--light', colors.light);
+    track.style.setProperty('--switch', colors.switch);
+
+    const isLight = (mode === '2') || (mode === '0' && colors === LIGHT);
+    // const isAuto = (mode === '0');
+
+    btn.classList.remove('mode-auto','mode-light','mode-dark');
+    if (mode === '0') btn.classList.add('mode-auto');
+    else if (mode === '2') btn.classList.add('mode-light');
+    else btn.classList.add('mode-dark');
+
+    // switch position and size
+    if (mode === '2') { // light mode
+      sw.style.left = '0px';
+      sw.style.width = SWITCH_SIZE;
+	  sw.style.boxShadow= 'inset 3px 2px 4px -3px var(--shadow), 3px 2px 9px -3px var(--shadow)';
+    } else if (mode === '1') { // dark mode
+      sw.style.left = `calc(100% - ${parseFloat(SWITCH_SIZE) - 0.02}rem)`;
+      sw.style.width = SWITCH_SIZE;
+	  sw.style.boxShadow= 'inset 1px 1px 1px 0px var(--shadow), var(--light) -3px -3px 3px -2px inset';
+    } else { // auto mode
+      sw.style.left = '0px';
+//      sw.style.left = 'calc(50% - ' + (parseFloat(SWITCH_AUTO_W)/2) + 'px)';
+      sw.style.width = SWITCH_AUTO_W;
+	  sw.style.boxShadow= 'var(--shadow) 3px 3px 3px -3px inset, var(--light) -3px -3px 2px -3px inset';
+    }
+
+    // icons opacity and scale
+    btn.querySelectorAll('.sun path').forEach(p => p.style.opacity = isLight ? '1' : INACTIVE_ICON_ALPHA);
+    btn.querySelectorAll('.sun').forEach(svg => svg.style.transform = isLight ? 'scale(1.0)' : 'scale(0.7)');
+    btn.querySelectorAll('.moon path').forEach(p => p.style.opacity = isLight ? INACTIVE_ICON_ALPHA : '1');
+    btn.querySelectorAll('.moon').forEach(svg => svg.style.transform = isLight ? 'scale(0.7)' : 'scale(1.0)');
+
+	if (mode === '0') {
+		btn.querySelectorAll('.sun path').forEach(p => p.style.opacity = '1');
+		btn.querySelectorAll('.moon path').forEach(p => p.style.opacity = '1');
+	}
+  }
+
+  // detect theme changes
+  const mm = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  if (mm && typeof mm.addEventListener === 'function') {
+    mm.addEventListener('change', () => {
+      if ((typeof getstore === 'function' ? getstore('nightMode','0') : (localStorage.getItem('nightMode')||'0')) === '0') {
+        if (typeof setNightMode === 'function') setNightMode();
+        if (typeof updateThemeIcons === 'function') updateThemeIcons();
+        updateToggleUI();
+      }
     });
-}
+  }
+
+  new MutationObserver(() => updateToggleUI()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-bs-theme'] });
+
+  // starting
+  if (typeof setNightMode === 'function') setNightMode();
+  if (typeof updateThemeIcons === 'function') updateThemeIcons();
+  updateToggleUI();
+});
 
 // === HIDE ITEMS FROM THE DROPDOWN ===
 document.addEventListener('DOMContentLoaded', () => {
