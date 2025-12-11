@@ -491,20 +491,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const mastheadRight = document.querySelector('.masthead-right');
   if (!mastheadRight) return;
 
-  // keep hiding menu items (preserve original behaviour)
-  function hideDropdownItems() {
-    const nightItem = document.getElementById('toggleNightMenuItem');
-    if (nightItem) nightItem.style.display = 'none';
-    const modernUIItem = document.getElementById('toggleModernUIMenuItem');
-    if (modernUIItem) modernUIItem.style.display = 'none';
-  }
-  hideDropdownItems();
-
-  const menuContainer = document.getElementById('userDropdownMenuContainer');
-  if (menuContainer) {
-    new MutationObserver(hideDropdownItems).observe(menuContainer, { childList: true, subtree: true });
-  }
-
   // APPLYING VARS
   const LIGHT = { bg: LIGHT_BG, border: LIGHT_BORDER, sun: LIGHT_SUN, moon: LIGHT_MOON, shadow: LIGHT_SHADOW, light: LIGHT_LIGHT, switch: LIGHT_SWITCH };
   const DARK  = { bg: DARK_BG, border: DARK_BORDER,  sun: DARK_SUN,  moon: DARK_MOON,  shadow: DARK_SHADOW,  light: DARK_LIGHT, switch: DARK_SWITCH };
@@ -760,16 +746,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideDropdownItems() {
         const nightItem = document.getElementById('toggleNightMenuItem');
         if (nightItem) nightItem.style.display = 'none';
-
-        const modernUIItem = document.getElementById('toggleModernUIMenuItem');
-        if (modernUIItem) modernUIItem.style.display = 'none';
     }
 
     hideDropdownItems();
 
     const menuContainer = document.getElementById('userDropdownMenuContainer');
     if (menuContainer) {
-        const observerMenu = new MutationObserver(hideDropdownItems);
-        observerMenu.observe(menuContainer, { childList: true, subtree: true });
+        const observer = new MutationObserver(hideDropdownItems);
+        observer.observe(menuContainer, { childList: true, subtree: true });
     }
 });
