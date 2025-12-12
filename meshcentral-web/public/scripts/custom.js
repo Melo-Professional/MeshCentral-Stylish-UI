@@ -459,30 +459,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==================== SETTINGS ====================
 
-  const TOGGLE_WIDTH   = '3.0rem';
-  const TOGGLE_HEIGHT  = '1.7rem';
+  const TOGGLE_WIDTH   = '2.3rem';
+  const TOGGLE_HEIGHT  = '1.4rem';
+  const TOGGLE_BORDER  = '0.068rem';
   const PADDING        = '0.00rem';
-  const PADDING_ICONS  = '0.15rem';
-  const INACTIVE_ICON_ALPHA  = '0.7';
-  const TOGGLE_BORDER  = '0.188rem';
-  const SWITCH_SIZE = (parseFloat(TOGGLE_HEIGHT) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
-  const SWITCH_BORDER = (parseFloat(SWITCH_SIZE) / 2) + 'rem';
+  const ICONS_PADDING  = '0.05rem 0.0rem';
+  const ICONS_INACTIVE_ALPHA  = '0.3';
+  const ICONS_ACTIVE_SCALE  = '1.0';
+  const ICONS_INACTIVE_SCALE  = '0.7';
+  //const ICONS_SIZE  = (parseFloat(TOGGLE_HEIGHT) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
+  const ICONS_SIZE  = '0.9rem';
+  const ICONS_GAP = (((parseFloat(TOGGLE_WIDTH) / 2 ) - (parseFloat(TOGGLE_BORDER))) - (parseFloat(ICONS_SIZE))) + 'rem';
+  const SWITCH_HEIGHT = (parseFloat(TOGGLE_HEIGHT) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
+  //const SWITCH_WIDTH = ((parseFloat(TOGGLE_WIDTH) - (parseFloat(TOGGLE_BORDER) * 2)) / 2) + 'rem';
+  const SWITCH_WIDTH = ((parseFloat(TOGGLE_WIDTH) - (parseFloat(TOGGLE_BORDER) * 2)) / 2) + (((parseFloat(TOGGLE_WIDTH) / 2 ) - (parseFloat(TOGGLE_BORDER))) - (parseFloat(ICONS_SIZE))) + 'rem';
+  const SWITCH_BORDER_RADIUS = (parseFloat(SWITCH_HEIGHT) / 2) + 'rem';
   const SWITCH_AUTO_W = (parseFloat(TOGGLE_WIDTH) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
 
   // LIGHT THEME COLORS
-  const LIGHT_SWITCH  = "#d7d2cd";
-  const LIGHT_BG      = "#fcf2ea";
-  const LIGHT_BORDER  = "#fcf2ea";
-  const LIGHT_SUN     = "#282523";
+  const LIGHT_SWITCH  = "#1c1e1e";
+  const LIGHT_BG      = "#f3f3f3";
+  const LIGHT_BORDER  = "#f3f3f3";
+  //const LIGHT_SUN     = "#282523";
+  const LIGHT_SUN     = "#ff6600";
   const LIGHT_MOON    = "#595652";
   const LIGHT_SHADOW  = "#191919b8";
   const LIGHT_LIGHT   = "#fff";
 
   // DARK THEME COLORS
-  const DARK_SWITCH   = "#7e8e91";
+  const DARK_SWITCH   = "#1c1e1e";
   const DARK_BG       = "#5c6b6b";
   const DARK_BORDER   = "#5c6b6b";
-  const DARK_SUN      = "#9ba6a5";
+  const DARK_SUN      = "#cfd7d7";
   const DARK_MOON     = "#cfd7d7";
   const DARK_SHADOW   = "#1a1a1abf";
   const DARK_LIGHT    = "#cfcfcf87";
@@ -504,43 +512,47 @@ document.addEventListener('DOMContentLoaded', () => {
 /* General Transition */
 .theme-transition,
 .theme-transition * {
-  transition: background-color 2.6s ease,
-              background 2.6s ease,
-              color 2.6s ease,
-              border-color 2.6s ease,
-              fill 2.6s ease,
-              stroke 2.6s ease !important;
+  transition: background-color 1.6s ease,
+              background 1.6s ease,
+              color 1.6s ease,
+              border-color 1.6s ease,
+              fill 1.6s ease,
+              stroke 1.6s ease !important;
 }
 
 /* Specific Transition */
 .theme-transition #theme-toggle .switch,
 .theme-transition #theme-toggle .switch * {
-transition: transform 0.28s ease,
+	transform-origin: center;
+	transition:
+			transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+			opacity .28s ease 0.28s,
+            fill 0.28s ease 0.28s,
             width 0.28s ease,
             left 0.28s ease,
-            background-color 0.28s ease 0.45s,
-            background 0.28s ease 0.45s,
-            fill 0.28s ease 0.45s,
+            margin 0.28s ease 0.0s,
+            background-color 0.28s ease 0.28s,
+            background 0.28s ease 0.28s,
             border-color 0.28s ease,
             border-radius 0.28s ease,
-            box-shadow 0.28s ease,
-			opacity .28s ease 0.45s !important;
+            box-shadow 0.28s ease 0.28s !important;
 }
 
 #theme-toggle .sun,
 #theme-toggle .sun path,
 #theme-toggle .moon,
 #theme-toggle .moon path {
-transition: transform 0.28s ease 0.1s,
-            width 0.28s ease 0.45s,
-            left 0.28s ease 0.45s,
-            /* background-color 0.28s ease 4.5s, */
-            /* background 0.28s ease 4.5s, */
+	transform-origin: center;
+	transition:
+			transform 0.68s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s,
+			opacity 1.45s ease 0.0s,
             fill 1.45s ease 0.0s,
-            border-color 0.28s ease 0.45s,
-            border-radius 0.28s ease 0.45s,
-            box-shadow 0.28s ease 0.45s,
-			opacity 1.45s ease 0.0s !important;
+            width 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) 0.28s,
+            left 0.28s ease 0.28s,
+			margin 0.28s ease 0.0s,
+            border-color 0.28s ease 0.28s,
+            border-radius 0.28s ease 0.28s,
+            box-shadow 0.28s ease 0.28s !important;
 }
 
 
@@ -570,24 +582,24 @@ transition: transform 0.28s ease 0.1s,
   box-sizing:border-box; 
   display:flex; 
   align-items:center; 
-  justify-content:space-around; 
+  justify-content:center; 
   overflow:hidden; 
-  box-shadow: inset 1px 1px 3px 1px var(--shadow), var(--light) -3px -3px 3px -1px inset;
+  box-shadow: inset var(--shadow) 1px 1px 2px 0px, inset var(--light) -3px -3px 3px -1px;
 }
 #theme-toggle .switch { 
   position:absolute; 
-  height:${SWITCH_SIZE}; 
-  width:${SWITCH_SIZE}; 
-  border-radius:${SWITCH_BORDER}; 
-  background: color-mix(in lab, var(--switch) 80%, transparent) !important;
+  height:${SWITCH_HEIGHT}; 
+  width:${SWITCH_WIDTH}; 
+  border-radius:${SWITCH_BORDER_RADIUS}; 
+  background: color-mix(in lab, var(--switch) 17%, transparent) !important;
   z-index:5;
-  box-shadow: inset 3px 2px 4px -3px var(--shadow), 3px 2px 10px -1px var(--shadow);
+  border: 0.018rem solid rgb(255 255 255 / 28%);
 }
 #theme-toggle .sun, #theme-toggle .moon { 
-  position:relative; 
-  height:${SWITCH_SIZE}; 
-  width:${SWITCH_SIZE}; 
-  padding:${PADDING_ICONS}; 
+ /* position:relative;  */
+  height:${ICONS_SIZE}; 
+  width:${ICONS_SIZE}; 
+  padding:${ICONS_PADDING}; 
   z-index:9; 
   pointer-events:none; 
 }
@@ -601,11 +613,11 @@ transition: transform 0.28s ease 0.1s,
 }
 
 
-#theme-toggle .sun path { fill: var(--sun);	opacity: var(--sun-op);}
-#theme-toggle .moon path { fill: var(--moon); opacity: var(--moon-op);}
-#theme-toggle.mode-auto .switch { left: calc(50% - ${parseFloat(SWITCH_AUTO_W)/2 + 'px'}); width: ${SWITCH_AUTO_W}; }
-#theme-toggle.mode-light .switch { left: 4px; width: ${SWITCH_SIZE}; }
-#theme-toggle.mode-dark .switch { left: calc(100% - ${parseFloat(SWITCH_SIZE) + 8 + 'px'}); width: ${SWITCH_SIZE}; }
+#theme-toggle .sun path { fill: var(--sun);}
+#theme-toggle .moon path { fill: var(--moon);}
+#theme-toggle.mode-auto .switch { left: calc(50% - ${parseFloat(SWITCH_AUTO_W)/2 + 'rem'}); width: ${SWITCH_AUTO_W}; }
+#theme-toggle.mode-light .switch { left: 0rem; width: ${SWITCH_WIDTH}; }
+#theme-toggle.mode-dark .switch { left: calc(100% - ${parseFloat(SWITCH_WIDTH) + 'rem'}); width: ${SWITCH_WIDTH}; }
 
 #theme-toggle .track { 
   border:${TOGGLE_BORDER} solid var(--track-border); 
@@ -694,31 +706,45 @@ transition: transform 0.28s ease 0.1s,
     else btn.classList.add('mode-dark');
 
     // switch position and size
-    if (mode === '2') { // light mode
-      sw.style.left = '0px';
-      sw.style.width = SWITCH_SIZE;
-	  sw.style.boxShadow= 'inset 3px 2px 4px -3px var(--shadow), 3px 2px 9px -3px var(--shadow)';
+	if (mode === '2') { // light mode
+	  btn.querySelectorAll('.sun').forEach(svg => svg.style.marginRight = ICONS_GAP);
+	  btn.querySelectorAll('.moon').forEach(svg => svg.style.marginRight = `-${ICONS_GAP}`);
+	  btn.querySelectorAll('.sun').forEach(svg => svg.style.marginLeft = '0rem');
+	  btn.querySelectorAll('.moon').forEach(svg => svg.style.marginLeft = '0rem');
+      sw.style.width = SWITCH_WIDTH;
+	  sw.style.boxShadow= 'inset var(--shadow) 3px 2px 2px -1px, inset var(--light) -3px -3px 3px -2px, var(--shadow) 1px 1px 3px -1px';
+	  btn.querySelectorAll('.sun').forEach(svg => svg.style.transform = isLight ? 'rotate(720deg)' : 'rotate(-720deg)');
     } else if (mode === '1') { // dark mode
-      sw.style.left = `calc(100% - ${parseFloat(SWITCH_SIZE) - 0.02}rem)`;
-      sw.style.width = SWITCH_SIZE;
-	  sw.style.boxShadow= 'inset 1px 1px 1px 0px var(--shadow), var(--light) -3px -3px 3px -2px inset';
+	  btn.querySelectorAll('.sun').forEach(svg => svg.style.marginRight = '0rem');
+	  btn.querySelectorAll('.moon').forEach(svg => svg.style.marginRight = '0rem');
+	  btn.querySelectorAll('.moon').forEach(svg => svg.style.marginLeft = ICONS_GAP);
+	  btn.querySelectorAll('.sun').forEach(svg => svg.style.marginLeft = `-${ICONS_GAP}`);
+      sw.style.width = SWITCH_WIDTH;
+	  sw.style.boxShadow= 'inset var(--shadow) 2px 1px 1px 0px, inset var(--light) -3px -3px 1px -3px, var(--shadow) 3px 2px 9px -3px';
     } else { // auto mode
-      sw.style.left = '0px';
-//      sw.style.left = 'calc(50% - ' + (parseFloat(SWITCH_AUTO_W)/2) + 'px)';
+	  btn.querySelectorAll('.sun').forEach(svg => svg.style.marginRight = '0rem');
+	  btn.querySelectorAll('.moon').forEach(svg => svg.style.marginRight = '0rem');
+	  btn.querySelectorAll('.moon').forEach(svg => svg.style.marginLeft = '0rem');
+	  btn.querySelectorAll('.sun').forEach(svg => svg.style.marginLeft = '0rem');
       sw.style.width = SWITCH_AUTO_W;
-	  sw.style.boxShadow= 'var(--shadow) 3px 3px 3px -3px inset, var(--light) -3px -3px 2px -3px inset';
+	  sw.style.boxShadow= 'inset var(--shadow) 2px 2px 2px -1px, inset var(--light) -3px -3px 1px -2px, var(--shadow) 3px 2px 9px -3px;';
     }
 
-    // icons opacity and scale
-    btn.querySelectorAll('.sun path').forEach(p => p.style.opacity = isLight ? '1' : INACTIVE_ICON_ALPHA);
-    btn.querySelectorAll('.sun').forEach(svg => svg.style.transform = isLight ? 'scale(1.0)' : 'scale(0.7)');
-    btn.querySelectorAll('.moon path').forEach(p => p.style.opacity = isLight ? INACTIVE_ICON_ALPHA : '1');
-    btn.querySelectorAll('.moon').forEach(svg => svg.style.transform = isLight ? 'scale(0.7)' : 'scale(1.0)');
 
+    // icons opacity and scale
 	if (mode === '0') {
-		btn.querySelectorAll('.sun path').forEach(p => p.style.opacity = '1');
-		btn.querySelectorAll('.moon path').forEach(p => p.style.opacity = '1');
+		btn.querySelectorAll('.sun').forEach(svg => svg.style.transform = `scale(${ICONS_ACTIVE_SCALE})`);
+		btn.querySelectorAll('.moon').forEach(svg => svg.style.transform = `scale(${ICONS_ACTIVE_SCALE}) rotate(24deg)`);
+		btn.querySelectorAll('.sun path').forEach(p => p.style.opacity = isLight ? '1' : '0.8');
+		btn.querySelectorAll('.moon path').forEach(p => p.style.opacity = isLight ? '0.8' : '1');
+	} else {
+		btn.querySelectorAll('.sun path').forEach(p => p.style.opacity = isLight ? '1' : ICONS_INACTIVE_ALPHA);
+		btn.querySelectorAll('.sun').forEach(svg => svg.style.transform = isLight ? `scale(${ICONS_ACTIVE_SCALE}) rotate(180deg)` : `scale(${ICONS_INACTIVE_SCALE}) rotate(-180deg)`);
+		btn.querySelectorAll('.moon path').forEach(p => p.style.opacity = isLight ? ICONS_INACTIVE_ALPHA : '1');
+		btn.querySelectorAll('.moon').forEach(svg => svg.style.transform = isLight ? `scale(${ICONS_INACTIVE_SCALE}) rotate(204deg)` : `scale(${ICONS_ACTIVE_SCALE}) rotate(24deg)`);
 	}
+
+	
   }
 
   // detect theme changes
