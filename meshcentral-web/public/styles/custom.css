@@ -1271,6 +1271,11 @@ Specificity: (0,2,0)
 /* fullscreen session position */
 #deskarea0 { left: 0 !important; }
 
+.fsize {
+    width: 210px !important;
+	}
+
+
 /* **************************************************************** */
 /* Login Page */
 #body.arg_hide.login {
