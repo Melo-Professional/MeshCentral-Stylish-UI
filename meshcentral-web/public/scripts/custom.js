@@ -33,6 +33,7 @@
     let indicatorHideTimer = null;
     let indicator = null;
     let arrow = null;
+	let trueFsActive = false;
 
     const injectCSS = () => {
       if (document.getElementById(CONFIG.FULLSCREEN_STYLE_ID)) return;
@@ -182,6 +183,12 @@
     };
 
     const disable = () => {
+		//container.style.transform = '';
+		container.style.left = '0';
+		//container.style.top = '';
+		//container.style.width = '';
+		//container.style.height = '';
+
       if (!enabled) return;
       enabled = false;
 
@@ -203,14 +210,24 @@
       const tryPatch = () => {
         if (typeof window.deskToggleFull !== 'function') { setTimeout(tryPatch, CONFIG.PATCH_RETRY_MS); return; }
         const orig = window.deskToggleFull;
+		if (!trueFsActive && enabled) {
+  disable();
+}
         window.deskToggleFull = function (ev) {
-          const was = !!window.fullscreen;
-          const fake = ev ? Object.assign({}, ev, { shiftKey: true }) : { shiftKey: true };
-          const res = orig.call(this, fake);
-          const now = !!window.fullscreen;
-          if (!was && now) requestAnimationFrame(enable);
-          else if (was && !now) disable();
-          return res;
+  const was = !!window.fullscreen;
+  const fake = ev
+    ? Object.assign({}, ev, { shiftKey: !ev.shiftKey })
+    : { shiftKey: true };
+	trueFsActive = !!fake.shiftKey;
+	const res = orig.call(this, fake);
+	const now = !!window.fullscreen;
+	if (!was && now && trueFsActive) {
+	requestAnimationFrame(enable);
+	} else if (was && !now && enabled) {
+	disable();
+	}
+
+  return res;
         };
       };
       tryPatch();
@@ -221,7 +238,8 @@
       events.split(' ').forEach(ev => document.addEventListener(ev, () => {
         const inFs = !!(document.fullscreenElement || document.webkitFullscreenElement ||
           document.mozFullScreenElement || document.msFullscreenElement);
-        if (!inFs && enabled) try { window.deskToggleFull?.(); } catch (_) { }
+        if (!inFs && enabled && trueFsActive) try { window.deskToggleFull?.(); } catch (_) { }
+		trueFsActive = false;
       }, true));
     };
 
