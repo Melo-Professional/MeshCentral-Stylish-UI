@@ -1628,8 +1628,7 @@ Specificity: (0,2,0)
 @media (min-width: 769px) {
     #masthead {
 		/* background-color: #222f42 !important; /* Melo */
-		background-image: url(../logo.png), linear-gradient(270deg, var(--bs-primary) 33%, var(--bs-secondary) 200%);
-        background-image: url(../logo.png), linear-gradient(270deg, var(--bs-secondary) -33%, var(--bs-primary) 33%);
+		background-image: url(../logo.png), linear-gradient(90deg, var(--bs-primary) 66%, var(--bs-secondary) 133%);
 	}
 }
 
