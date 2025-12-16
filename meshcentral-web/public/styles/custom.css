@@ -104,9 +104,15 @@ div.e1t {
     background-color: transparent !important;
 }
 
-#p3 .p3eventsTable tbody tr td:first-child {
+#p3 .p3eventsTable tbody tr td:first-child,
+#p31 .p3eventsTable tbody tr td:first-child {
   background-color: unset !important;
   cursor: pointer;
+}
+
+#p31 > table > tbody > tr > td.h1,
+#p31 > table > tbody > tr > td.h2 {
+	display: none;
 }
 
 .bar18 {
