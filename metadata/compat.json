@@ -1,8 +1,12 @@
 {
   "version": 1,
-  "generated": "2025-12-03",
+  "generated": "2025-12-15",
   "compatibility": [
     {
+      "stylishui": "3.2.1",
+      "meshcentral": "1.1.54"
+    },
+     {
       "stylishui": "3.2.0",
       "meshcentral": "1.1.54"
     },
