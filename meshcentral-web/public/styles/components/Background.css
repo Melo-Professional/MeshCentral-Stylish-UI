@@ -5,11 +5,11 @@ body, #container, #column_l, .deviceBarCheckbox, .deviceBarIcon, .baricon, .card
     background-color: unset !important;
 }
 
-#container {
+#container, .table>:not(caption)>*>* {
 	background-color: #f3f3f3 !important;
 }
 
-.night #container {
+.night #container, .night .table>:not(caption)>*>* {
 	background-color: #1c1e1e !important;
 }
 
