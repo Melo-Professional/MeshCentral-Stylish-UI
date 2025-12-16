@@ -457,12 +457,6 @@
   --sub-menu-color: #7d7d7d3d;
 }
 
-#dialog2 > div {
-height: unset !important;
-max-height: 350px !important;
-}
-
-
 .form-select {
 	background: rgba(242, 242, 242, 0.01) !important;
 	/* padding: 15px; */

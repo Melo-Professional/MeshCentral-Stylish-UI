@@ -9,11 +9,32 @@
 }
 
 @media (max-width: 768px) {
-    #masthead {
-		background-color: var(--bs-primary) !important;
-	}
+#masthead {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--bs-primary) 66%,
+    var(--bs-secondary) 133%
+  );
+  overflow: visible;
+	background-size: unset !important;
 }
 
+#masthead::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 18rem;
+  height: 2.5rem;
+  transform: translateY(-50%);
+  background-image: url(../logo.png);
+  background-repeat: no-repeat;
+  background-position: left center;
+  pointer-events: none;
+  background-size: 18rem 2.5rem;
+}
+}
 
 /* Masthead Company name size */
 #masthead .title {
