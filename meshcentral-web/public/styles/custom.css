@@ -1268,6 +1268,8 @@ Specificity: (0,2,0)
   border: 1px solid color-mix(in lab, currentcolor 40%, transparent);
 }
 
+/* fullscreen session position */
+#deskarea0 { left: 0 !important; }
 
 /* **************************************************************** */
 /* Login Page */

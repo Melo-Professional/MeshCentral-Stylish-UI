@@ -95,6 +95,7 @@
 
 #p17info2 > table > tbody > tr > td * {
 		border: none !important;
+		cursor: default;
 }
 
 @media (min-width: 769px) {
@@ -585,4 +586,49 @@ Specificity: (0,2,0)
 .form-select {
 	color: var(--bs-body-color);
 }
+
+/* form-checks-input radio buttons */
+.form-check-input {
+  border: 1px solid color-mix(in lab, currentcolor 30%, transparent) !important;
+  border-radius: 50% !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 0.9;
+  /* background-size: unset !important; */
+	background-size: contain !important;
+}
+
+.form-check-input:hover {
+	transform: scale(1.15);
+	transition: transform 0.3s ease 0s, background-color 0.6s ease 0s;
+	background-color: color-mix(in lab, var(--bs-primary) 20%, transparent) !important;
+	opacity: 1.0;
+}
+
+.form-check-input:focus {
+  box-shadow: 0px 0px 2px 0.15rem color-mix(in lab, var(--bs-secondary) 20%, transparent);
+	background-color: color-mix(in lab, var(--bs-primary) 20%, transparent) !important;
+		/*transform: scale(1.15);*/
+	transition: transform 0.3s ease 0s, background-color 0.6s ease 0s;
+
+}
+
+.form-check-input:checked {
+  background-color: var(--bs-primary) !important;
+  background-image: var(--bs-form-check-bg-image) !important;
+}
+
+.form-check-input:not(:checked), .form-check-input:not(:disabled) {
+  background: transparent;
+	background-color: color-mix(in lab, var(--bs-secondary) 0%, transparent);
+
+}
+
+.form-check-input:disabled {
+  opacity: 0.4;
+  border: 1px solid color-mix(in lab, currentcolor 40%, transparent);
+}
+
+/* fullscreen session position */
+#deskarea0 { left: 0 !important; }
 

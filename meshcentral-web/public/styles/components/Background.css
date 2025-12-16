@@ -1,12 +1,18 @@
 /* **************************************************************** */
 /* Background */
-#column_l, .deviceBarCheckbox, .deviceBarIcon, .baricon, .card{
-    background-color: #f3f3f3 !important;
+body, #container, #column_l, .deviceBarCheckbox, .deviceBarIcon, .baricon, .card,
+.night #container, .night #column_l, .night .deviceBarCheckbox, .night .deviceBarIcon, .night .baricon, .night .card{
+    background-color: unset !important;
 }
 
-.night #column_l, .night .deviceBarCheckbox, .night .deviceBarIcon, .night .baricon, .night .card {
-    background-color: #1c1e1e !important;
+#container {
+	background-color: #f3f3f3 !important;
 }
+
+.night #container {
+	background-color: #1c1e1e !important;
+}
+
 /*
 .deviceBarIcon .j1 {
 	margin-top: 2px !important;
@@ -22,4 +28,5 @@ a, div[id^="dialog"] a {
 	padding: 11px !important;
 	font-size: smaller !important;
 }
+
 
