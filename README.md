@@ -13,6 +13,8 @@
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-9cf.svg" alt="license"></a>
   <a href="#screenshots"><img src="https://img.shields.io/static/v1?label=made%20with&message=%E2%9D%A4&color=red"></a>
 </p>
+<p align="center">A modern UI theme for MeshCentral, enhancing the default interface with improved responsiveness, refined layouts, and consistent design elements.</p>
+
 
 ---
 ## 🌐 Demo Server
