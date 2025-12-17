@@ -63,13 +63,9 @@ Click the image below to open the demo
     </td>
   </tr>
   <tr>
-     <td align="center">
-      <strong>Toggle Light / Dark</strong><br>
-      <img width="100%" alt="Toggle Light / Dark" src="https://github.com/user-attachments/assets/a0430d09-b334-4404-b3e2-0fdeae540e6a" />
-    </td>
-    <td align="center" >
+    <td align="center" colspan="2">
       <strong>Power Graph</strong><br>
-      <img width="100%" alt="Power Graph" src="https://github.com/user-attachments/assets/a0430d09-b334-4404-b3e2-0fdeae540e6a" />
+      <img width="70%" alt="Power Graph" src="https://github.com/user-attachments/assets/a0430d09-b334-4404-b3e2-0fdeae540e6a" />
     </td>
   </tr>
   <tr>
