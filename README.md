@@ -204,3 +204,8 @@ meshcentral-web/
   • <a href="https://github.com/si458">Simon</a> — for general guidance<br>
   • <a href="https://github.com/Ylianst/MeshCentral">MeshCentral</a> — the ultimate RMM solution!
 </p>
+
+---
+
+**Built with ❤️ by [Melo](https://github.com/Melo-Professional)**  
+*Feedback? Open an issue or star the repo!*
