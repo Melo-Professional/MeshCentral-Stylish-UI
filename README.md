@@ -1,4 +1,4 @@
-# MeshCentral Stylish UI
+<h1 align="center">MeshCentral Stylish UI</h1>
 
 <p align="center">
 <img width="80%" alt="banner" src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/StylishUI_banner_center.png" />
