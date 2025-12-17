@@ -8,9 +8,9 @@
   <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI"><img src="https://img.shields.io/github/stars/Melo-Professional/MeshCentral-Stylish-UI?style=social" alt="stars"></a>
   <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/forks"><img src="https://img.shields.io/github/forks/Melo-Professional/MeshCentral-Stylish-UI?style=social" alt="forks"></a>
   <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/commits/main/"><img src="https://img.shields.io/github/last-commit/Melo-Professional/MeshCentral-Stylish-UI" alt="last-commit"></a>
-  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/github/v/release/Melo-Professional/MeshCentral-Stylish-UI?sort=semver" alt="version"></a>
-  <a href="https://meshcentral.com"><img src="https://img.shields.io/badge/platform-MeshCentral-lightgrey.svg" alt="platform"></a>
-  <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-violet.svg" alt="license"></a>
+  <a href="https://github.com/Melo-Professional/MeshCentral-Stylish-UI/releases"><img src="https://img.shields.io/github/v/release/Melo-Professional/MeshCentral-Stylish-UI?sort=semver&color=purple" alt="version"></a>
+  <a href="https://meshcentral.com"><img src="https://img.shields.io/badge/platform-MeshCentral-yellow.svg" alt="platform"></a>
+  <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202.0-9cf.svg" alt="license"></a>
   <a href="#screenshots"><img src="https://img.shields.io/static/v1?label=made%20with&message=%E2%9D%A4&color=red"></a>
 </p>
 
