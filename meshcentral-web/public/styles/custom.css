@@ -769,6 +769,10 @@ hr#cxmgroupsplit {
 	text-align: left !important;
 }
 
+#p17info2 > table > tbody > tr > td > div{
+    margin-bottom: 2.3rem !important;
+}
+
 #p17graph table  > tbody > tr > td > img,
 #p17info2 > table > tbody > tr > td > img, #p17info2 > table > tbody > tr > img {
 	transform: translateY(-20px);
@@ -783,7 +787,7 @@ hr#cxmgroupsplit {
 	margin-top: 50px;
 }
 
-.night #p17info2 > table {
+.night #p17graph table, .night #p17info2 > table {
 	background-color: #8181810f;
 }
 
