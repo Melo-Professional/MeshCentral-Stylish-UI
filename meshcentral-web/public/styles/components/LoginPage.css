@@ -224,7 +224,7 @@
   border: none !important;
 }
 
-#body.arg_hide.login #authStrategies {
+#body.arg_hide.login #authStrategies a {
     display: ruby;
 }
 

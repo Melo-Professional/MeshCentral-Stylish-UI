@@ -1512,7 +1512,7 @@ Specificity: (0,2,0)
   border: none !important;
 }
 
-#body.arg_hide.login #authStrategies {
+#body.arg_hide.login #authStrategies a {
     display: ruby;
 }
 
