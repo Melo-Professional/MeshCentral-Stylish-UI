@@ -132,3 +132,6 @@
     height: 12px !important;
 }
 
+.userDropdownMenuItem[onclick="handleUserMenuItem('logout')"] {
+    color: #ff5353 !important;
+}

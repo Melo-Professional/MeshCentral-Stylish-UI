@@ -2229,11 +2229,8 @@ Specificity: (0,2,0)
 }
 
 #notifyRemoveAll:hover {
-	background-color: #e3e3e3 !important;
-}
-
-.night #notifyRemoveAll:hover {
-	background-color: #414141 !important;
+		background-color: color-mix(in lab, currentcolor 5%, transparent) !important;
+		transition: background-color 0.2s ease;
 }
 
 .notification {
@@ -2272,7 +2269,7 @@ Specificity: (0,2,0)
     flex-shrink: 0 !important;
 	border-top: unset !important;
     border-bottom: 1px solid var(--bs-border-color-translucent) !important;
-    color: var(--bs-body-color) !important;
+    color: #ff5353 !important;
 	font-size: small !important;
 	border-radius: 7px !important;
 	}
@@ -2564,4 +2561,8 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 #userDropdownMenuContainer .fa-chevron-right {
 	width: 12px !important;
     height: 12px !important;
+}
+
+.userDropdownMenuItem[onclick="handleUserMenuItem('logout')"] {
+    color: #ff5353 !important;
 }
