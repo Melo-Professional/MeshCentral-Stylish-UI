@@ -1189,10 +1189,37 @@ canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
     border: unset !important;
 	}
 	
-.card:hover, #p2AccountImage:hover, #p2canvas:hover {
+.card, #p2AccountImage, #MainUserImageEx, picture#MainUserImage {
     background: unset !important;
-	transition: transform 0.3s ease 0s;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform-origin: bottom center;
+}
+
+#p2canvas {
+    background: unset !important;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover, #p2AccountImage:hover, #p2canvas:hover, #MainUserImageEx:hover, picture#MainUserImage:hover {
 	transform: scale(1.02);
+	background: unset !important;
+}
+
+img#MainComputerImage {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform-origin: bottom right;
+}
+
+img#MainComputerImage:hover {
+	transform: scale(1.02);
+}
+
+#dialog2 > div > div[onclick^="p10setIcon"] {
+    transition: transform 0.3s ease;
+}
+
+#dialog2 > div > div[onclick^="p10setIcon"]:hover {
+	transform: scale(1.5);
 }
 
 #p2canvas {
