@@ -1185,6 +1185,41 @@ input#d2devurl {
     background-color: #f3f3f3;
 }
 
+#p2 .card {
+    border-radius: 20px;
+	border: unset;
+}
+
+#p2 .col-10 {
+    padding: 25px 10px 10px 0;
+    width: 70%;
+}
+
+#p2 .col-2 {
+    flex: 0 0 auto;
+    width: 30%;
+    padding: 10px;
+}
+
+#p2 .card {
+	background-color: #e5e5e582 !important;
+}
+
+.night #p2 .card {
+	background-color: #8181810f !important;
+}
+
+
+#p2 .card:hover {
+    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+.night #p2 .card:hover {
+    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
 canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
 	box-shadow: unset !important;
     background: unset !important;
