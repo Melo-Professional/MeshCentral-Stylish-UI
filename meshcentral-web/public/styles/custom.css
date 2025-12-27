@@ -630,17 +630,19 @@ hr#cxmgroupsplit {
 
 #page_leftbar .nav-link {
 	border-radius: 5px 0px 0px 5px !important;
+	transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+#page_leftbar .nav-link:hover {
+	transform: scale(1.2);
+}
 
 #page_leftbar .nav-link:not(.lbbuttonsel2):hover {
     background-color: color-mix(in lab, currentcolor 50%, transparent) !important;
-	transition: background-color 0.2s ease;
 }
 
 .night #page_leftbar .nav-link:not(.lbbuttonsel2):hover {
     background-color: color-mix(in lab, currentcolor 10%, transparent) !important;
-	transition: background-color 0.2s ease;
 }
 
 /* **************************************************************** */
