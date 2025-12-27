@@ -73,7 +73,7 @@ Click the image below to open the demo
   <tr>
     <td align="center" colspan="2">
       <strong>My Server</strong><br>
-      <img width="80%" alt="My Server" src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/ThemedBars_20251227_0515.png" />
+      <img width="80%" alt="My Server" src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/MyServer_20251227_0538.png" />
     </td>
   </tr>
   <tr>
