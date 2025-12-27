@@ -2242,6 +2242,254 @@ Specificity: (0,2,0)
     }
 }
 
+
+
+/* **************************************************************** */
+/* My Server */
+
+/* Main container - transparent and centered */
+#p6 #serverStats {
+    /* font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif; */
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    /* padding: 20px; */
+    color: #2d3748;
+    transition: all 0.3s ease;
+}
+
+.night #p6 #serverStats {
+    color: #e0e0e0;
+}
+
+/* Pie chart line - centered and with spacing */
+#p6 #serverStats > div[id$="ChartView"] {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 40px 28px;
+    border-radius: 18px;
+    margin: 15px 1px;
+    transition: all 0.3s ease;
+    min-width: 456px;
+    flex: 1;
+    /* max-width: 420px; */
+}
+
+/* Graphic card background */
+#p6 #serverStats > div[id$="ChartView"] {
+    background: rgba(240, 245, 255, 0.7);
+    border: 1px solid rgba(100, 120, 255, 0.2);
+}
+
+.night #p6 #serverStats > div[id$="ChartView"] {
+    background: rgba(30, 35, 50, 0.65);
+    border: 1px solid rgba(100, 120, 255, 0.2);
+}
+
+#p6 #serverStats > div[id$="ChartView"]:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+.night #p6 #serverStats > div[id$="ChartView"]:hover {
+    background: rgba(40, 45, 70, 0.85);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Center the two cards on the line */
+#p6 #serverStats > div[id^="serverCpuChartView"],
+#p6 #serverStats > div[id^="serverMemoryChartView"] {
+    display: inline-flex;
+}
+
+#p6 #serverStats::before {
+    content: '';
+    display: block;
+    text-align: center;
+}
+
+/* Increase the size of the pie charts */
+#p6 .chartViewCanvas canvas {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+#p6 .chartViewCanvas {
+    height: unset !important;
+}
+
+
+/* Chart texts */
+#p6 .chartViewText {
+    text-align: left;
+    width: 260px !important;
+    margin: 10px;
+    padding-left: 30px;
+}
+
+#p6 .chartViewText > div:first-child {
+    font-weight: 600;
+    font-size: 16px;
+    /*margin-bottom: 10px;*/
+    color: #4c51bf;
+}
+
+#p6 .night .chartViewText > div:first-child {
+    color: #a0a8ff;
+}
+
+#p6 .chartViewText b {
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(100, 120, 255, 0.18);
+    margin-right: 4px;
+    color: #2d3748;
+}
+
+.night #p6 .chartViewText b {
+    background: rgba(80, 100, 255, 0.25);
+    color: #ffffff;
+}
+
+/* Increased spacing before Server State */
+#p6 #serverStatsTable {
+    /* margin-top: 50px; /* Large spacing between graphs and Server State */
+	max-width: 930px;
+}
+
+/* Server State Title */
+#p6 .userTableHeader,
+#p6 #p6info > strong,
+#p6 #p2ServerActions > p > strong {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 20px !important;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(100, 120, 255, 0.3);
+    color: #4a5568;
+    text-align: left;
+}
+
+.night #p6 .userTableHeader,
+.night #p6 #p6info > strong,
+.night #p6 #p2ServerActions > p > strong {
+    color: #c0c8ff;
+    border-bottom-color: rgba(100, 120, 255, 0.4);
+}
+
+/* Grid with more cells per row */
+#p6 #serverStatsTable > div:not(:first-child) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 12px;
+}
+
+/* Statistics cards - centered horizontally + vertically */
+#p6 .serverStateTableCell {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(245, 250, 255, 0.8);
+    border-radius: 16px;
+    padding: 24px 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(100, 120, 255, 0.2);
+    min-height: 110px;
+}
+
+.night #p6 .serverStateTableCell {
+    background: rgba(30, 35, 50, 0.65);
+    border: 1px solid rgba(100, 120, 255, 0.2);
+}
+
+#p6 .serverStateTableCell:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.night #p6 .serverStateTableCell:hover {
+    background: rgba(40, 45, 70, 0.9);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Large, centered number */
+#p6 .serverStateTableCell span:last-child {
+    display: block;
+    font-size: 40px !important;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #2d3748;
+    background: none !important;
+    padding: 0 !important;
+    float: none !important;
+    line-height: 1;
+}
+
+.night #p6 .serverStateTableCell span:last-child {
+    color: #ffffff;
+}
+
+/* Label below and centered */
+#p6 .serverStateTableCell span:first-child {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #4a5568;
+    opacity: 0.95;
+    float: none !important;
+}
+
+.night #p6 .serverStateTableCell span:first-child {
+    color: #b0b8ff;
+}
+
+/* Remove <br><br> */
+#p6 #serverStats > br {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    #p6 #serverStats > div[id$="ChartView"] {
+        display: flex;
+        width: 100%;
+        max-width: none;
+        margin: 15px 0;
+    }
+
+    #p6 #serverStatsTable > div:not(:first-child) {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    #p6 #serverStatsTable > div:not(:first-child) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #p6 .chartViewCanvas canvas {
+        width: 70px !important;
+        height: 70px !important;
+    }
+
+    #p6 .serverStateTableCell span:last-child {
+        font-size: 36px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    #p6 #serverStatsTable > div:not(:first-child) {
+        grid-template-columns: 1fr;
+    }
+}
+
+
 /* **************************************************************** */
 /* Notifications */
 .deviceNotifyDotSub {
