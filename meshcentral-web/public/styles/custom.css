@@ -778,6 +778,11 @@ hr#cxmgroupsplit {
 #p17graph table  > tbody > tr > td > img,
 #p17info2 > table > tbody > tr > td > img, #p17info2 > table > tbody > tr > img {
 	transform: translateY(-20px);
+	filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.45));
+}
+
+.night #p17graph table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > img {
+	filter: drop-shadow(6px 6px 6px rgba(189, 185, 185, 0.25));
 }
 
 #p17graph table, #p17info2 > table {
@@ -1252,11 +1257,33 @@ img#MainComputerImage:hover {
 }
 
 #dialog2 > div > div[onclick^="p10setIcon"] {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+	transform-origin: bottom center;
 }
 
 #dialog2 > div > div[onclick^="p10setIcon"]:hover {
-	transform: scale(1.5);
+    transform: scale(1.2);
+    filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.45));
+}
+
+#dialog2 > div > div[onclick^="p10setIcon"] {
+    margin: 17px !important;
+    filter: drop-shadow(4px 2px 2px rgba(0, 0, 0, 0.15));
+}
+
+#dialog2 > div > div[onclick^="p10setIcon"]:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(4px 16px 7px rgba(0, 0, 0, 0.15));
+}
+
+.night #dialog2 > div > div[onclick^="p10setIcon"] {
+    margin: 17px !important;
+    filter: drop-shadow(4px 2px 2px rgba(110 110 110 / 30%));
+}
+
+.night #dialog2 > div > div[onclick^="p10setIcon"]:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(4px 16px 7px rgb(110 110 110 / 30%));
 }
 
 #p2canvas {
@@ -2270,7 +2297,7 @@ Specificity: (0,2,0)
     border-radius: 18px;
     margin: 15px 0px;
     transition: all 0.3s ease;
-    min-width: 456px;
+    min-width: 450px;
     flex: 1;
     /* max-width: 420px; */
 }
@@ -2300,6 +2327,7 @@ Specificity: (0,2,0)
 #p6 #serverStats > div[id^="serverCpuChartView"],
 #p6 #serverStats > div[id^="serverMemoryChartView"] {
     display: inline-flex;
+	margin-left: 5px;
 }
 
 #p6 #serverStats::before {
@@ -2491,6 +2519,81 @@ Specificity: (0,2,0)
 #p6 {
     cursor: default;
 }
+
+/* Animated border */
+#p6 #serverStats > div[id^="serverCpuChartView"],
+#p6 #serverStats > div[id^="serverMemoryChartView"] {
+    position: relative;
+    display: inline-flex;
+    border-radius: 12px;
+}
+
+#p6 #serverStats > div[id^="serverCpuChartView"],
+#p6 #serverStats > div[id^="serverMemoryChartView"] {
+    position: relative;
+    z-index: 0;
+    overflow: visible;
+}
+
+#p6 #serverStats > div[id^="serverCpuChartView"]::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: conic-gradient(
+        from var(--angle),
+        #00e5ff,
+		#e6e6e691,
+        #7c4dff,
+        #00e5ff
+    );
+    animation: borderSpin 4s linear infinite;
+    z-index: -1;
+
+    /* border mask */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: 3px;
+}
+
+
+#p6 #serverStats > div[id^="serverMemoryChartView"]::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: conic-gradient(
+        from var(--angle),
+        #7c4dff,
+        #00e5ff,
+		#e6e6e691,
+        #7c4dff
+    );
+    animation: borderSpin 4s linear infinite;
+    z-index: -1;
+
+    /* border mask */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: 3px;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes borderSpin {
+    to { --angle: 360deg; }
+}
+
 
 /* **************************************************************** */
 /* Notifications */

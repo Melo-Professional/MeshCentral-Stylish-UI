@@ -25,7 +25,7 @@
     border-radius: 18px;
     margin: 15px 0px;
     transition: all 0.3s ease;
-    min-width: 456px;
+    min-width: 450px;
     flex: 1;
     /* max-width: 420px; */
 }
@@ -55,6 +55,7 @@
 #p6 #serverStats > div[id^="serverCpuChartView"],
 #p6 #serverStats > div[id^="serverMemoryChartView"] {
     display: inline-flex;
+	margin-left: 5px;
 }
 
 #p6 #serverStats::before {
@@ -247,3 +248,76 @@
     cursor: default;
 }
 
+/* Animated border */
+#p6 #serverStats > div[id^="serverCpuChartView"],
+#p6 #serverStats > div[id^="serverMemoryChartView"] {
+    position: relative;
+    display: inline-flex;
+    border-radius: 12px;
+}
+
+#p6 #serverStats > div[id^="serverCpuChartView"],
+#p6 #serverStats > div[id^="serverMemoryChartView"] {
+    position: relative;
+    z-index: 0;
+    overflow: visible;
+}
+
+#p6 #serverStats > div[id^="serverCpuChartView"]::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: conic-gradient(
+        from var(--angle),
+        #00e5ff,
+		#e6e6e691,
+        #7c4dff,
+        #00e5ff
+    );
+    animation: borderSpin 4s linear infinite;
+    z-index: -1;
+
+    /* border mask */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: 3px;
+}
+
+
+#p6 #serverStats > div[id^="serverMemoryChartView"]::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 14px;
+    background: conic-gradient(
+        from var(--angle),
+        #7c4dff,
+        #00e5ff,
+		#e6e6e691,
+        #7c4dff
+    );
+    animation: borderSpin 4s linear infinite;
+    z-index: -1;
+
+    /* border mask */
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    padding: 3px;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes borderSpin {
+    to { --angle: 360deg; }
+}

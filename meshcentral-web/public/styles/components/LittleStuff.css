@@ -131,6 +131,11 @@
 #p17graph table  > tbody > tr > td > img,
 #p17info2 > table > tbody > tr > td > img, #p17info2 > table > tbody > tr > img {
 	transform: translateY(-20px);
+	filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.45));
+}
+
+.night #p17graph table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > img {
+	filter: drop-shadow(6px 6px 6px rgba(189, 185, 185, 0.25));
 }
 
 #p17graph table, #p17info2 > table {
@@ -605,11 +610,33 @@ img#MainComputerImage:hover {
 }
 
 #dialog2 > div > div[onclick^="p10setIcon"] {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+	transform-origin: bottom center;
 }
 
 #dialog2 > div > div[onclick^="p10setIcon"]:hover {
-	transform: scale(1.5);
+    transform: scale(1.2);
+    filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.45));
+}
+
+#dialog2 > div > div[onclick^="p10setIcon"] {
+    margin: 17px !important;
+    filter: drop-shadow(4px 2px 2px rgba(0, 0, 0, 0.15));
+}
+
+#dialog2 > div > div[onclick^="p10setIcon"]:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(4px 16px 7px rgba(0, 0, 0, 0.15));
+}
+
+.night #dialog2 > div > div[onclick^="p10setIcon"] {
+    margin: 17px !important;
+    filter: drop-shadow(4px 2px 2px rgba(110 110 110 / 30%));
+}
+
+.night #dialog2 > div > div[onclick^="p10setIcon"]:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(4px 16px 7px rgb(110 110 110 / 30%));
 }
 
 #p2canvas {
