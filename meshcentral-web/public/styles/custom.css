@@ -2243,7 +2243,6 @@ Specificity: (0,2,0)
 }
 
 
-
 /* **************************************************************** */
 /* My Server */
 
@@ -2269,7 +2268,7 @@ Specificity: (0,2,0)
     gap: 24px;
     padding: 40px 28px;
     border-radius: 18px;
-    margin: 15px 1px;
+    margin: 15px 0px;
     transition: all 0.3s ease;
     min-width: 456px;
     flex: 1;
@@ -2323,9 +2322,9 @@ Specificity: (0,2,0)
 /* Chart texts */
 #p6 .chartViewText {
     text-align: left;
-    width: 260px !important;
-    margin: 10px;
-    padding-left: 30px;
+    width: 280px !important;
+    margin: 0px;
+    padding-left: 0px;
 }
 
 #p6 .chartViewText > div:first-child {
