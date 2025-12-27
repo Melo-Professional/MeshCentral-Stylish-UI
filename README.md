@@ -72,8 +72,8 @@ Click the image below to open the demo
   </tr>
   <tr>
     <td align="center" colspan="2">
-      <strong>Themed Bars</strong><br>
-      <img width="747" height="815" alt="Themed Bars" src="https://github.com/user-attachments/assets/5001d8ac-8906-4b59-a440-c887f57148fb" />
+      <strong>My Server</strong><br>
+      <img width="80%" alt="My Server" src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/ThemedBars_20251227_0515.png" />
     </td>
   </tr>
   <tr>
