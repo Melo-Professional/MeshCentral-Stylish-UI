@@ -567,6 +567,39 @@ input#d2devurl {
 	background-color: #8181810f !important;
 }
 
+#p2 .card {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    transition: background-color 0.25s ease, backdrop-filter 0.25s ease;
+}
+
+#p2 .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 70%
+    );
+    opacity: 0;
+    transform: translateX(-60%);
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+#p2 .card:hover {
+    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+#p2 .card:hover::before {
+    opacity: 1;
+    transform: translateX(60%);
+}
 
 #p2 .card:hover {
     background-color: color-mix(in lab, currentColor 7%, transparent) !important;

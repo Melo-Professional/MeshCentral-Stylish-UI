@@ -1214,15 +1214,38 @@ input#d2devurl {
 	background-color: #8181810f !important;
 }
 
-
-#p2 .card:hover {
-    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
-    transition: background-color 0.2s ease;
+#p2 .card {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    transition: background-color 0.25s ease, backdrop-filter 0.25s ease;
 }
 
-.night #p2 .card:hover {
-    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
-    transition: background-color 0.2s ease;
+#p2 .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 70%
+    );
+    opacity: 0;
+    transform: translateX(-60%);
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+#p2 .card:hover {
+    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+#p2 .card:hover::before {
+    opacity: 1;
+    transform: translateX(60%);
 }
 
 canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
@@ -2415,8 +2438,10 @@ Specificity: (0,2,0)
     margin-top: 12px;
 }
 
-/* Statistics cards - centered horizontally + vertically */
+/* Statistics cards – glass + light reflection */
 #p6 .serverStateTableCell {
+    position: relative;
+    overflow: hidden;
     display: flex !important;
     flex-direction: column;
     justify-content: center;
@@ -2425,7 +2450,7 @@ Specificity: (0,2,0)
     border-radius: 16px;
     padding: 24px 16px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: background-color 0.25s ease, backdrop-filter 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(100, 120, 255, 0.2);
     min-height: 110px;
 }
@@ -2435,14 +2460,41 @@ Specificity: (0,2,0)
     border: 1px solid rgba(100, 120, 255, 0.2);
 }
 
+/* Light reflection */
+#p6 .serverStateTableCell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 70%
+    );
+    opacity: 0;
+    transform: translateX(-60%);
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+/* Hover – glass effect */
 #p6 .serverStateTableCell:hover {
     transform: translateY(-6px);
+    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
 }
 
 .night #p6 .serverStateTableCell:hover {
-    background: rgba(40, 45, 70, 0.9);
+    background-color: color-mix(in srgb, var(--bs-secondary) 18%, transparent);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Activate reflection on hover */
+#p6 .serverStateTableCell:hover::before {
+    opacity: 1;
+    transform: translateX(60%);
 }
 
 /* Large, centered number */
