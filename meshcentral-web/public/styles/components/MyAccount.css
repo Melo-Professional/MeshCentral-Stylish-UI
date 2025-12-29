@@ -1,0 +1,146 @@
+/* **************************************************************** */
+/* My Account */
+
+#p2info {
+	overflow-x: hidden !important;
+}
+
+#p2meshes {
+	margin-right: 15px !important;
+}
+
+#p2 .col-10 {
+    padding: 25px 10px 10px 0;
+    width: 70%;
+}
+
+#p2 .col-2 {
+    flex: 0 0 auto;
+    width: 30%;
+    padding: 10px;
+}
+
+/* #p2meshes {
+	margin-right: 15px !important;
+	max-width: 930px;
+}
+*/
+
+#p2 .card {
+	background: rgba(245, 250, 255, 0.8) !important;
+}
+
+.night #p2 .card {
+	background: rgba(30, 35, 50, 0.65) !important;
+}
+
+#p2meshes .row {
+    --bs-gutter-x: unset;
+    --bs-gutter-y: unset;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: unset;
+    margin-right: unset;
+    margin-left: unset;
+}
+
+#p2meshes .mb-2 {
+    margin-bottom: unset !important;
+	margin-right: .5rem !important;
+}
+
+#p2meshes .col-lg-4 {
+    flex: 0 0 auto;
+    width: unset !important;
+}
+
+#p2meshes .card {
+	width: 300px;
+	height: 24px;
+	margin-bottom: 4px !important;
+	vertical-align: middle;
+	border-spacing: 0;
+	color: var(--bs-secondary-color);
+	position: relative;
+	overflow: hidden;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	border-radius: 16px;
+	padding: 24px 16px;
+	transition: background-color 0.25s ease,
+	backdrop-filter 0.25s ease,
+	transform 0.3s ease,
+	box-shadow 0.3s ease;
+	border: 1px solid rgba(100, 120, 255, 0.2);
+	min-height: 110px;
+}
+
+#p2meshes .card:hover {
+    transform: translateY(-6px);
+    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+#p2 .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 70%
+    );
+    opacity: 0;
+    transform: translateX(-60%);
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    pointer-events: none;
+}
+
+#p2 .card:hover {
+    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+}
+
+#p2 .card:hover::before {
+    opacity: 1;
+    transform: translateX(60%);
+}
+
+canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
+	box-shadow: unset !important;
+    background: unset !important;
+    border: unset !important;
+	}
+	
+.card, #p2AccountImage, #MainUserImageEx, picture#MainUserImage {
+    background: unset !important;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transform-origin: bottom center;
+}
+
+#p2canvas {
+    background: unset !important;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover, #p2AccountImage:hover, #p2canvas:hover, #MainUserImageEx:hover, picture#MainUserImage:hover {
+	transform: scale(1.02);
+	background: unset !important;
+}
+
+#p2canvas {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+	margin-top: 50px !important;
+}
+
+input#p2FolderUp {
+    min-width: 82px;
+    margin-right: 15px;
+}
