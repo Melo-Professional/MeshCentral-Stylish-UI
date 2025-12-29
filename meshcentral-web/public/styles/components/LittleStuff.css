@@ -543,11 +543,6 @@ input#d2devurl {
     background-color: #f3f3f3;
 }
 
-#p2 .card {
-    border-radius: 20px;
-	border: unset;
-}
-
 #p2 .col-10 {
     padding: 25px 10px 10px 0;
     width: 70%;
@@ -560,18 +555,19 @@ input#d2devurl {
 }
 
 #p2 .card {
-	background-color: #e5e5e582 !important;
+    position: relative;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column;
+    background: rgba(245, 250, 255, 0.8) !important;
+    border-radius: 16px;
+    transition: background-color 0.25s ease, backdrop-filter 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(100, 120, 255, 0.2);
+    min-height: 110px;
 }
 
 .night #p2 .card {
-	background-color: #8181810f !important;
-}
-
-#p2 .card {
-    position: relative;
-    overflow: hidden;
-    background: transparent;
-    transition: background-color 0.25s ease, backdrop-filter 0.25s ease;
+    background: rgba(30, 35, 50, 0.65) !important;
 }
 
 #p2 .card::before {
@@ -599,16 +595,6 @@ input#d2devurl {
 #p2 .card:hover::before {
     opacity: 1;
     transform: translateX(60%);
-}
-
-#p2 .card:hover {
-    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
-    transition: background-color 0.2s ease;
-}
-
-.night #p2 .card:hover {
-    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
-    transition: background-color 0.2s ease;
 }
 
 canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
