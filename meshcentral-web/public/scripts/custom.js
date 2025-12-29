@@ -847,3 +847,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     waitForSubmenu(addSwitchThemeItem);
 })();
+
+
+// === THEME SWITCHER: no backdrop ===
+(function () {
+
+    // CSS
+    const style = document.createElement('style');
+    style.id = 'no-theme-backdrop-style';
+    style.textContent = `
+        body.no-theme-backdrop > .modal-backdrop {
+            display: none !important;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // modal opens
+    document.addEventListener('show.bs.modal', function (e) {
+        const modal = e.target;
+
+        if (modal.querySelector('label[for="theme-switcher"]')) {
+            document.body.classList.add('no-theme-backdrop');
+        }
+    });
+
+    // modal closes
+    document.addEventListener('hidden.bs.modal', function () {
+        document.body.classList.remove('no-theme-backdrop');
+    });
+
+})();
