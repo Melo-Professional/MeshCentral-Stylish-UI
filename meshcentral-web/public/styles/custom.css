@@ -637,12 +637,16 @@ hr#cxmgroupsplit {
 	transform: scale(1.2);
 }
 
-#page_leftbar .nav-link:not(.lbbuttonsel2):hover {
-    background-color: color-mix(in lab, currentcolor 50%, transparent) !important;
+#page_leftbar .nav-link {
+    --hover-bg: color-mix(in lab, #fff 50%, transparent);
 }
 
-.night #page_leftbar .nav-link:not(.lbbuttonsel2):hover {
-    background-color: color-mix(in lab, currentcolor 10%, transparent) !important;
+.night #page_leftbar .nav-link {
+    --hover-bg: color-mix(in lab, #fff 8%, transparent);
+}
+
+#page_leftbar .nav-link:not(.lbbuttonsel2):hover {
+    background-color: var(--hover-bg) !important;
 }
 
 /* **************************************************************** */
