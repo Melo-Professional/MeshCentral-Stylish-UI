@@ -645,7 +645,7 @@ hr#cxmgroupsplit {
     --hover-bg: color-mix(in lab, #fff 8%, transparent);
 }
 
-#page_leftbar .nav-link:not(.lbbuttonsel2):hover {
+#page_leftbar .nav-link:not([class*="lbbuttonsel"]):hover {
     background-color: var(--hover-bg) !important;
 }
 
