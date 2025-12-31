@@ -1410,11 +1410,13 @@ div[id$="BackButton"] {
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius: 15px !important;
+  /*border-radius: 15px !important;*/
   box-shadow: 0 8px 32px rgb(174 177 230 / 37%) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   color: #f0f0f0 !important;
+  	border-radius: 60px !important;
+	corner-shape: squircle !important;
 }
 
 #loginpanel:hover, #createpanel:hover, #resetpanel:hover, #tokenpanel:hover, #resettokenpanel:hover, #resetpasswordpanel:hover, #checkemailpanel:hover, #waitpushpanel:hover {
