@@ -659,11 +659,6 @@ hr#cxmgroupsplit {
 	background-color: #1c1e1e !important;
 }
 
-#p1title {
-	margin-top: -13px !important;
-    margin-right: 15px;
-}
-
 #p30info {
 	overflow-x: hidden !important;
 }
@@ -2058,6 +2053,12 @@ Specificity: (0,2,0)
     border-radius: 3px !important;
     font-size: xx-small !important;
 }
+
+#p1title {
+	margin-top: -13px !important;
+    margin-right: 15px;
+}
+
 
 /* **************************************************************** */
 /* Mobile Styles */
