@@ -509,13 +509,18 @@ tr[name="xxdevice2"] {
 
 #p17graph table, #p17info2 > table {
 	background-color: #e5e5e582;
-	/* border-radius: 40px; */
+	border-radius: 40px;
 	max-width: 1000px !important;
 	margin-left: auto;
 	margin-right: auto;	
 	margin-top: 50px;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+  #p17graph table, #p17info2 > table {
 	border-radius: 120px;
 	corner-shape: squircle;
+  }
 }
 
 .night #p17graph table, .night #p17info2 > table {
@@ -1410,13 +1415,18 @@ div[id$="BackButton"] {
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  /*border-radius: 15px !important;*/
+  border-radius: 15px !important;
   box-shadow: 0 8px 32px rgb(174 177 230 / 37%) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   color: #f0f0f0 !important;
-  	border-radius: 60px !important;
-	corner-shape: squircle !important;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+  #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
+	border-radius: 60px;
+	corner-shape: squircle;
+  }
 }
 
 #loginpanel:hover, #createpanel:hover, #resetpanel:hover, #tokenpanel:hover, #resettokenpanel:hover, #resetpasswordpanel:hover, #checkemailpanel:hover, #waitpushpanel:hover {
@@ -1805,15 +1815,26 @@ div[id$="BackButton"] {
     width: 26.66px !important;
     height: 26.66px !important;
     cursor: pointer !important;
-    /* border-radius: 5px !important; */
+    border-radius: 5px !important;
     transition: all 0.2s ease !important;
     color: #666;
     background: transparent;
     overflow: hidden !important;
     opacity: 1 !important;
 	margin-left: 10px;
-	border-radius: 60px !important;
-	corner-shape: squircle !important;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"],
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: inline"],
+#devListToolbarViewIcons span[id^="devViewButton"]:not([style*="display"]),
+
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: block"],
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: inline"],
+#devListToolbarViewIcons div[id^="devViewPageButton"]:not([style*="display"]) {
+	border-radius: 60px;
+	corner-shape: squircle;
+  }
 }
 
 #devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"]::before,
@@ -2320,7 +2341,7 @@ div[id$="BackButton"] {
 	display: flex !important;
 	flex-direction: column;
 	justify-content: center;
-	/* border-radius: 16px; */
+	border-radius: 16px;
 	padding: 24px 16px;
 	transition: background-color 0.25s ease,
 	backdrop-filter 0.25s ease,
@@ -2328,8 +2349,13 @@ div[id$="BackButton"] {
 	box-shadow 0.3s ease;
 	border: 1px solid rgba(100, 120, 255, 0.2);
 	min-height: 110px;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#p2meshes .card {
 	border-radius: 60px;
 	corner-shape: squircle;
+  }
 }
 
 #p2meshes .card:hover {
@@ -2595,14 +2621,19 @@ input#p2FolderUp {
     justify-content: center;
     align-items: center;
     background: rgba(245, 250, 255, 0.8);
-    /* border-radius: 16px; */
+    border-radius: 16px;
     padding: 24px 16px;
     text-align: center;
     transition: background-color 0.25s ease, backdrop-filter 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(100, 120, 255, 0.2);
     min-height: 110px;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#p6 .serverStateTableCell {
 	border-radius: 60px;
 	corner-shape: squircle;
+  }
 }
 
 .night #p6 .serverStateTableCell {
@@ -2729,17 +2760,22 @@ input#p2FolderUp {
     display: inline-flex;
     z-index: 0;
     overflow: visible;
-    border-radius: 80px;
-    corner-shape: squircle;
+    border-radius: 14px;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#p6 #serverStats > div[id^="serverCpuChartView"],
+#p6 #serverStats > div[id^="serverMemoryChartView"] {
+	border-radius: 80px;
+	corner-shape: squircle;
+  }
 }
 
 #p6 #serverStats > div[id^="serverCpuChartView"]::after {
     content: "";
     position: absolute;
     inset: -2px;
-    /* border-radius: 14px; */
-	border-radius: 80px;
-	corner-shape: squircle;
+    border-radius: 14px;
     background: conic-gradient(
         from var(--angle),
         #00e5ff,
@@ -2759,14 +2795,19 @@ input#p2FolderUp {
     padding: 3px;
 }
 
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#p6 #serverStats > div[id^="serverCpuChartView"]::after {
+	border-radius: 80px;
+	corner-shape: squircle;
+  }
+}
+
 
 #p6 #serverStats > div[id^="serverMemoryChartView"]::after {
     content: "";
     position: absolute;
     inset: -2px;
-    /* border-radius: 14px; */
-	border-radius: 80px;
-	corner-shape: squircle;
+    border-radius: 14px;
     background: conic-gradient(
         from var(--angle),
         #7c4dff,
@@ -2784,6 +2825,13 @@ input#p2FolderUp {
     -webkit-mask-composite: xor;
             mask-composite: exclude;
     padding: 3px;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#p6 #serverStats > div[id^="serverMemoryChartView"]::after {
+	border-radius: 80px;
+	corner-shape: squircle;
+  }
 }
 
 @property --angle {

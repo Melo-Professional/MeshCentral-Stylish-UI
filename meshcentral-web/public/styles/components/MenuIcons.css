@@ -28,15 +28,26 @@
     width: 26.66px !important;
     height: 26.66px !important;
     cursor: pointer !important;
-    /* border-radius: 5px !important; */
+    border-radius: 5px !important;
     transition: all 0.2s ease !important;
     color: #666;
     background: transparent;
     overflow: hidden !important;
     opacity: 1 !important;
 	margin-left: 10px;
-	border-radius: 60px !important;
-	corner-shape: squircle !important;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"],
+#devListToolbarViewIcons span[id^="devViewButton"][style*="display: inline"],
+#devListToolbarViewIcons span[id^="devViewButton"]:not([style*="display"]),
+
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: block"],
+#devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: inline"],
+#devListToolbarViewIcons div[id^="devViewPageButton"]:not([style*="display"]) {
+	border-radius: 60px;
+	corner-shape: squircle;
+  }
 }
 
 #devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"]::before,
@@ -314,3 +325,4 @@
 	margin-top: -13px !important;
     margin-right: 15px;
 }
+

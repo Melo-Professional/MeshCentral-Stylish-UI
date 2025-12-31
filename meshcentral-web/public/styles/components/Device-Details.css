@@ -52,13 +52,18 @@
 
 #p17graph table, #p17info2 > table {
 	background-color: #e5e5e582;
-	/* border-radius: 40px; */
+	border-radius: 40px;
 	max-width: 1000px !important;
 	margin-left: auto;
 	margin-right: auto;	
 	margin-top: 50px;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+  #p17graph table, #p17info2 > table {
 	border-radius: 120px;
 	corner-shape: squircle;
+  }
 }
 
 .night #p17graph table, .night #p17info2 > table {
@@ -145,3 +150,4 @@
     transform: translateY(0);
   }
 }
+

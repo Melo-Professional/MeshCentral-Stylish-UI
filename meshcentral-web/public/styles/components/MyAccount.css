@@ -66,7 +66,7 @@
 	display: flex !important;
 	flex-direction: column;
 	justify-content: center;
-	/* border-radius: 16px; */
+	border-radius: 16px;
 	padding: 24px 16px;
 	transition: background-color 0.25s ease,
 	backdrop-filter 0.25s ease,
@@ -74,13 +74,18 @@
 	box-shadow 0.3s ease;
 	border: 1px solid rgba(100, 120, 255, 0.2);
 	min-height: 110px;
+}
+
+@supports (corner-shape: squircle) or (corner-shape: superellipse) {
+#p2meshes .card {
 	border-radius: 60px;
 	corner-shape: squircle;
+  }
 }
 
 #p2meshes .card:hover {
     transform: translateY(-6px);
-    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent);
+    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
     backdrop-filter: blur(10px) saturate(140%);
     -webkit-backdrop-filter: blur(10px) saturate(140%);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
@@ -157,3 +162,4 @@ input#p2FolderUp {
     transform: translateY(0);
   }
 }
+
