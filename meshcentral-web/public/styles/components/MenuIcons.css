@@ -45,7 +45,7 @@
 #devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: block"],
 #devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: inline"],
 #devListToolbarViewIcons div[id^="devViewPageButton"]:not([style*="display"]) {
-	border-radius: 60px;
+	border-radius: 60px !important;
 	corner-shape: squircle;
   }
 }

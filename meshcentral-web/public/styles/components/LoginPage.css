@@ -44,7 +44,7 @@
 
 @supports (corner-shape: squircle) or (corner-shape: superellipse) {
   #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
-	border-radius: 60px;
+	border-radius: 60px !important;
 	corner-shape: squircle;
   }
 }

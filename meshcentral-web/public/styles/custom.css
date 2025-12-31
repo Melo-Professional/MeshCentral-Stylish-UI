@@ -1424,7 +1424,7 @@ div[id$="BackButton"] {
 
 @supports (corner-shape: squircle) or (corner-shape: superellipse) {
   #loginpanel, #createpanel, #resetpanel, #tokenpanel, #resettokenpanel, #resetpasswordpanel, #checkemailpanel, #waitpushpanel {
-	border-radius: 60px;
+	border-radius: 60px !important;
 	corner-shape: squircle;
   }
 }
@@ -1832,7 +1832,7 @@ div[id$="BackButton"] {
 #devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: block"],
 #devListToolbarViewIcons div[id^="devViewPageButton"][style*="display: inline"],
 #devListToolbarViewIcons div[id^="devViewPageButton"]:not([style*="display"]) {
-	border-radius: 60px;
+	border-radius: 60px !important;
 	corner-shape: squircle;
   }
 }
