@@ -2716,14 +2716,10 @@ input#p2FolderUp {
 #p6 #serverStats > div[id^="serverMemoryChartView"] {
     position: relative;
     display: inline-flex;
-    border-radius: 12px;
-}
-
-#p6 #serverStats > div[id^="serverCpuChartView"],
-#p6 #serverStats > div[id^="serverMemoryChartView"] {
-    position: relative;
     z-index: 0;
     overflow: visible;
+    border-radius: 80px;
+    corner-shape: squircle;
 }
 
 #p6 #serverStats > div[id^="serverCpuChartView"]::after {
