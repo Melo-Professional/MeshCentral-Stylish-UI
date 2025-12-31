@@ -152,12 +152,14 @@
     justify-content: center;
     align-items: center;
     background: rgba(245, 250, 255, 0.8);
-    border-radius: 16px;
+    /* border-radius: 16px; */
     padding: 24px 16px;
     text-align: center;
     transition: background-color 0.25s ease, backdrop-filter 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(100, 120, 255, 0.2);
     min-height: 110px;
+	border-radius: 60px;
+	corner-shape: squircle;
 }
 
 .night #p6 .serverStateTableCell {
@@ -296,7 +298,9 @@
     content: "";
     position: absolute;
     inset: -2px;
-    border-radius: 14px;
+    /* border-radius: 14px; */
+	border-radius: 80px;
+	corner-shape: squircle;
     background: conic-gradient(
         from var(--angle),
         #00e5ff,
@@ -321,7 +325,9 @@
     content: "";
     position: absolute;
     inset: -2px;
-    border-radius: 14px;
+    /* border-radius: 14px; */
+	border-radius: 80px;
+	corner-shape: squircle;
     background: conic-gradient(
         from var(--angle),
         #7c4dff,
@@ -350,3 +356,4 @@
 @keyframes borderSpin {
     to { --angle: 360deg; }
 }
+

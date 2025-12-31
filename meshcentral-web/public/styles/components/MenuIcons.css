@@ -28,13 +28,15 @@
     width: 26.66px !important;
     height: 26.66px !important;
     cursor: pointer !important;
-    border-radius: 5px !important;
+    /* border-radius: 5px !important; */
     transition: all 0.2s ease !important;
     color: #666;
     background: transparent;
     overflow: hidden !important;
     opacity: 1 !important;
 	margin-left: 10px;
+	border-radius: 60px !important;
+	corner-shape: squircle !important;
 }
 
 #devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"]::before,

@@ -66,7 +66,7 @@
 	display: flex !important;
 	flex-direction: column;
 	justify-content: center;
-	border-radius: 16px;
+	/* border-radius: 16px; */
 	padding: 24px 16px;
 	transition: background-color 0.25s ease,
 	backdrop-filter 0.25s ease,
@@ -74,6 +74,8 @@
 	box-shadow 0.3s ease;
 	border: 1px solid rgba(100, 120, 255, 0.2);
 	min-height: 110px;
+	border-radius: 60px;
+	corner-shape: squircle;
 }
 
 #p2meshes .card:hover {
@@ -98,12 +100,6 @@
     transform: translateX(-60%);
     transition: opacity 0.3s ease, transform 0.5s ease;
     pointer-events: none;
-}
-
-#p2 .card:hover {
-    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
 }
 
 #p2 .card:hover::before {
