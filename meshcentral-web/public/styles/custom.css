@@ -454,6 +454,156 @@ tr[name="xxdevice2"] {
   }
 }
 
+
+/* **************************************************************** */
+/* Device Details */
+#p17info2 .table.table-hover {
+    --bs-table-bg: unset !important;
+	--bs-table-hover-bg: unset !important;
+}
+
+#p17info2 > table > tbody > tr > td * {
+		border: none !important;
+		cursor: default;
+}
+
+@media (min-width: 769px) {
+	#p17info2 > table > tbody > tr > td > div:nth-child(2) {
+		margin-left: 40px !important;
+		margin-right: 40px !important;
+	}
+	#p17graph > table > tbody > tr > td:nth-child(2) > div:nth-child(2) {
+		width:calc(100% - 56px) !important;
+	}
+
+    .col-md-8 {
+        flex: 0 0 auto;
+        width: 360px !important;
+		padding-left: 32px;
+    }
+
+    .col-md-4 {
+        flex: 0 0 auto;
+		width: auto;
+        /* width: 65% !important; */
+    }
+}
+
+.col-md-4 {
+	text-align: left !important;
+}
+
+#p17info2 > table > tbody > tr > td > div{
+    margin-bottom: 2.3rem !important;
+}
+
+#p17graph table  > tbody > tr > td > img,
+#p17info2 > table > tbody > tr > td > img, #p17info2 > table > tbody > tr > img {
+	transform: translateY(-20px);
+	filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.45));
+}
+
+.night #p17graph table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > img {
+	filter: drop-shadow(6px 6px 6px rgba(189, 185, 185, 0.25));
+}
+
+#p17graph table, #p17info2 > table {
+	background-color: #e5e5e582;
+	/* border-radius: 40px; */
+	max-width: 1000px !important;
+	margin-left: auto;
+	margin-right: auto;	
+	margin-top: 50px;
+	border-radius: 120px;
+	corner-shape: squircle;
+}
+
+.night #p17graph table, .night #p17info2 > table {
+	background-color: #8181810f;
+}
+
+#p17info2  table > tbody > tr > td > div > div:hover {
+    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+.night #p17info2  table > tbody > tr > td > div > div:hover {
+    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
+    transition: background-color 0.2s ease;
+}
+
+#devListToolbarViewIcons3 {
+    margin-right: 25px;
+}
+
+#p17info {
+    caption-side: bottom;
+    border-collapse: collapse;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    overflow-wrap: break-word;
+    align-items: center;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+#p17info2 > table > tbody > tr > td > div.DevSt {
+    line-height: 4rem;
+    margin-bottom: unset !important;
+}
+
+#p17info2 .row.mb-1 {
+    width: 100%;
+    margin-right: unset !important;
+    margin-left: unset !important;
+}
+
+#p17info2 > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td > div {
+    padding: unset !important;
+	--bs-gutter-x: 1.5rem;
+	--bs-gutter-y: 0;
+}
+
+#p17info2 > table > tbody > tr > td * {
+    color: var(--bs-body-color);
+}
+
+.night #p17info2 > table > tbody > tr > td * {
+    color: #BBB;
+}
+
+#p17info2 > table {
+	margin-bottom: 10px;
+}
+
+#p17info2 > table > tbody > tr > td:nth-child(1) {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+}
+
+/* device details animation */
+#p17graph > table,
+#p17info2 > table {
+  animation: p17-pop-in 0.4s cubic-bezier(.22,.61,.36,1) both;
+  animation-delay: calc(0.2s * sibling-index());
+}
+
+@keyframes p17-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 /* **************************************************************** */
 /* Device - General Page customization */
 #p10 span[tabindex="0"], #p10 span[onclick="showEditNodeValueDialog(3)"], #p10 span[onclick="showEditNodeValueDialog(2)"] {
@@ -724,133 +874,6 @@ hr#cxmgroupsplit {
 
 .night .deskToolsBar:hover {
 	background-color: #414141 !important;
-}
-
-/* Device Details */
-#p17info2 .table.table-hover {
-    --bs-table-bg: unset !important;
-	--bs-table-hover-bg: unset !important;
-}
-
-#p17info2 > table > tbody > tr > td * {
-		border: none !important;
-		cursor: default;
-}
-
-@media (min-width: 769px) {
-	#p17info2 > table > tbody > tr > td > div:nth-child(2) {
-		margin-left: 40px !important;
-		margin-right: 40px !important;
-	}
-	#p17graph > table > tbody > tr > td:nth-child(2) > div:nth-child(2) {
-		width:calc(100% - 56px) !important;
-	}
-
-    .col-md-8 {
-        flex: 0 0 auto;
-        width: 360px !important;
-		padding-left: 32px;
-    }
-
-    .col-md-4 {
-        flex: 0 0 auto;
-		width: auto;
-        /* width: 65% !important; */
-    }
-}
-
-.col-md-4 {
-	text-align: left !important;
-}
-
-#p17info2 > table > tbody > tr > td > div{
-    margin-bottom: 2.3rem !important;
-}
-
-#p17graph table  > tbody > tr > td > img,
-#p17info2 > table > tbody > tr > td > img, #p17info2 > table > tbody > tr > img {
-	transform: translateY(-20px);
-	filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.45));
-}
-
-.night #p17graph table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > img {
-	filter: drop-shadow(6px 6px 6px rgba(189, 185, 185, 0.25));
-}
-
-#p17graph table, #p17info2 > table {
-	background-color: #e5e5e582;
-	border-radius: 40px;
-	max-width: 1000px !important;
-	margin-left: auto;
-	margin-right: auto;	
-	margin-top: 50px;
-}
-
-.night #p17graph table, .night #p17info2 > table {
-	background-color: #8181810f;
-}
-
-#p17info2  table > tbody > tr > td > div > div:hover {
-    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
-    transition: background-color 0.2s ease;
-}
-
-.night #p17info2  table > tbody > tr > td > div > div:hover {
-    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
-    transition: background-color 0.2s ease;
-}
-
-#devListToolbarViewIcons3 {
-    margin-right: 25px;
-}
-
-#p17info {
-    caption-side: bottom;
-    border-collapse: collapse;
-    vertical-align: inherit;
-    unicode-bidi: isolate;
-    overflow-wrap: break-word;
-    align-items: center;
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-#p17info2 > table > tbody > tr > td > div.DevSt {
-    line-height: 4rem;
-    margin-bottom: unset !important;
-}
-
-#p17info2 .row.mb-1 {
-    width: 100%;
-    margin-right: unset !important;
-    margin-left: unset !important;
-}
-
-#p17info2 > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td > div {
-    padding: unset !important;
-	--bs-gutter-x: 1.5rem;
-	--bs-gutter-y: 0;
-}
-
-#p17info2 > table > tbody > tr > td * {
-    color: var(--bs-body-color);
-}
-
-.night #p17info2 > table > tbody > tr > td * {
-    color: #BBB;
-}
-
-#p17info2 > table {
-	margin-bottom: 10px;
-}
-
-#p17info2 > table > tbody > tr > td:nth-child(1) {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    pointer-events: none;
 }
 
 /* Scrollbars */
@@ -1775,13 +1798,15 @@ Specificity: (0,2,0)
     width: 26.66px !important;
     height: 26.66px !important;
     cursor: pointer !important;
-    border-radius: 5px !important;
+    /* border-radius: 5px !important; */
     transition: all 0.2s ease !important;
     color: #666;
     background: transparent;
     overflow: hidden !important;
     opacity: 1 !important;
 	margin-left: 10px;
+	border-radius: 60px !important;
+	corner-shape: squircle !important;
 }
 
 #devListToolbarViewIcons span[id^="devViewButton"][style*="display: block"]::before,
@@ -2287,7 +2312,7 @@ Specificity: (0,2,0)
 	display: flex !important;
 	flex-direction: column;
 	justify-content: center;
-	border-radius: 16px;
+	/* border-radius: 16px; */
 	padding: 24px 16px;
 	transition: background-color 0.25s ease,
 	backdrop-filter 0.25s ease,
@@ -2295,11 +2320,13 @@ Specificity: (0,2,0)
 	box-shadow 0.3s ease;
 	border: 1px solid rgba(100, 120, 255, 0.2);
 	min-height: 110px;
+	border-radius: 60px;
+	corner-shape: squircle;
 }
 
 #p2meshes .card:hover {
     transform: translateY(-6px);
-    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent);
+    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
     backdrop-filter: blur(10px) saturate(140%);
     -webkit-backdrop-filter: blur(10px) saturate(140%);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
@@ -2319,12 +2346,6 @@ Specificity: (0,2,0)
     transform: translateX(-60%);
     transition: opacity 0.3s ease, transform 0.5s ease;
     pointer-events: none;
-}
-
-#p2 .card:hover {
-    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
 }
 
 #p2 .card:hover::before {
@@ -2366,6 +2387,22 @@ input#p2FolderUp {
     margin-right: 15px;
 }
 
+/* cards animation */
+#p2meshes > .row > div {
+  animation: p2-pop-in 0.26s cubic-bezier(.22,.61,.36,1) both;
+  animation-delay: calc(0.1s * sibling-index());
+}
+
+@keyframes p2-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* **************************************************************** */
 /* My Events - Remove horizontal scrolling in the Events view */
@@ -2547,12 +2584,14 @@ input#p2FolderUp {
     justify-content: center;
     align-items: center;
     background: rgba(245, 250, 255, 0.8);
-    border-radius: 16px;
+    /* border-radius: 16px; */
     padding: 24px 16px;
     text-align: center;
     transition: background-color 0.25s ease, backdrop-filter 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(100, 120, 255, 0.2);
     min-height: 110px;
+	border-radius: 60px;
+	corner-shape: squircle;
 }
 
 .night #p6 .serverStateTableCell {
@@ -2691,7 +2730,9 @@ input#p2FolderUp {
     content: "";
     position: absolute;
     inset: -2px;
-    border-radius: 14px;
+    /* border-radius: 14px; */
+	border-radius: 80px;
+	corner-shape: squircle;
     background: conic-gradient(
         from var(--angle),
         #00e5ff,
@@ -2716,7 +2757,9 @@ input#p2FolderUp {
     content: "";
     position: absolute;
     inset: -2px;
-    border-radius: 14px;
+    /* border-radius: 14px; */
+	border-radius: 80px;
+	corner-shape: squircle;
     background: conic-gradient(
         from var(--angle),
         #7c4dff,
