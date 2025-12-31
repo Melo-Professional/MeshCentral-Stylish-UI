@@ -276,6 +276,7 @@
 	overflow: hidden;
 	fill: none !important;
 	stroke: none !important;
+	margin-right: 15px;
 
 /* === SVG === */
 	background-color: currentColor;
