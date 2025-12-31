@@ -307,3 +307,7 @@
     font-size: xx-small !important;
 }
 
+#p1title {
+	margin-top: -13px !important;
+    margin-right: 15px;
+}
