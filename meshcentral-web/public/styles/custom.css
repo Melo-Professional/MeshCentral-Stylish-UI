@@ -1368,6 +1368,10 @@ Specificity: (0,2,0)
     to   { transform: translateX(-50%) rotate(360deg); }
 }
 
+div[id$="BackButton"] {
+    color: var(--bs-primary);
+}
+
 
 /* **************************************************************** */
 /* Login Page */
