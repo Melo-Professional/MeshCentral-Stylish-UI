@@ -20,8 +20,8 @@
 	margin-right: calc(1.5 * var(--bs-gutter-x)) !important;
 }
 
-#p30html2 {
-	margin-right: 15px !important;
+#p30html2, #p30html3, #p3users {
+	padding-right: 15px !important;
 }
 
 #p2meshes {

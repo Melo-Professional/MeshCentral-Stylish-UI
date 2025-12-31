@@ -3,16 +3,16 @@
 
 #column_l {
   margin-top: 0 !important;
-  /* padding: 15px 0 0 15px !important; */
+  padding: 15px 0 0 15px !important;
 }
-
+/*
 #p1 {
     margin-right: -15px;
 }
 
 #devListToolbarSpan .d-flex.align-items-center.ms-auto {
     margin-right: 15px;
-}
+}*/
 
 body.fullscreen:not(.menu_stack) #column_l:has(
   #p1:not([style*="display: none"], [style*="display:none"]),
@@ -50,6 +50,7 @@ body.fullscreen:not(.menu_stack) #column_l:has(
 #p10info {
 	height: calc(-145px + 100vh) !important;
     max-height: calc(-145px + 100vh) !important;
+    padding-right: 15px;
 }
 
 #xdevicesmap {
