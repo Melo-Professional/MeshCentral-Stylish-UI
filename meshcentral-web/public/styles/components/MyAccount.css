@@ -140,3 +140,20 @@ input#p2FolderUp {
     min-width: 82px;
     margin-right: 15px;
 }
+
+/* cards animation */
+#p2meshes > .row > div {
+  animation: p2-pop-in 0.26s cubic-bezier(.22,.61,.36,1) both;
+  animation-delay: calc(0.1s * sibling-index());
+}
+
+@keyframes p2-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
