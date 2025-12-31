@@ -28,7 +28,8 @@
 	margin-right: 15px !important;
 }
 
-#p3users table, #p16events .table.table-hover.p3eventsTable {
+#p3users table, #p16events .table.table-hover.p3eventsTable,
+table.table.table-hover.p3usersTable {
 	--bs-table-bg: unset !important;
 }
 
