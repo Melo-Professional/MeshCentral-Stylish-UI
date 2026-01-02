@@ -1,0 +1,184 @@
+/* **************************************************************** */
+/* History Tabs */
+#masthead {
+    position: relative !important;
+    padding-bottom: 0px !important;
+    height: auto !important;
+    /*min-height: 66px;*/
+    transition: padding 0.2s;
+    align-items: flex-start !important;
+    overflow: visible !important;
+}
+
+/* Keep heights */
+.masthead-left,
+.masthead-right {
+    height: 66px !important;
+    display: flex;
+    align-items: center;
+}
+
+/* Historical Tabs Container - Transparent background, positioned at bottom */
+#history-tabs-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 1%;
+    width: 98%;
+    max-width: 100% !important;
+    height: 16px;
+    display: flex;
+    align-items: flex-end;
+    /* gap: 2px; */
+    padding: 0 10px;
+    background: transparent;
+    border-top: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+    z-index: 100;
+    justify-content: center;
+}
+
+#history-tabs-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+/* Individual Tab Style */
+.history-tab {
+    background: rgba(255, 255, 255, 0.15);
+    color: #f4f4f4;
+    height: 13px;
+    padding: 0 0 0 10px;
+    border-radius: 10px 10px 0 0;
+    font-size: 11px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /* gap: 6px; */
+    transition: all 0.2s ease;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    border-bottom: none;
+    user-select: none;
+    margin-bottom: 0;
+    /*min-width: 90px;*/
+    /*max-width: 120px;*/
+    width: 130px;
+}
+
+.history-tab span:first-child {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+.history-tab:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.history-tab.active {
+    background: #f3f3f352;
+    color: #fff;
+    font-weight: 600;
+    border-color: rgba(255, 255, 255, 0.2);
+    height: 16px;
+    box-shadow: 0 15px 8px 9px #00000047 !important;
+}
+
+.night .history-tab.active {
+	background: #1c1e1e33;
+}
+
+/* Close Button (x) */
+.history-tab .close-btn {
+    opacity: 0.6;
+    font-size: 7px;
+    line-height: 1;
+    border-radius: 0px 10px 0 0;
+    width: 24px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    overflow: hidden;
+    flex: 0 0 22px;
+    margin-left: 1px;
+    transform: translateX(2px);
+	color: transparent;
+}
+
+.history-tab .close-btn:hover {
+    background: rgba(255, 50, 50, 0.8);
+    opacity: 1;
+    overflow: hidden;
+    color: white;
+}
+
+.history-tab.active .close-btn{
+	height: 18px;
+	width: 16px;
+	transform: translateX(2px);
+}
+
+/* Close All Button - X style, positioned at start */
+.history-clear-btn {
+    height: 13px;
+    width: 22px;
+    min-width: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px 4px 0 0;
+	background: rgb(255 50 50 / 38%);
+    color: transparent;
+    font-size: 10px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 0px;
+    margin-left: 0;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+	transform: translateY(5px);
+}
+
+.history-clear-btn:hover {
+    background: rgba(255, 50, 50, 0.8);
+    color: white;
+    border-color: rgba(255, 50, 50, 0.8);
+	transform: translateY(0px);
+}
+
+@media (min-width: 1600px) {
+	#history-tabs-wrapper {
+	    height: 23px;
+	}
+	.history-tab {
+		height: 20px;
+		font-size: 14px;
+		width: 160px;
+	}
+	.history-tab.active {
+		height: 23px;
+	}
+	.history-tab .close-btn {
+		font-size: 12px;
+		width: 20px;
+		height: 22px;
+		flex: 0 0 27px;
+		margin-left: 5px;
+	}
+	.history-tab.active .close-btn{
+		height: 25px;
+		width: 24px;
+		font-size: 14px;
+		transform: translateX(2px);
+	}
+	.history-clear-btn {
+		height: 20px;
+		width: 28px;
+		font-size: 14px;
+		transform: translateY(9px);
+	}
+}
