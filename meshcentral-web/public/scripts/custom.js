@@ -877,3 +877,234 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 })();
+
+
+// ====== HISTORY TABS ======
+(function () {
+    'use strict';
+
+    const MAX_HISTORY = 8;
+    const STORAGE_KEY = 'mesh_device_history';
+
+    // Helper: get history
+    function getHistory() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    // Helper: save history
+    function saveHistory(history) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    }
+
+    // Initialize container in masthead
+    function initContainer() {
+        const masthead = document.getElementById('masthead');
+        if (!masthead) return;
+
+        let wrapper = document.getElementById('history-tabs-wrapper');
+        if (wrapper && wrapper.parentNode !== masthead) {
+            wrapper.parentNode.removeChild(wrapper);
+            wrapper = null;
+        }
+        if (!wrapper) {
+            wrapper = document.createElement('div');
+            wrapper.id = 'history-tabs-wrapper';
+            masthead.appendChild(wrapper);
+        }
+    }
+
+    // Render tabs
+    function renderTabs() {
+        const wrapper = document.getElementById('history-tabs-wrapper');
+        if (!wrapper) return;
+
+        wrapper.innerHTML = '';
+        const history = getHistory();
+        if (history.length === 0) return;
+
+        const currentId = (typeof currentNode !== 'undefined' && currentNode) ? currentNode._id : null;
+
+        // Clear All button
+        const clearBtn = document.createElement('div');
+        clearBtn.className = 'history-clear-btn';
+        clearBtn.title = 'Close All Tabs';
+        clearBtn.textContent = '✕';
+        clearBtn.onclick = (e) => {
+            e.stopPropagation();
+            saveHistory([]);
+            renderTabs();
+        };
+        wrapper.appendChild(clearBtn);
+
+        history.forEach((item) => {
+            const tab = document.createElement('div');
+            tab.className = `history-tab ${item.id === currentId ? 'active' : ''}`;
+
+            const viewName = getViewName(item.panel);
+            tab.title = `${item.name} - ${viewName}`;
+
+            const nameSpan = document.createElement('span');
+            nameSpan.textContent = item.name;
+
+            const closeBtn = document.createElement('span');
+            closeBtn.className = 'close-btn';
+            closeBtn.textContent = '✕';
+            closeBtn.onclick = (e) => {
+                e.stopPropagation();
+                removeFromHistory(item.id);
+            };
+
+            // Click: go to device + saved subpage, but DO NOT update history order
+            tab.onclick = () => {
+                if (typeof gotoDevice === 'function') {
+                    gotoDevice(item.id, item.panel);
+                } else {
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('gotonode', item.id);
+                    params.set('viewmode', item.panel);
+                    window.location.search = params.toString();
+                }
+                // Intentionally NO call to updateHistory() here → keeps position
+            };
+
+            tab.appendChild(nameSpan);
+            tab.appendChild(closeBtn);
+            wrapper.appendChild(tab);
+        });
+    }
+
+    function getViewName(panel) {
+        switch (parseInt(panel)) {
+            case 10: return 'General';
+            case 11: return 'Desktop';
+            case 12: return 'Terminal';
+            case 13: return 'Files';
+            case 16: return 'Events';
+            case 17: return 'Details';
+            case 15: return 'Console';
+            default: return 'General';
+        }
+    }
+
+    function removeFromHistory(id) {
+        let history = getHistory();
+        history = history.filter(h => h.id !== id);
+        saveHistory(history);
+        renderTabs();
+    }
+
+    // ONLY called when actually navigating to a NEW device or changing subpage
+    function updateHistory(node, panel) {
+        if (!node || !node._id || !node.name || node._id === 'main' || !node.meshid) return;
+
+        let p = parseInt(panel);
+        if (isNaN(p) || p < 10) p = 10;
+
+        let history = getHistory();
+
+        // Find index of this device
+        const existingIndex = history.findIndex(h => h.id === node._id);
+
+        if (existingIndex !== -1) {
+            // Same device: just update the last panel (subpage), keep position
+            history[existingIndex].panel = p;
+        } else {
+            // New device: remove old entry if any, add to front
+            history = history.filter(h => h.id !== node._id);
+            history.unshift({
+                id: node._id,
+                name: node.name,
+                panel: p
+            });
+            if (history.length > MAX_HISTORY) history.pop();
+        }
+
+        saveHistory(history);
+        renderTabs();
+    }
+
+    // Hook into navigation
+    function hookNavigation() {
+        let attempts = 0;
+        const maxAttempts = 100;
+
+        const tryHook = () => {
+            let hooked = false;
+
+            // Hook gotoDevice (main navigation to device)
+            if (typeof window.gotoDevice === 'function' && !window.gotoDevice.hooked_history) {
+                const orig = window.gotoDevice;
+                window.gotoDevice = function(nodeid, panel, refresh, event) {
+                    const result = orig.apply(this, arguments);
+
+                    if (!nodeid || nodeid === 'main' || nodeid === 'meshtool') return result;
+
+                    const node = (typeof nodes !== 'undefined') 
+                        ? (nodes[nodeid] || (Array.isArray(nodes) ? nodes.find(n => n._id === nodeid) : null))
+                        : null;
+
+                    if (node) {
+                        const p = (panel === undefined || panel === null) ? 10 : parseInt(panel);
+                        if (!isNaN(p) && p >= 10) {
+                            updateHistory(node, p);
+                        }
+                    }
+                    return result;
+                };
+                window.gotoDevice.hooked_history = true;
+                hooked = true;
+            }
+
+            // Hook go()
+            if (typeof window.go === 'function' && !window.go.hooked_history) {
+                const orig = window.go;
+                window.go = function(viewmode, event) {
+                    const result = orig.apply(this, arguments);
+
+                    if (typeof currentNode !== 'undefined' && currentNode && viewmode >= 10) {
+                        updateHistory(currentNode, viewmode);
+                    }
+                    return result;
+                };
+                window.go.hooked_history = true;
+                hooked = true;
+            }
+
+            return hooked;
+        };
+
+        const interval = setInterval(() => {
+            if (tryHook() || attempts++ >= maxAttempts) {
+                clearInterval(interval);
+            }
+        }, 500);
+
+        tryHook();
+    }
+
+    // Initial setup
+    setTimeout(() => {
+        initContainer();
+        hookNavigation();
+        renderTabs();
+
+        // Add current device on page load if it's a valid device page
+        if (typeof currentNode !== 'undefined' && currentNode && currentNode._id && currentNode._id !== 'main') {
+            let panel = 10;
+            if (typeof xxcurrentView !== 'undefined') panel = xxcurrentView;
+            else if (typeof viewmode !== 'undefined') panel = viewmode;
+            else {
+                const params = new URLSearchParams(window.location.search);
+                if (params.has('viewmode')) panel = parseInt(params.get('viewmode'));
+            }
+            if (panel >= 10) {
+                updateHistory(currentNode, panel);
+            }
+        }
+    }, 300);
+
+})();
