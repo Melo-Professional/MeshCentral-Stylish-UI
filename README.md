@@ -45,6 +45,12 @@ Click the image below to open the demo
 
 <table align="center" border="0">
   <tr>
+    <td align="center" colspan="2">
+      <strong>History Tabs</strong><br>
+      <img width="70%" alt="History Tabs" src="https://raw.githubusercontent.com/Melo-Professional/MeshCentral-Stylish-UI/refs/heads/readme-assets/readme-assets/History_Tabs_details.png" />
+    </td>
+  </tr>
+  <tr>
     <td align="center">
       <strong>Context Menu Dropdown</strong><br>
       <img width="100%" alt="Context Menu" src="https://github.com/user-attachments/assets/34c039b8-48c0-4351-baa0-2d2f40df40be" />
