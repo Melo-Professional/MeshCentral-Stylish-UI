@@ -885,226 +885,245 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const MAX_HISTORY = 8;
     const STORAGE_KEY = 'mesh_device_history';
+    const DRAG_THRESHOLD = 6;
 
-    // Helper: get history
+    let drag = {
+        active: false,
+        moved: false,
+        startX: 0,
+        originLeft: 0,
+        originTop: 0,
+        el: null,
+        placeholder: null
+    };
+
     function getHistory() {
-        try {
-            return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-        } catch (e) {
-            return [];
-        }
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+        catch { return []; }
     }
 
-    // Helper: save history
-    function saveHistory(history) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    function saveHistory(h) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(h));
     }
 
-    // Initialize container in masthead
     function initContainer() {
         const masthead = document.getElementById('masthead');
         if (!masthead) return;
 
-        let wrapper = document.getElementById('history-tabs-wrapper');
-        if (wrapper && wrapper.parentNode !== masthead) {
-            wrapper.parentNode.removeChild(wrapper);
-            wrapper = null;
-        }
-        if (!wrapper) {
-            wrapper = document.createElement('div');
-            wrapper.id = 'history-tabs-wrapper';
-            masthead.appendChild(wrapper);
+        masthead.style.position = 'relative';
+
+        let w = document.getElementById('history-tabs-wrapper');
+        if (!w) {
+            w = document.createElement('div');
+            w.id = 'history-tabs-wrapper';
+            masthead.appendChild(w);
         }
     }
 
-    // Render tabs
     function renderTabs() {
-        const wrapper = document.getElementById('history-tabs-wrapper');
-        if (!wrapper) return;
+        const w = document.getElementById('history-tabs-wrapper');
+        if (!w) return;
 
-        wrapper.innerHTML = '';
+        w.innerHTML = '';
         const history = getHistory();
-        if (history.length === 0) return;
+        if (!history.length) return;
 
-        const currentId = (typeof currentNode !== 'undefined' && currentNode) ? currentNode._id : null;
+        const currentId = window.currentNode?._id || null;
 
-        // Clear All button
-        const clearBtn = document.createElement('div');
-        clearBtn.className = 'history-clear-btn';
-        clearBtn.title = 'Close All Tabs';
-        clearBtn.textContent = '✕';
-        clearBtn.onclick = (e) => {
+        const clear = document.createElement('div');
+        clear.className = 'history-clear-btn';
+        clear.textContent = '✕';
+        clear.onclick = e => {
             e.stopPropagation();
             saveHistory([]);
             renderTabs();
         };
-        wrapper.appendChild(clearBtn);
+        w.appendChild(clear);
 
-        history.forEach((item) => {
+        history.forEach(item => {
             const tab = document.createElement('div');
             tab.className = `history-tab ${item.id === currentId ? 'active' : ''}`;
+            tab.dataset.id = item.id;
 
-            const viewName = getViewName(item.panel);
-            tab.title = `${item.name} - ${viewName}`;
+            const name = document.createElement('span');
+            name.textContent = item.name;
 
-            const nameSpan = document.createElement('span');
-            nameSpan.textContent = item.name;
-
-            const closeBtn = document.createElement('span');
-            closeBtn.className = 'close-btn';
-            closeBtn.textContent = '✕';
-            closeBtn.onclick = (e) => {
+            const close = document.createElement('span');
+            close.className = 'close-btn';
+            close.textContent = '✕';
+            close.onclick = e => {
                 e.stopPropagation();
                 removeFromHistory(item.id);
             };
 
-            // Click: go to device + saved subpage, but DO NOT update history order
-            tab.onclick = () => {
-                if (typeof gotoDevice === 'function') {
-                    gotoDevice(item.id, item.panel);
-                } else {
-                    const params = new URLSearchParams(window.location.search);
-                    params.set('gotonode', item.id);
-                    params.set('viewmode', item.panel);
-                    window.location.search = params.toString();
-                }
-                // Intentionally NO call to updateHistory() here → keeps position
-            };
-
-            tab.appendChild(nameSpan);
-            tab.appendChild(closeBtn);
-            wrapper.appendChild(tab);
+            tab.appendChild(name);
+            tab.appendChild(close);
+            enableDrag(tab, item);
+            w.appendChild(tab);
         });
     }
 
-    function getViewName(panel) {
-        switch (parseInt(panel)) {
-            case 10: return 'General';
-            case 11: return 'Desktop';
-            case 12: return 'Terminal';
-            case 13: return 'Files';
-            case 16: return 'Events';
-            case 17: return 'Details';
-            case 15: return 'Console';
-            default: return 'General';
+    function enableDrag(tab, item) {
+        tab.addEventListener('pointerdown', e => {
+            if (e.button !== 0) return;
+
+            drag.startX = e.clientX;
+            drag.moved = false;
+            drag.el = tab;
+
+            const rect = tab.getBoundingClientRect();
+            const parentRect = tab.parentNode.getBoundingClientRect();
+
+            drag.originLeft = rect.left - parentRect.left;
+            drag.originTop = rect.top - parentRect.top;
+
+            tab.setPointerCapture(e.pointerId);
+        });
+
+        tab.addEventListener('pointermove', e => {
+            if (!drag.el || drag.el !== tab) return;
+
+            const dx = e.clientX - drag.startX;
+
+            if (!drag.active && Math.abs(dx) > DRAG_THRESHOLD) {
+                drag.active = true;
+                drag.moved = true;
+
+                drag.placeholder = document.createElement('div');
+                drag.placeholder.className = 'history-tab placeholder';
+                drag.placeholder.style.width = `${tab.offsetWidth}px`;
+                drag.placeholder.style.height = `${tab.offsetHeight}px`;
+
+                tab.before(drag.placeholder);
+
+                tab.style.position = 'absolute';
+                tab.style.left = `${drag.originLeft}px`;
+                tab.style.top = `${drag.originTop}px`;
+                tab.style.width = `${tab.offsetWidth}px`;
+
+                tab.classList.add('dragging');
+            }
+
+            if (!drag.active) return;
+
+            tab.style.left = `${drag.originLeft + dx}px`;
+
+            const siblings = [...tab.parentNode.querySelectorAll(
+                '.history-tab:not(.dragging):not(.placeholder)'
+            )];
+
+            siblings.forEach(sib => {
+                const r = sib.getBoundingClientRect();
+                if (e.clientX > r.left && e.clientX < r.right) {
+                    e.clientX < r.left + r.width / 2
+                        ? sib.before(drag.placeholder)
+                        : sib.after(drag.placeholder);
+                }
+            });
+        });
+
+        tab.addEventListener('pointerup', () => {
+            if (!drag.moved) {
+                goto(item);
+            }
+            finishDrag();
+        });
+
+        tab.addEventListener('pointercancel', finishDrag);
+    }
+
+    function finishDrag() {
+        if (!drag.el) return;
+
+        if (drag.active) {
+            drag.el.classList.remove('dragging');
+            drag.el.style.position = '';
+            drag.el.style.left = '';
+            drag.el.style.top = '';
+            drag.el.style.width = '';
+
+            drag.placeholder.replaceWith(drag.el);
+            persistOrder();
+        }
+
+        drag.active = false;
+        drag.moved = false;
+        drag.el = null;
+        drag.placeholder = null;
+    }
+
+    function persistOrder() {
+        const w = document.getElementById('history-tabs-wrapper');
+        const tabs = [...w.querySelectorAll('.history-tab')];
+        const history = getHistory();
+
+        const ordered = [];
+        tabs.forEach(t => {
+            const h = history.find(x => x.id === t.dataset.id);
+            if (h) ordered.push(h);
+        });
+
+        saveHistory(ordered);
+        renderTabs();
+    }
+
+    function goto(item) {
+        if (typeof window.gotoDevice === 'function') {
+            gotoDevice(item.id, item.panel);
         }
     }
 
     function removeFromHistory(id) {
-        let history = getHistory();
-        history = history.filter(h => h.id !== id);
-        saveHistory(history);
+        saveHistory(getHistory().filter(h => h.id !== id));
         renderTabs();
     }
 
-    // ONLY called when actually navigating to a NEW device or changing subpage
     function updateHistory(node, panel) {
-        if (!node || !node._id || !node.name || node._id === 'main' || !node.meshid) return;
+        if (!node || !node._id || node._id === 'main') return;
 
-        let p = parseInt(panel);
-        if (isNaN(p) || p < 10) p = 10;
+        let h = getHistory();
+        const i = h.findIndex(x => x.id === node._id);
 
-        let history = getHistory();
-
-        // Find index of this device
-        const existingIndex = history.findIndex(h => h.id === node._id);
-
-        if (existingIndex !== -1) {
-            // Same device: just update the last panel (subpage), keep position
-            history[existingIndex].panel = p;
+        if (i !== -1) {
+            h[i].panel = panel;
         } else {
-            // New device: remove old entry if any, add to front
-            history = history.filter(h => h.id !== node._id);
-            history.unshift({
-                id: node._id,
-                name: node.name,
-                panel: p
-            });
-            if (history.length > MAX_HISTORY) history.pop();
+            h.unshift({ id: node._id, name: node.name, panel });
+            if (h.length > MAX_HISTORY) h.pop();
         }
 
-        saveHistory(history);
+        saveHistory(h);
         renderTabs();
     }
 
-    // Hook into navigation
     function hookNavigation() {
-        let attempts = 0;
-        const maxAttempts = 100;
+        if (window.gotoDevice && !gotoDevice._ht) {
+            const o = gotoDevice;
+            window.gotoDevice = function (id, panel) {
+                const r = o.apply(this, arguments);
+                const n = window.nodes?.[id];
+                if (n) updateHistory(n, panel ?? 10);
+                return r;
+            };
+            gotoDevice._ht = true;
+        }
 
-        const tryHook = () => {
-            let hooked = false;
-
-            // Hook gotoDevice (main navigation to device)
-            if (typeof window.gotoDevice === 'function' && !window.gotoDevice.hooked_history) {
-                const orig = window.gotoDevice;
-                window.gotoDevice = function(nodeid, panel, refresh, event) {
-                    const result = orig.apply(this, arguments);
-
-                    if (!nodeid || nodeid === 'main' || nodeid === 'meshtool') return result;
-
-                    const node = (typeof nodes !== 'undefined') 
-                        ? (nodes[nodeid] || (Array.isArray(nodes) ? nodes.find(n => n._id === nodeid) : null))
-                        : null;
-
-                    if (node) {
-                        const p = (panel === undefined || panel === null) ? 10 : parseInt(panel);
-                        if (!isNaN(p) && p >= 10) {
-                            updateHistory(node, p);
-                        }
-                    }
-                    return result;
-                };
-                window.gotoDevice.hooked_history = true;
-                hooked = true;
-            }
-
-            // Hook go()
-            if (typeof window.go === 'function' && !window.go.hooked_history) {
-                const orig = window.go;
-                window.go = function(viewmode, event) {
-                    const result = orig.apply(this, arguments);
-
-                    if (typeof currentNode !== 'undefined' && currentNode && viewmode >= 10) {
-                        updateHistory(currentNode, viewmode);
-                    }
-                    return result;
-                };
-                window.go.hooked_history = true;
-                hooked = true;
-            }
-
-            return hooked;
-        };
-
-        const interval = setInterval(() => {
-            if (tryHook() || attempts++ >= maxAttempts) {
-                clearInterval(interval);
-            }
-        }, 500);
-
-        tryHook();
+        if (window.go && !go._ht) {
+            const o = go;
+            window.go = function (vm) {
+                const r = o.apply(this, arguments);
+                if (window.currentNode && vm >= 10) {
+                    updateHistory(currentNode, vm);
+                }
+                return r;
+            };
+            go._ht = true;
+        }
     }
 
-    // Initial setup
     setTimeout(() => {
         initContainer();
         hookNavigation();
         renderTabs();
-
-        // Add current device on page load if it's a valid device page
-        if (typeof currentNode !== 'undefined' && currentNode && currentNode._id && currentNode._id !== 'main') {
-            let panel = 10;
-            if (typeof xxcurrentView !== 'undefined') panel = xxcurrentView;
-            else if (typeof viewmode !== 'undefined') panel = viewmode;
-            else {
-                const params = new URLSearchParams(window.location.search);
-                if (params.has('viewmode')) panel = parseInt(params.get('viewmode'));
-            }
-            if (panel >= 10) {
-                updateHistory(currentNode, panel);
-            }
-        }
     }, 300);
 
 })();
