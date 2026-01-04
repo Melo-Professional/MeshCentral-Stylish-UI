@@ -882,20 +882,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====== HISTORY TABS ======
 (function () {
     'use strict';
-
     const MAX_HISTORY = 8;
     const STORAGE_KEY = 'mesh_device_history';
-    const DRAG_THRESHOLD = 6;
-
-    let drag = {
-        active: false,
-        moved: false,
-        startX: 0,
-        originLeft: 0,
-        originTop: 0,
-        el: null,
-        placeholder: null
-    };
+    const DRAG_THRESHOLD = 8;
 
     function getHistory() {
         try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
@@ -909,9 +898,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function initContainer() {
         const masthead = document.getElementById('masthead');
         if (!masthead) return;
-
         masthead.style.position = 'relative';
-
         let w = document.getElementById('history-tabs-wrapper');
         if (!w) {
             w = document.createElement('div');
@@ -923,21 +910,22 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderTabs() {
         const w = document.getElementById('history-tabs-wrapper');
         if (!w) return;
-
         w.innerHTML = '';
         const history = getHistory();
         if (!history.length) return;
 
         const currentId = window.currentNode?._id || null;
 
+        // Clear All Button
         const clear = document.createElement('div');
         clear.className = 'history-clear-btn';
         clear.textContent = '✕';
-        clear.onclick = e => {
+        clear.title = 'Close All Tabs';
+        clear.addEventListener('click', e => {
             e.stopPropagation();
             saveHistory([]);
             renderTabs();
-        };
+        });
         w.appendChild(clear);
 
         history.forEach(item => {
@@ -951,117 +939,132 @@ document.addEventListener('DOMContentLoaded', () => {
             const close = document.createElement('span');
             close.className = 'close-btn';
             close.textContent = '✕';
-            close.onclick = e => {
+            close.addEventListener('click', e => {
                 e.stopPropagation();
                 removeFromHistory(item.id);
-            };
+            });
 
             tab.appendChild(name);
             tab.appendChild(close);
-            enableDrag(tab, item);
+
+            enableDragAndClick(tab, item);
             w.appendChild(tab);
         });
     }
 
-    function enableDrag(tab, item) {
-        tab.addEventListener('pointerdown', e => {
-            if (e.button !== 0) return;
+    function enableDragAndClick(tab, item) {
+        let isDragging = false;
+        let startX = 0;
+        let originLeft = 0;
+        let originTop = 0;
+        let placeholder = null;
 
-            drag.startX = e.clientX;
-            drag.moved = false;
-            drag.el = tab;
+        const onPointerDown = e => {
+            if (e.button !== 0 || e.target.classList.contains('close-btn')) return;
+
+            // Start ignoring close btn
+            startX = e.clientX;
 
             const rect = tab.getBoundingClientRect();
             const parentRect = tab.parentNode.getBoundingClientRect();
+            originLeft = rect.left - parentRect.left;
+            originTop = rect.top - parentRect.top;
 
-            drag.originLeft = rect.left - parentRect.left;
-            drag.originTop = rect.top - parentRect.top;
+            isDragging = false;
+            placeholder = null;
 
             tab.setPointerCapture(e.pointerId);
-        });
+        };
 
-        tab.addEventListener('pointermove', e => {
-            if (!drag.el || drag.el !== tab) return;
+        const onPointerMove = e => {
+            if (!tab.hasPointerCapture(e.pointerId)) return;
 
-            const dx = e.clientX - drag.startX;
+            if (isDragging) {
+                tab.style.left = `${originLeft + (e.clientX - startX)}px`;
 
-            if (!drag.active && Math.abs(dx) > DRAG_THRESHOLD) {
-                drag.active = true;
-                drag.moved = true;
+                const siblings = [...tab.parentNode.querySelectorAll('.history-tab:not(.dragging)')];
+                siblings.forEach(sib => {
+                    const r = sib.getBoundingClientRect();
+                    if (e.clientX > r.left && e.clientX < r.right) {
+                        e.clientX < r.left + r.width / 2
+                            ? sib.before(placeholder)
+                            : sib.after(placeholder);
+                    }
+                });
+                return;
+            }
 
-                drag.placeholder = document.createElement('div');
-                drag.placeholder.className = 'history-tab placeholder';
-                drag.placeholder.style.width = `${tab.offsetWidth}px`;
-                drag.placeholder.style.height = `${tab.offsetHeight}px`;
+            // Check threshold
+            const dx = Math.abs(e.clientX - startX);
+            if (dx > DRAG_THRESHOLD) {
+                isDragging = true;
 
-                tab.before(drag.placeholder);
+                // placeholder
+                placeholder = document.createElement('div');
+                placeholder.className = 'history-tab placeholder';
+                placeholder.style.width = `${tab.offsetWidth}px`;
+                placeholder.style.height = `${tab.offsetHeight}px`;
+                tab.before(placeholder);
 
                 tab.style.position = 'absolute';
-                tab.style.left = `${drag.originLeft}px`;
-                tab.style.top = `${drag.originTop}px`;
+                tab.style.left = `${originLeft}px`;
+                tab.style.top = `${originTop}px`;
                 tab.style.width = `${tab.offsetWidth}px`;
-
+                tab.style.zIndex = '1000';
                 tab.classList.add('dragging');
             }
+        };
 
-            if (!drag.active) return;
+        const onPointerUp = e => {
+            if (!tab.hasPointerCapture(e.pointerId)) return;
 
-            tab.style.left = `${drag.originLeft + dx}px`;
+            if (isDragging) {
+                // End drag
+                tab.classList.remove('dragging');
+                tab.style.position = '';
+                tab.style.left = '';
+                tab.style.top = '';
+                tab.style.width = '';
+                tab.style.zIndex = '';
 
-            const siblings = [...tab.parentNode.querySelectorAll(
-                '.history-tab:not(.dragging):not(.placeholder)'
-            )];
-
-            siblings.forEach(sib => {
-                const r = sib.getBoundingClientRect();
-                if (e.clientX > r.left && e.clientX < r.right) {
-                    e.clientX < r.left + r.width / 2
-                        ? sib.before(drag.placeholder)
-                        : sib.after(drag.placeholder);
-                }
-            });
-        });
-
-        tab.addEventListener('pointerup', () => {
-            if (!drag.moved) {
+                placeholder.replaceWith(tab);
+                persistOrder();
+            } else if (!e.target.classList.contains('close-btn')) {
+                // Single click
                 goto(item);
             }
-            finishDrag();
-        });
 
-        tab.addEventListener('pointercancel', finishDrag);
-    }
+            // Cleaning
+            tab.releasePointerCapture(e.pointerId);
+            isDragging = false;
+            placeholder = null;
+        };
 
-    function finishDrag() {
-        if (!drag.el) return;
+        const onPointerCancel = () => {
+            if (tab.hasPointerCapture) {
+                if (isDragging && placeholder) {
+                    placeholder.replaceWith(tab);
+                    tab.classList.remove('dragging');
+                    tab.style = '';
+                }
+                isDragging = false;
+                placeholder = null;
+            }
+        };
 
-        if (drag.active) {
-            drag.el.classList.remove('dragging');
-            drag.el.style.position = '';
-            drag.el.style.left = '';
-            drag.el.style.top = '';
-            drag.el.style.width = '';
-
-            drag.placeholder.replaceWith(drag.el);
-            persistOrder();
-        }
-
-        drag.active = false;
-        drag.moved = false;
-        drag.el = null;
-        drag.placeholder = null;
+        tab.addEventListener('pointerdown', onPointerDown);
+        tab.addEventListener('pointermove', onPointerMove);
+        tab.addEventListener('pointerup', onPointerUp);
+        tab.addEventListener('pointercancel', onPointerCancel);
     }
 
     function persistOrder() {
         const w = document.getElementById('history-tabs-wrapper');
+        if (!w) return;
+
         const tabs = [...w.querySelectorAll('.history-tab')];
         const history = getHistory();
-
-        const ordered = [];
-        tabs.forEach(t => {
-            const h = history.find(x => x.id === t.dataset.id);
-            if (h) ordered.push(h);
-        });
+        const ordered = tabs.map(t => history.find(h => h.id === t.dataset.id)).filter(Boolean);
 
         saveHistory(ordered);
         renderTabs();
@@ -1083,38 +1086,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let h = getHistory();
         const i = h.findIndex(x => x.id === node._id);
-
         if (i !== -1) {
             h[i].panel = panel;
         } else {
             h.unshift({ id: node._id, name: node.name, panel });
             if (h.length > MAX_HISTORY) h.pop();
         }
-
         saveHistory(h);
         renderTabs();
     }
 
     function hookNavigation() {
         if (window.gotoDevice && !gotoDevice._ht) {
-            const o = gotoDevice;
+            const original = gotoDevice;
             window.gotoDevice = function (id, panel) {
-                const r = o.apply(this, arguments);
-                const n = window.nodes?.[id];
-                if (n) updateHistory(n, panel ?? 10);
-                return r;
+                const result = original.apply(this, arguments);
+                const node = window.nodes?.[id];
+                if (node) updateHistory(node, panel ?? 10);
+                return result;
             };
             gotoDevice._ht = true;
         }
 
         if (window.go && !go._ht) {
-            const o = go;
+            const original = go;
             window.go = function (vm) {
-                const r = o.apply(this, arguments);
+                const result = original.apply(this, arguments);
                 if (window.currentNode && vm >= 10) {
                     updateHistory(currentNode, vm);
                 }
-                return r;
+                return result;
             };
             go._ht = true;
         }
@@ -1125,5 +1126,4 @@ document.addEventListener('DOMContentLoaded', () => {
         hookNavigation();
         renderTabs();
     }, 300);
-
 })();
