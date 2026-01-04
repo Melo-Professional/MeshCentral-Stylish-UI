@@ -986,10 +986,14 @@ hr#cxmgroupsplit {
 
 #page_leftbar .nav-link {
 	border-radius: 5px 0px 0px 5px !important;
-	transition: transform 0.3s ease, background-color 0.3s ease;
+	transition: all 0.2s ease;
 }
 
-#page_leftbar .nav-link:hover {
+#page_leftbar .nav-link .svg-inline--fa {
+	transition: all 0.2s ease;
+}
+
+#page_leftbar .nav-link:hover .svg-inline--fa {
 	transform: scale(1.2);
 }
 
