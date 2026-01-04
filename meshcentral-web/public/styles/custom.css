@@ -732,161 +732,175 @@ hr#cxmgroupsplit {
     left: 1%;
     width: 98%;
     max-width: 100% !important;
-    height: 16px;
+    height: 22px;
     display: flex;
-    align-items: flex-end;
-    /* gap: 2px; */
+    align-items: end;
     padding: 0 10px;
     background: transparent;
     border-top: none;
     overflow-x: auto;
     scrollbar-width: none;
     z-index: 100;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-left: 32px;
+	opacity: unset;
 }
 
+#history-tabs-wrapper::before,
+#history-tabs-wrapper::after {
+    content: "";
+    flex: 1 0 auto;
+}
 #history-tabs-wrapper::-webkit-scrollbar {
     display: none;
 }
 
+#history-tabs-wrapper {
+    will-change: transform;
+}
+
 /* Individual Tab Style */
 .history-tab {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgb(0 0 0 / 25%);
     color: #f4f4f4;
-    height: 13px;
+    height: 70%;
     padding: 0 0 0 10px;
     border-radius: 10px 10px 0 0;
     font-size: 11px;
+    font-weight: 100;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    /* gap: 6px; */
     transition: all 0.2s ease;
-    border: 2px solid rgba(0, 0, 0, 0.05);
     border-bottom: none;
     user-select: none;
     margin-bottom: 0;
-    /*min-width: 90px;*/
-    /*max-width: 120px;*/
+    min-width: 130px;
+    max-width: 130px;
     width: 130px;
-}
-
-.history-tab span:first-child {
-    flex: 1 1 auto;
     overflow: hidden;
-    text-overflow: clip;
-    white-space: nowrap;
-}
-
-.history-tab:hover {
-    background: rgba(255, 255, 255, 0.25);
-    color: #ffffff;
-}
-
-.history-tab.active {
-    background: #f3f3f352;
-    color: #fff;
-    font-weight: 600;
-    border-color: rgba(255, 255, 255, 0.2);
-    height: 16px;
-    box-shadow: 0 15px 8px 9px #00000047 !important;
-}
-
-.night .history-tab.active {
-	background: #1c1e1e33;
-}
-
-/* Close Button (x) */
-.history-tab .close-btn {
-    opacity: 0.6;
-    font-size: 7px;
-    line-height: 1;
-    border-radius: 0px 10px 0 0;
-    width: 24px;
-    height: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    overflow: hidden;
-    flex: 0 0 22px;
-    margin-left: 1px;
-    transform: translateX(2px);
-	color: transparent;
-}
-
-.history-tab .close-btn:hover {
-    background: rgba(255, 50, 50, 0.8);
-    opacity: 1;
-    overflow: hidden;
-    color: white;
-}
-
-.history-tab.active .close-btn{
-	height: 18px;
-	width: 16px;
-	transform: translateX(2px);
+    box-shadow: inset 0 1px 0 0 rgb(0 0 0 / 5%), inset 1px 0 0 0 rgb(0 0 0 / 5%), inset -1px 0 0 0 rgb(0 0 0 / 5%);
+    flex: 0 0 auto;
+    position: relative;
+	opacity: 0.7;
 }
 
 /* Close All Button - X style, positioned at start */
 .history-clear-btn {
-    height: 13px;
+    height: 35%;
     width: 22px;
     min-width: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px 4px 0 0;
-	background: rgb(255 50 50 / 38%);
+    background: rgb(255 50 50 / 38%);
     color: transparent;
     font-size: 10px;
     font-family: Arial, sans-serif;
     font-weight: bold;
     cursor: pointer;
-    margin-right: 0px;
+    margin-right: 0;
     margin-left: 0;
     transition: all 0.2s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-	transform: translateY(5px);
+	box-shadow: inset 0 1px 0 0 rgb(255 50 50 / 38%), inset 1px 0 0 0 rgb(255 50 50 / 38%), inset -1px 0 0 0 rgb(255 50 50 / 38%);
+    z-index: 2;
+	opacity: 0.6;
 }
 
 .history-clear-btn:hover {
     background: rgba(255, 50, 50, 0.8);
-    color: white;
-    border-color: rgba(255, 50, 50, 0.8);
-	transform: translateY(0px);
+	color: #f4f4f4;
+    height: 80%;
+	opacity: 1;
+	box-shadow: inset 0 1px 0 0 rgb(255 50 50 / 38%), inset 1px 0 0 0 rgb(255 50 50 / 38%), inset -1px 0 0 0 rgb(255 50 50 / 38%), 0px 1px 4px 2px #00000047;
+}
+
+.history-tab span:first-child {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    padding-right: 0;
+}
+
+@supports (mask-image: linear-gradient(black, transparent)) {
+    .history-tab span:first-child {
+        mask-image: linear-gradient(
+            to right,
+            black 0%,
+            black calc(100% - 28px),
+            transparent 95%
+        );
+    }
+
+    .history-tab span:first-child::after {
+        display: none;
+    }
+}
+
+.history-tab.active {
+	background: #f3f3f3cf;
+	color: #212529;
+	font-weight: 600;
+	height: 80%;
+	box-shadow: inset 0 1px 0 0 rgb(0 0 0 / 5%), inset 1px 0 0 0 rgb(0 0 0 / 5%), inset -1px 0 0 0 rgb(0 0 0 / 5%), 0 15px 8px 9px #00000047 !important;
+	opacity: 1;
+}
+
+.night .history-tab.active {
+	background: #1c1e1ed9;
+	color: #f4f4f4;
+}
+
+.history-tab:hover {
+	height: 100%;
+	opacity: 1;
+	box-shadow: inset 0 1px 0 0 rgb(0 0 0 / 5%), inset 1px 0 0 0 rgb(0 0 0 / 5%), inset -1px 0 0 0 rgb(0 0 0 / 5%), 0 15px 8px 9px #00000047 !important;
+}
+
+.history-tab:not(.active):hover {
+	font-weight: 600;
+}
+
+/* Close Button (x) */
+.history-tab .close-btn {
+    opacity: 0;
+    font-size: 7px;
+    line-height: 1;
+    width: 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-left: 1px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.history-tab .close-btn:hover {
+    background: rgba(255, 50, 50, 1.0);
+    opacity: 1;
+    overflow: hidden;
+    color: #f4f4f4;
 }
 
 @media (min-width: 1600px) {
 	#history-tabs-wrapper {
-	    height: 23px;
+	    height: 26px;
 	}
 	.history-tab {
-		height: 20px;
 		font-size: 14px;
+		min-width: 160px;
+		max-width: 160px;
 		width: 160px;
-	}
-	.history-tab.active {
-		height: 23px;
-	}
-	.history-tab .close-btn {
-		font-size: 12px;
-		width: 20px;
-		height: 22px;
-		flex: 0 0 27px;
-		margin-left: 5px;
-	}
-	.history-tab.active .close-btn{
-		height: 25px;
-		width: 24px;
-		font-size: 14px;
-		transform: translateX(2px);
-	}
-	.history-clear-btn {
-		height: 20px;
-		width: 28px;
-		font-size: 14px;
-		transform: translateY(9px);
 	}
 }
 
