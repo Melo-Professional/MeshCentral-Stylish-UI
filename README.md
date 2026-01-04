@@ -129,7 +129,10 @@ meshcentral-web/
 ## ⚙️ How to Apply
 <details>
   <summary>Click to expand</summary>
+  
 
+  <details>
+  <summary>General</summary>
 1. If it doesn’t exist yet, create the meshcentral-web/ folder in the MeshCentral root directory — alongside meshcentral-data/
 
 2. Create the following subfolders inside meshcentral-web/ if they don’t already exist:
@@ -166,6 +169,49 @@ meshcentral-web/
 
 > The files under `styles/components/` are for reference only.  
 > Use them if you prefer to apply specific parts of the customization instead of the full `custom.css`.
+
+</details>
+<details>
+  <summary>Docker</summary>
+  With Docker, you can simply add environment flags to apply Stylish UI.
+  
+  The MeshCentral entrypoint will automatically download the compatible Stylish UI version for your server.
+
+  You may choose to keep the `meshcentral-web` folder persistent or not.
+
+  Environment flags:  
+  `INSTALL_STYLISHUI=true`  
+  `STYLISHUI_FORCE_LATEST=true`
+  
+  When `STYLISHUI_FORCE_LATEST=true`, the container always downloads the latest Stylish UI commits, regardless of the MeshCentral version.
+  
+  When `STYLISHUI_FORCE_LATEST=false`, the container downloads the Stylish UI version compatible with your MeshCentral version.
+  
+  Docker compose:
+  ```
+version: 'x.x'
+services:
+  meshcentral:
+    image: ...
+    environment:
+      - INSTALL_STYLISHUI=true
+      - STYLISHUI_FORCE_LATEST=true
+    volumes:
+      ...
+    ports:
+      ...
+    networks:
+      ...
+
+volumes:
+  ...
+
+networks:
+  ...
+```
+
+
+</details>
 
 </details>
 
