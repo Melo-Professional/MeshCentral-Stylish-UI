@@ -41,12 +41,12 @@
 }
 
 .history-tab {
-    background: rgb(0 0 0 / 25%);
-    color: #f4f4f4;
-    height: 70%;
+    background: #c1c1c1;
+    color: #212529;
+    height: 100%;
     padding: 0 0 0 10px;
     border-radius: 10px 10px 0 0;
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 100;
     cursor: default;
     display: inline-flex;
@@ -55,14 +55,40 @@
     border-bottom: none;
     user-select: none;
     margin-bottom: 0;
-    min-width: 130px;
-    max-width: 130px;
-    width: 130px;
     overflow: hidden;
-    box-shadow: inset 0 1px 0 0 rgb(0 0 0 / 5%), inset 1px 0 0 0 rgb(0 0 0 / 5%), inset -1px 0 0 0 rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 25%), inset 1px 0 0 0 rgb(0 0 0 / 25%), inset -1px 0 0 0 rgb(0 0 0 / 25%);
     flex: 0 0 auto;
     position: relative;
-    opacity: 0.7;
+    /* z-index: 10; */
+    --history-tab-base-width: 130px;
+    --history-tab-width: var(--history-tab-base-width);
+    --history-tab-min-width: var(--history-tab-base-width);
+    --history-tab-max-width: var(--history-tab-base-width);
+    width: var(--history-tab-width);
+    min-width: var(--history-tab-min-width);
+    max-width: var(--history-tab-max-width);
+    transform: translateY(7px);
+}
+
+.night .history-tab {
+    background: #2a3434;
+    color: #cdcdcd;
+	/*color: #212529;*/
+}
+
+.history-tab.active {
+	background: #F3F3F3;
+	font-size: 11px;
+	font-weight: 600;
+	box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 45%), inset 1px 0 0 0 rgb(0 0 0 / 25%), inset -1px 0 0 0 rgb(0 0 0 / 25%), 0 15px 8px 9px #00000047 !important;
+	opacity: 1;
+	z-index: 1;
+	transform: translateY(2px);
+}
+
+.night .history-tab.active {
+	background: #1c1e1e;
+	color: #f4f4f4;
 }
 
 .history-tab.dragging {
@@ -71,20 +97,25 @@
 }
 
 .history-tab.placeholder {
-    background: rgba(255,255,255,0.15);
+	background: #9f3434;
     border: 1px dashed rgba(255,255,255,0.4);
+	margin: 0 2px;
+	width: calc(var(--history-tab-width) + 20px);
+	min-width: calc(var(--history-tab-min-width) + 20px);
+	max-width: calc(var(--history-tab-max-width) + 20px);
+	transition: all 0.2s ease;
 }
 
-/* Close All Button - X style, positioned at start */
+/* Clear All Button - X style, positioned at start */
 .history-clear-btn {
-    height: 35%;
+    height: 80%;
     width: 22px;
     min-width: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 4px 4px 0 0;
-    background: rgb(255 50 50 / 38%);
+    background: #9f3434;
     color: transparent;
     font-size: 10px;
     font-family: Arial, sans-serif;
@@ -93,17 +124,17 @@
     margin-right: 0;
     margin-left: 0;
     transition: all 0.2s;
-	box-shadow: inset 0 1px 0 0 rgb(255 50 50 / 38%), inset 1px 0 0 0 rgb(255 50 50 / 38%), inset -1px 0 0 0 rgb(255 50 50 / 38%);
+    box-shadow: inset 0 1px 0 0 rgb(255 50 50 / 38%), inset 1px 0 0 0 rgb(255 50 50 / 38%), inset -1px 0 0 0 rgb(255 50 50 / 38%);
     z-index: 2;
-	opacity: 0.6;
+    transform: translateY(12px);
 }
 
 .history-clear-btn:hover {
-    background: rgba(255, 50, 50, 0.8);
+    background: #ff5353;
 	color: #f4f4f4;
-    height: 80%;
-	opacity: 1;
-	box-shadow: inset 0 1px 0 0 rgb(255 50 50 / 38%), inset 1px 0 0 0 rgb(255 50 50 / 38%), inset -1px 0 0 0 rgb(255 50 50 / 38%), 0px 1px 4px 2px #00000047;
+    /* height: 100%; */
+    box-shadow: inset 0 1px 0 0 rgb(255 50 50 / 38%), inset 1px 0 0 0 rgb(255 50 50 / 38%), inset -1px 0 0 0 rgb(255 50 50 / 38%), 0px 1px 4px 2px #00000047;
+    transform: translateY(0px);
 }
 
 .history-tab span:first-child {
@@ -130,24 +161,15 @@
     }
 }
 
-.history-tab.active {
-	background: #f3f3f3cf;
-	color: #212529;
-	font-weight: 600;
-	height: 80%;
-	box-shadow: inset 0 1px 0 0 rgb(0 0 0 / 5%), inset 1px 0 0 0 rgb(0 0 0 / 5%), inset -1px 0 0 0 rgb(0 0 0 / 5%), 0 15px 8px 9px #00000047 !important;
-	opacity: 1;
-}
-
-.night .history-tab.active {
-	background: #1c1e1ed9;
-	color: #f4f4f4;
-}
-
 .history-tab:hover {
-	height: 100%;
 	opacity: 1;
-	box-shadow: inset 0 1px 0 0 rgb(0 0 0 / 5%), inset 1px 0 0 0 rgb(0 0 0 / 5%), inset -1px 0 0 0 rgb(0 0 0 / 5%), 0 15px 8px 9px #00000047 !important;
+	box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 25%), inset 1px 0 0 0 rgb(0 0 0 / 25%), inset -1px 0 0 0 rgb(0 0 0 / 25%), 0 15px 8px 9px #00000047 !important;
+	z-index: 2;
+	transform: translateY(0px);
+}
+
+.history-tab:hover .history-close-btn{
+	
 }
 
 .history-tab:not(.active):hover {
@@ -157,6 +179,7 @@
 /* Close Button (x) */
 .history-tab .close-btn {
     opacity: 0;
+	color: inherit;
     font-size: 7px;
     line-height: 1;
     width: 24px;
@@ -173,8 +196,13 @@
     z-index: 2;
 }
 
+.history-tab:hover .close-btn{
+	opacity: 0.6;
+}
+
 .history-tab .close-btn:hover {
-    background: rgba(255, 50, 50, 1.0);
+    background: #ff5353;
+	box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 25%), inset -1px 0 0 0 rgb(0 0 0 / 25%);
     opacity: 1;
     overflow: hidden;
     color: #f4f4f4;
@@ -185,9 +213,12 @@
 	    height: 26px;
 	}
 	.history-tab {
-		font-size: 14px;
-		min-width: 160px;
-		max-width: 160px;
-		width: 160px;
+		font-size: 11px;
+		--history-tab-width: calc(var(--history-tab-base-width) + 30px);
+		--history-tab-min-width: calc(var(--history-tab-base-width) + 30px);
+		--history-tab-max-width: calc(var(--history-tab-base-width) + 30px);
+	}
+	.history-tab.active {
+		font-size: 13px;
 	}
 }
