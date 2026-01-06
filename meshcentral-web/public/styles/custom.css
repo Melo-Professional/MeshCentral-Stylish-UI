@@ -1438,6 +1438,12 @@ input#d2devurl {
 img#MainComputerImage {
     transition: transform 0.3s ease, background-color 0.3s ease;
     transform-origin: bottom right;
+    z-index: 0;
+    position: relative;
+}
+
+#p10deviceBattery, .deviceNotifyLargeDot {
+	z-index: 1;
 }
 
 img#MainComputerImage:hover {

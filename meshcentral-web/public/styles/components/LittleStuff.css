@@ -8,10 +8,6 @@
 	background-color: #1c1e1e !important;
 }
 
-#p2info {
-	overflow-x: hidden !important;
-}
-
 #p30info {
 	overflow-x: hidden !important;
 }
@@ -22,10 +18,6 @@
 
 #p30html2, #p30html3, #p3users, #p51info {
 	padding-right: 15px !important;
-}
-
-#p2meshes {
-	margin-right: 15px !important;
 }
 
 #p3users table, #p16events .table.table-hover.p3eventsTable,
@@ -82,135 +74,6 @@ table.table.table-hover.p3usersTable {
 
 .night .deskToolsBar:hover {
 	background-color: #414141 !important;
-}
-
-/* Device Details */
-#p17info2 .table.table-hover {
-    --bs-table-bg: unset !important;
-	--bs-table-hover-bg: unset !important;
-}
-
-#p17info2 > table > tbody > tr > td * {
-		border: none !important;
-		cursor: default;
-}
-
-@media (min-width: 769px) {
-	#p17info2 > table > tbody > tr > td > div:nth-child(2) {
-		margin-left: 40px !important;
-		margin-right: 40px !important;
-	}
-	#p17graph > table > tbody > tr > td:nth-child(2) > div:nth-child(2) {
-		width:calc(100% - 56px) !important;
-	}
-
-    .col-md-8 {
-        flex: 0 0 auto;
-        width: 360px !important;
-		padding-left: 32px;
-    }
-
-    .col-md-4 {
-        flex: 0 0 auto;
-		width: auto;
-        /* width: 65% !important; */
-    }
-}
-
-.col-md-4 {
-	text-align: left !important;
-}
-
-#p17info2 > table > tbody > tr > td > div{
-    margin-bottom: 2.3rem !important;
-}
-
-#p17graph table  > tbody > tr > td > img,
-#p17info2 > table > tbody > tr > td > img, #p17info2 > table > tbody > tr > img {
-	transform: translateY(-20px);
-	filter: drop-shadow(6px 6px 6px rgba(0, 0, 0, 0.45));
-}
-
-.night #p17graph table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > td > img, .night #p17info2 > table > tbody > tr > img {
-	filter: drop-shadow(6px 6px 6px rgba(189, 185, 185, 0.25));
-}
-
-#p17graph table, #p17info2 > table {
-	background-color: #e5e5e582;
-	/* border-radius: 40px; */
-	max-width: 1000px !important;
-	margin-left: auto;
-	margin-right: auto;	
-	margin-top: 50px;
-	border-radius: 120px;
-	corner-shape: squircle;
-}
-
-.night #p17graph table, .night #p17info2 > table {
-	background-color: #8181810f;
-}
-
-#p17info2  table > tbody > tr > td > div > div:hover {
-    background-color: color-mix(in lab, currentColor 7%, transparent) !important;
-    transition: background-color 0.2s ease;
-}
-
-.night #p17info2  table > tbody > tr > td > div > div:hover {
-    background-color: color-mix(in lab, currentColor 12%, transparent) !important;
-    transition: background-color 0.2s ease;
-}
-
-#devListToolbarViewIcons3 {
-    margin-right: 25px;
-}
-
-#p17info {
-    caption-side: bottom;
-    border-collapse: collapse;
-    vertical-align: inherit;
-    unicode-bidi: isolate;
-    overflow-wrap: break-word;
-    align-items: center;
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-#p17info2 > table > tbody > tr > td > div.DevSt {
-    line-height: 4rem;
-    margin-bottom: unset !important;
-}
-
-#p17info2 .row.mb-1 {
-    width: 100%;
-    margin-right: unset !important;
-    margin-left: unset !important;
-}
-
-#p17info2 > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td > div {
-    padding: unset !important;
-	--bs-gutter-x: 1.5rem;
-	--bs-gutter-y: 0;
-}
-
-#p17info2 > table > tbody > tr > td * {
-    color: var(--bs-body-color);
-}
-
-.night #p17info2 > table > tbody > tr > td * {
-    color: #BBB;
-}
-
-#p17info2 > table {
-	margin-bottom: 10px;
-}
-
-#p17info2 > table > tbody > tr > td:nth-child(1) {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    pointer-events: none;
 }
 
 /* Scrollbars */
@@ -536,85 +399,15 @@ input#d2devurl {
     background-color: #f3f3f3;
 }
 
-#p2 .col-10 {
-    padding: 25px 10px 10px 0;
-    width: 70%;
-}
-
-#p2 .col-2 {
-    flex: 0 0 auto;
-    width: 30%;
-    padding: 10px;
-}
-
-#p2 .card {
-    position: relative;
-    overflow: hidden;
-    display: flex !important;
-    flex-direction: column;
-    background: rgba(245, 250, 255, 0.8) !important;
-    border-radius: 16px;
-    transition: background-color 0.25s ease, backdrop-filter 0.25s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(100, 120, 255, 0.2);
-    min-height: 110px;
-}
-
-.night #p2 .card {
-    background: rgba(30, 35, 50, 0.65) !important;
-}
-
-#p2 .card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.18) 50%,
-        transparent 70%
-    );
-    opacity: 0;
-    transform: translateX(-60%);
-    transition: opacity 0.3s ease, transform 0.5s ease;
-    pointer-events: none;
-}
-
-#p2 .card:hover {
-    background-color: color-mix(in srgb, var(--bs-secondary) 14%, transparent) !important;
-    backdrop-filter: blur(10px) saturate(140%);
-    -webkit-backdrop-filter: blur(10px) saturate(140%);
-}
-
-#p2 .card:hover::before {
-    opacity: 1;
-    transform: translateX(60%);
-}
-
-canvas#p2canvas, #p2AccountImage, #p2AccountImage2, #MainUserImageEx {
-	box-shadow: unset !important;
-    background: unset !important;
-    border: unset !important;
-	}
-	
-.card, #p2AccountImage, #MainUserImageEx, picture#MainUserImage {
-    background: unset !important;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    transform-origin: bottom center;
-}
-
-#p2canvas {
-    background: unset !important;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.card:hover, #p2AccountImage:hover, #p2canvas:hover, #MainUserImageEx:hover, picture#MainUserImage:hover {
-	transform: scale(1.02);
-	background: unset !important;
-}
-
 img#MainComputerImage {
     transition: transform 0.3s ease, background-color 0.3s ease;
     transform-origin: bottom right;
+    z-index: 0;
+    position: relative;
+}
+
+#p10deviceBattery, .deviceNotifyLargeDot {
+	z-index: 1;
 }
 
 img#MainComputerImage:hover {
@@ -649,18 +442,6 @@ img#MainComputerImage:hover {
 .night #dialog2 > div > div[onclick^="p10setIcon"]:hover {
     transform: scale(1.2);
     filter: drop-shadow(4px 16px 7px rgb(110 110 110 / 30%));
-}
-
-#p2canvas {
-    display: block !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-	margin-top: 50px !important;
-}
-
-input#p2FolderUp {
-    min-width: 82px;
-    margin-right: 15px;
 }
 
 .select2-container--bootstrap-5 .select2-selection {
