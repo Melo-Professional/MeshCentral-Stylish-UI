@@ -270,33 +270,27 @@ table.table.table-hover.p3usersTable {
 }
 
 .modal-header .btn-close {
-    /*--bs-btn-close-color: #f8e4e4 !important;*/
-    /*--bs-btn-close-white-filter: none !important;*/
-    background-color: transparent !important;
-    /*background-image: none !important;*/
-    /*filter: none !important;*/
-    opacity: 1 !important;
-	cursor: default !important;
-}
-
-.modal-header .btn-close {
-    /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f8e4e4'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") !important;*/
     background-size: 0.7em auto !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
 	width: 1.7em !important;
     height: 1.7em !important;
 	margin: calc(-0.6 * var(--bs-modal-header-padding-y)) calc(-0.6 * var(--bs-modal-header-padding-x)) calc(-0.6 * var(--bs-modal-header-padding-y)) auto !important;
+	border-radius: unset !important;
+    opacity: 1 !important;
+	cursor: default !important;
+	background-color: transparent !important;
+}
+
+.night .modal-header .btn-close {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
+    filter: none !important;
 }
 
 .modal-header .btn-close:hover {
-    background-color: #c42b1c !important;
-    filter: none !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
+	background-color: #c42b1c !important;
     opacity: 1 !important;
-}
-
-.btn-close {
-	border-radius: unset !important;
 }
 
 .modal-content {
