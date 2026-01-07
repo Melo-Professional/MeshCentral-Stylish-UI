@@ -3175,6 +3175,14 @@ input#p2FolderUp {
 	background-color: #1c1e1e;
 }
 
+#notifyRemoveAll:hover {
+    background-color: #f6d3d3 !important;
+}
+
+.night #notifyRemoveAll:hover {
+    background-color: #652c2c !important;
+}
+
 #notifiyBox .notification {
     display: block;
     position: relative;
@@ -3507,3 +3515,10 @@ body.fullscreen:not(.menu_stack) #column_l:has(
     color: #ff5353 !important;
 }
 
+.userDropdownMenuItem[onclick="handleUserMenuItem('logout')"]:hover {
+        background-color: #f6d3d3 !important;
+}
+
+.night .userDropdownMenuItem[onclick="handleUserMenuItem('logout')"]:hover {
+        background-color: #652c2c !important;
+}

@@ -135,3 +135,11 @@
 .userDropdownMenuItem[onclick="handleUserMenuItem('logout')"] {
     color: #ff5353 !important;
 }
+
+.userDropdownMenuItem[onclick="handleUserMenuItem('logout')"]:hover {
+        background-color: #f6d3d3 !important;
+}
+
+.night .userDropdownMenuItem[onclick="handleUserMenuItem('logout')"]:hover {
+        background-color: #652c2c !important;
+}

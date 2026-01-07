@@ -98,6 +98,14 @@
 	background-color: #1c1e1e;
 }
 
+#notifyRemoveAll:hover {
+    background-color: #f6d3d3 !important;
+}
+
+.night #notifyRemoveAll:hover {
+    background-color: #652c2c !important;
+}
+
 #notifiyBox .notification {
     display: block;
     position: relative;
