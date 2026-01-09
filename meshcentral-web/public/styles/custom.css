@@ -715,23 +715,25 @@ hr#cxmgroupsplit {
 #history-tabs-wrapper {
     position: absolute;
     bottom: 0;
-    left: 1%;
-    width: 98%;
+    /* left: 1%; */
+    width: auto;
     max-width: 100% !important;
     height: 22px;
     display: flex;
     align-items: end;
     padding: 0 10px;
-    background: transparent;
-    border-top: none;
+    /* background: transparent; */
+    /* border-top: none; */
     overflow-x: auto;
     scrollbar-width: none;
     z-index: 100;
     justify-content: flex-start;
     overflow-y: hidden;
     white-space: nowrap;
-    padding-left: 32px;
-    opacity: unset;
+    /* padding-left: 32px; */
+    /* opacity: unset; */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #history-tabs-wrapper::before,
@@ -893,7 +895,7 @@ hr#cxmgroupsplit {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    transition: all 0.3s ease-out;
     margin-left: 1px;
     overflow: hidden;
     position: absolute;
