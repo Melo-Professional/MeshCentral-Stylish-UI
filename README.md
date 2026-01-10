@@ -254,7 +254,9 @@ networks:
   • <a href="https://github.com/The-Dev-Ryan">TheDevRyan</a> — outstanding contributions throughout the project<br>
   • <a href="https://github.com/GlitchedCod/MeshCentral-Windows-11-Theme">GlitchedCod</a> — for most of the icons<br>
   • <a href="https://github.com/si458">Simon</a> — for general guidance<br>
-  • <a href="https://github.com/Ylianst/MeshCentral">MeshCentral</a> — the ultimate RMM solution!
+  • <a href="https://github.com/Ylianst/MeshCentral">MeshCentral</a> — the ultimate RMM solution!<br>
+  • <a href="https://openhub.net/p/MeshCentral">MeshCentral @OpenHub</a> — About MeshCentral
+  
 </p>
 
 ---
