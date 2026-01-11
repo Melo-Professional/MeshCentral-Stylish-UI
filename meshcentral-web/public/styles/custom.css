@@ -1617,6 +1617,21 @@ div[id$="BackButton"] {
     color: var(--bs-primary);
 }
 
+/* plugins page */
+#p42tbl .gradTable1, #p42tbl .gradTable3 {
+    background-image: unset;
+}
+
+#p42tbl .gradTable2 {
+    background-color: unset;
+}
+
+#pluginRestartNotice.areaHead {
+	color: #212529; !important;
+	background: unset !important;
+	background-color: #dfcd6b !important;
+}
+
 
 /* **************************************************************** */
 /* Login Page */
