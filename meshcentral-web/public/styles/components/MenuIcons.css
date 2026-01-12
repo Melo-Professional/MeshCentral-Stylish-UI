@@ -306,7 +306,7 @@
 	display: none !important;
 }
 
-#p11 > div:nth-child(4) {
+#p11 > div:nth-child(4):has(> div[id$="lock"]) {
     right: 60px !important;
     margin-top: -28px !important;
     font-size: xx-small !important;
