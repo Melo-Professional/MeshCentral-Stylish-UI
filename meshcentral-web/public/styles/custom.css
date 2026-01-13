@@ -1521,6 +1521,7 @@ Specificity: (0,2,0)
 
 /* form-checks-input radio buttons */
 .form-check-input {
+  color: #000;
   border: 1px solid color-mix(in lab, currentcolor 30%, transparent) !important;
   border-radius: 50% !important;
   pointer-events: auto !important;
@@ -1528,6 +1529,10 @@ Specificity: (0,2,0)
   opacity: 0.9;
   /* background-size: unset !important; */
 	background-size: contain !important;
+}
+
+.night .form-check-input {
+  color: #FFF;
 }
 
 .form-check-input:hover {
