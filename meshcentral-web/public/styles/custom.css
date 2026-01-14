@@ -628,6 +628,38 @@ tr[name="xxdevice2"] {
     font-weight: bold !important;
 }
 
+/* notes panel */
+#notesPanel table {
+    color: #212529;
+    background-color: #efefef;
+    border-radius: 20px;
+	overflow: hidden;
+}
+
+.night #notesPanel table {
+    color: #DEE2E6;
+    background-color: #242323;
+}
+
+#notesPanel thead tr
+ {
+	 background-color: #e4e3e3;
+}
+
+.night #notesPanel thead tr
+ {
+	background-color: #292929;
+}
+
+#notesPanel > table > tbody > tr > td {
+	padding: 0px 0 10px 10px;
+	font-size: small;
+}
+
+#notesPanel th {
+    text-align: center;
+}
+
 /* **************************************************************** */
 /* Drop down context menu */
 .contextMenu {
