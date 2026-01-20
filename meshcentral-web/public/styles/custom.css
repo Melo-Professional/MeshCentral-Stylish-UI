@@ -1477,6 +1477,10 @@ input#d2devurl {
     background-color: #f3f3f3;
 }
 
+#devListToolbarSpan #SearchInput, #devListToolbarSpan #KvmSearchInput {
+    width: 170px;
+}
+
 img#MainComputerImage {
     transition: transform 0.3s ease, background-color 0.3s ease;
     transform-origin: bottom right;
