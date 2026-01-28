@@ -1127,3 +1127,45 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTabs();
     }, 300);
 })();
+
+
+// ====== iOS App ======
+(function () {
+  const ROW_CLASS = 'appstore-row';
+
+  function inject() {
+    const tbody = document.querySelector('#agins_qrcode > table > tbody');
+    if (!tbody) return;
+    if (tbody.querySelector('.' + ROW_CLASS)) return;
+
+    const tr = document.createElement('tr');
+    tr.className = ROW_CLASS;
+    tr.innerHTML =
+      '<td style="text-align:center">' +
+        '<a title="App Store" rel="noreferrer noopener" target="_blank" ' +
+           'href="https://apps.apple.com/us/app/mesh-agent/id6757406184">' +
+          '<img style="cursor:pointer" ' +
+               'src="images/app-store-120.png" ' +
+               'width="140" ' +
+               'srcset="images/app-store-280.png 2x">' +
+        '</a>' +
+      '</td>';
+
+    tbody.prepend(tr);
+  }
+
+  function startQrCodeObserver() {
+    const root = document.body || document.documentElement;
+    if (!root) return;
+
+    const observer = new MutationObserver(inject);
+    observer.observe(root, { childList: true, subtree: true });
+    inject();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startQrCodeObserver);
+  } else {
+    startQrCodeObserver();
+  }
+})();
