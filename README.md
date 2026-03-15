@@ -173,7 +173,7 @@ meshcentral-web/
 </details>
 <details>
   <summary>Docker</summary>
-  With Docker, you can simply add environment flags to apply Stylish UI.
+  With MeshCentral 1.1.55+ running in Docker, you can simply add environment flags to enable Stylish UI.
   
   The MeshCentral entrypoint will automatically download the compatible Stylish UI version for your server.
 
