@@ -1,6 +1,10 @@
 // ====== MESH CENTRAL – FULLSCREEN + ZOOM ======
 (() => {
   'use strict';
+  const isMobile = window.matchMedia('(pointer: coarse)').matches 
+    || navigator.maxTouchPoints > 1;
+
+  if (isMobile) return;
 
   /* -------------------------- CONFIG -------------------------- */
   const CONFIG = {
