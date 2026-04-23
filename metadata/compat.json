@@ -4,6 +4,10 @@
   "compatibility": [
     {
       "stylishui": "3.2.6",
+      "meshcentral": "1.1.59"
+    },
+     {
+      "stylishui": "3.2.6",
       "meshcentral": "1.1.58"
     },
     {
