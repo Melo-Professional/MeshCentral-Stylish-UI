@@ -13,7 +13,8 @@
     INTRO_DURATION_MS: 5000,
     INTRO_HIDE_DURATION_MS: 1500,
     INDICATOR_STAY_MS: 3000,
-    HOT_ZONE_WIDTH_PERCENT: 3,
+    HOT_ZONE_WIDTH_PERCENT: 5,
+	HOT_ZONE_HEIGHT_PX: 40,
     PATCH_RETRY_MS: 250,
     ZOOM_MIN: 0.5,
     ZOOM_MAX: 2.5,
@@ -37,6 +38,16 @@
     let indicator = null;
     let arrow = null;
 	let trueFsActive = false;
+	let keyToggleHandler = null;
+	let keyHint = null;
+
+const createKeyHint = () => {
+  if (keyHint) return;
+  keyHint = document.createElement('div');
+  keyHint.className = 'mc-key-hint';
+  keyHint.innerHTML = `Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd> to toggle toolbars`;
+  container.appendChild(keyHint);
+};
 
     const injectCSS = () => {
       if (document.getElementById(CONFIG.FULLSCREEN_STYLE_ID)) return;
@@ -90,6 +101,44 @@
           0%,100%{filter:drop-shadow(0 0 6px rgba(255,255,255,.7)) drop-shadow(0 0 12px rgba(100,150,255,.5))}
           50%{filter:drop-shadow(0 0 10px rgba(255,255,255,.9)) drop-shadow(0 0 20px rgba(100,150,255,.8)) drop-shadow(0 0 30px rgba(167,139,255,.6))}}
         .modal{z-index:1055!important}.modal-backdrop{z-index:1050!important}
+		#deskarea0.mc-true-fs .mc-key-hint {
+		position: fixed !important;
+		top: 65px !important;
+		left: 50% !important;
+		transform: translateX(-50%) translateY(-20px) !important;
+		z-index: 10005 !important;
+		color: #ffffff !important;
+		background: rgba(0, 0, 0, 0.85) !important;
+		backdrop-filter: blur(6px) !important;
+		-webkit-backdrop-filter: blur(6px) !important;
+		padding: 6px 16px !important;
+		border-radius: 20px !important;
+		font-size: 13px !important;
+		font-family: sans-serif !important;
+		border: 1px solid rgba(255, 255, 255, 0.3) !important;
+		box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		transition: opacity .6s ease, transform .6s cubic-bezier(.25,.1,.25,1) !important;
+		}
+		#deskarea0.mc-true-fs .mc-key-hint kbd {
+		background: rgba(255, 255, 255, 0.25) !important;
+		border: 1px solid rgba(255, 255, 255, 0.4) !important;
+		border-radius: 4px !important;
+		padding: 2px 6px !important;
+		font-weight: bold !important;
+		font-family: inherit !important;
+		color: #fff !important;
+		}
+		#deskarea0.mc-true-fs.show-indicator .mc-key-hint {
+		opacity: 1 !important;
+		transform: translateX(-50%) translateY(0) !important;
+		}
+		#deskarea0.mc-true-fs.hide-indicator .mc-key-hint {
+		opacity: 0 !important;
+		transform: translateX(-50%) translateY(-20px) !important;
+		transition: opacity .8s ease, transform .8s ease !important;
+		}
       `;
 
       const style = document.createElement('style');
@@ -123,7 +172,8 @@
       const hotLeft = centerX - zoneW / 2;
       const hotRight = centerX + zoneW / 2;
 
-      const inHotZone = e.clientY >= 4 && e.clientY <= 20 && e.clientX >= hotLeft && e.clientX <= hotRight;
+      // const inHotZone = e.clientY >= 4 && e.clientY <= 20 && e.clientX >= hotLeft && e.clientX <= hotRight;
+	     const inHotZone = e.clientY >= 0 && e.clientY <= (CONFIG.HOT_ZONE_HEIGHT_PX || 40) && e.clientX >= hotLeft && e.clientX <= hotRight;
       const overTop = topBar && e.clientY <= topBar.getBoundingClientRect().bottom;
       const overBottom = bottomBar && e.clientY >= bottomBar.getBoundingClientRect().top;
       const showing = container.classList.contains('show-bars');
@@ -150,64 +200,88 @@
       }
     };
 
-    const enable = () => {
-      if (enabled) return;
-      enabled = true;
+const enable = () => {
+    if (enabled) return;
+    enabled = true;
 
-      container = document.getElementById('deskarea0');
-      if (!container) return;
-      topBar = document.getElementById('deskarea1');
-      bottomBar = document.getElementById('deskarea4');
+    container = document.getElementById('deskarea0');
+    if (!container) return;
+    topBar = document.getElementById('deskarea1');
+    bottomBar = document.getElementById('deskarea4');
 
-      injectCSS();
-      createIndicator();
-      createArrow();
+    injectCSS();
+    createIndicator();
+    createArrow();
+    createKeyHint(); // Build the F11 hint banner
 
-      container.classList.add('mc-true-fs', 'show-bars', 'show-indicator');
+    container.classList.add('mc-true-fs', 'show-bars', 'show-indicator');
 
-      handler = createHandler();
-      document.addEventListener('mousemove', handler, { capture: true, passive: true });
+    handler = createHandler();
+    document.addEventListener('mousemove', handler, { capture: true, passive: true });
 
-      initialShowTimer = setTimeout(() => {
-        container.classList.add('intro-hide');
-        container.classList.remove('show-bars');
-        setTimeout(() => {
-          container.classList.remove('intro-hide');
-          indicatorHideTimer = setTimeout(() => {
-            container.classList.add('hide-indicator');
-            container.classList.remove('show-indicator');
-            setTimeout(() => container.classList.remove('hide-indicator'), 300);
-          }, CONFIG.INDICATOR_STAY_MS);
-        }, CONFIG.INTRO_HIDE_DURATION_MS);
-        initialShowTimer = null;
-      }, CONFIG.INTRO_DURATION_MS);
+    // Fullscreen Toggle Listener
+    keyToggleHandler = (e) => {
+		// if (e.ctrlKey && e.altKey && (e.key === 'Pause' || e.code === 'Pause')) {
+      // if (e.key === 'F11') {
+	  if (e.ctrlKey && e.shiftKey && (e.key === 'F' || e.key === 'f')) {
+        e.preventDefault();
+        e.stopPropagation();
 
-      ZoomController.init(bottomBar, container);
-    };
+        [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
+        hideTimer = initialShowTimer = indicatorHideTimer = null;
 
-    const disable = () => {
-		//container.style.transform = '';
-		container.style.left = '0';
-		//container.style.top = '';
-		//container.style.width = '';
-		//container.style.height = '';
-
-      if (!enabled) return;
-      enabled = false;
-
-      [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
-      if (handler) document.removeEventListener('mousemove', handler, { capture: true, passive: true });
-
-      ZoomController.destroy();
-
-      if (container) {
-        container.classList.remove('mc-true-fs', 'show-bars', 'show-indicator', 'intro-hide', 'hide-indicator');
-        if (indicator) { indicator.remove(); indicator = null; }
-        if (arrow) { arrow.remove(); arrow = null; }
+        if (container.classList.contains('show-bars')) {
+          container.classList.remove('show-bars');
+        } else {
+          container.classList.add('show-bars', 'show-indicator');
+        }
       }
-      const style = document.getElementById(CONFIG.FULLSCREEN_STYLE_ID);
-      if (style) style.remove();
     };
+    document.addEventListener('keydown', keyToggleHandler, { capture: true });
+
+    initialShowTimer = setTimeout(() => {
+      container.classList.add('intro-hide');
+      container.classList.remove('show-bars');
+      setTimeout(() => {
+        container.classList.remove('intro-hide');
+        indicatorHideTimer = setTimeout(() => {
+          container.classList.add('hide-indicator');
+          container.classList.remove('show-indicator');
+          setTimeout(() => container.classList.remove('hide-indicator'), 300);
+        }, CONFIG.INDICATOR_STAY_MS);
+      }, CONFIG.INTRO_HIDE_DURATION_MS);
+      initialShowTimer = null;
+    }, CONFIG.INTRO_DURATION_MS);
+
+    ZoomController.init(bottomBar, container);
+  };
+
+	const disable = () => {
+		container.style.left = '0';
+
+		if (!enabled) return;
+		enabled = false;
+
+		[hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
+		if (handler) document.removeEventListener('mousemove', handler, { capture: true, passive: true });
+		
+		// Clean up F11 hotkey listener
+		if (keyToggleHandler) {
+		document.removeEventListener('keydown', keyToggleHandler, { capture: true });
+		keyToggleHandler = null;
+		}
+
+		ZoomController.destroy();
+
+		if (container) {
+		container.classList.remove('mc-true-fs', 'show-bars', 'show-indicator', 'intro-hide', 'hide-indicator');
+		if (indicator) { indicator.remove(); indicator = null; }
+		if (arrow) { arrow.remove(); arrow = null; }
+		if (keyHint) { keyHint.remove(); keyHint = null; } // Remove banner element on exit
+		}
+		const style = document.getElementById(CONFIG.FULLSCREEN_STYLE_ID);
+		if (style) style.remove();
+	};
 
     const patch = () => {
       const tryPatch = () => {
