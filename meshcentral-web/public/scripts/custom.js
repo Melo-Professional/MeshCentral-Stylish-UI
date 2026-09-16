@@ -14,7 +14,7 @@
     INTRO_HIDE_DURATION_MS: 1500,
     INDICATOR_STAY_MS: 3000,
     HOT_ZONE_WIDTH_PERCENT: 5,
-	HOT_ZONE_HEIGHT_PX: 40,
+	HOT_ZONE_HEIGHT_PX: 20,
     PATCH_RETRY_MS: 250,
     ZOOM_MIN: 0.5,
     ZOOM_MAX: 2.5,
@@ -227,13 +227,27 @@ const enable = () => {
         e.preventDefault();
         e.stopPropagation();
 
+        // Clear active timers
         [hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
         hideTimer = initialShowTimer = indicatorHideTimer = null;
 
         if (container.classList.contains('show-bars')) {
-          container.classList.remove('show-bars');
+          // Hide bars and indicators immediately
+          container.classList.remove('show-bars', 'show-indicator');
+          container.classList.add('hide-indicator');
+          setTimeout(() => container.classList.remove('hide-indicator'), 300);
         } else {
+          // Show bars and display indicator banner
+          container.classList.remove('hide-indicator');
           container.classList.add('show-bars', 'show-indicator');
+
+          // Auto-fade the banner and glow indicator after 3 seconds
+          indicatorHideTimer = setTimeout(() => {
+            container.classList.add('hide-indicator');
+            container.classList.remove('show-indicator');
+            setTimeout(() => container.classList.remove('hide-indicator'), 300);
+            indicatorHideTimer = null;
+          }, CONFIG.INDICATOR_STAY_MS);
         }
       }
     };
