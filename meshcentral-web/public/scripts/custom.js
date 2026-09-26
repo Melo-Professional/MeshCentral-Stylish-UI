@@ -21,8 +21,8 @@
     ZOOM_STEP: 0.1,
     ZOOM_DEFAULT: 1.0,
     ZOOM_IN_KEYS: ['+', '='],
-    ZOOM_OUT_KEYS: ['-'],
-    ZOOM_RESET_KEYS: ['0'],
+    ZOOM_OUT_KEYS: ['-', '_'],
+    ZOOM_RESET_KEYS: ['z', 'Z'],
   };
 
   /* ----------------------- FULLSCREEN ENHANCER ----------------------- */
@@ -172,8 +172,7 @@ const createKeyHint = () => {
       const hotLeft = centerX - zoneW / 2;
       const hotRight = centerX + zoneW / 2;
 
-      // const inHotZone = e.clientY >= 4 && e.clientY <= 20 && e.clientX >= hotLeft && e.clientX <= hotRight;
-	     const inHotZone = e.clientY >= 0 && e.clientY <= (CONFIG.HOT_ZONE_HEIGHT_PX || 40) && e.clientX >= hotLeft && e.clientX <= hotRight;
+	  const inHotZone = e.clientY >= 0 && e.clientY <= (CONFIG.HOT_ZONE_HEIGHT_PX || 40) && e.clientX >= hotLeft && e.clientX <= hotRight;
       const overTop = topBar && e.clientY <= topBar.getBoundingClientRect().bottom;
       const overBottom = bottomBar && e.clientY >= bottomBar.getBoundingClientRect().top;
       const showing = container.classList.contains('show-bars');
@@ -212,7 +211,7 @@ const enable = () => {
     injectCSS();
     createIndicator();
     createArrow();
-    createKeyHint(); // Build the F11 hint banner
+    createKeyHint();
 
     container.classList.add('mc-true-fs', 'show-bars', 'show-indicator');
 
@@ -221,8 +220,6 @@ const enable = () => {
 
     // Fullscreen Toggle Listener
     keyToggleHandler = (e) => {
-		// if (e.ctrlKey && e.altKey && (e.key === 'Pause' || e.code === 'Pause')) {
-      // if (e.key === 'F11') {
 	  if (e.ctrlKey && e.shiftKey && (e.key === 'F' || e.key === 'f')) {
         e.preventDefault();
         e.stopPropagation();
@@ -279,7 +276,7 @@ const enable = () => {
 		[hideTimer, initialShowTimer, indicatorHideTimer].forEach(t => t && clearTimeout(t));
 		if (handler) document.removeEventListener('mousemove', handler, { capture: true, passive: true });
 		
-		// Clean up F11 hotkey listener
+		// Clean up hotkey listener
 		if (keyToggleHandler) {
 		document.removeEventListener('keydown', keyToggleHandler, { capture: true });
 		keyToggleHandler = null;
@@ -291,7 +288,7 @@ const enable = () => {
 		container.classList.remove('mc-true-fs', 'show-bars', 'show-indicator', 'intro-hide', 'hide-indicator');
 		if (indicator) { indicator.remove(); indicator = null; }
 		if (arrow) { arrow.remove(); arrow = null; }
-		if (keyHint) { keyHint.remove(); keyHint = null; } // Remove banner element on exit
+		if (keyHint) { keyHint.remove(); keyHint = null; }
 		}
 		const style = document.getElementById(CONFIG.FULLSCREEN_STYLE_ID);
 		if (style) style.remove();
@@ -413,10 +410,10 @@ const enable = () => {
                value="${CONFIG.ZOOM_DEFAULT*100}" step="${CONFIG.ZOOM_STEP*100}">
         <span id="mc-zoom-help">?</span>
         <div id="mc-zoom-help-banner">
-          • Ctrl + / − : zoom<br>
-          • Ctrl + wheel : zoom at cursor<br>
-          • Ctrl + drag : pan<br>
-          • Ctrl + 0 / Click label : reset
+          • Ctrl + Shift + ( + / − ) : zoom<br>
+          • Ctrl + Shift + wheel : zoom at cursor<br>
+          • Ctrl + Shift + drag : pan<br>
+          • Ctrl + Shift + z / Click label : reset
         </div>
       `;
       bottomBar.appendChild(zoomUI);
@@ -456,18 +453,18 @@ const enable = () => {
     };
 
     const attachEvents = () => {
-      // Keyboard
+      // Keyboard (Ctrl + Shift + Key)
       keyHandler = e => {
-        if (!e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) return;
+        if (!e.ctrlKey || !e.shiftKey || e.altKey || e.metaKey) return;
         if (CONFIG.ZOOM_IN_KEYS.includes(e.key)) { e.preventDefault(); setZoom(zoomValue + CONFIG.ZOOM_STEP); }
         else if (CONFIG.ZOOM_OUT_KEYS.includes(e.key)) { e.preventDefault(); setZoom(zoomValue - CONFIG.ZOOM_STEP); }
         else if (CONFIG.ZOOM_RESET_KEYS.includes(e.key)) { e.preventDefault(); reset(); }
       };
       document.addEventListener('keydown', keyHandler, { capture: true, passive: false });
 
-      // Ctrl Wheel
+      // Ctrl + Shift + Wheel
       wheelHandler = e => {
-        if (!e.ctrlKey) return;
+        if (!e.ctrlKey || !e.shiftKey) return;
         e.preventDefault();
         e.stopImmediatePropagation();
 
@@ -481,9 +478,9 @@ const enable = () => {
       };
       document.addEventListener('wheel', wheelHandler, { capture: true, passive: false });
 
-      // Pan drag
+      // Ctrl + Shift + Pan Drag
       const start = e => {
-        if (!e.ctrlKey || e.button !== 0) return;
+        if (!e.ctrlKey || !e.shiftKey || e.button !== 0) return;
         drag.active = true;
         drag.startX = e.clientX - panX;
         drag.startY = e.clientY - panY;
@@ -576,11 +573,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const ICONS_INACTIVE_ALPHA  = '0.3';
   const ICONS_ACTIVE_SCALE  = '1.0';
   const ICONS_INACTIVE_SCALE  = '0.7';
-  //const ICONS_SIZE  = (parseFloat(TOGGLE_HEIGHT) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
   const ICONS_SIZE  = '0.9rem';
   const ICONS_GAP = (((parseFloat(TOGGLE_WIDTH) / 2 ) - (parseFloat(TOGGLE_BORDER))) - (parseFloat(ICONS_SIZE))) + 'rem';
   const SWITCH_HEIGHT = (parseFloat(TOGGLE_HEIGHT) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
-  //const SWITCH_WIDTH = ((parseFloat(TOGGLE_WIDTH) - (parseFloat(TOGGLE_BORDER) * 2)) / 2) + 'rem';
   const SWITCH_WIDTH = ((parseFloat(TOGGLE_WIDTH) - (parseFloat(TOGGLE_BORDER) * 2)) / 2) + (((parseFloat(TOGGLE_WIDTH) / 2 ) - (parseFloat(TOGGLE_BORDER))) - (parseFloat(ICONS_SIZE))) + 'rem';
   const SWITCH_BORDER_RADIUS = (parseFloat(SWITCH_HEIGHT) / 2) + 'rem';
   const SWITCH_AUTO_W = (parseFloat(TOGGLE_WIDTH) - (parseFloat(TOGGLE_BORDER) * 2)) + 'rem';
@@ -589,7 +584,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const LIGHT_SWITCH  = "#1c1e1e";
   const LIGHT_BG      = "#f3f3f3";
   const LIGHT_BORDER  = "#f3f3f3";
-  //const LIGHT_SUN     = "#282523";
   const LIGHT_SUN     = "#ff6600";
   const LIGHT_MOON    = "#595652";
   const LIGHT_SHADOW  = "#191919b8";
@@ -705,7 +699,6 @@ document.addEventListener('DOMContentLoaded', () => {
   border: 0.018rem solid rgb(255 255 255 / 28%);
 }
 #theme-toggle .sun, #theme-toggle .moon { 
- /* position:relative;  */
   height:${ICONS_SIZE}; 
   width:${ICONS_SIZE}; 
   padding:${ICONS_PADDING}; 
@@ -807,7 +800,6 @@ document.addEventListener('DOMContentLoaded', () => {
     track.style.setProperty('--switch', colors.switch);
 
     const isLight = (mode === '2') || (mode === '0' && colors === LIGHT);
-    // const isAuto = (mode === '0');
 
     btn.classList.remove('mode-auto','mode-light','mode-dark');
     if (mode === '0') btn.classList.add('mode-auto');
@@ -893,7 +885,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ====== Swith Theme DropDownSubMenu ======
+// ====== Switch Theme DropDownSubMenu ======
 (function () {
     'use strict';
 
@@ -1087,7 +1079,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Check threshold
-            const dx = Math.abs(e.clientX - startX);
+			const dx = Math.abs(e.clientX - startX);
             if (dx > DRAG_THRESHOLD) {
                 isDragging = true;
 
