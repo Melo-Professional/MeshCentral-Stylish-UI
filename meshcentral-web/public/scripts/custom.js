@@ -452,13 +452,25 @@ const enable = () => {
       zoomUI.querySelector('#mc-zoom-slider').addEventListener('wheel', wheelOnBarHandler, { passive: false });
     };
 
-    const attachEvents = () => {
+const attachEvents = () => {
       // Keyboard (Ctrl + Shift + Key)
       keyHandler = e => {
         if (!e.ctrlKey || !e.shiftKey || e.altKey || e.metaKey) return;
-        if (CONFIG.ZOOM_IN_KEYS.includes(e.key)) { e.preventDefault(); setZoom(zoomValue + CONFIG.ZOOM_STEP); }
-        else if (CONFIG.ZOOM_OUT_KEYS.includes(e.key)) { e.preventDefault(); setZoom(zoomValue - CONFIG.ZOOM_STEP); }
-        else if (CONFIG.ZOOM_RESET_KEYS.includes(e.key)) { e.preventDefault(); reset(); }
+
+        const isZoomIn = CONFIG.ZOOM_IN_KEYS.includes(e.key) || e.code === 'Equal';
+        const isZoomOut = CONFIG.ZOOM_OUT_KEYS.includes(e.key) || e.code === 'Minus';
+        const isZoomReset = CONFIG.ZOOM_RESET_KEYS.includes(e.key) || e.code === 'KeyZ';
+
+        if (isZoomIn || isZoomOut || isZoomReset) {
+          // Block MeshCentral from sending keypress to remote PC
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+
+          if (isZoomIn) setZoom(zoomValue + CONFIG.ZOOM_STEP);
+          else if (isZoomOut) setZoom(zoomValue - CONFIG.ZOOM_STEP);
+          else if (isZoomReset) reset();
+        }
       };
       document.addEventListener('keydown', keyHandler, { capture: true, passive: false });
 
@@ -466,6 +478,7 @@ const enable = () => {
       wheelHandler = e => {
         if (!e.ctrlKey || !e.shiftKey) return;
         e.preventDefault();
+        e.stopPropagation();
         e.stopImmediatePropagation();
 
         const desk = getDesk();
@@ -486,6 +499,7 @@ const enable = () => {
         drag.startY = e.clientY - panY;
         container.style.cursor = 'grabbing';
         e.preventDefault();
+        e.stopPropagation();
       };
       const move = e => {
         if (!drag.active) return;
