@@ -25,14 +25,15 @@
   position: absolute;
   top: 50%;
   left: 0;
-  width: 18rem;
+  width: min(18rem, 55vw);
   height: 2.5rem;
   transform: translateY(-50%);
   background-image: url(../logo.png);
   background-repeat: no-repeat;
   background-position: left center;
   pointer-events: none;
-  background-size: 18rem 2.5rem;
+  /* Keep the logo's aspect ratio instead of stretching it to 18rem x 2.5rem */
+  background-size: contain;
 }
 }
 

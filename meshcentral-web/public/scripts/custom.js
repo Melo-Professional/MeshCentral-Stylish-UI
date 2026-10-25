@@ -616,6 +616,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const mastheadRight = document.querySelector('.masthead-right');
   if (!mastheadRight) return;
 
+  // The server can force night or day mode (domain "nightMode": 1 or 2). MeshCentral
+  // then ignores the stored choice, so the toggle would do nothing: leave it out.
+  if (typeof features2 !== 'undefined' && (features2 & 0x00300000) !== 0) return;
+
   // APPLYING VARS
   const LIGHT = { bg: LIGHT_BG, border: LIGHT_BORDER, sun: LIGHT_SUN, moon: LIGHT_MOON, shadow: LIGHT_SHADOW, light: LIGHT_LIGHT, switch: LIGHT_SWITCH };
   const DARK  = { bg: DARK_BG, border: DARK_BORDER,  sun: DARK_SUN,  moon: DARK_MOON,  shadow: DARK_SHADOW,  light: DARK_LIGHT, switch: DARK_SWITCH };
