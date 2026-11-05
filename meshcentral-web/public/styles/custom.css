@@ -2106,14 +2106,15 @@ div[id$="BackButton"] {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 18rem;
+  width: min(18rem, 55vw);
   height: 2.5rem;
   transform: translateY(-50%);
   background-image: url(../logo.png);
   background-repeat: no-repeat;
   background-position: left center;
   pointer-events: none;
-  background-size: 18rem 2.5rem;
+  /* Keep the logo's aspect ratio instead of stretching it to 18rem x 2.5rem */
+  background-size: contain;
 }
 }
 
@@ -2624,6 +2625,70 @@ div[id$="BackButton"] {
 		top: 67px !important;
         right: 10px !important;
     }
+}
+
+/* Phones and tablets (MeshCentral adds body.is-mobile on touch devices) */
+
+/* My Devices title row: the -13px top margin from MenuIcons.css pulls the row
+   (and the highlighted view icon) up over the masthead, and the 15px right
+   margin leaves a gap at the right edge. */
+body.is-mobile #p1title {
+    margin: 0 !important;
+}
+
+/* Dark mode: on phones MeshCentral draws the page title bars white with
+   #212529 text, while the theme turns "My Devices" and other headings light
+   grey, so they become hard to read and the white strip clashes with the
+   dark page. Use the dark background and text colours instead. */
+[data-bs-theme="dark"] body.is-mobile :is(#p1title, #p3title, #p4title, #p5title, #p6title, #p10title, #p11title, #p12title, #p13title, #p14title, #p15title, #p16title, #p17title, #p18title, #p19title, #p20title, #p21title, #p30title, #p31title, #p40title, #p41title, #p42title, #p50title, #p51title, #p52title, #p60title) {
+    background-color: var(--bs-body-bg) !important;
+}
+
+[data-bs-theme="dark"] body.is-mobile :is(#p1title, #p3title, #p4title, #p5title, #p6title, #p10title, #p11title, #p12title, #p13title, #p14title, #p15title, #p16title, #p17title, #p18title, #p19title, #p20title, #p21title, #p30title, #p31title, #p40title, #p41title, #p42title, #p50title, #p51title, #p52title, #p60title) .fs-4 {
+    color: var(--bs-body-color) !important;
+}
+
+/* List view: the device table uses fixed column widths (User 120px,
+   Address 150px, Connectivity 100px), which leaves almost no room for the
+   device name on a phone. Collapse the User column (display:none would still
+   reserve its width in a fixed-layout table) and narrow the other two. */
+body.is-mobile #xdevices > table > tbody > tr > th:nth-child(2) {
+    width: 0 !important;
+    padding: 0 !important;
+    font-size: 0;
+    overflow: hidden;
+}
+
+body.is-mobile #xdevices tr[name="xxdevice2"] > td:nth-child(2) {
+    padding: 0 !important;
+    font-size: 0;
+    overflow: hidden;
+}
+
+body.is-mobile #xdevices tr[name="xxdevice2"] > td:nth-child(2) > * {
+    display: none !important;
+}
+
+body.is-mobile #xdevices > table > tbody > tr > th:nth-child(3) {
+    width: 104px !important;
+}
+
+body.is-mobile #xdevices > table > tbody > tr > th:nth-child(4) {
+    width: 72px !important;
+}
+
+body.is-mobile #xdevices > table > tbody > tr > th {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+body.is-mobile #xdevices tr[name="xxdevice2"] > td:nth-child(n+3) {
+    font-size: 11.5px;
+    line-height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
