@@ -1731,6 +1731,26 @@ div[id$="BackButton"] {
     background: unset;
 }
 
+.modal-content {
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-body {
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1 1 auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal-footer {
+    flex-shrink: 0;
+}
+
 
 /* **************************************************************** */
 /* Login Page */
