@@ -2633,14 +2633,16 @@ div[id$="BackButton"] {
         height: calc(100vh - 120px) !important;
         max-height: calc(100vh - 120px) !important;
     }
-    #p11 #p11title #devListToolbarViewIcons,
+
+/*     #p11 #p11title #devListToolbarViewIcons, */
+/*     .fa-maximize */
     #devListToolbarViewIcons2,
     #devListToolbarViewIcons3,
     #idx_deskFullBtn2,
-    #idx_termFullBtn2,
-    .fa-maximize {
+    #idx_termFullBtn2 {
         display: none !important;
     }
+	
     .notifiyBox {
 		top: 67px !important;
         right: 10px !important;
